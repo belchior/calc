@@ -80,7 +80,7 @@ footer, h1 {
   color: #929292;
   background-color: #ffffff;
   background: linear-gradient(to bottom, #ffffff 50%, #eaeaea 100%);
-  box-shadow: 1px 1px 1px #a2a2a2;
+  box-shadow: 0px 1px 2px 1px #a2a2a2;
 }
 .calc .btn:active {
   background: linear-gradient(to bottom, #eaeaea 50%, #ffffff 100%);
@@ -107,11 +107,4 @@ footer, h1 {
 .calc .btn.operator[name=equality] {
   border-radius: 12px;
   height: 3.5em;
-}
-.calc .btn.active {
-  background: linear-gradient(to bottom, #ffba81 50%, #ff8f38 100%);
-  color: #ffffff;
-}
-.calc .btn.active:active {
-  background: linear-gradient(to bottom, #ff8f38 50%, #ffba81 100%);
 }
