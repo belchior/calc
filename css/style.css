@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-size: 100%;
-  font-family: Verdana
+  font-family: Verdana;
 }
 footer, h1 {
   text-align: center;
@@ -33,7 +33,7 @@ footer, h1 {
   );
   box-shadow: inset 0px 2px 4px rgba(0,0,0,0.3);
 }
-.calc .display .top {
+.calc .display .input {
   box-sizing: border-box;
   margin: 0;
   border: 0;
@@ -48,7 +48,7 @@ footer, h1 {
   vertical-align: top;
   background-color: transparent;
 }
-.calc .display .bottom {
+.calc .display .output {
   padding: 0 10px;
   font-size: 1.2em;
   line-height: 1.2em;
@@ -88,18 +88,14 @@ footer, h1 {
 .calc .btn:nth-child(12) {
   margin-bottom: 5px;
 }
-.calc .groupers {
-  float: left;
-  clear: both;
-}
-.calc .groupers {
+.calc .brackets {
   box-sizing: border-box;
   float: left;
   clear: both;
   padding: 0 5px 5px 0;
   width: 100%;
 }
-.calc .groupers .grouper {
+.calc .brackets .bracket {
   float: right;
   width: 2em;
   height: 2em;
@@ -108,14 +104,14 @@ footer, h1 {
   width: 2em;
   height: 2em;
 }
+.calc .btn.operator[name=equality] {
+  border-radius: 12px;
+  height: 3.5em;
+}
 .calc .btn.active {
   background: linear-gradient(to bottom, #ffba81 50%, #ff8f38 100%);
   color: #ffffff;
 }
 .calc .btn.active:active {
   background: linear-gradient(to bottom, #ff8f38 50%, #ffba81 100%);
-}
-.calc .btn.operator.equal {
-  border-radius: 12px;
-  height: 3.5em;
 }

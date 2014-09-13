@@ -16,34 +16,34 @@
       <div id="container">
         <form class="calc" action="#">
           <div class="display">
-            <input class="top" type="text" name="display-top" pattern="[0-9.+\-\/*=()]*" value="2+4+(8+12+16)">
-            <div class="bottom">42</div>
+            <input class="input" type="text" name="input" pattern="[0-9.+\-\/*=()]*" placeholder="2+4+(8+12+16)">
+            <div class="output">42</div>
           </div>
           <div class="keyboard">
-            <div class="groupers">
-              <button type="button" class="btn grouper" name=")">)</button>
-              <button type="button" class="btn grouper" name="(">(</button>
+            <div class="brackets">
+              <button type="button" class="btn bracket active" name="parenthesesClose" title="parentheses closing">)</button>
+              <button type="button" class="btn bracket" name="parenthesesOpen" title="parentheses opening">(</button>
             </div>
             <div class="numbers">
-              <button type="button" class="btn number" name="1">1</button>
-              <button type="button" class="btn number" name="2">2</button>
-              <button type="button" class="btn number" name="3">3</button>
-              <button type="button" class="btn number" name="4">4</button>
-              <button type="button" class="btn number" name="5">5</button>
-              <button type="button" class="btn number" name="6">6</button>
-              <button type="button" class="btn number" name="7">7</button>
-              <button type="button" class="btn number" name="8">8</button>
-              <button type="button" class="btn number" name="9">9</button>
-              <button type="button" class="btn number" name="0">0</button>
-              <button type="button" class="btn number" name=".">.</button>
-              <button type="button" class="btn number" name="c">c</button>
+              <button type="button" class="btn number" name="number1" title="number 1">1</button>
+              <button type="button" class="btn number" name="number2" title="number 2">2</button>
+              <button type="button" class="btn number" name="number3" title="number 3">3</button>
+              <button type="button" class="btn number" name="number4" title="number 4">4</button>
+              <button type="button" class="btn number" name="number5" title="number 5">5</button>
+              <button type="button" class="btn number" name="number6" title="number 6">6</button>
+              <button type="button" class="btn number" name="number7" title="number 7">7</button>
+              <button type="button" class="btn number" name="number8" title="number 8">8</button>
+              <button type="button" class="btn number" name="number9" title="number 9">9</button>
+              <button type="button" class="btn number" name="number0" title="number 0">0</button>
+              <button type="button" class="btn" name="dot" title="dot">.</button>
+              <button type="button" class="btn" name="clear" title="clear">c</button>
             </div>
             <div class="operators">
-              <button type="button" class="btn operator" name="+">+</button>
-              <button type="button" class="btn operator active" name="-">-</button>
-              <button type="button" class="btn operator" name="*">*</button>
-              <button type="button" class="btn operator active" name="/">/</button>
-              <button type="button" class="btn operator equal" name="=">=</button>
+              <button type="button" class="btn operator" name="addition" title="plus">+</button>
+              <button type="button" class="btn operator" name="subtraction" title="minus">-</button>
+              <button type="button" class="btn operator" name="multiplication" title="times">x</button>
+              <button type="button" class="btn operator" name="division" title="divided by">÷</button>
+              <button type="button" class="btn operator" name="equality" title="equals">=</button>
             </div>
           </div>
         </form>
