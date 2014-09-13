@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Calc</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta name="description" content="Desenvolvedor e entusiasta do desenvolvimento web">
+    <link rel="icon" href="favicon.png" sizes="60x60">
+    <link rel="stylesheet" href="/calc/css/style.css">
+  </head>
+  <body>
+    <article>
+      <header>
+        <h1>Calculator</h1>
+      </header>
+      <div id="container">
+        <form class="calc" action="#">
+          <div class="display">
+            <input class="top" type="text" name="display-top" pattern="[\d.+\-\/*=()]*" value="">
+            <div class="bottom">0</div>
+          </div>
+          <div class="keyboard">
+            <div class="separators">
+              <button type="button" class="btn separator" name=")">)</button>
+              <button type="button" class="btn separator" name="(">(</button>
+            </div>
+            <div class="numbers">
+              <button type="button" class="btn number" name="1">1</button>
+              <button type="button" class="btn number" name="2">2</button>
+              <button type="button" class="btn number" name="3">3</button>
+              <button type="button" class="btn number" name="4">4</button>
+              <button type="button" class="btn number" name="5">5</button>
+              <button type="button" class="btn number" name="6">6</button>
+              <button type="button" class="btn number" name="7">7</button>
+              <button type="button" class="btn number" name="8">8</button>
+              <button type="button" class="btn number" name="9">9</button>
+              <button type="button" class="btn number" name="0">0</button>
+              <button type="button" class="btn number" name=".">.</button>
+              <button type="button" class="btn number" name="c">c</button>
+            </div>
+            <div class="operators">
+              <button type="button" class="btn operator" name="+">+</button>
+              <button type="button" class="btn operator active" name="-">-</button>
+              <button type="button" class="btn operator" name="*">*</button>
+              <button type="button" class="btn operator active" name="/">/</button>
+              <button type="button" class="btn operator equal" name="=">=</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <footer>
+        <p>Created by <a href="https://github.com/belchior">Belchior Olveira</a></p>
+      </footer>
+    </article>
+    <script src="/calc/js/script.js"></script>
+  </body>
+</html>

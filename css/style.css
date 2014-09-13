@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-size: 100%;
+  font-family: Verdana
+}
+.calc {
+  margin: 30px auto;
+  border-radius: 7px;
+  padding: 7px;
+  max-width: 150px;
+  font-size: 1em;
+  color: #929292;
+  background: linear-gradient(
+    to right,
+    #ff6f33 0%, #ff8139 5%,
+    #ff9c46 6%, #ff9c46 94%,
+    #ff8139 95%, #ff6f33 100%
+  );
+}
+.calc .display {
+  border-bottom: 7px solid #ff9c46;
+  border-radius: 7px 7px 0 0;
+  height: 3em;
+  color: #255b7f;
+  text-align: right;
+  background: linear-gradient(
+    to bottom,
+    #b3dcf2 0%, #b3dcf2 50%,
+    #a1d4f1 50%, #a1d4f1 100%
+  );
+  box-shadow: inset 0px 2px 4px rgba(0,0,0,0.3);
+}
+.calc .display .top {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  border-radius: 7px 7px 0 0;
+  padding: 0 10px;
+  width: 100%;
+  color: #255b7f;
+  font-family: Verdana;
+  line-height: 2em;
+  vertical-align: top;
+  background-color: transparent;
+}
+.calc .display .bottom {
+  padding: 0 10px;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+.calc .keyboard {
+  display: table;
+  border-radius: 7px;
+  background-color: #c8c8c8;
+}
+.calc .keyboard .numbers {
+  float: left;
+  width: 78%;
+}
+.calc .keyboard .operators {
+  float: right;
+  width: 22%;
+}
+.calc .btn {
+  float: left;
+  margin: 5px 0 0 5px;
+  padding: 0px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  line-height: 1em;
+  vertical-align: middle;
+  color: #929292;
+  background-color: #ffffff;
+  background: linear-gradient(to bottom, #ffffff 50%, #eaeaea 100%);
+  box-shadow: 1px 1px 1px #a2a2a2;
+}
+.calc .btn:nth-child(12) {
+  margin-bottom: 5px;
+}
+.calc .separators {
+  float: left;
+  clear: both;
+}
+.calc .separators {
+  box-sizing: border-box;
+  float: left;
+  clear: both;
+  padding: 0 5px 5px 0;
+  width: 100%;
+}
+.calc .separators .separator {
+  float: right;
+  width: 2em;
+  height: 2em;
+}
+.calc .btn.operator {
+  width: 2em;
+  height: 2em;
+}
+.calc .btn.operator.active {
+  background: linear-gradient(to bottom, #ffba81 50%, #ff8f38 100%);
+  color: #ffffff;
+}
+.calc .btn.operator.equal {
+  border-radius: 12px;
+  height: 3.5em;
+}
