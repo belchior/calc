@@ -16,13 +16,13 @@
       <div id="container">
         <form class="calc" action="#">
           <div class="display">
-            <input class="top" type="text" name="display-top" pattern="[\d.+\-\/*=()]*" value="">
-            <div class="bottom">0</div>
+            <input class="top" type="text" name="display-top" pattern="[0-9.+\-\/*=()]*" value="2+4+(8+12+16)">
+            <div class="bottom">42</div>
           </div>
           <div class="keyboard">
-            <div class="separators">
-              <button type="button" class="btn separator" name=")">)</button>
-              <button type="button" class="btn separator" name="(">(</button>
+            <div class="groupers">
+              <button type="button" class="btn grouper" name=")">)</button>
+              <button type="button" class="btn grouper" name="(">(</button>
             </div>
             <div class="numbers">
               <button type="button" class="btn number" name="1">1</button>
