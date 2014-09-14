@@ -1,24 +1,39 @@
-function Calc() {
-
-}
-Calc.prototype.sum = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
-};
-Calc.prototype.subtract = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a - b : undefined;
-};
-Calc.prototype.multiply = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a * b : undefined;
-};
-Calc.prototype.divide = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' && b !== 0 ? a / b : undefined;
-};
-var calc = new Calc();
-
 function Skin(selector) {
   selector = !selector || typeof selector !== 'string' ? '.calc' : selector;
 
-  // Private methods and variables
+  // Methods and variables public
+  // hoisting from hell
+  var display = {
+    input: {
+      concat: function () {
+        if (typeof arguments[0] !== 'undefined') {
+          _input.value += arguments[0];
+        } else {
+          return _input.value;
+        }
+      },
+      get: function () {
+        return _input.value;
+      },
+      set: function (formula) {
+        _input.value = formula;
+      }
+    },
+    output: {
+      get: function () {
+        return _output.value;
+      },
+      set: function (formula) {
+        _output.value = formula;
+      }
+    },
+    erase: function () {
+      _input.value = '';
+      _output.innerHTML = '0';
+    }
+  };
+
+  // Methods and variables private
   var _skin = document.querySelector(selector);
   var _input = _skin.querySelector('.input');
   var _output = _skin.querySelector('.output');
@@ -41,83 +56,120 @@ function Skin(selector) {
   var _multiplication = _skin.querySelector('.operator[name=multiplication]');
   var _division = _skin.querySelector('.operator[name=division]');
   var _equality = _skin.querySelector('.operator[name=equality]');
-  var _rule = function () {
-    var formula = input();
+  var _rulesForParenthesesOpen = function () {
+    var formula = display.input.get();
     if (formula === '') {
-      input(this.innerHTML);
-
+      display.input.concat(this.innerHTML);
+    } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
+      display.input.concat('x' + this.innerHTML);
+    } else if (formula[formula.length - 1].search(/[.]/) < 0) {
+      display.input.concat(this.innerHTML);
+    }
+  };
+  var _rulesForParenthesesCloses = function () {
+    var formula = display.input.get();
+    var opens = formula.match(/[(]/g);
+    var closes = formula.match(/[)]/g);
+    if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
+      if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
+    }
+  };
+  var _rulesForNumbers = function () {
+    var formula = display.input.get();
+    if (formula === '') {
+      display.input.concat(this.innerHTML);
     } else if (formula[formula.length - 1].search(/[)]/) < 0) {
-      input(this.innerHTML);
+      display.input.concat(this.innerHTML);
     }
   };
-
-  // Public methods and variables
-  var input = function () {
-    if (typeof arguments[0] !== 'undefined') {
-      _input.value += arguments[0];
-    } else {
-      return _input.value;
+  var _rulesForDot = function () {
+    var formula = display.input.get();
+    if (formula) {
+      formula = formula.split(/[+\-x÷]/).pop();
+      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
     }
   };
-  var output = function () {
-    if (arguments[0]) {
-      _output.innerHTML = arguments[0];
-    } else {
-      return _output.innerHTML;
+  var _rulesForAddition = function () {
+    var formula = display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        display.input.set(formula.substr(0, formula.length - 1) + '+');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
     }
   };
-  var erase = function () {
-    _input.value = '';
-    output('0');
+  var _ruleForSubtraction = function () {
+    var formula = display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        display.input.set(formula.substr(0, formula.length - 1) + '-');
+      } else if (formula[formula.length - 1].search(/[.]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
+    }
+  };
+  var _ruleForMultiplication = function () {
+    var formula = display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        display.input.set(formula.substr(0, formula.length - 1) + 'x');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
+    }
+  };
+  var _ruleForDivision = function () {
+    var formula = display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        display.input.set(formula.substr(0, formula.length - 1) + '÷');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        display.input.concat(this.innerHTML);
+      }
+    }
   };
 
   // Defining events
-  _parenthesesOpen.addEventListener('click', function () {
-    var formula = input();
-    if (formula === '') {
-      input(this.innerHTML);
+  _parenthesesOpen.addEventListener('click', _rulesForParenthesesOpen);
+  _parenthesesClose.addEventListener('click', _rulesForParenthesesCloses);
+  _number1.addEventListener('click', _rulesForNumbers);
+  _number2.addEventListener('click', _rulesForNumbers);
+  _number3.addEventListener('click', _rulesForNumbers);
+  _number4.addEventListener('click', _rulesForNumbers);
+  _number5.addEventListener('click', _rulesForNumbers);
+  _number6.addEventListener('click', _rulesForNumbers);
+  _number7.addEventListener('click', _rulesForNumbers);
+  _number8.addEventListener('click', _rulesForNumbers);
+  _number9.addEventListener('click', _rulesForNumbers);
+  _number0.addEventListener('click', _rulesForNumbers);
+  _clear.addEventListener('click', display.erase);
+  _dot.addEventListener('click', _rulesForDot);
+  _addition.addEventListener('click', _rulesForAddition);
+  _subtraction.addEventListener('click', _ruleForSubtraction);
+  _multiplication.addEventListener('click', _ruleForMultiplication);
+  _division.addEventListener('click', _ruleForDivision);
 
-    } else if (formula[formula.length - 1].search(/[.)0-9]/) < 0) {
-      input(this.innerHTML);
-    }
-  });
-
-  // @todo Add rules to open parantheses
-  _parenthesesClose.addEventListener('click', function () {
-    var formula = input();
-    if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
-      input(this.innerHTML);
-    }
-  });
-  _number1.addEventListener('click', _rule);
-  _number2.addEventListener('click', _rule);
-  _number3.addEventListener('click', _rule);
-  _number4.addEventListener('click', _rule);
-  _number5.addEventListener('click', _rule);
-  _number6.addEventListener('click', _rule);
-  _number7.addEventListener('click', _rule);
-  _number8.addEventListener('click', _rule);
-  _number9.addEventListener('click', _rule);
-  _number0.addEventListener('click', _rule);
-  _clear.addEventListener('click', erase);
-  _dot.addEventListener('click', function () {
-    var formula = input();
-    if (formula) {
-      formula = formula.split(/[+\-x÷]/).pop();
-      if (formula && formula.search(/\./) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
-        input(this.innerHTML);
-      }
-    }
-  });
-  _addition.addEventListener('click', function () { input(this.innerHTML); });
-  _subtraction.addEventListener('click', function () { input(this.innerHTML); });
-  _multiplication.addEventListener('click', function () { input(this.innerHTML); });
-  _division.addEventListener('click', function () { input(this.innerHTML); });
-
-  return {
-    input: input,
-    output: output,
-    erase: erase
-  };
+  return display;
 }
+
+function Calc() {}
 Calc.prototype.skin = new Skin('.calc');
+Calc.prototype.sum = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
+};
+Calc.prototype.subtract = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' ? a - b : undefined;
+};
+Calc.prototype.multiply = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' ? a * b : undefined;
+};
+Calc.prototype.divide = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' && b !== 0 ? a / b : undefined;
+};
+
+var calc = new Calc();
