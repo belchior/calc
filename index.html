@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="description" content="Desenvolvedor e entusiasta do desenvolvimento web">
-    <link rel="icon" href="favicon.png" sizes="60x60">
+    <link rel="icon" href="favicon.jpg" sizes="64x64">
     <link rel="stylesheet" href="/calc/css/style.css">
     <link rel="stylesheet" href="/calc/css/csshake.css">
   </head>
@@ -15,39 +15,39 @@
         <h1>Calculator</h1>
       </header>
       <div id="container">
-        <form class="calc" action="#">
+        <div class="calc">
           <div class="display">
-            <input class="input" type="text" name="input" pattern="[0-9.+\-\/*=()]*">
+            <input class="input" type="text" name="input" max-length="500">
             <div class="output">0</div>
           </div>
           <div class="keyboard">
             <div class="brackets">
-              <button type="button" class="btn bracket" name="parenthesesClose" title="parentheses closing">)</button>
-              <button type="button" class="btn bracket" name="parenthesesOpen" title="parentheses opening">(</button>
+              <div class="btn small bracket" data-name="parenthesesClose" title="parentheses closing">)</div>
+              <div class="btn small bracket" data-name="parenthesesOpen" title="parentheses opening">(</div>
             </div>
             <div class="numbers">
-              <button type="button" class="btn number" name="number1" title="number 1">1</button>
-              <button type="button" class="btn number" name="number2" title="number 2">2</button>
-              <button type="button" class="btn number" name="number3" title="number 3">3</button>
-              <button type="button" class="btn number" name="number4" title="number 4">4</button>
-              <button type="button" class="btn number" name="number5" title="number 5">5</button>
-              <button type="button" class="btn number" name="number6" title="number 6">6</button>
-              <button type="button" class="btn number" name="number7" title="number 7">7</button>
-              <button type="button" class="btn number" name="number8" title="number 8">8</button>
-              <button type="button" class="btn number" name="number9" title="number 9">9</button>
-              <button type="button" class="btn number" name="number0" title="number 0">0</button>
-              <button type="button" class="btn" name="dot" title="dot">.</button>
-              <button type="button" class="btn" name="clear" title="clear">c</button>
+              <div class="btn number" data-name="number1" title="number 1">1</div>
+              <div class="btn number" data-name="number2" title="number 2">2</div>
+              <div class="btn number" data-name="number3" title="number 3">3</div>
+              <div class="btn number" data-name="number4" title="number 4">4</div>
+              <div class="btn number" data-name="number5" title="number 5">5</div>
+              <div class="btn number" data-name="number6" title="number 6">6</div>
+              <div class="btn number" data-name="number7" title="number 7">7</div>
+              <div class="btn number" data-name="number8" title="number 8">8</div>
+              <div class="btn number" data-name="number9" title="number 9">9</div>
+              <div class="btn number" data-name="number0" title="number 0">0</div>
+              <div class="btn" data-name="dot" title="dot">.</div>
+              <div class="btn" data-name="clear" title="clear">c</div>
             </div>
             <div class="operators">
-              <button type="button" class="btn operator" name="addition" title="plus">+</button>
-              <button type="button" class="btn operator" name="subtraction" title="minus">-</button>
-              <button type="button" class="btn operator" name="multiplication" title="times">x</button>
-              <button type="button" class="btn operator" name="division" title="divided by">÷</button>
-              <button type="button" class="btn operator" name="equality" title="equals">=</button>
+              <div class="btn small operator" data-name="addition" title="plus">+</div>
+              <div class="btn small operator" data-name="subtraction" title="minus">-</div>
+              <div class="btn small operator" data-name="multiplication" title="times">x</div>
+              <div class="btn small operator" data-name="division" title="divided by">÷</div>
+              <div class="btn small operator" data-name="equality" title="equals">=</div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <footer>
         <p>Created by <a href="https://github.com/belchior">Belchior Oliveira</a></p>
