@@ -1,4 +1,4 @@
-function Skin(selector) {
+function Calc(selector) {
   selector = !selector || typeof selector !== 'string' ? '.calc' : selector;
 
   // Methods and variables public
@@ -32,6 +32,12 @@ function Skin(selector) {
       _output.innerHTML = '0';
     }
   };
+  var showError = function () {
+    _skin.classList.add('calcError');
+    setTimeout(function () {
+      _skin.classList.remove('calcError');
+    }, 300);
+  };
 
   // Methods and variables private
   var _skin = document.querySelector(selector);
@@ -55,7 +61,7 @@ function Skin(selector) {
   var _subtraction = _skin.querySelector('.operator[name=subtraction]');
   var _multiplication = _skin.querySelector('.operator[name=multiplication]');
   var _division = _skin.querySelector('.operator[name=division]');
-  var _equality = _skin.querySelector('.operator[name=equality]');
+  var equality = _skin.querySelector('.operator[name=equality]');
   var _rulesForParenthesesOpen = function () {
     var formula = display.input.get();
     if (formula === '') {
@@ -153,12 +159,11 @@ function Skin(selector) {
   _subtraction.addEventListener('click', _ruleForSubtraction);
   _multiplication.addEventListener('click', _ruleForMultiplication);
   _division.addEventListener('click', _ruleForDivision);
+  equality.addEventListener('click', calculate);
 
   return display;
 }
 
-function Calc() {}
-Calc.prototype.skin = new Skin('.calc');
 Calc.prototype.sum = function (a, b) {
   return typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
 };

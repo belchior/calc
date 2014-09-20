@@ -69,14 +69,12 @@ footer, h1 {
 .calc .btn {
   float: left;
   margin: 5px 0 0 5px;
-  padding: 0px;
+  padding: 0 0 2px 1px;
   border: 2px solid #ffffff;
   border-radius: 50%;
   width: 3em;
   height: 3em;
   outline: none;
-  line-height: 1em;
-  vertical-align: middle;
   color: #929292;
   background-color: #ffffff;
   background: linear-gradient(to bottom, #ffffff 50%, #eaeaea 100%);
