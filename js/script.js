@@ -1,4 +1,7 @@
 function Calc(selector) {
+  if (!(this instanceof Calc)) {
+    return new Calc(selector);
+  }
   selector = !selector || typeof selector !== 'string' ? '.calc' : selector;
 
   // Methods and variables public
@@ -65,12 +68,13 @@ function Calc(selector) {
   var _rulesForParenthesesOpen = function () {
     var formula = display.input.get();
     if (formula === '') {
-      display.input.concat(this.innerHTML);
+      return display.input.concat(this.innerHTML);
     } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
-      display.input.concat('x' + this.innerHTML);
+      return display.input.concat('x' + this.innerHTML);
     } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-      display.input.concat(this.innerHTML);
+      return display.input.concat(this.innerHTML);
     }
+    return showError();
   };
   var _rulesForParenthesesCloses = function () {
     var formula = display.input.get();
@@ -78,65 +82,89 @@ function Calc(selector) {
     var closes = formula.match(/[)]/g);
     if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
       if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
     }
+    return showError();
   };
   var _rulesForNumbers = function () {
     var formula = display.input.get();
     if (formula === '') {
-      display.input.concat(this.innerHTML);
+      return display.input.concat(this.innerHTML);
     } else if (formula[formula.length - 1].search(/[)]/) < 0) {
-      display.input.concat(this.innerHTML);
+      return display.input.concat(this.innerHTML);
     }
+    return showError();
   };
   var _rulesForDot = function () {
     var formula = display.input.get();
     if (formula) {
       formula = formula.split(/[+\-x÷]/).pop();
       if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
     }
+    return showError();
   };
   var _rulesForAddition = function () {
     var formula = display.input.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        display.input.set(formula.substr(0, formula.length - 1) + '+');
+        return display.input.set(formula.substr(0, formula.length - 1) + '+');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
     }
+    return showError();
   };
   var _ruleForSubtraction = function () {
     var formula = display.input.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        display.input.set(formula.substr(0, formula.length - 1) + '-');
+        return display.input.set(formula.substr(0, formula.length - 1) + '-');
       } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
     }
+    return showError();
   };
   var _ruleForMultiplication = function () {
     var formula = display.input.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        display.input.set(formula.substr(0, formula.length - 1) + 'x');
+        return display.input.set(formula.substr(0, formula.length - 1) + 'x');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
     }
+    return showError();
   };
   var _ruleForDivision = function () {
     var formula = display.input.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        display.input.set(formula.substr(0, formula.length - 1) + '÷');
+        return display.input.set(formula.substr(0, formula.length - 1) + '÷');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        display.input.concat(this.innerHTML);
+        return display.input.concat(this.innerHTML);
       }
+    }
+    return showError();
+  };
+  var isValid = function (formula) {
+    var parenthesesOpens = formula.match(/[(]/g);
+    var parenthesesCloses = formula.match(/[)]/g);
+    if (
+        (parenthesesOpens && parenthesesCloses && parenthesesOpens.length !== parenthesesCloses.length) ||
+        (parenthesesOpens && !parenthesesCloses) || (!parenthesesOpens && parenthesesCloses)
+      ) {
+      return false;
+    }
+    return true;
+  };
+  var calculate = function () {
+    var formula = display.input.get();
+    if (!isValid(formula)) {
+      showError();
     }
   };
 
@@ -161,7 +189,6 @@ function Calc(selector) {
   _division.addEventListener('click', _ruleForDivision);
   equality.addEventListener('click', calculate);
 
-  return display;
 }
 
 Calc.prototype.sum = function (a, b) {
