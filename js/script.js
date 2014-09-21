@@ -46,6 +46,7 @@ function Calc(selector) {
   var _skin = document.querySelector(selector);
   var _input = _skin.querySelector('.input');
   var _output = _skin.querySelector('.output');
+  var _backspace = _skin.querySelector('.btn[data-name=backspace]');
   var _parenthesesOpen = _skin.querySelector('.bracket[data-name=parenthesesOpen]');
   var _parenthesesClose = _skin.querySelector('.bracket[data-name=parenthesesClose]');
   var _number1 = _skin.querySelector('.number[data-name=number1]');
@@ -65,6 +66,13 @@ function Calc(selector) {
   var _multiplication = _skin.querySelector('.operator[data-name=multiplication]');
   var _division = _skin.querySelector('.operator[data-name=division]');
   var equality = _skin.querySelector('.operator[data-name=equality]');
+  var _rulesForBackspace = function () {
+    var formula = display.input.get();
+    if (formula) {
+      return display.input.set(formula.substr(0, formula.length - 1));
+    }
+    return showError();
+  };
   var _rulesForParenthesesOpen = function () {
     var formula = display.input.get();
     if (formula === '') {
@@ -169,6 +177,7 @@ function Calc(selector) {
   };
 
   // Defining events
+  _backspace.addEventListener('click', _rulesForBackspace);
   _parenthesesOpen.addEventListener('click', _rulesForParenthesesOpen);
   _parenthesesClose.addEventListener('click', _rulesForParenthesesCloses);
   _number1.addEventListener('click', _rulesForNumbers);

@@ -20,14 +20,14 @@
 
 body {
   margin: 0;
-  font-size: 150%;
+  font-size: 250%;
   font-family: Verdana;
 }
 footer, h1 {
   text-align: center;
 }
 .calc {
-  margin: 30px auto;
+  margin: 1.875em auto;
   border-radius: 0.4375em;
   padding: 0.4375em;
   max-width: 10em;
@@ -113,6 +113,27 @@ footer, h1 {
   float: left;
   clear: both;
   width: 100%;
+}
+.calc .brackets .btn[data-name=backspace] {
+  float: right;
+  margin-left: 0.3125em;
+}
+.calc .brackets .btn[data-name=backspace]::before {
+  position: absolute;
+  content: " ";
+  margin: 0.35em 0 0 -0.3em;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-right: 0.3em solid #929292;
+  width: 0;
+  height: 0;
+}
+.calc .brackets .btn[data-name=backspace]::after {
+  position: absolute;
+  content: "-";
+  margin: -0.07em 0 0 -0.125em;
+  width: 0;
+  height: 0;
 }
 .calc .brackets .bracket {
   float: right;
