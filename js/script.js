@@ -1,46 +1,10 @@
-function Calc(selector) {
+function Calc() {
   if (!(this instanceof Calc)) {
-    return new Calc(selector);
+    return new Calc();
   }
+}
+Calc.prototype.skin = function (selector) {
   selector = !selector || typeof selector !== 'string' ? '.calc' : selector;
-
-  // Methods and variables public
-  // hoisting from hell
-  var display = {
-    input: {
-      concat: function () {
-        if (typeof arguments[0] !== 'undefined') {
-          _input.value += arguments[0];
-        } else {
-          return _input.value;
-        }
-      },
-      get: function () {
-        return _input.value;
-      },
-      set: function (formula) {
-        _input.value = formula;
-      }
-    },
-    output: {
-      get: function () {
-        return _output.value;
-      },
-      set: function (formula) {
-        _output.value = formula;
-      }
-    },
-    erase: function () {
-      _input.value = '';
-      _output.innerHTML = '0';
-    }
-  };
-  var showError = function () {
-    _skin.classList.add('calcError');
-    setTimeout(function () {
-      _skin.classList.remove('calcError');
-    }, 300);
-  };
 
   // Methods and variables private
   var _skin = document.querySelector(selector);
@@ -65,99 +29,38 @@ function Calc(selector) {
   var _subtraction = _skin.querySelector('.operator[data-name=subtraction]');
   var _multiplication = _skin.querySelector('.operator[data-name=multiplication]');
   var _division = _skin.querySelector('.operator[data-name=division]');
-  var equality = _skin.querySelector('.operator[data-name=equality]');
-  var _rulesForBackspace = function () {
-    var formula = display.input.get();
-    if (formula) {
-      return display.input.set(formula.substr(0, formula.length - 1));
-    }
-    return showError();
-  };
-  var _rulesForParenthesesOpen = function () {
-    var formula = display.input.get();
-    if (formula === '') {
-      return display.input.concat(this.innerHTML);
-    } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
-      return display.input.concat('x' + this.innerHTML);
-    } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return display.input.concat(this.innerHTML);
-    }
-    return showError();
-  };
-  var _rulesForParenthesesCloses = function () {
-    var formula = display.input.get();
-    var opens = formula.match(/[(]/g);
-    var closes = formula.match(/[)]/g);
-    if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
-      if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
-        return display.input.concat(this.innerHTML);
+  var _equality = _skin.querySelector('.operator[data-name=equality]');
+
+  var _display = {
+    input: {
+      concat: function () {
+        if (typeof arguments[0] !== 'undefined') {
+          _input.value += arguments[0];
+        } else {
+          return _input.value;
+        }
+      },
+      get: function () {
+        return _input.value;
+      },
+      set: function (formula) {
+        _input.value = formula;
       }
-    }
-    return showError();
-  };
-  var _rulesForNumbers = function () {
-    var formula = display.input.get();
-    if (formula === '') {
-      return display.input.concat(this.innerHTML);
-    } else if (formula[formula.length - 1].search(/[)]/) < 0) {
-      return display.input.concat(this.innerHTML);
-    }
-    return showError();
-  };
-  var _rulesForDot = function () {
-    var formula = display.input.get();
-    if (formula) {
-      formula = formula.split(/[+\-x÷]/).pop();
-      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
-        return display.input.concat(this.innerHTML);
+    },
+    output: {
+      get: function () {
+        return _output.innerHTML;
+      },
+      set: function (formula) {
+        _output.innerHTML = formula;
       }
+    },
+    erase: function () {
+      _input.value = '';
+      _output.innerHTML = '0';
     }
-    return showError();
   };
-  var _rulesForAddition = function () {
-    var formula = display.input.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        return display.input.set(formula.substr(0, formula.length - 1) + '+');
-      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return display.input.concat(this.innerHTML);
-      }
-    }
-    return showError();
-  };
-  var _ruleForSubtraction = function () {
-    var formula = display.input.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        return display.input.set(formula.substr(0, formula.length - 1) + '-');
-      } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-        return display.input.concat(this.innerHTML);
-      }
-    }
-    return showError();
-  };
-  var _ruleForMultiplication = function () {
-    var formula = display.input.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        return display.input.set(formula.substr(0, formula.length - 1) + 'x');
-      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return display.input.concat(this.innerHTML);
-      }
-    }
-    return showError();
-  };
-  var _ruleForDivision = function () {
-    var formula = display.input.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        return display.input.set(formula.substr(0, formula.length - 1) + '÷');
-      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return display.input.concat(this.innerHTML);
-      }
-    }
-    return showError();
-  };
+
   var isValid = function (formula) {
     var parenthesesOpens = formula.match(/[(]/g);
     var parenthesesCloses = formula.match(/[)]/g);
@@ -169,11 +72,112 @@ function Calc(selector) {
     }
     return true;
   };
-  var calculate = function () {
-    var formula = display.input.get();
+
+  var _showError = function () {
+    _skin.classList.add('calcError');
+    setTimeout(function () {
+      _skin.classList.remove('calcError');
+    }, 300);
+  };
+  var _showResult = function () {
+    var formula = _display.input.get();
     if (!isValid(formula)) {
-      showError();
+      return _showError();
     }
+    _display.output.set(Calc.prototype.calculate(formula));
+  };
+
+  var _rulesForBackspace = function () {
+    var formula = _display.input.get();
+    if (formula) {
+      return _display.input.set(formula.slice(0, formula.length - 1));
+    }
+    return _showError();
+  };
+  var _rulesForParenthesesOpen = function () {
+    var formula = _display.input.get();
+    if (formula === '') {
+      return _display.input.concat(this.innerHTML);
+    } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
+      return _display.input.concat('x' + this.innerHTML);
+    } else if (formula[formula.length - 1].search(/[.]/) < 0) {
+      return _display.input.concat(this.innerHTML);
+    }
+    return _showError();
+  };
+  var _rulesForParenthesesCloses = function () {
+    var formula = _display.input.get();
+    var opens = formula.match(/[(]/g);
+    var closes = formula.match(/[)]/g);
+    if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
+      if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
+  };
+  var _rulesForNumbers = function () {
+    var formula = _display.input.get();
+    if (formula === '') {
+      return _display.input.concat(this.innerHTML);
+    } else if (formula[formula.length - 1].search(/[)]/) < 0) {
+      return _display.input.concat(this.innerHTML);
+    }
+    return _showError();
+  };
+  var _rulesForDot = function () {
+    var formula = _display.input.get();
+    if (formula) {
+      formula = formula.split(/[+\-x÷]/).pop();
+      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
+  };
+  var _rulesForAddition = function () {
+    var formula = _display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        return _display.input.set(formula.slice(0, formula.length - 1) + '+');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
+  };
+  var _ruleForSubtraction = function () {
+    var formula = _display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        return _display.input.set(formula.slice(0, formula.length - 1) + '-');
+      } else if (formula[formula.length - 1].search(/[.]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
+  };
+  var _ruleForMultiplication = function () {
+    var formula = _display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        return _display.input.set(formula.slice(0, formula.length - 1) + 'x');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
+  };
+  var _ruleForDivision = function () {
+    var formula = _display.input.get();
+    if (formula){
+      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+        return _display.input.set(formula.slice(0, formula.length - 1) + '÷');
+      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
+        return _display.input.concat(this.innerHTML);
+      }
+    }
+    return _showError();
   };
 
   // Defining events
@@ -190,27 +194,101 @@ function Calc(selector) {
   _number8.addEventListener('click', _rulesForNumbers);
   _number9.addEventListener('click', _rulesForNumbers);
   _number0.addEventListener('click', _rulesForNumbers);
-  _clear.addEventListener('click', display.erase);
+  _clear.addEventListener('click', _display.erase);
   _dot.addEventListener('click', _rulesForDot);
   _addition.addEventListener('click', _rulesForAddition);
   _subtraction.addEventListener('click', _ruleForSubtraction);
   _multiplication.addEventListener('click', _ruleForMultiplication);
   _division.addEventListener('click', _ruleForDivision);
-  equality.addEventListener('click', calculate);
-
-}
-
-Calc.prototype.sum = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a + b : undefined;
+  _equality.addEventListener('click', _showResult);
 };
-Calc.prototype.subtract = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a - b : undefined;
+
+Calc.prototype.parser = function (formula) {
+  formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
+  formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
+  var parenthesesOpens = formula.match(/[(]/g);
+  var parenthesesCloses = formula.match(/[)]/g);
+  if (
+      (parenthesesOpens && parenthesesCloses && parenthesesOpens.length !== parenthesesCloses.length) ||
+      (parenthesesOpens && !parenthesesCloses) || (!parenthesesOpens && parenthesesCloses)
+    ) {
+    return;
+  }
+
+  // get errors of arithmetic combination of characters
+  if (formula.match(/^[x÷).]|\+[+x÷).]|-[-x÷).]|x[x÷).]|÷[x÷).]|\([x÷).]|\)[.]|\.[+\-x÷().]|\.\d+\.|[+\-x÷(.]$/g)) {
+    return NaN;
+  }
+
+  return formula;
+};
+Calc.prototype.calculate = function (formula) {
+  formula = this.parser(formula);
+  if (!formula) {
+    return NaN;
+  }
+
+  var part;
+  var result;
+
+  // obteins the most internal parentheses
+  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[x÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
+  if (part) {
+    result = this.calculate(part[0].replace(/[()]/g, ''));
+    if (part < 0 && formula[part.index - 1] === '-') {
+      formula = formula.replace('-' + part[0], '+' + Math.abs(result));
+    } else {
+      formula = formula.replace(part[0], result);
+    }
+    return this.calculate(formula);
+  }
+
+  // get parts to multiply
+  part = formula.match(/[+\-]?\d+(?:\.\d+)?x[+\-]?\d+(?:\.\d+)?/);
+  if (part) {
+    result = part[0].split('x');
+    result = this.multiply(parseFloat(result[0]), parseFloat(result[1]));
+    formula = formula.replace(part[0], result);
+  }
+
+  // get parts to divide
+  part = formula.match(/[+\-]?\d+(?:\.\d+)?÷[+\-]?\d+(?:\.\d+)?/);
+  if (part) {
+    result = part[0].split('÷');
+    result = this.divide(parseFloat(result[0]), parseFloat(result[1]));
+    formula = formula.replace(part[0], result);
+  }
+
+  // get parts to sum
+  part = formula.match(/[+\-]?\d+(?:\.\d+)?\+[+\-]?\d+(?:\.\d+)?/);
+  if (part) {
+    result = part[0].split('+');
+    result = this.sum(parseFloat(result[0]), parseFloat(result[1]));
+    formula = formula.replace(part[0], result);
+  }
+
+  // get parts to subtract
+  part = formula.match(/[+\-]?\d+(?:\.\d+)?-[+\-]?\d+(?:\.\d+)?/);
+  if (part) {
+    result = part[0].split('-');
+    result = this.subtract(parseFloat(result[0]), parseFloat(result[1]));
+    formula = formula.replace(part[0], result);
+  }
+
+  return formula.match(/[+\-]?\d+(?:\.\d+)?[+\-x÷][+\-]?\d+(?:\.\d+)?/) ? this.calculate(formula) : parseFloat(formula);
 };
 Calc.prototype.multiply = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? a * b : undefined;
+  return typeof a === 'number' && typeof b === 'number' ? a * b : NaN;
 };
 Calc.prototype.divide = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' && b !== 0 ? a / b : undefined;
+  return typeof a === 'number' && typeof b === 'number' && b !== 0 ? a / b : NaN;
+};
+Calc.prototype.sum = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' ? a + b : NaN;
+};
+Calc.prototype.subtract = function (a, b) {
+  return typeof a === 'number' && typeof b === 'number' ? a - b : NaN;
 };
 
 var calc = new Calc();
+calc.skin('.calc');
