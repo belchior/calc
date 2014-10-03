@@ -1,0 +1,30 @@
+{
+  "name": "calc",
+  "version": "0.0.1",
+  "description": "> Slightly inspired by Widget Calculator from Mac OS X.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/belchior/calc.git"
+  },
+  "keywords": [
+    "javascript",
+    "calc",
+    "widget"
+  ],
+  "author": "Belchior Oliveira",
+  "license": "Creative Commons",
+  "bugs": {
+    "url": "https://github.com/belchior/calc/issues"
+  },
+  "homepage": "https://github.com/belchior/calc",
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  }
+}
