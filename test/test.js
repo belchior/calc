@@ -14,6 +14,8 @@ describe('Calc', function () {
     assert.ok(calc instanceof Calc);
   });
 
+  calc = new Calc();
+
   describe('Function multiply', function () {
 
     it('2x3 deve retornar 6', function () {
@@ -119,6 +121,30 @@ describe('Calc', function () {
     it('"" - "12" deve retornar NaN', function () {
       assert(Number.isNaN(calc.subtract('', '12')));
     });
+  });
+
+  describe('Function parser', function () {
+
+    var errorMessage;
+    var thrower = function (func, param) {
+      return function () {
+        func(param);
+      };
+    };
+    var errorTester = function (errorMessage) {
+      return function (error) {
+        return error instanceof SyntaxError && error.message === errorMessage ? true : false;
+      };
+    };
+
+    errorMessage = 'divergence between parentheses';
+    it('deve retornar o erro de sintaxe: ' + errorMessage, function () {
+      assert.throws(
+        thrower(calc.parser, '1+(2+3))'),
+        errorTester(errorMessage)
+      );
+    });
+
   });
 
 });

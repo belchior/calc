@@ -13,12 +13,12 @@ Calc.prototype.parser = function (formula) {
       (parenthesesOpens && parenthesesCloses && parenthesesOpens.length !== parenthesesCloses.length) ||
       (parenthesesOpens && !parenthesesCloses) || (!parenthesesOpens && parenthesesCloses)
     ) {
-    return;
+    throw new SyntaxError('divergence between parentheses');
   }
 
   // get errors of arithmetic combination of characters
   if (formula.match(/^[x÷).]|\+[+x÷).]|-[-x÷).]|x[x÷).]|÷[x÷).]|\([x÷).]|\)[.]|\.[+\-x÷().]|\.\d+\.|[+\-x÷(.]$/g)) {
-    return;
+    throw new SyntaxError('invalid arithmetic combination of characters');
   }
 
   return formula;
@@ -309,9 +309,6 @@ Calc.prototype.skin = function (selector) {
   _division.addEventListener('click', _ruleForDivision);
   _equality.addEventListener('click', _showResult);
 };
-
-var calc = new Calc();
-// calc.skin('.calc');
 
 if (typeof exports === 'object') {
   module.exports = Calc;
