@@ -6,18 +6,17 @@ function Calc() {
 
 Calc.prototype.parser = function (formula) {
   formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
-  formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
-  var parenthesesOpens = formula.match(/[(]/g);
-  var parenthesesCloses = formula.match(/[)]/g);
+  var parenthesisOpens = formula.match(/[(]/g);
+  var parenthesisCloses = formula.match(/[)]/g);
   if (
-      (parenthesesOpens && parenthesesCloses && parenthesesOpens.length !== parenthesesCloses.length) ||
-      (parenthesesOpens && !parenthesesCloses) || (!parenthesesOpens && parenthesesCloses)
+      (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
+      (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
     ) {
-    throw new SyntaxError('divergence between parentheses');
+    throw new SyntaxError('divergence between parenthesis');
   }
 
   // get errors of arithmetic combination of characters
-  if (formula.match(/^[x÷).]|\+[+x÷).]|-[-x÷).]|x[x÷).]|÷[x÷).]|\([x÷).]|\)[.]|\.[+\-x÷().]|\.\d+\.|[+\-x÷(.]$/g)) {
+  if (formula.match(/^[x÷).]|\+[x÷).]|-[x÷).]|x[x÷).]|÷[x÷).]|\([x÷).]|\)[.]|\.[+\-x÷().]|\.\d+\.|[+\-x÷(.]$/g)) {
     throw new SyntaxError('invalid arithmetic combination of characters');
   }
 
@@ -33,7 +32,7 @@ Calc.prototype.calculate = function (formula) {
   var part;
   var result;
 
-  // obteins the most internal parentheses
+  // obteins the most internal parenthesis
   part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[x÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
   if (part) {
     result = this.calculate(part[0].replace(/[()]/g, ''));
@@ -116,8 +115,8 @@ Calc.prototype.skin = function (selector) {
   var _input = _skin.querySelector('.input');
   var _output = _skin.querySelector('.output');
   var _backspace = _skin.querySelector('.btn[data-name=backspace]');
-  var _parenthesesOpen = _skin.querySelector('.bracket[data-name=parenthesesOpen]');
-  var _parenthesesClose = _skin.querySelector('.bracket[data-name=parenthesesClose]');
+  var _parenthesisOpen = _skin.querySelector('.bracket[data-name=parenthesisOpen]');
+  var _parenthesisClose = _skin.querySelector('.bracket[data-name=parenthesisClose]');
   var _number1 = _skin.querySelector('.number[data-name=number1]');
   var _number2 = _skin.querySelector('.number[data-name=number2]');
   var _number3 = _skin.querySelector('.number[data-name=number3]');
@@ -167,11 +166,11 @@ Calc.prototype.skin = function (selector) {
   };
 
   var isValid = function (formula) {
-    var parenthesesOpens = formula.match(/[(]/g);
-    var parenthesesCloses = formula.match(/[)]/g);
+    var parenthesisOpens = formula.match(/[(]/g);
+    var parenthesisCloses = formula.match(/[)]/g);
     if (
-        (parenthesesOpens && parenthesesCloses && parenthesesOpens.length !== parenthesesCloses.length) ||
-        (parenthesesOpens && !parenthesesCloses) || (!parenthesesOpens && parenthesesCloses)
+        (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
+        (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
       ) {
       return false;
     }
@@ -199,7 +198,7 @@ Calc.prototype.skin = function (selector) {
     }
     return _showError();
   };
-  var _rulesForParenthesesOpen = function () {
+  var _rulesForparenthesisOpen = function () {
     var formula = _display.input.get();
     if (formula === '') {
       return _display.input.concat(this.innerHTML);
@@ -210,7 +209,7 @@ Calc.prototype.skin = function (selector) {
     }
     return _showError();
   };
-  var _rulesForParenthesesCloses = function () {
+  var _rulesForparenthesisCloses = function () {
     var formula = _display.input.get();
     var opens = formula.match(/[(]/g);
     var closes = formula.match(/[)]/g);
@@ -289,8 +288,8 @@ Calc.prototype.skin = function (selector) {
 
   // Defining events
   _backspace.addEventListener('click', _rulesForBackspace);
-  _parenthesesOpen.addEventListener('click', _rulesForParenthesesOpen);
-  _parenthesesClose.addEventListener('click', _rulesForParenthesesCloses);
+  _parenthesisOpen.addEventListener('click', _rulesForparenthesisOpen);
+  _parenthesisClose.addEventListener('click', _rulesForparenthesisCloses);
   _number1.addEventListener('click', _rulesForNumbers);
   _number2.addEventListener('click', _rulesForNumbers);
   _number3.addEventListener('click', _rulesForNumbers);
