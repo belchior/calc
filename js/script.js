@@ -6,13 +6,27 @@ function Calc() {
 
 Calc.prototype.parser = function (formula) {
   formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
+  var index;
   var parenthesisOpens = formula.match(/[(]/g);
   var parenthesisCloses = formula.match(/[)]/g);
+
   if (
       (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
       (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
     ) {
     throw new SyntaxError('divergence between parenthesis');
+  }
+
+  parenthesisOpens = parenthesisCloses = 0;
+  for (index in formula) {
+    if (formula[index] === '(') {
+      parenthesisOpens += 1;
+    } else if (formula[index] === ')') {
+      parenthesisCloses += 1;
+      if (parenthesisOpens < parenthesisCloses) {
+        throw new SyntaxError('divergence between parenthesis');
+      }
+    }
   }
 
   // get errors of arithmetic combination of characters

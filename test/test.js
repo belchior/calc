@@ -133,6 +133,19 @@ describe('Calc', function () {
           errorTester(errorMessage)
         );
       });
+
+      it('when formula has wrong sequence of parenthesis', function () {
+        var errorMessage = 'divergence between parenthesis';
+
+        assert.throws(
+          thrower(calc.parser, ')+1('),
+          errorTester(errorMessage)
+        );
+        assert.throws(
+          thrower(calc.parser, '1)+(1'),
+          errorTester(errorMessage)
+        );
+      });
     });
 
     describe('should return a syntax error: invalid arithmetic combination of characters', function () {
@@ -211,9 +224,12 @@ describe('Calc', function () {
           errorTester(errorMessage)
         );
       });
-
     });
-
   });
 
+  describe('Function calculate', function () {
+    it('should return 0.45964912 when formula is 1+2-3x4÷5+(6)-((7x8)÷9.12)', function () {
+      assert.strictEqual(calc.calculate('1+2-3x4÷5+(6)-((7x8)÷9.12)'), 0.45964912);
+    });
+  });
 });
