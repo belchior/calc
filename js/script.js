@@ -180,15 +180,13 @@ Calc.prototype.skin = function (selector) {
   };
 
   var isValid = function (formula) {
-    var parenthesisOpens = formula.match(/[(]/g);
-    var parenthesisCloses = formula.match(/[)]/g);
-    if (
-        (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
-        (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
-      ) {
-      return false;
+    try {
+      return Calc.prototype.parser(formula);
+
+    } catch (err) {
+      console.error('Calc error: ' + err.message);
+      _showError();
     }
-    return true;
   };
 
   var _showError = function () {
@@ -202,6 +200,7 @@ Calc.prototype.skin = function (selector) {
     if (!isValid(formula)) {
       return _showError();
     }
+    _display.input.set('');
     _display.output.set(Calc.prototype.calculate(formula));
   };
 
@@ -321,6 +320,12 @@ Calc.prototype.skin = function (selector) {
   _multiplication.addEventListener('click', _ruleForMultiplication);
   _division.addEventListener('click', _ruleForDivision);
   _equality.addEventListener('click', _showResult);
+  _input.addEventListener('keyup', function () {
+    this.value = this.value.replace(/[^0-9+\-x÷().]/, '');
+  });
+  _skin.addEventListener('click', function () {
+    _input.focus();
+  });
 };
 
 if (typeof exports === 'object') {

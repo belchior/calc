@@ -83,7 +83,7 @@ footer, h1 {
   border-radius: 0.4375em 0.4375em 0 0;
   padding: 0 ;
   width: 100%;
-  line-height: 1.5em;
+  line-height: 1em;
   font-size: 0.875em;
   font-family: Verdana;
   outline: none;
@@ -94,7 +94,7 @@ footer, h1 {
 }
 .calc .display .output {
   font-size: 1.2em;
-  line-height: 1.2em;
+  line-height: 1.5em;
 }
 .calc .keyboard {
   display: table;
