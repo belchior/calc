@@ -153,16 +153,16 @@ Calc.prototype.skin = function (selector) {
     input: {
       concat: function () {
         if (typeof arguments[0] !== 'undefined') {
-          _this.input.value += arguments[0];
+          _this.input.innerHTML += arguments[0];
         } else {
-          return _this.input.value;
+          return _this.input.innerHTML;
         }
       },
       get: function () {
-        return _this.input.value;
+        return _this.input.innerHTML;
       },
       set: function (formula) {
-        _this.input.value = formula;
+        _this.input.innerHTML = formula;
       }
     },
     output: {
@@ -174,10 +174,8 @@ Calc.prototype.skin = function (selector) {
       }
     },
     erase: function () {
-      _this.input.value = '';
-      _this.input.focus();
-      _this.output.innerHTML = '<span><br><br><br></span>';
-      _this.output.scrollTop = _this.output.scrollHeight;
+      _this.input.innerHTML = '';
+      _this.output.innerHTML = '0';
     }
   };
 

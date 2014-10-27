@@ -16,7 +16,15 @@ Terminal.prototype.skin = function (selector) {
   _this.circleOrange = _this.skin.querySelector('.bar .circle-orange');
   _this.circleGreen = _this.skin.querySelector('.bar .circle-green');
 
+  _this.clear.removeEventListener('click', _this.display.erase);
   _this.equality.removeEventListener('click', _this.showResult);
+
+  _this.display.erase = function () {
+    _this.input.value = '';
+    _this.output.innerHTML = '<span><br><br><br></span>';
+    _this.output.scrollTop = _this.output.scrollHeight;
+  };
+
   _this.showResult = function () {
     try {
       var formula = Terminal.prototype.parser(_this.display.input.get());
@@ -93,4 +101,7 @@ Terminal.prototype.skin = function (selector) {
   _this.circleOrange.addEventListener('click', _this.toggleKeyboard);
   _this.circleGreen.addEventListener('click', _this.showCalc);
   _this.equality.addEventListener('click', _this.showResult);
+  _this.clear.addEventListener('click', _this.display.erase);
+
+  _this.display.erase();
 };

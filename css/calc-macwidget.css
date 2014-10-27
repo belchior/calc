@@ -18,13 +18,14 @@
   16px = 1em
 */
 
-.calc {
-  margin: 1.875em auto;
+.calc-macwidget {
+  margin: 0.9375em auto;
   border-radius: 0.4375em;
   padding: 0.4375em;
-  max-width: 10em;
+  max-width: 9.375em;
   font-size: 2em;
   color: #929292;
+  background: #ff9c46;
   background: linear-gradient(
     to right,
     #ff6f33 0%, #ff8139 3%,
@@ -32,29 +33,32 @@
     #ff8139 97%, #ff6f33 100%
   );
 }
-.calc .btn {
+.calc-macwidget .btn {
   float: left;
+  display: inline-block;
   border: 0.125em solid #ffffff;
   border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
+  width: 2.4565em;
+  height: 2.4565em;
+  font-size: 0.7888em;
+  line-height: 2.4563em;
   text-align: center;
+  vertical-align: middle;
   color: #929292;
   background-color: #ffffff;
   background: linear-gradient(to bottom, #ffffff 50%, #eaeaea 100%);
   box-shadow: 0 0.0625em 0.125em 0.0625em #a2a2a2;
   cursor: pointer;
 }
-.calc .btn:active {
+.calc-macwidget .btn:active {
   background: linear-gradient(to bottom, #eaeaea 50%, #ffffff 100%);
 }
-.calc .btn.small {
-  width: 1.3em;
-  height: 1.3em;
+.calc-macwidget .btn.small {
+  width: 1.5847em;
+  height: 1.5847em;
   line-height: 1.3em;
 }
-.calc .display {
+.calc-macwidget .display {
   border-bottom: 0.4375em solid #ff9c46;
   border-radius: 0.4375em 0.4375em 0 0;
   padding: 0 0.625em;
@@ -68,27 +72,30 @@
   );
   box-shadow: inset 0 0.125em  rgba(0,0,0,0.3);
 }
-.calc .display .input {
+.calc-macwidget .display .input {
   box-sizing: border-box;
+  display: inline-block;
   margin: 0;
   border: 0;
   border-radius: 0.4375em 0.4375em 0 0;
-  padding: 0 ;
+  padding: 0.14284em 0 0 0;
   width: 100%;
-  line-height: 1em;
-  font-size: 0.875em;
+  height: 1.5544em;
+  line-height: 1.5em;
+  font-size: 0.775em;
   font-family: Verdana;
   outline: none;
   text-align: right;
-  vertical-align: middle;
+  vertical-align: baseline;
   color: #255b7f;
   background-color: transparent;
 }
-.calc .display .output {
-  font-size: 1.2em;
-  line-height: 1.5em;
+.calc-macwidget .display .output {
+  font-size: 0.7777em;
+  line-height: 1.3333em;
+  padding: 0.2009em 0;
 }
-.calc .keyboard {
+.calc-macwidget .keyboard {
   display: table;
   border-radius: 0.4375em;
   padding: 0.3125em;
@@ -100,57 +107,51 @@
   -ms-user-select: none;
   user-select: none;
 }
-.calc .brackets {
+.calc-macwidget .brackets {
   box-sizing: border-box;
   float: left;
   clear: both;
   width: 100%;
 }
-.calc .brackets .btn[data-name=backspace] {
+.calc-macwidget .brackets .btn[data-name=backspace] {
   float: right;
   margin-left: 0.3125em;
 }
-.calc .brackets .btn[data-name=backspace]::before {
+.calc-macwidget .brackets .btn[data-name=backspace]::before {
   position: absolute;
   content: " ";
-  margin: 0.35em 0 0 -0.3em;
-  border-top: 0.3em solid transparent;
-  border-bottom: 0.3em solid transparent;
-  border-right: 0.3em solid #929292;
+  margin: 0.317em 0 0 -0.317em;
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-right: 0.4em solid #929292;
   width: 0;
   height: 0;
 }
-.calc .brackets .btn[data-name=backspace]::after {
-  position: absolute;
-  content: "-";
-  margin: -0.07em 0 0 -0.125em;
-  width: 0;
-  height: 0;
-}
-.calc .brackets .bracket {
+.calc-macwidget .brackets .bracket {
   float: right;
   margin-left: 0.3125em;
 }
-.calc .keyboard .operators {
+.calc-macwidget .keyboard .operators {
   float: right;
   width: 20%;
 }
-.calc .numbers {
+.calc-macwidget .numbers {
   float: left;
   width: 80%;
 }
-.calc .numbers .btn {
-  margin-top: 0.3125em;
+.calc-macwidget .numbers .btn {
+  margin-top: 0.2774em;
 }
-.calc .numbers .btn:nth-child(3n-1) {
-  margin-left: 0.3125em;
-  margin-right: 0.3125em;
+.calc-macwidget .numbers .btn:nth-child(3n-1) {
+  margin-left: 0.2774em;
+  margin-right: 0.2774em;
 }
-.calc .operators .btn {
+.calc-macwidget .operators .btn {
+  float: right;
   margin: 0.3125em 0 0 0.3125em;
 }
-.calc .operators .btn[data-name=equality] {
+.calc-macwidget .operators .btn[data-name=equality] {
   border-radius: 0.75em;
-  height: 2.2em;
-  line-height: 2.2em;
+  height: 3.1695em;
+  line-height: 2.8525em;
 }

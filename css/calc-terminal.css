@@ -1,16 +1,34 @@
 /*
   Calc - Terminal
+
+  Helper for unit convertion
+  1px = 0.0625em
+  2px = 0.125em
+  3px = 0.1875em
+  4px = 0.25em
+  5px = 0.3125em
+  6px = 0.375em
+  7px = 0.4375em
+  8px = 0.5em
+  9px = 0.5625em
+  10px = 0.625em
+  11px = 0.6875em
+  12px = 0.75em
+  13px = 0.8125em
+  14px = 0.875em
+  15px = 0.9375em
+  16px = 1em
 */
 .calc-terminal {
   margin: 3em auto;
   border-radius: 0.6em;
-  width: 30em;
-  font-size: 10px;
+  width: 18.75em;
+  font-size: 1em;
   color: #ffffff;
 }
 .bar {
-  border-radius: 0.6em 0.6em 0 0;
-  padding: 1em;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.5em;
   line-height: 1em;
   background-color: #eeeeee;
 }
@@ -18,8 +36,8 @@
   display: inline-block;
   margin-right: 1em;
   border-radius: 50%;
-  width: 1em;
-  height: 1em;
+  width: 0.75em;
+  height: 0.75em;
   cursor: pointer;
 }
 .bar .circle-red {
@@ -32,27 +50,19 @@
   background: #66cc66;
 }
 .calc-terminal .display {
-  height: 12em;
-  line-height: 2.5em;
+  height: 8em;
+  line-height: 1.5em;
   background-color: #333333;
 }
-.calc-terminal .display:after {
-  content: "$";
-  position: relative;
-  float: right;
-  margin: -1.8125em 0.3125em 0 0; /* -29px 5px 0 0 */
-  font-size: 1.6em;
-  color: #66cc66;
-}
 .calc-terminal .output {
-  text-align: right;
   overflow: hidden;
-  font-size: 1.6em;
-  height: 5.625em; /* 90px */
+  height: 6.25em;
 }
 .calc-terminal .output .result {
   display: block;
-  padding: 0 5px
+  padding-right: 0.3125em;
+  line-height: 1.5em;
+  text-align: right;
 }
 .calc-terminal .output .result:after {
   content: " <";
@@ -60,16 +70,25 @@
 }
 .calc-terminal .input {
   box-sizing: border-box;
+  display: block;
   margin: 0;
   border: 0;
-  padding: 0.3125em; /* 24px */
+  padding: 0.25em;
   padding-right: 1.5em;
-  font-size: 1.6em;
-  line-height: 1.3em;
+  width: 100%;
+  height: 1.75em;
+  line-height: 1.25em;
+  font-size: 1em;
   text-align: right;
   color: #ffffff;
   background-color: #333333;
 }
+.calc-terminal .input:after {
+  content: " $";
+  margin: 0 -1.1875em 0 0;
+  color: #66cc66;
+}
+
 .calc-terminal .keyboard {
   display: inline-block;
   border-radius: 0 0 0.6em 0.6em;
@@ -85,10 +104,9 @@
   box-sizing: border-box;
   float: left;
   display: inline-block;
-  width: 4.6875em; /* 75px */
-  height: 4.6875em;
-  font-size: 1.6em;
-  line-height: 4.6875em;
+  width: 4.6875em;
+  height: 3.438em;
+  line-height: 3.438em;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;

@@ -8,5 +8,5 @@ window.onload = function () {
   term.skin('.calc-terminal');
 
   calc = new Calc();
-  calc.skin('.calc');
+  calc.skin('.calc-macwidget');
 };
