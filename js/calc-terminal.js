@@ -17,7 +17,7 @@ Terminal.prototype.skin = function (selector) {
   _this.equality.removeEventListener('click', _this.showResult);
 
   _this.display.erase = function () {
-    _this.input.value = '';
+    _this.input.innerHTML = '';
     _this.output.innerHTML = '<span><br><br><br></span>';
     _this.output.scrollTop = _this.output.scrollHeight;
   };
