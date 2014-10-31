@@ -39,7 +39,6 @@ a {
   padding:0;
   font-size:100%;
   vertical-align:baseline;
-  background:transparent;
 }
 abbr[title], dfn[title] {
   border-bottom:1px dotted;
@@ -73,17 +72,17 @@ h3 {
   font-size: 1em;
 }
 a {
-  color: inherit;
+  color: #66cc66;
   text-decoration: none;
 }
 a:HOVER {
-  color: #cccccc;
+  color: #5fe95b;
 }
 a:ACTIVE {
-  color: #999999;
+  color: #31913E;
 }
 a:VISITED {
-  color: #6A9C6A;
+  color: #31913E;
 }
 input, select, textarea, button, a {
   outline: 0;

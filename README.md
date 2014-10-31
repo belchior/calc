@@ -1,5 +1,5 @@
-# Calculadora
-> Slightly inspired by Widget Calculator from Mac OS X.
+# Calculator
+> Elegant, modern and entertaining
 
 Demo: [belchior.github.io/calc](http://belchior.github.io/calc)
 
