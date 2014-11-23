@@ -44,7 +44,7 @@ footer {
 
 #terminal {
   border-bottom: 5px solid #333333;
-  font-family: Arial, Sans-serif;
+  font-family: Monaco, 'Lucida Console', Arial;
   background-color: #dddddd;
 }
 #macwidget {

@@ -83,9 +83,10 @@
   box-sizing: border-box;
   float: left;
   display: inline-block;
-  width: 4.6875em;
-  height: 4.6875em;
-  line-height: 4.6875em;
+  width: 3.606em;
+  height: 3.606em;
+  font-size: 1.3em;
+  line-height: 3.606em;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
