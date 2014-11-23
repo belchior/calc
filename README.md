@@ -1,7 +1,18 @@
-# Calculator
-> Elegant, modern and entertaining
+# Calculadora Aritmética
+> Elegantes, modernas e divertidas.
 
-Demo: [belchior.github.io/calc](http://belchior.github.io/calc)
+# Visão geral
+Eu acredito na Web, e acredito que ela existe para melhorar as nossas vidas, este projeto é uma amostra de que software básicos como uma calculadora não precisa ser nativo, você não precisa ter um software diferente em cada dispositivo que faz a mesma coisa, onde cada um tem uma interface e uma forma diferente de usar. Com a Web você pode ter apenas um software que vai funcionar em varios dispositivos.
 
-## License
-[![Creative Commons](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
+Calculadora Aritmética é um projeto de código livre e qualquer pessoa pode fazer dele algo melhor. Se também você acredita na Web venha fazer parte desse projeto, mande um pull request com suas idéias.
+
+[![vcard](https://raw.githubusercontent.com/belchior/calc/master/img/vcard.png)](http://belchior.github.io/calc)
+
+## Use como um App no smartphone
+Você pode usar as calculadoras como um app no seu smartphone. No Android usando o Google Chrome clique no ```menu de contexto``` e escolha a opção ```Adicionar à tela inicial```. Será criado um atalho na sua tela inicial como se fosse um aplicativo nativo.
+
+## Suporte
+Chrome, Firefox, Safari e IE 9+
+
+## Licença
+MIT
