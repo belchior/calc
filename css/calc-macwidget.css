@@ -112,22 +112,24 @@
 .calc-macwidget .brackets {
   box-sizing: border-box;
   float: left;
-  clear: both;
   width: 100%;
 }
-.calc-macwidget .brackets .btn[data-name=backspace] {
-  float: right;
-  margin-left: 0.3125em;
+.calc-macwidget .brackets .btn {
+  float: left;
+  margin-right: 0.8125em;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.3125em;
+  font-size: 0.5em;
 }
-.calc-macwidget .brackets .btn[data-name=backspace]::before {
-  position: absolute;
-  content: " ";
-  margin: 0.317em 0 0 -0.317em;
-  border-top: 0.4em solid transparent;
-  border-bottom: 0.4em solid transparent;
-  border-right: 0.4em solid #929292;
-  width: 0;
-  height: 0;
+.calc-macwidget .brackets .btn:last-child {
+  margin-right: 0;
+}
+.calc-macwidget .brackets .btn[data-name=division] {
+  width: 1.5847em;
+  height: 1.5847em;
+  line-height: 1.347em;
+  font-size: 0.789em;
 }
 .calc-macwidget .brackets .btn[data-name=parenthesisOpen] {
   text-indent: -0.1585em;
@@ -135,15 +137,8 @@
 .calc-macwidget .brackets .btn[data-name=parenthesisClose] {
   text-indent: 0.1585em;
 }
-.calc-macwidget .brackets .bracket {
-  float: right;
-  margin-left: 0.3125em;
-}
-.calc-macwidget .keyboard .operators {
-  float: right;
-  width: 20%;
-}
 .calc-macwidget .numbers {
+  box-sizing: border-box;
   float: left;
   width: 80%;
 }
@@ -154,12 +149,17 @@
   margin-left: 0.2774em;
   margin-right: 0.2774em;
 }
+.calc-macwidget .operators {
+  box-sizing: border-box;
+  float: right;
+  width: 20%;
+}
 .calc-macwidget .operators .btn {
   float: right;
-  margin: 0.3125em 0 0 0.3125em;
+  margin: 0.5151em 0 0 0.3125em;
 }
 .calc-macwidget .operators .btn[data-name=equality] {
   border-radius: 0.75em;
-  height: 3.1695em;
-  line-height: 2.8525em;
+  height: 4.1202em;
+  line-height: 3.8525em;
 }
