@@ -212,11 +212,11 @@ Calc.prototype.skin = function (selector) {
   _this.rulesForparenthesisOpen = function () {
     var formula = _this.display.input.get();
     if (formula === '') {
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
-      return _this.display.input.concat('x' + this.dataset.value);
+      return _this.display.input.concat('x' + this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     }
     return _this.showError();
   };
@@ -226,7 +226,7 @@ Calc.prototype.skin = function (selector) {
     var closes = formula.match(/[)]/g);
     if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
       if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
-        return _this.display.input.concat(this.dataset.value);
+        return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }
     return _this.showError();
@@ -234,9 +234,9 @@ Calc.prototype.skin = function (selector) {
   _this.rulesForNumbers = function () {
     var formula = _this.display.input.get();
     if (formula === '') {
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[)]/) < 0) {
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     }
     return _this.showError();
   };
@@ -245,7 +245,7 @@ Calc.prototype.skin = function (selector) {
     if (formula) {
       formula = formula.split(/[+\-x÷]/).pop();
       if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
-        return _this.display.input.concat(this.dataset.value);
+        return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }
     return _this.showError();
@@ -256,7 +256,7 @@ Calc.prototype.skin = function (selector) {
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
         return _this.display.input.set(formula.slice(0, formula.length - 1) + '+');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.display.input.concat(this.dataset.value);
+        return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }
     return _this.showError();
@@ -264,13 +264,13 @@ Calc.prototype.skin = function (selector) {
   _this.ruleForSubtraction = function () {
     var formula = _this.display.input.get();
     if (!formula){
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     }
     if (formula[formula.length - 1].match(/[+\-x÷]/)) {
       return _this.display.input.set(formula.slice(0, formula.length - 1) + '-');
     }
     if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.display.input.concat(this.dataset.value);
+      return _this.display.input.concat(this.getAttribute('data-value'));
     }
     return _this.showError();
   };
@@ -280,7 +280,7 @@ Calc.prototype.skin = function (selector) {
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
         return _this.display.input.set(formula.slice(0, formula.length - 1) + 'x');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.display.input.concat(this.dataset.value);
+        return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }
     return _this.showError();
@@ -291,7 +291,7 @@ Calc.prototype.skin = function (selector) {
       if (formula[formula.length - 1].match(/[+\-x÷]/)) {
         return _this.display.input.set(formula.slice(0, formula.length - 1) + '÷');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.display.input.concat(this.dataset.value);
+        return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }
     return _this.showError();
