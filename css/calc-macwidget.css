@@ -59,11 +59,18 @@
   height: 1.5847em;
   line-height: 1.347em;
 }
+.calc-macwidget .btn.active {
+  color: #ffffff;
+  background: #ff8f38;
+  background: linear-gradient(to bottom, #ff9c46 0%, #ff8f38 100%);
+}
 .calc-macwidget .display {
+  overflow: hidden;
   border-bottom: 0.4375em solid #ff9c46;
   border-radius: 0.4375em 0.4375em 0 0;
   padding: 0 0.625em;
   height: 3em;
+  line-height: 3.6em;
   color: #255b7f;
   text-align: right;
   background: #b3dcf2;

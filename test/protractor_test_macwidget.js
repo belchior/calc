@@ -19,7 +19,7 @@ describe ('Calc', function () {
     // macwidget.multiplication = $('.calc-macwidget .btn[data-name=multiplication]');
     // macwidget.division = $('.calc-macwidget .btn[data-name=division]');
     // macwidget.equality = $('.calc-macwidget .btn[data-name=equality]');
-    // macwidget.dot = $('.calc-macwidget .btn[data-name=dot]');
+    macwidget.dot = $('.calc-macwidget .btn[data-name=dot]');
     macwidget.clear = $('.calc-macwidget .btn[data-name=clear]');
     // macwidget.madd = $('.calc-macwidget .btn[data-name=madd]');
     // macwidget.msubtract = $('.calc-macwidget .btn[data-name=msubtract]');
@@ -87,40 +87,40 @@ describe ('Calc', function () {
       //   macwidget.number1.click()
       //   .then(function () { macwidget.addition.click(); })
       //   .then(function () { macwidget.number2.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('1+2'); });
       // });
       // it('Operator -', function () {
       //   macwidget.number3.click()
       //   .then(function () { macwidget.subtraction.click(); })
       //   .then(function () { macwidget.number4.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('3-4'); });
       // });
       // it('Operator x', function () {
       //   macwidget.number5.click()
       //   .then(function () { macwidget.multiplication.click(); })
       //   .then(function () { macwidget.number6.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('5x6'); });
       // });
       // it('Operator ÷', function () {
       //   macwidget.number7.click()
       //   .then(function () { macwidget.division.click(); })
       //   .then(function () { macwidget.number8.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('7÷8'); });
       // });
       // it('Parenthesis Open', function () {
       //   macwidget.parenthesisOpen.click()
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('('); });
       // });
       // it('Parenthesis Close', function () {
       //   macwidget.parenthesisOpen.click()
       //   .then(function () { macwidget.number1.click(); })
       //   .then(function () { macwidget.parenthesisClose.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
+      //   .then(function () { return macwidget.display.getText(); })
       //   .then(function (text) { expect(text).toEqual('(1)'); });
       // });
       // it('Equal', function () {
@@ -129,22 +129,13 @@ describe ('Calc', function () {
       //   .then(function () { return macwidget.output.getText(); })
       //   .then(function (text) { expect(text).toEqual('2'); });
       // });
-      // it('Dot', function () {
-      //   macwidget.number3.click()
-      //   .then(function () { macwidget.dot.click(); })
-      //   .then(function () { macwidget.number4.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
-      //   .then(function (text) { expect(text).toEqual('3.4'); });
-      // });
-      // it('Backspace', function () {
-      //   macwidget.number5.click()
-      //   .then(function () { macwidget.number2.click(); })
-      //   .then(function () { macwidget.number6.click(); })
-      //   .then(function () { macwidget.backspace.click(); })
-      //   .then(function () { macwidget.backspace.click(); })
-      //   .then(function () { return macwidget.input.getText(); })
-      //   .then(function (text) { expect(text).toEqual('5'); });
-      // });
+      it('Dot', function () {
+        macwidget.number3.click()
+        .then(function () { macwidget.dot.click(); })
+        .then(function () { macwidget.number4.click(); })
+        .then(function () { return macwidget.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3.4'); });
+      });
       it('Clear', function () {
         macwidget.number1.click()
         .then(function () { macwidget.number2.click(); })
