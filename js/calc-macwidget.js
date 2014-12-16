@@ -43,7 +43,7 @@ Macwidget.prototype.skin = function (selector) {
       return Macwidget.prototype.format(content.innerHTML);
     };
     var set = function (value) {
-      content.innerHTML = value || '';
+      content.innerHTML = value;
       return _this;
     };
     var concat = function (value) {
@@ -207,10 +207,11 @@ Macwidget.prototype.skin = function (selector) {
   };
 
   _this.clearEvent = function () {
-    _this.display.set('');
+    _this.display.set(0);
     _this.recorder.set('operation', '');
     _this.recorder.set('operand', 0);
     _this.inactiveOperators();
+    _this.equalityWasClicked = true;
   };
 
   _this.number0.addEventListener('click', _this.numbersEvent);
