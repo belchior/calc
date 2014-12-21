@@ -176,6 +176,10 @@ Macwidget.prototype.skin = function (selector) {
   };
 
   _this.numbersEvent = function () {
+    if (_this.equalityWasClicked) {
+      _this.recorder.set('operand', 0);
+      _this.recorder.set('operation', '');
+    }
     _this.display.concat(this.getAttribute('data-value'));
   };
 
