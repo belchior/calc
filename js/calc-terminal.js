@@ -62,12 +62,14 @@ Terminal.prototype.skin = function (selector) {
     }
   };
   _this.showError = function () {
-    _this.skin.classList.add('calcError');
+    var classArray = _this.skin.getAttribute('class').split(' ');
+    classArray.push('calcError');
+    _this.skin.setAttribute('class', classArray.join(' '));
     setTimeout(function () {
-      _this.skin.classList.remove('calcError');
+      classArray.pop('calcError');
+      _this.skin.setAttribute('class', classArray.join(' '));
     }, 300);
   };
-
 
   _this.eventNumbers = function () {
     var formula = _this.display.input.get();
@@ -212,5 +214,4 @@ Terminal.prototype.skin = function (selector) {
   });
   _this.eventClear();
 
-  return _this;
 };

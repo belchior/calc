@@ -126,9 +126,12 @@ Macwidget.prototype.skin = function (selector) {
   })();
 
   _this.showError = function () {
-    _this.html.classList.add('calcError');
+    var classArray = _this.html.getAttribute('class').split(' ');
+    classArray.push('calcError');
+    _this.html.setAttribute('class', classArray.join(' '));
     setTimeout(function () {
-      _this.html.classList.remove('calcError');
+      classArray.pop('calcError');
+      _this.html.setAttribute('class', classArray.join(' '));
     }, 300);
   };
 
@@ -137,17 +140,23 @@ Macwidget.prototype.skin = function (selector) {
   };
 
   _this.activeOperation = function (operation) {
+    var classArray = operation.getAttribute('class').split(' ');
+    classArray.push('active');
+
     _this.inactiveOperators();
-    operation.classList.add('active');
+    operation.setAttribute('class', classArray.join(' '));
     return _this;
   };
 
   _this.inactiveOperators = function () {
     var i;
+    var classArray;
     var actives = _this.html.querySelectorAll('.btn.active');
     if (actives) {
       for (i = 0; i < actives.length; i += 1) {
-        actives[i].classList.remove('active');
+        classArray = actives[i].getAttribute('class').split(' ');
+        classArray.pop('active');
+        actives[i].setAttribute('class', classArray.join(' '));
       }
     }
     return _this;
