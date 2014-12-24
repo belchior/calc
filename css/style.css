@@ -36,9 +36,10 @@ section h2 {
 }
 footer {
   padding: 30px 0;
-  font-size: 2em;
-  line-height: 1.2em;
+  font-size: 1em;
+  line-height: 2em;
   text-align: center;
+  color: #000000;
   background-color: #eeeeee;
 }
 
@@ -60,4 +61,19 @@ footer {
   margin: auto;
   width: 100%;
   max-width: 1024px;
+}
+.name {
+  font-size: 2em;
+  color: #000000;
+}
+.github {
+  display: inline-block;
+  line-height: 2.3em;
+}
+.github:visited {
+  color: #000000;
+}
+.github img {
+  float: left;
+  margin-right: 5px;
 }

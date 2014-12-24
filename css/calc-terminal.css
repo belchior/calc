@@ -35,13 +35,14 @@
 }
 .calc-terminal .output {
   overflow: hidden;
-  height: 6.25em;
+  height: 5.75em;
 }
 .calc-terminal .output .result {
   display: block;
   padding-right: 0.3125em;
-  line-height: 1.5em;
+  line-height: 1.4424em;
   text-align: right;
+  font-size: 1.3em;
 }
 .calc-terminal .output .result:after {
   content: " <";
@@ -57,7 +58,7 @@
   width: 100%;
   height: 1.75em;
   line-height: 1.25em;
-  font-size: 1em;
+  font-size: 1.3em;
   text-align: right;
   color: #ffffff;
   background-color: #333333;

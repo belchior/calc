@@ -187,6 +187,11 @@ Terminal.prototype.skin = function (selector) {
     }
     return _this.showError();
   };
+  _this.resultEvent = function (event) {
+    if (event.target && event.target.getAttribute('class') === 'result') {
+      _this.display.input.concat(event.target.innerHTML);
+    }
+  };
 
   // Defining events
   _this.number1.addEventListener('click', _this.eventNumbers);
@@ -209,9 +214,9 @@ Terminal.prototype.skin = function (selector) {
   _this.backspace.addEventListener('click', _this.eventBackspace);
   _this.parenthesisOpen.addEventListener('click', _this.eventparenthesisOpen);
   _this.parenthesisClose.addEventListener('click', _this.eventparenthesisCloses);
-  _this.skin.addEventListener('click', function () {
-    _this.input.focus();
-  });
+  _this.skin.addEventListener('click', function () { _this.input.focus(); });
+  _this.skin.querySelector('.output').addEventListener('click', _this.resultEvent);
+
   _this.eventClear();
 
 };
