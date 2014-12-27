@@ -19,6 +19,7 @@
 */
 
 .calc-macwidget {
+  box-sizing: border-box;
   margin: 1em auto;
   border-radius: 0.4375em;
   padding: 0.4375em;
@@ -41,7 +42,7 @@
   width: 2.4565em;
   height: 2.4565em;
   font-size: 0.7888em;
-  line-height: 2.4563em;
+  line-height: 2em;
   text-align: center;
   vertical-align: middle;
   color: #666666;
@@ -57,7 +58,7 @@
 .calc-macwidget .btn.small {
   width: 1.5847em;
   height: 1.5847em;
-  line-height: 1.347em;
+  line-height: 0em;
 }
 .calc-macwidget .btn.active {
   color: #ffffff;
@@ -66,11 +67,12 @@
 }
 .calc-macwidget .display {
   overflow: hidden;
-  border-bottom: 0.4375em solid #ff9c46;
+  display: block;
+  margin-bottom: 0.4375em;
   border-radius: 0.4375em 0.4375em 0 0;
   padding: 0 0.625em;
   height: 3em;
-  line-height: 3.6em;
+  line-height: 4.5em;
   color: #255b7f;
   text-align: right;
   background: #b3dcf2;
@@ -93,7 +95,6 @@
   line-height: 1.5em;
   font-size: 0.775em;
   font-family: Verdana;
-  outline: none;
   text-align: right;
   vertical-align: baseline;
   color: #255b7f;
@@ -126,7 +127,7 @@
   margin-right: 0.811em;
   width: 2.5em;
   height: 2.5em;
-  line-height: 2.3125em;
+  line-height: 0em;
   font-size: 0.5em;
   color: #555555;
 }
@@ -136,7 +137,7 @@
 .calc-macwidget .brackets .btn[data-name=division] {
   width: 1.5847em;
   height: 1.5847em;
-  line-height: 1.347em;
+  line-height: 0em;
   font-size: 0.789em;
 }
 .calc-macwidget .brackets .btn[data-name=parenthesisOpen] {
@@ -170,4 +171,8 @@
   border-radius: 0.75em;
   height: 4.1202em;
   line-height: 3.8525em;
+}
+.calc-macwidget *:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ff6f33;
 }

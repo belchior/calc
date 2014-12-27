@@ -181,6 +181,7 @@ Macwidget.prototype.skin = function (selector) {
 
     _this.display.set(result);
     _this.equalityWasClicked = true;
+    _this.html.querySelector('.display').focus();
     return _this;
   };
 

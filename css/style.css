@@ -42,6 +42,9 @@ footer {
   color: #000000;
   background-color: #eeeeee;
 }
+footer a {
+  display: inline-block;
+}
 
 #terminal {
   border-bottom: 5px solid #333333;
@@ -69,9 +72,6 @@ footer {
 .github {
   display: inline-block;
   line-height: 2.3em;
-}
-.github:visited {
-  color: #000000;
 }
 .github img {
   float: left;

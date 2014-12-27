@@ -22,112 +22,107 @@
     <link rel="stylesheet" href="css/animate.css">
   </head>
   <body>
-    <article>
 
-      <header>
-        <h1>Calculator</h1>
-      </header>
+    <header>
+      <h1>Calculator</h1>
+    </header>
 
-      <section id="terminal">
-        <h2>Terminal</h2>
-        <div class="container">
-          <div class="calc-terminal">
-            <div class="display">
-              <div class="output">
-                <span><br><br><br></span>
-              </div>
-              <div class="input"></div>
+    <section id="terminal">
+      <h2>Terminal</h2>
+      <div class="container">
+        <form class="calc-terminal">
+          <div class="display">
+            <div class="output"></div>
+            <p tabindex="2" class="input"></p>
+          </div>
+          <div class="keyboard">
+            <div>
+              <button type="button" tabindex="21" class="btn" data-name="clear" title="clear">c</button>
+              <button type="button" tabindex="13" class="btn" data-name="dot" data-value="." title="dot">.</button>
+              <button type="button" tabindex="22" class="btn small" data-name="backspace" title="backspace">&lt;</button>
+              <button type="button" tabindex="16" class="btn small" data-name="equality" title="equals">=</button>
             </div>
-            <div class="keyboard">
-              <div>
-                <div class="btn" data-name="clear" title="clear">c</div>
-                <div class="btn" data-name="dot" data-value="." title="dot">.</div>
-                <div class="btn small" data-name="backspace" title="backspace">&lt;</div>
-                <div class="btn small" data-name="equality" title="equals">=</div>
-              </div>
-              <div>
-                <div class="btn" data-name="number1" data-value="1" title="number 1">1</div>
-                <div class="btn" data-name="number2" data-value="2" title="number 2">2</div>
-                <div class="btn" data-name="number3" data-value="3" title="number 3">3</div>
-                <div class="btn small" data-name="addition" data-value="+" title="plus">+</div>
-              </div>
-              <div>
-
-                <div class="btn" data-name="number4" data-value="4" title="number 4">4</div>
-                <div class="btn" data-name="number5" data-value="5" title="number 5">5</div>
-                <div class="btn" data-name="number6" data-value="6" title="number 6">6</div>
-                <div class="btn small" data-name="subtraction" data-value="-" title="minus">-</div>
-              </div>
-              <div>
-                <div class="btn" data-name="number7" data-value="7" title="number 7">7</div>
-                <div class="btn" data-name="number8" data-value="8" title="number 8">8</div>
-                <div class="btn" data-name="number9" data-value="9" title="number 9">9</div>
-                <div class="btn small" data-name="multiplication" data-value="x" title="times">x</div>
-              </div>
-              <div>
-                <div class="btn small" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</div>
-                <div class="btn" data-name="number0" data-value="0" title="number 0">0</div>
-                <div class="btn small" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</div>
-                <div class="btn small" data-name="division" data-value="÷" title="divided">÷</div>
-              </div>
+            <div>
+              <button type="button" tabindex="3" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
+              <button type="button" tabindex="4" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
+              <button type="button" tabindex="5" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
+              <button type="button" tabindex="17" class="btn small" data-name="addition" data-value="+" title="plus">+</button>
+            </div>
+            <div>
+              <button type="button" tabindex="6" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
+              <button type="button" tabindex="7" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
+              <button type="button" tabindex="8" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
+              <button type="button" tabindex="18" class="btn small" data-name="subtraction" data-value="-" title="minus">−</button>
+            </div>
+            <div>
+              <button type="button" tabindex="9" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
+              <button type="button" tabindex="10" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
+              <button type="button" tabindex="11" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
+              <button type="button" tabindex="19" class="btn small" data-name="multiplication" data-value="x" title="times">×</button>
+            </div>
+            <div>
+              <button type="button" tabindex="14" class="btn small" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
+              <button type="button" tabindex="12" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
+              <button type="button" tabindex="15" class="btn small" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
+              <button type="button" tabindex="20" class="btn small" data-name="division" data-value="÷" title="divided">÷</button>
             </div>
           </div>
-        </div>
-      </section>
+        </form>
+      </div>
+    </section>
 
-      <section id="macwidget">
-        <h2>Mac OS X Widget</h2>
-        <div class="container">
-          <div class="calc-macwidget">
-            <div class="display"></div>
-            <div class="keyboard">
-              <div class="brackets">
-                <div class="btn small" data-name="madd" data-value="" title="memory add">m+</div>
-                <div class="btn small" data-name="msubtract" data-value="" title="memory subtract">m-</div>
-                <div class="btn small" data-name="mclear" title="memory clear">mc</div>
-                <div class="btn small" data-name="mrecall" title="memory recall">mr</div>
-                <div class="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</div>
-              </div>
-              <div class="numbers">
-                <div class="btn" data-name="number7" data-value="7" title="number 7">7</div>
-                <div class="btn" data-name="number8" data-value="8" title="number 8">8</div>
-                <div class="btn" data-name="number9" data-value="9" title="number 9">9</div>
-                <div class="btn" data-name="number4" data-value="4" title="number 4">4</div>
-                <div class="btn" data-name="number5" data-value="5" title="number 5">5</div>
-                <div class="btn" data-name="number6" data-value="6" title="number 6">6</div>
-                <div class="btn" data-name="number1" data-value="1" title="number 1">1</div>
-                <div class="btn" data-name="number2" data-value="2" title="number 2">2</div>
-                <div class="btn" data-name="number3" data-value="3" title="number 3">3</div>
-                <div class="btn" data-name="number0" data-value="0" title="number 0">0</div>
-                <div class="btn" data-name="dot" data-value="." title="dot">.</div>
-                <div class="btn" data-name="clear" title="clear">c</div>
-              </div>
-              <div class="operators">
-                <div class="btn small" data-name="multiplication" data-value="x" data-action="multiply" title="multiply">x</div>
-                <div class="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">-</div>
-                <div class="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</div>
-                <div class="btn small" data-name="equality" title="equals">=</div>
-              </div>
+    <section id="macwidget">
+      <h2>Mac OS X Widget</h2>
+      <div class="container">
+        <form class="calc-macwidget">
+          <output tabindex="100" class="display"></output>
+          <div class="keyboard">
+            <div class="brackets">
+              <button type="button" tabindex="118" class="btn small" data-name="madd" data-value="" title="memory add">m+</button>
+              <button type="button" tabindex="119" class="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
+              <button type="button" tabindex="120" class="btn small" data-name="mclear" title="memory clear">mc</button>
+              <button type="button" tabindex="121" class="btn small" data-name="mrecall" title="memory recall">mr</button>
+              <button type="button" tabindex="116" class="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</button>
+            </div>
+            <div class="numbers">
+              <button type="button" tabindex="107" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
+              <button type="button" tabindex="108" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
+              <button type="button" tabindex="109" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
+              <button type="button" tabindex="104" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
+              <button type="button" tabindex="105" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
+              <button type="button" tabindex="106" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
+              <button type="button" tabindex="101" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
+              <button type="button" tabindex="102" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
+              <button type="button" tabindex="103" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
+              <button type="button" tabindex="110" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
+              <button type="button" tabindex="111" class="btn" data-name="dot" data-value="." title="dot">.</button>
+              <button type="button" tabindex="117" class="btn" data-name="clear" title="clear">c</button>
+            </div>
+            <div class="operators">
+              <button type="button" tabindex="115" class="btn small" data-name="multiplication" data-value="x" data-action="multiply" title="multiply">×</button>
+              <button type="button" tabindex="114" class="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">−</button>
+              <button type="button" tabindex="113" class="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</button>
+              <button type="button" tabindex="112" class="btn small" data-name="equality" title="equals">=</button>
             </div>
           </div>
-        </div>
-      </section>
+        </form>
+      </div>
+    </section>
 
-      <footer>
-        <div class="container">
-          <p itemscope itemtype="http://www.data-vocabulary.org/Person">
-            Made for fun by<br>
-            <a itemprop="url" href="https://github.com/belchior">
-              <span itemprop="name" class="name">Belchior Oliveira</span>
-            </a>
-          </p>
-          <p>
-            <a class="github" href="https://github.com/belchior/calc"><img src="img/github.png" alt="Github Project"> GitHub</a>
-          </p>
-        </div>
-      </footer>
+    <footer>
+      <div class="container">
+        <p itemscope itemtype="http://www.data-vocabulary.org/Person">
+          Made for fun by<br>
+          <a itemprop="url" href="https://github.com/belchior">
+            <span itemprop="name" class="name">Belchior Oliveira</span>
+          </a>
+        </p>
+        <p>
+          <a class="github" href="https://github.com/belchior/calc"><img src="img/github.png" alt="View this project at"> GitHub</a>
+        </p>
+      </div>
+    </footer>
 
-    </article>
     <script src="js/calc.js"></script>
     <script src="js/calc-terminal.js"></script>
     <script src="js/calc-macwidget.js"></script>

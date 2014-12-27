@@ -10,7 +10,7 @@ Terminal.prototype.constructor = Terminal;
 
 Terminal.prototype.skin = function (selector) {
   selector = typeof selector !== 'string' ? '.calc' : selector;
-
+  var lastTabindex = 23;
   var _this = this;
   _this.skin = document.querySelector(selector);
   _this.number0 = _this.skin.querySelector('.btn[data-name=number0]');
@@ -135,8 +135,10 @@ Terminal.prototype.skin = function (selector) {
       formula = Terminal.prototype.calculate(formula);
       var results = _this.display.output.get();
       _this.display.input.set('');
-      _this.display.output.set(results + '<span class="result">' + formula + '</span>');
+      _this.display.output.set(results + '<output tabindex="' + lastTabindex + '" class="result">' + formula + '</output>');
       _this.output.scrollTop = _this.output.scrollHeight;
+      _this.skin.querySelector('[tabindex="' + lastTabindex + '"]').focus();
+      lastTabindex += 1;
 
     } catch (err) {
       console.error('Calc error: ' + err.message);
@@ -155,7 +157,7 @@ Terminal.prototype.skin = function (selector) {
   };
   _this.eventClear = function () {
     _this.input.innerHTML = '';
-    _this.output.innerHTML = '<span><br><br><br></span>';
+    _this.output.innerHTML = '<br><br><br>';
     _this.output.scrollTop = _this.output.scrollHeight;
   };
   _this.eventBackspace = function () {
@@ -214,8 +216,10 @@ Terminal.prototype.skin = function (selector) {
   _this.backspace.addEventListener('click', _this.eventBackspace);
   _this.parenthesisOpen.addEventListener('click', _this.eventparenthesisOpen);
   _this.parenthesisClose.addEventListener('click', _this.eventparenthesisCloses);
-  _this.skin.addEventListener('click', function () { _this.input.focus(); });
   _this.skin.querySelector('.output').addEventListener('click', _this.resultEvent);
+  _this.addition.addEventListener('click', _this.resetFocus);
+  _this.subtraction.addEventListener('click', _this.resetFocus);
+  _this.multiplication.addEventListener('click', _this.resetFocus);
 
   _this.eventClear();
 
