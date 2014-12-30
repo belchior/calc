@@ -120,7 +120,7 @@ describe('Calc', function () {
       };
     };
 
-    describe('should return a syntax error: divergence between parenthesis', function () {
+    describe('should return a synta× error: divergence between parenthesis', function () {
       it('when formula has different amount of parenthesis', function () {
         var errorMessage = 'divergence between parenthesis';
 
@@ -148,12 +148,12 @@ describe('Calc', function () {
       });
     });
 
-    describe('should return a syntax error: invalid arithmetic combination of characters', function () {
+    describe('should return a synta× error: invalid arithmetic combination of characters', function () {
       var errorMessage = 'invalid arithmetic combination of characters';
 
-      it('when formula start with "x÷."', function () {
+      it('when formula start with "×÷."', function () {
         assert.throws(
-          thrower(calc.parser, 'x1'),
+          thrower(calc.parser, '×1'),
           errorTester(errorMessage)
         );
         assert.throws(
@@ -166,10 +166,10 @@ describe('Calc', function () {
         );
       });
 
-      it('when formula has "+-x÷" followed by "x÷."', function () {
-        ['+', '-', 'x', '÷', '.'].forEach(function (char) {
+      it('when formula has "+-×÷" followed by "×÷."', function () {
+        ['+', '-', '×', '÷', '.'].forEach(function (char) {
           assert.throws(
-            thrower(calc.parser, '1' + char + 'x2'),
+            thrower(calc.parser, '1' + char + '×2'),
             errorTester(errorMessage)
           );
           assert.throws(
@@ -206,9 +206,9 @@ describe('Calc', function () {
         );
       });
 
-      it('when formula has "(" followed by "x÷)."', function () {
+      it('when formula has "(" followed by "×÷)."', function () {
         assert.throws(
-          thrower(calc.parser, '1+(x2)'),
+          thrower(calc.parser, '1+(×2)'),
           errorTester(errorMessage)
         );
         assert.throws(
@@ -228,8 +228,8 @@ describe('Calc', function () {
   });
 
   describe('Function calculate', function () {
-    it('should return 0.45964912 when formula is 1+2-3x4÷5+(6)-((7x8)÷9.12)', function () {
-      assert.strictEqual(calc.calculate('1+2-3x4÷5+(6)-((7x8)÷9.12)'), 0.45964912);
+    it('should return 0.45964912 when formula is 1+2-3×4÷5+(6)-((7×8)÷9.12)', function () {
+      assert.strictEqual(calc.calculate('1+2-3×4÷5+(6)-((7×8)÷9.12)'), 0.45964912);
     });
   });
 });

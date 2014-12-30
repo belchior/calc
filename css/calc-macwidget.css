@@ -60,7 +60,8 @@
   height: 1.5847em;
   line-height: 0em;
 }
-.calc-macwidget .btn.active {
+.calc-macwidget .btn.active,
+.calc-macwidget .brackets .btn[data-name=division].active {
   color: #ffffff;
   background: #ff8f38;
   background: linear-gradient(to bottom, #ff9c46 0%, #ff8f38 100%);

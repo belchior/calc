@@ -98,12 +98,12 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual('3-4'); });
       });
-      it('Operator x', function () {
+      it('Operator ×', function () {
         terminal.number5.click()
         .then(function () { terminal.multiplication.click(); })
         .then(function () { terminal.number6.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('5x6'); });
+        .then(function (text) { expect(text).toEqual('5×6'); });
       });
       it('Operator ÷', function () {
         terminal.number7.click()
@@ -178,7 +178,7 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual(''); });
       });
-      it('Must return a error when is clicked on button dot after .+-x÷()', function () {
+      it('Must return a error when is clicked on button dot after .+-×÷()', function () {
         terminal.number4.click()
         .then(function () { terminal.dot.click(); })
         .then(function () { terminal.dot.click(); })
@@ -204,7 +204,7 @@ describe ('Calc', function () {
         .then(function () { terminal.multiplication.click(); })
         .then(function () { terminal.dot.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('4x'); })
+        .then(function (text) { expect(text).toEqual('4×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.number4.click(); })
@@ -228,7 +228,7 @@ describe ('Calc', function () {
     });
 
     describe('Rules for the addition button', function () {
-      it('Must replace the following characters +-x÷ by +', function () {
+      it('Must replace the following characters +-×÷ by +', function () {
         terminal.number5.click()
         .then(function () { terminal.addition.click(); })
         .then(function () { terminal.addition.click(); })
@@ -266,7 +266,7 @@ describe ('Calc', function () {
     });
 
     describe('Rules for the subtraction button', function () {
-      it('Must replace the following characters +-x÷ by -', function () {
+      it('Must replace the following characters +-×÷ by -', function () {
         terminal.number6.click()
         .then(function () { terminal.addition.click(); })
         .then(function () { terminal.subtraction.click(); })
@@ -309,33 +309,33 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual(''); });
       });
-      it('Must replace the following characters +-x÷ by x', function () {
+      it('Must replace the following characters +-×÷ by ×', function () {
         terminal.number7.click()
         .then(function () { terminal.addition.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('7x'); })
+        .then(function (text) { expect(text).toEqual('7×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.number7.click(); })
         .then(function () { terminal.subtraction.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('7x'); })
+        .then(function (text) { expect(text).toEqual('7×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.number7.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('7x'); })
+        .then(function (text) { expect(text).toEqual('7×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.number7.click(); })
         .then(function () { terminal.division.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('7x'); });
+        .then(function (text) { expect(text).toEqual('7×'); });
       });
       it('Must be a error when is inserted after .(', function () {
         terminal.number7.click()
@@ -349,7 +349,7 @@ describe ('Calc', function () {
         .then(function () { terminal.parenthesisOpen.click(); })
         .then(function () { terminal.multiplication.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('7x('); });
+        .then(function (text) { expect(text).toEqual('7×('); });
       });
     });
 
@@ -359,7 +359,7 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual(''); });
       });
-      it('Must replace the following characters +-x÷ by ÷', function () {
+      it('Must replace the following characters +-×÷ by ÷', function () {
         terminal.number8.click()
         .then(function () { terminal.addition.click(); })
         .then(function () { terminal.division.click(); })
@@ -399,7 +399,7 @@ describe ('Calc', function () {
         .then(function () { terminal.parenthesisOpen.click(); })
         .then(function () { terminal.division.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('8x('); });
+        .then(function (text) { expect(text).toEqual('8×('); });
       });
     });
 
@@ -409,7 +409,7 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual(''); });
       });
-      it('Must be a error when is inserted after .+-x÷()', function () {
+      it('Must be a error when is inserted after .+-×÷()', function () {
         terminal.number9.click()
         .then(function () { terminal.dot.click(); })
         .then(function () { terminal.dot.click(); })
@@ -435,7 +435,7 @@ describe ('Calc', function () {
         .then(function () { terminal.multiplication.click(); })
         .then(function () { terminal.dot.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('9x'); })
+        .then(function (text) { expect(text).toEqual('9×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.number9.click(); })
@@ -480,13 +480,13 @@ describe ('Calc', function () {
         terminal.number1.click()
         .then(function () { terminal.parenthesisOpen.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('1x('); })
+        .then(function (text) { expect(text).toEqual('1×('); })
 
         .then(function () { terminal.number1.click(); })
         .then(function () { terminal.parenthesisClose.click(); })
         .then(function () { terminal.parenthesisOpen.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('1x(1)x('); });
+        .then(function (text) { expect(text).toEqual('1×(1)×('); });
       });
     });
 
@@ -498,7 +498,7 @@ describe ('Calc', function () {
         .then(function () { return terminal.input.getText(); })
         .then(function (text) { expect(text).toEqual('(2)'); });
       });
-      it('Must return a error when is inserted after .+-x÷(', function () {
+      it('Must return a error when is inserted after .+-×÷(', function () {
         terminal.parenthesisOpen.click()
         .then(function () { terminal.number2.click(); })
         .then(function () { terminal.dot.click(); })
@@ -528,7 +528,7 @@ describe ('Calc', function () {
         .then(function () { terminal.multiplication.click(); })
         .then(function () { terminal.parenthesisClose.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('(2x'); })
+        .then(function (text) { expect(text).toEqual('(2×'); })
 
         .then(function () { terminal.clear.click(); })
         .then(function () { terminal.parenthesisOpen.click(); })
@@ -544,7 +544,7 @@ describe ('Calc', function () {
         .then(function () { terminal.parenthesisOpen.click(); })
         .then(function () { terminal.parenthesisClose.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('(2x('); });
+        .then(function (text) { expect(text).toEqual('(2×('); });
       });
       it('Must return a error when is inserted in a empty input', function () {
         terminal.parenthesisClose.click()
@@ -567,7 +567,7 @@ describe ('Calc', function () {
         .then(function () { terminal.parenthesisClose.click(); })
         .then(function () { terminal.parenthesisClose.click(); })
         .then(function () { return terminal.input.getText(); })
-        .then(function (text) { expect(text).toEqual('(2x(2))'); });
+        .then(function (text) { expect(text).toEqual('(2×(2))'); });
       });
     });
   });

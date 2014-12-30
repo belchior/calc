@@ -83,7 +83,7 @@ Terminal.prototype.skin = function (selector) {
   _this.eventAddition = function () {
     var formula = _this.display.input.get();
     if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
         return _this.display.input.set(formula.slice(0, formula.length - 1) + '+');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
         return _this.display.input.concat(this.getAttribute('data-value'));
@@ -96,7 +96,7 @@ Terminal.prototype.skin = function (selector) {
     if (!formula){
       return _this.display.input.concat(this.getAttribute('data-value'));
     }
-    if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+    if (formula[formula.length - 1].match(/[+\-×÷]/)) {
       return _this.display.input.set(formula.slice(0, formula.length - 1) + '-');
     }
     if (formula[formula.length - 1].search(/[.]/) < 0) {
@@ -107,8 +107,8 @@ Terminal.prototype.skin = function (selector) {
   _this.eventMultiplication = function () {
     var formula = _this.display.input.get();
     if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
-        return _this.display.input.set(formula.slice(0, formula.length - 1) + 'x');
+      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
+        return _this.display.input.set(formula.slice(0, formula.length - 1) + '×');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
         return _this.display.input.concat(this.getAttribute('data-value'));
       }
@@ -118,7 +118,7 @@ Terminal.prototype.skin = function (selector) {
   _this.eventDivision = function () {
     var formula = _this.display.input.get();
     if (formula){
-      if (formula[formula.length - 1].match(/[+\-x÷]/)) {
+      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
         return _this.display.input.set(formula.slice(0, formula.length - 1) + '÷');
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
         return _this.display.input.concat(this.getAttribute('data-value'));
@@ -148,7 +148,7 @@ Terminal.prototype.skin = function (selector) {
   _this.eventDot = function () {
     var formula = _this.display.input.get();
     if (formula) {
-      formula = formula.split(/[+\-x÷]/).pop();
+      formula = formula.split(/[+\-×÷]/).pop();
       if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
         return _this.display.input.concat(this.getAttribute('data-value'));
       }
@@ -172,7 +172,7 @@ Terminal.prototype.skin = function (selector) {
     if (formula === '') {
       return _this.display.input.concat(this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
-      return _this.display.input.concat('x' + this.getAttribute('data-value'));
+      return _this.display.input.concat('×' + this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[.]/) < 0) {
       return _this.display.input.concat(this.getAttribute('data-value'));
     }
@@ -183,7 +183,7 @@ Terminal.prototype.skin = function (selector) {
     var opens = formula.match(/[(]/g);
     var closes = formula.match(/[)]/g);
     if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
-      if (formula[formula.length - 1].search(/[.+\-x÷(]/) < 0) {
+      if (formula[formula.length - 1].search(/[.+\-×÷(]/) < 0) {
         return _this.display.input.concat(this.getAttribute('data-value'));
       }
     }

@@ -100,7 +100,7 @@ describe ('Calc', function () {
         .then(function () { return macwidget.display.getText(); })
         .then(function (text) { expect(text).toEqual('-1'); });
       });
-      it('Operator x', function () {
+      it('Operator ×', function () {
         macwidget.number5.click()
         .then(function () { macwidget.multiplication.click(); })
         .then(function () { macwidget.number6.click(); })

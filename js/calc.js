@@ -5,7 +5,7 @@ function Calc() {
 }
 
 Calc.prototype.parser = function (formula) {
-  formula = formula.replace(/[^0-9()+\-x÷.]/g, '');
+  formula = formula.replace(/[^0-9()+\-×÷.]/g, '');
   var index;
   var parenthesisOpens = formula.match(/[(]/g);
   var parenthesisCloses = formula.match(/[)]/g);
@@ -30,7 +30,7 @@ Calc.prototype.parser = function (formula) {
   }
 
   // get errors of arithmetic combination of characters
-  if (formula.match(/^[x÷).]|\+[x÷).]|-[x÷).]|x[x÷).]|÷[x÷).]|\([x÷).]|\)[.]|\.[+\-x÷().]|\.\d+\.|[+\-x÷(.]$/g)) {
+  if (formula.match(/^[×÷).]|\+[×÷).]|-[×÷).]|×[×÷).]|÷[×÷).]|\([×÷).]|\)[.]|\.[+\-×÷().]|\.\d+\.|[+\-×÷(.]$/g)) {
     throw new SyntaxError('invalid arithmetic combination of characters');
   }
 
@@ -47,7 +47,7 @@ Calc.prototype.calculate = function (formula) {
   var result;
 
   // obteins the most internal parenthesis
-  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[x÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
+  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
   if (part) {
     result = this.calculate(part[0].replace(/[()]/g, ''));
     if (part < 0 && formula[part.index - 1] === '-') {
@@ -59,9 +59,9 @@ Calc.prototype.calculate = function (formula) {
   }
 
   // get parts to multiply
-  part = formula.match(/[+\-]?\d+(?:\.\d+)?x[+\-]?\d+(?:\.\d+)?/);
+  part = formula.match(/[+\-]?\d+(?:\.\d+)?×[+\-]?\d+(?:\.\d+)?/);
   if (part) {
-    result = part[0].split('x');
+    result = part[0].split('×');
     result = this.multiply(parseFloat(result[0]), parseFloat(result[1]));
     formula = formula.replace(part[0], result);
   }
@@ -90,7 +90,7 @@ Calc.prototype.calculate = function (formula) {
     formula = formula.replace(part[0], result);
   }
 
-  if (formula.match(/[+\-]?\d+(?:\.\d+)?[+\-x÷][+\-]?\d+(?:\.\d+)?/)) {
+  if (formula.match(/[+\-]?\d+(?:\.\d+)?[+\-×÷][+\-]?\d+(?:\.\d+)?/)) {
     return this.calculate(formula);
   }
   return Calc.prototype.format(formula);

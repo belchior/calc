@@ -35,7 +35,7 @@ h1, h2 {
 }
 section {
   box-sizing: border-box;
-  padding: 2em 0;
+  padding: 10em 0;
 }
 section:nth-child(2n-1) {
   background-color: #dddddd;
@@ -69,6 +69,9 @@ section h2 {
   font-weight: bold;
   background-color: transparent;
 }
+.hamburger-menu:focus {
+  box-shadow: 0 0 0 0.0625em #000000;
+}
 .hamburger-menu span {
   position: relative;
   float: left;
@@ -101,11 +104,14 @@ section h2 {
   color: #ffffff;
   box-shadow: 0 0.0625em 0.1875em 0 rgba(0,0,0,0.4);
 }
-.main-menu .item .icon {
-  margin: 0 1em;
+.main-menu .item:focus {
+  box-shadow: 0 0 0 0.0625em #000000;
 }
 .main-menu .item.active {
   width: 101%;
+}
+.main-menu .item .icon {
+  margin: 0 1em;
 }
 .main-menu .item-terminal {
   background-color: #66cc66;
@@ -164,6 +170,9 @@ section h2 {
   }
   .main {
     margin-left: 4em;
+  }
+  section {
+    padding: 5em 0;
   }
 }
 @media screen and (max-width: 400px) {

@@ -113,8 +113,59 @@ window.onload = function () {
   macwidget.skin('.calc-macwidget');
 
   var i;
-  var sections = document.querySelectorAll('section');
-  for (i = 0; i < sections.length; i += 1) {
-    sections[i].style.height = window.innerHeight + 'px';
+  var elem;
+  var tabindex = [
+    '.hamburger-menu',
+    '.item-terminal',
+    '.item-macwidget',
+    '.github-profile',
+    '.github-project',
+    '.calc-terminal .input',
+    '.calc-terminal [data-name="number1"]',
+    '.calc-terminal [data-name="number2"]',
+    '.calc-terminal [data-name="number3"]',
+    '.calc-terminal [data-name="number4"]',
+    '.calc-terminal [data-name="number5"]',
+    '.calc-terminal [data-name="number6"]',
+    '.calc-terminal [data-name="number7"]',
+    '.calc-terminal [data-name="number8"]',
+    '.calc-terminal [data-name="number9"]',
+    '.calc-terminal [data-name="number0"]',
+    '.calc-terminal [data-name="dot"]',
+    '.calc-terminal [data-name="parenthesisOpen"]',
+    '.calc-terminal [data-name="parenthesisClose"]',
+    '.calc-terminal [data-name="equality"]',
+    '.calc-terminal [data-name="addition"]',
+    '.calc-terminal [data-name="subtraction"]',
+    '.calc-terminal [data-name="multiplication"]',
+    '.calc-terminal [data-name="division"]',
+    '.calc-terminal [data-name="clear"]',
+    '.calc-terminal [data-name="backspace"]',
+    '.calc-macwidget .display',
+    '.calc-macwidget [data-name="number1"]',
+    '.calc-macwidget [data-name="number2"]',
+    '.calc-macwidget [data-name="number3"]',
+    '.calc-macwidget [data-name="number4"]',
+    '.calc-macwidget [data-name="number5"]',
+    '.calc-macwidget [data-name="number6"]',
+    '.calc-macwidget [data-name="number7"]',
+    '.calc-macwidget [data-name="number8"]',
+    '.calc-macwidget [data-name="number9"]',
+    '.calc-macwidget [data-name="number0"]',
+    '.calc-macwidget [data-name="dot"]',
+    '.calc-macwidget [data-name="equality"]',
+    '.calc-macwidget [data-name="addition"]',
+    '.calc-macwidget [data-name="subtraction"]',
+    '.calc-macwidget [data-name="multiplication"]',
+    '.calc-macwidget [data-name="division"]',
+    '.calc-macwidget [data-name="madd"]',
+    '.calc-macwidget [data-name="msubtract"]',
+    '.calc-macwidget [data-name="mclear"]',
+    '.calc-macwidget [data-name="mrecall"]',
+    '.calc-macwidget [data-name="clear"]'
+  ];
+  for (i = 1; i <= tabindex.length; i += 1) {
+    elem = document.querySelector(tabindex[i - 1]);
+    if (elem) { elem.setAttribute('tabindex', i); }
   }
 };
