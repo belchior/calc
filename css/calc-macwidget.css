@@ -23,7 +23,7 @@
   margin: 1em auto;
   border-radius: 0.4375em;
   padding: 0.4375em;
-  max-width: 9.375em;
+  width: 9.375em;
   font-size: 2em;
   color: #929292;
   background: #ff9c46;
@@ -124,7 +124,7 @@
 }
 .calc-macwidget .brackets .btn {
   float: left;
-  margin-right: 0.811em;
+  margin-right: 0.81em;
   width: 2.5em;
   height: 2.5em;
   line-height: 0em;
@@ -132,6 +132,7 @@
   color: #555555;
 }
 .calc-macwidget .brackets .btn:last-child {
+  float:right;
   margin-right: 0;
 }
 .calc-macwidget .brackets .btn[data-name=division] {

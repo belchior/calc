@@ -157,7 +157,7 @@ describe ('Calc', function () {
         .then(function (text) { expect(text).toEqual(''); })
 
         .then(function () { return terminal.output.getInnerHtml(); })
-        .then(function (text) { expect(text).toEqual('<span><br><br><br></span>'); });
+        .then(function (text) { expect(text).toEqual('<br><br><br>'); });
       });
     });
 

@@ -1,3 +1,23 @@
+/*
+Helper for unit convertion
+1px = 0.0625em
+2px = 0.125em
+3px = 0.1875em
+4px = 0.25em
+5px = 0.3125em
+6px = 0.375em
+7px = 0.4375em
+8px = 0.5em
+9px = 0.5625em
+10px = 0.625em
+10.0625em = 0.6875em
+10.125em = 0.75em
+13px = 0.8125em
+14px = 0.875em
+10.3125em = 0.9375em
+16px = 1em
+*/
+
 @font-face{
   font-family:'Montserrat Alternates';
   font-style:normal;
@@ -13,46 +33,112 @@ h1, h2 {
   line-height: 1.5em;
   text-align: center;
 }
-header {
-  border-bottom: 5px solid #31913E;
-  padding: 50px 0;
-  background-color: #66cc66;
-}
-header h1 {
-  font-size: 4em;
-  color: #ffffff;
-  font-weight: normal;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-}
 section {
-  padding: 30px 0;
+  box-sizing: border-box;
+  padding: 2em 0;
 }
 section:nth-child(2n-1) {
   background-color: #dddddd;
 }
 section h2 {
   font-size: 2em;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  text-shadow: 0.0625em 0.0625em 0.125em rgba(0,0,0,0.6);
 }
-footer {
-  padding: 30px 0;
-  font-size: 1em;
-  line-height: 2em;
-  text-align: center;
-  color: #000000;
+.sidebar {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: fixed;
+  width: 18.125em;
+  height: 100%;
   background-color: #eeeeee;
+  box-shadow: 0 0 0.1875em 0 rgba(0,0,0,0.4);
 }
-footer a {
-  display: inline-block;
+.hamburger-menu {
+  display: none;
+  margin: 1em;
+  border-radius: 0.1875em;
+  padding: 0.1875em;
+  width: 2em;
+  height: 2em;
+  font-family: "Montserrat Alternates", Helvetica, Arial;
+  color: #666666;
+  background-color: transparent;
+  cursor: pointer;
 }
-
+.hamburger-menu:hover {
+  font-weight: bold;
+  background-color: transparent;
+}
+.hamburger-menu span {
+  position: relative;
+  float: left;
+  margin-bottom: 0.1875em;
+  border-radius: 0.1875em;
+  width: 100%;
+  height: 0.3125em;
+  background-color: #666666;
+}
+.hamburger-menu .text {
+  background: none;
+  position: absolute;
+  text-align: left;
+  margin: 0.1875em 0 0 2em;
+  height: 1em;
+  width: auto;
+}
+.hamburger-menu span:last-child {
+  margin-bottom: 0;
+}
+.main-menu {
+  margin-top: 4em;
+}
+.main-menu .item {
+  overflow: hidden;
+  display: block;
+  margin-bottom: 0.5em;
+  height: 3.125em;
+  line-height: 3.125em;
+  color: #ffffff;
+  box-shadow: 0 0.0625em 0.1875em 0 rgba(0,0,0,0.4);
+}
+.main-menu .item .icon {
+  margin: 0 1em;
+}
+.main-menu .item.active {
+  width: 101%;
+}
+.main-menu .item-terminal {
+  background-color: #66cc66;
+}
+.main-menu .item-macwidget {
+  background-color: #85acd3;
+}
+.sidebar aside {
+  position: relative;
+  top: 2em;
+}
+.github-profile,
+.github-project {
+  overflow: hidden;
+  display: block;
+  height: 3.125em;
+  line-height: 3.125em;
+}
+.github-profile img,
+.github-project img {
+  margin: 0 1em;
+}
+.main {
+  margin-left: 18.125em;
+}
 #terminal {
-  border-bottom: 5px solid #333333;
+  border-top: 0.3125em solid #1ea935;
+  border-bottom: 0.3125em solid #333333;
   font-family: Monaco, 'Lucida Console', Arial;
-  background-color: #dddddd;
+  background-color: #66cc66;
 }
 #macwidget {
-  border-bottom: 5px solid #3276b5;
+  border-bottom: 0.3125em solid #3276b5;
   font-family: Helvetica, Arial, Sans-serif;
   background-color: #85acd3;
 }
@@ -65,15 +151,28 @@ footer a {
   width: 100%;
   max-width: 1024px;
 }
-.name {
-  font-size: 2em;
-  color: #000000;
+
+@media screen and (max-width: 650px) {
+  .sidebar {
+    width: 4em;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  .main-menu {
+    margin-top: 0;
+  }
+  .main {
+    margin-left: 4em;
+  }
 }
-.github {
-  display: inline-block;
-  line-height: 2.3em;
-}
-.github img {
-  float: left;
-  margin-right: 5px;
+@media screen and (max-width: 400px) {
+  .sidebar {
+    overflow: hidden;
+    width: 100%;
+    height: 4em;
+  }
+  .main {
+    margin-left: 0;
+  }
 }

@@ -23,105 +23,112 @@
   </head>
   <body>
 
-    <header>
-      <h1>Calculator</h1>
-    </header>
+    <div class="sidebar" role="menu">
+      <button class="hamburger-menu" type="button">
+        <span class="text">Menu</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </button>
+      <nav class="main-menu" role="menubar">
+        <a class="item item-terminal" role="menuitem" tabindex="1" href="#terminal">
+          <img class="icon" src="img/terminal-icon.png" alt="Terminal icon" title="Terminal">Terminal
+        </a>
+        <a class="item item-macwidget" role="menuitem" tabindex="2" href="#macwidget">
+          <img class="icon" src="img/macwidget-icon.png" alt="Mac Widget icon" title="Mac OSX Widget">Mac OSX Widget
+        </a>
+      </nav>
+      <aside>
+        <a class="github-profile" href="https://github.com/belchior">
+          <img src="img/belchior-icon.png" alt="Icon of ">Belchior Oliveira
+        </a>
+        <a class="github-project" href="https://github.com/belchior/calc">
+          <img src="img/github.png" alt="View this project at">GitHub
+        </a>
+      </aside>
+    </div>
 
-    <section id="terminal">
-      <h2>Terminal</h2>
-      <div class="container">
+    <div class="main">
+
+      <section id="terminal">
+        <h2>Terminal</h2>
         <form class="calc-terminal">
           <div class="display">
             <div class="output"></div>
-            <p tabindex="2" class="input"></p>
+            <p tabindex="102" class="input"></p>
           </div>
           <div class="keyboard">
             <div>
-              <button type="button" tabindex="21" class="btn" data-name="clear" title="clear">c</button>
-              <button type="button" tabindex="13" class="btn" data-name="dot" data-value="." title="dot">.</button>
-              <button type="button" tabindex="22" class="btn small" data-name="backspace" title="backspace">&lt;</button>
-              <button type="button" tabindex="16" class="btn small" data-name="equality" title="equals">=</button>
+              <button type="button" tabindex="121" class="btn" data-name="clear" title="clear">c</button>
+              <button type="button" tabindex="113" class="btn" data-name="dot" data-value="." title="dot">.</button>
+              <button type="button" tabindex="122" class="btn small" data-name="backspace" title="backspace">&lt;</button>
+              <button type="button" tabindex="116" class="btn small" data-name="equality" title="equals">=</button>
             </div>
             <div>
-              <button type="button" tabindex="3" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
-              <button type="button" tabindex="4" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
-              <button type="button" tabindex="5" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
-              <button type="button" tabindex="17" class="btn small" data-name="addition" data-value="+" title="plus">+</button>
+              <button type="button" tabindex="103" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
+              <button type="button" tabindex="104" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
+              <button type="button" tabindex="105" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
+              <button type="button" tabindex="117" class="btn small" data-name="addition" data-value="+" title="plus">+</button>
             </div>
             <div>
-              <button type="button" tabindex="6" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
-              <button type="button" tabindex="7" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
-              <button type="button" tabindex="8" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
-              <button type="button" tabindex="18" class="btn small" data-name="subtraction" data-value="-" title="minus">−</button>
+              <button type="button" tabindex="106" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
+              <button type="button" tabindex="107" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
+              <button type="button" tabindex="108" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
+              <button type="button" tabindex="118" class="btn small" data-name="subtraction" data-value="-" title="minus">−</button>
             </div>
             <div>
-              <button type="button" tabindex="9" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
-              <button type="button" tabindex="10" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
-              <button type="button" tabindex="11" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
-              <button type="button" tabindex="19" class="btn small" data-name="multiplication" data-value="x" title="times">×</button>
+              <button type="button" tabindex="109" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
+              <button type="button" tabindex="110" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
+              <button type="button" tabindex="111" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
+              <button type="button" tabindex="119" class="btn small" data-name="multiplication" data-value="x" title="times">×</button>
             </div>
             <div>
-              <button type="button" tabindex="14" class="btn small" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
-              <button type="button" tabindex="12" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
-              <button type="button" tabindex="15" class="btn small" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
-              <button type="button" tabindex="20" class="btn small" data-name="division" data-value="÷" title="divided">÷</button>
+              <button type="button" tabindex="114" class="btn small" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
+              <button type="button" tabindex="112" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
+              <button type="button" tabindex="115" class="btn small" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
+              <button type="button" tabindex="120" class="btn small" data-name="division" data-value="÷" title="divided">÷</button>
             </div>
           </div>
         </form>
-      </div>
-    </section>
+      </section>
 
-    <section id="macwidget">
-      <h2>Mac OS X Widget</h2>
-      <div class="container">
+      <section id="macwidget">
+        <h2>Mac OS X Widget</h2>
         <form class="calc-macwidget">
-          <output tabindex="100" class="display"></output>
+          <output tabindex="200" class="display"></output>
           <div class="keyboard">
             <div class="brackets">
-              <button type="button" tabindex="118" class="btn small" data-name="madd" data-value="" title="memory add">m+</button>
-              <button type="button" tabindex="119" class="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
-              <button type="button" tabindex="120" class="btn small" data-name="mclear" title="memory clear">mc</button>
-              <button type="button" tabindex="121" class="btn small" data-name="mrecall" title="memory recall">mr</button>
-              <button type="button" tabindex="116" class="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</button>
+              <button type="button" tabindex="218" class="btn small" data-name="madd" data-value="" title="memory add">m+</button>
+              <button type="button" tabindex="219" class="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
+              <button type="button" tabindex="220" class="btn small" data-name="mclear" title="memory clear">mc</button>
+              <button type="button" tabindex="221" class="btn small" data-name="mrecall" title="memory recall">mr</button>
+              <button type="button" tabindex="216" class="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</button>
             </div>
             <div class="numbers">
-              <button type="button" tabindex="107" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
-              <button type="button" tabindex="108" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
-              <button type="button" tabindex="109" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
-              <button type="button" tabindex="104" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
-              <button type="button" tabindex="105" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
-              <button type="button" tabindex="106" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
-              <button type="button" tabindex="101" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
-              <button type="button" tabindex="102" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
-              <button type="button" tabindex="103" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
-              <button type="button" tabindex="110" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
-              <button type="button" tabindex="111" class="btn" data-name="dot" data-value="." title="dot">.</button>
-              <button type="button" tabindex="117" class="btn" data-name="clear" title="clear">c</button>
+              <button type="button" tabindex="207" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
+              <button type="button" tabindex="208" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
+              <button type="button" tabindex="209" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
+              <button type="button" tabindex="204" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
+              <button type="button" tabindex="205" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
+              <button type="button" tabindex="206" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
+              <button type="button" tabindex="201" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
+              <button type="button" tabindex="202" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
+              <button type="button" tabindex="203" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
+              <button type="button" tabindex="210" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
+              <button type="button" tabindex="211" class="btn" data-name="dot" data-value="." title="dot">.</button>
+              <button type="button" tabindex="217" class="btn" data-name="clear" title="clear">c</button>
             </div>
             <div class="operators">
-              <button type="button" tabindex="115" class="btn small" data-name="multiplication" data-value="x" data-action="multiply" title="multiply">×</button>
-              <button type="button" tabindex="114" class="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">−</button>
-              <button type="button" tabindex="113" class="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</button>
-              <button type="button" tabindex="112" class="btn small" data-name="equality" title="equals">=</button>
+              <button type="button" tabindex="215" class="btn small" data-name="multiplication" data-value="x" data-action="multiply" title="multiply">×</button>
+              <button type="button" tabindex="214" class="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">−</button>
+              <button type="button" tabindex="213" class="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</button>
+              <button type="button" tabindex="212" class="btn small" data-name="equality" title="equals">=</button>
             </div>
           </div>
         </form>
-      </div>
-    </section>
+      </section>
 
-    <footer>
-      <div class="container">
-        <p itemscope itemtype="http://www.data-vocabulary.org/Person">
-          Made for fun by<br>
-          <a itemprop="url" href="https://github.com/belchior">
-            <span itemprop="name" class="name">Belchior Oliveira</span>
-          </a>
-        </p>
-        <p>
-          <a class="github" href="https://github.com/belchior/calc"><img src="img/github.png" alt="View this project at"> GitHub</a>
-        </p>
-      </div>
-    </footer>
+    </div>
 
     <script src="js/calc.js"></script>
     <script src="js/calc-terminal.js"></script>
