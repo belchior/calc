@@ -119,6 +119,9 @@ section h2 {
 .main-menu .item-macwidget {
   background-color: #85acd3;
 }
+.main-menu .item-custom {
+  background-color: #b48fe6;
+}
 .sidebar aside {
   position: relative;
   top: 2em;
@@ -139,26 +142,23 @@ section h2 {
 }
 #terminal {
   border-top: 0.3125em solid #1ea935;
-  border-bottom: 0.3125em solid #333333;
   font-family: Monaco, 'Lucida Console', Arial;
   background-color: #66cc66;
 }
 #macwidget {
-  border-bottom: 0.3125em solid #3276b5;
+  border-top: 0.3125em solid #3276b5;
   font-family: Helvetica, Arial, Sans-serif;
   background-color: #85acd3;
 }
 #macwidget h2 {
   font-family: Helvetica, Arial, Sans-serif;
 }
-.container {
-  display: block;
-  margin: auto;
-  width: 100%;
-  max-width: 1024px;
+#custom {
+  border-top: 0.3125em solid #7e5ab8;
+  background-color: #b48fe6;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 780px) {
   .sidebar {
     width: 4em;
   }
@@ -175,7 +175,7 @@ section h2 {
     padding: 5em 0;
   }
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 560px) {
   .sidebar {
     overflow: hidden;
     width: 100%;

@@ -1,0 +1,111 @@
+/*
+Helper for unit convertion
+1px = 0.0625em
+2px = 0.125em
+3px = 0.1875em
+4px = 0.25em
+5px = 0.3125em
+6px = 0.375em
+7px = 0.4375em
+8px = 0.5em
+9px = 0.5625em
+10px = 0.625em
+10.0625em = 0.6875em
+10.125em = 0.75em
+13px = 0.8125em
+14px = 0.875em
+10.3125em = 0.9375em
+16px = 1em
+*/
+
+.calc-custom {
+  box-sizing: border-box;
+  display: table;
+  margin: 2em auto;
+  border-radius: 0.4em;
+  width: 29em;
+  background:
+    linear-gradient(
+      to bottom,
+      #ffffff 0%, #cccccc 5.204em,
+      #eeeeee 5.204em, #dddddd 100%
+    ) no-repeat border-box,
+    linear-gradient(
+      to bottom,
+      #888888 0%, #444444 5.204em,
+      #dddddd 5.204em, #cccccc 100%
+    ) no-repeat border-box
+  ;
+  background-size: 94% 100%, 100% 100%;
+  background-position: 50% 0, 0 0;
+  background-origin: padding-box, padding-box;
+}
+.calc-custom .display {
+  box-sizing: border-box;
+  clear: both;
+  display: inline-block;
+  margin: 0.8em 0 0.8em 25%;
+  border-radius: 0.2em;
+  border: 0.05em solid #bbbbbb;
+  padding: 0.4em;
+  width: 50%;
+  height: 2.5em;
+  text-align: right;
+  line-height: 1.7em;
+  vertical-align: middle;
+  font-size: 1.25em;
+  color: #666666;
+  background-color: #dddddd;
+}
+.calc-custom .display:focus {
+  border: #7E5AB8;
+  color: #ffffff;
+  background-color: #7E5AB8;
+  outline: none;
+}
+.calc-custom .keyboard {
+  display: inline-block;
+  padding-top: 0.25em;
+}
+.calc-custom .btn {
+  box-sizing: border-box;
+  float: left;
+  margin: 0.25em;
+  border-radius: 0.3em;
+  width: 2.1em;
+  height: 2.1em;
+  font-size: 1.25em;
+  color: #ffffff;
+  background-color: #666666;
+  cursor: pointer;
+}
+.calc-custom .btn[data-name="delete"] {
+  background-color: #d82c2c;
+}
+.calc-custom .btn[data-name="clear"] {
+  background-color: #6995A5;
+}
+.calc-custom .btn[data-name^="number"],
+.calc-custom .btn[data-name="dot"] {
+  background-color: #363636;
+}
+.calc-custom .btn[data-name="equality"] {
+  background-color: #000000;
+}
+.calc-custom .btn.double {
+  width: 4.7em;
+}
+.calc-custom .btn:focus {
+  background-color: #7E5AB8;
+}
+.calc-custom .functions {
+  float: left;
+  display: inline-block;
+  padding-left: 5%;
+  width: 34%;
+}
+.calc-custom .arithmetic {
+  float: left;
+  display: inline-block;
+  width: 61%;
+}

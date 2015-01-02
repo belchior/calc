@@ -17,8 +17,9 @@
     <link rel="icon" href="favicon.png" sizes="64x64">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/calc-macwidget.css">
     <link rel="stylesheet" href="css/calc-terminal.css">
+    <link rel="stylesheet" href="css/calc-macwidget.css">
+    <link rel="stylesheet" href="css/calc-custom.css">
     <link rel="stylesheet" href="css/animate.css">
   </head>
   <body>
@@ -36,6 +37,9 @@
         </a>
         <a class="item item-macwidget" role="menuitem" href="#macwidget">
           <img class="icon" src="img/macwidget-icon.png" alt="Mac Widget icon" title="Mac OSX Widget">Mac OSX Widget
+        </a>
+        <a class="item item-custom" role="menuitem" href="#custom">
+          <img class="icon" src="img/macwidget-icon.png" alt="Custom" title="Custom Calc">Custom Calc
         </a>
       </nav>
       <aside>
@@ -59,34 +63,34 @@
           </div>
           <div class="keyboard">
             <div>
-              <button type="button" class="btn" data-name="clear" title="clear">c</button>
-              <button type="button" class="btn" data-name="dot" data-value="." title="dot">.</button>
+              <button type="button" class="btn"       data-name="clear"     title="clear">c</button>
+              <button type="button" class="btn"       data-name="dot"       data-value="." title="dot">.</button>
               <button type="button" class="btn small" data-name="backspace" title="backspace">&lt;</button>
-              <button type="button" class="btn small" data-name="equality" title="equals">=</button>
+              <button type="button" class="btn small" data-name="equality"  title="equals">=</button>
             </div>
             <div>
-              <button type="button" class="btn" data-name="number1" data-value="1" title="number 1">1</button>
-              <button type="button" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
-              <button type="button" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
+              <button type="button" class="btn"       data-name="number1"  data-value="1" title="number 1">1</button>
+              <button type="button" class="btn"       data-name="number2"  data-value="2" title="number 2">2</button>
+              <button type="button" class="btn"       data-name="number3"  data-value="3" title="number 3">3</button>
               <button type="button" class="btn small" data-name="addition" data-value="+" title="plus">+</button>
             </div>
             <div>
-              <button type="button" class="btn" data-name="number4" data-value="4" title="number 4">4</button>
-              <button type="button" class="btn" data-name="number5" data-value="5" title="number 5">5</button>
-              <button type="button" class="btn" data-name="number6" data-value="6" title="number 6">6</button>
+              <button type="button" class="btn"       data-name="number4"     data-value="4" title="number 4">4</button>
+              <button type="button" class="btn"       data-name="number5"     data-value="5" title="number 5">5</button>
+              <button type="button" class="btn"       data-name="number6"     data-value="6" title="number 6">6</button>
               <button type="button" class="btn small" data-name="subtraction" data-value="-" title="minus">−</button>
             </div>
             <div>
-              <button type="button" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
-              <button type="button" class="btn" data-name="number8" data-value="8" title="number 8">8</button>
-              <button type="button" class="btn" data-name="number9" data-value="9" title="number 9">9</button>
+              <button type="button" class="btn"       data-name="number7"        data-value="7" title="number 7">7</button>
+              <button type="button" class="btn"       data-name="number8"        data-value="8" title="number 8">8</button>
+              <button type="button" class="btn"       data-name="number9"        data-value="9" title="number 9">9</button>
               <button type="button" class="btn small" data-name="multiplication" data-value="×" title="times">×</button>
             </div>
             <div>
-              <button type="button" class="btn small" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
-              <button type="button" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
+              <button type="button" class="btn small" data-name="parenthesisOpen"  data-value="(" title="parenthesis opening">(</button>
+              <button type="button" class="btn"       data-name="number0"          data-value="0" title="number 0">0</button>
               <button type="button" class="btn small" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
-              <button type="button" class="btn small" data-name="division" data-value="÷" title="divided">÷</button>
+              <button type="button" class="btn small" data-name="division"         data-value="÷" title="divided">÷</button>
             </div>
           </div>
         </form>
@@ -98,11 +102,11 @@
           <output class="display"></output>
           <div class="keyboard">
             <div class="brackets">
-              <button type="button" class="btn small" data-name="madd" data-value="" title="memory add">m+</button>
+              <button type="button" class="btn small" data-name="madd"      data-value="" title="memory add">m+</button>
               <button type="button" class="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
-              <button type="button" class="btn small" data-name="mclear" title="memory clear">mc</button>
-              <button type="button" class="btn small" data-name="mrecall" title="memory recall">mr</button>
-              <button type="button" class="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</button>
+              <button type="button" class="btn small" data-name="mclear"    title="memory clear">mc</button>
+              <button type="button" class="btn small" data-name="mrecall"   title="memory recall">mr</button>
+              <button type="button" class="btn small" data-name="division"  data-value="÷" data-action="divide" title="divide">÷</button>
             </div>
             <div class="numbers">
               <button type="button" class="btn" data-name="number7" data-value="7" title="number 7">7</button>
@@ -115,14 +119,55 @@
               <button type="button" class="btn" data-name="number2" data-value="2" title="number 2">2</button>
               <button type="button" class="btn" data-name="number3" data-value="3" title="number 3">3</button>
               <button type="button" class="btn" data-name="number0" data-value="0" title="number 0">0</button>
-              <button type="button" class="btn" data-name="dot" data-value="." title="dot">.</button>
-              <button type="button" class="btn" data-name="clear" title="clear">c</button>
+              <button type="button" class="btn" data-name="dot"     data-value="." title="dot">.</button>
+              <button type="button" class="btn" data-name="clear"   title="clear">c</button>
             </div>
             <div class="operators">
               <button type="button" class="btn small" data-name="multiplication" data-value="×" data-action="multiply" title="multiply">×</button>
-              <button type="button" class="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">−</button>
-              <button type="button" class="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</button>
-              <button type="button" class="btn small" data-name="equality" title="equals">=</button>
+              <button type="button" class="btn small" data-name="subtraction"    data-value="-" data-action="subtract" title="subtract">−</button>
+              <button type="button" class="btn small" data-name="addition"       data-value="+" data-action="sum" title="sum">+</button>
+              <button type="button" class="btn small" data-name="equality"       title="equals">=</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section id="custom">
+        <h2>Custom Calc</h2>
+        <form class="calc-custom">
+          <div class="display">3.141592653589793</div>
+          <div class="keyboard">
+            <div class="functions">
+              <button type="button" class="btn" data-name="percent"   data-value="%" title="percent">%</button>
+              <button type="button" class="btn" data-name="madd"      title="memory add">m+</button>
+              <button type="button" class="btn" data-name="msubtract" title="memory subtract">m−</button>
+              <button type="button" class="btn" data-name="sin"       title="sin">sin</button>
+              <button type="button" class="btn" data-name="mclear"    title="memory clear">mc</button>
+              <button type="button" class="btn" data-name="mrecall"   title="memory recall">mr</button>
+              <button type="button" class="btn" data-name="cos"       title="cos">cos</button>
+              <button type="button" class="btn double" data-name="delete"    title="delete">delete</button>
+              <button type="button" class="btn" data-name="tan"       title="tan">tan</button>
+              <button type="button" class="btn double" data-name="clear"     title="clear">clear</button>
+            </div>
+            <div class="arithmetic">
+              <button type="button" class="btn" data-name="number7"          data-value="7" title="number 7">7</button>
+              <button type="button" class="btn" data-name="number8"          data-value="8" title="number 8">8</button>
+              <button type="button" class="btn" data-name="number9"          data-value="9" title="number 9">9</button>
+              <button type="button" class="btn" data-name="addition"         data-value="+" title="plus">+</button>
+              <button type="button" class="btn" data-name="multiplication"   data-value="×" title="times">×</button>
+              <button type="button" class="btn" data-name="number4"          data-value="4" title="number 4">4</button>
+              <button type="button" class="btn" data-name="number5"          data-value="5" title="number 5">5</button>
+              <button type="button" class="btn" data-name="number6"          data-value="6" title="number 6">6</button>
+              <button type="button" class="btn" data-name="subtraction"      data-value="-" title="minus">−</button>
+              <button type="button" class="btn" data-name="division"         data-value="÷" title="divided">÷</button>
+              <button type="button" class="btn" data-name="number1"          data-value="1" title="number 1">1</button>
+              <button type="button" class="btn" data-name="number2"          data-value="2" title="number 2">2</button>
+              <button type="button" class="btn" data-name="number3"          data-value="3" title="number 3">3</button>
+              <button type="button" class="btn" data-name="parenthesisOpen"  data-value="(" title="parenthesis opening">(</button>
+              <button type="button" class="btn" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
+              <button type="button" class="btn double" data-name="number0"          data-value="0" title="number 0">0</button>
+              <button type="button" class="btn" data-name="dot"              data-value="." title="dot">.</button>
+              <button type="button" class="btn double" data-name="equality"         title="equals">=</button>
             </div>
           </div>
         </form>
