@@ -8,7 +8,6 @@ describe('Calc', function () {
     calc = new Calc();
     assert.ok(calc instanceof Calc);
   });
-
   it('should be instantiable without operator new', function () {
     calc = Calc();
     assert.ok(calc instanceof Calc);
@@ -29,8 +28,11 @@ describe('Calc', function () {
     it('should return 8.5 when are multiplied -2.5 by -3.4', function () {
       assert.strictEqual(calc.multiply(-2.5, -3.4), 8.5);
     });
-    it('should return NaN when are multiplied "abc" by "1"', function () {
-      assert(Number.isNaN(calc.multiply('abc', '1')));
+    it('should throws an Error when are multiplied "abc" by "1"', function () {
+      assert.throws(
+        function () {calc.multiply('abc', '1');},
+        SyntaxError, 'It\'s impossible multiply abc by 1'
+      );
     });
   });
 
@@ -38,25 +40,26 @@ describe('Calc', function () {
     it('should return 7 when are divided 21 by 3', function () {
       assert.strictEqual(calc.divide(21, 3), 7);
     });
-
     it('should return 7 when are divided -21 by -3', function () {
       assert.strictEqual(calc.divide(-21, -3), 7);
     });
-
     it('should return 6 when are divided 21.6 by 3.2.75', function () {
       assert.strictEqual(calc.divide(21.6, 3.2), 6.75);
     });
-
     it('should return 6 when are divided -21.6 by -3.2.75', function () {
       assert.strictEqual(calc.divide(-21.6, -3.2), 6.75);
     });
-
-    it('should return NaN when are divided "abc" by "1"', function () {
-      assert(Number.isNaN(calc.divide('abc', '1')));
+    it('should throws an Error when are multiplied "abc" by "1"', function () {
+      assert.throws(
+        function () {calc.divide('abc', '1');},
+        SyntaxError, 'It\'s impossible divide abc by 1'
+      );
     });
-
-    it('should return Infinity when are divided 10 by 0', function () {
-      assert(!Number.isFinite(calc.divide(10, 0)));
+    it('should throws an Error when are divided 10 by 0', function () {
+      assert.throws(
+        function () {calc.divide(10, 0);},
+        SyntaxError, 'It\'s impossible divide abc by 1'
+      );
     });
 
   });
@@ -80,8 +83,11 @@ describe('Calc', function () {
     it('should return 9.8 when are summed +5.1 by +4.7', function () {
       assert.strictEqual(calc.sum(+5.1, +4.7), 9.8);
     });
-    it('should return NaN when are summed null by undefined', function () {
-      assert(Number.isNaN(calc.sum(null, undefined)));
+    it('should throws an Error when are summed null by undefined', function () {
+      assert.throws(
+        function () {calc.sum(null, undefined);},
+        SyntaxError, 'It\'s impossible sum null by undefined'
+      );
     });
   });
 
@@ -101,8 +107,11 @@ describe('Calc', function () {
     it('should return -1.5 when are subtracted -8.2 by -6.7', function () {
       assert.strictEqual(calc.subtract(-8.2, -6.7), -1.5);
     });
-    it('should return NaN when are subtracted "" by "12"', function () {
-      assert(Number.isNaN(calc.subtract('', '12')));
+    it('should throws an Error when are subtracted "" by "12"', function () {
+      assert.throws(
+        function () {calc.subtract('', '12');},
+        SyntaxError, 'It\'s impossible subtract  by 12'
+      );
     });
   });
 
@@ -133,7 +142,6 @@ describe('Calc', function () {
           errorTester(errorMessage)
         );
       });
-
       it('when formula has wrong sequence of parenthesis', function () {
         var errorMessage = 'divergence between parenthesis';
 
@@ -165,7 +173,6 @@ describe('Calc', function () {
           errorTester(errorMessage)
         );
       });
-
       it('when formula has "+-×÷" followed by "×÷."', function () {
         ['+', '-', '×', '÷', '.'].forEach(function (char) {
           assert.throws(
@@ -182,7 +189,6 @@ describe('Calc', function () {
           );
         });
       });
-
       it('when formula has "." followed by "+-()"', function () {
         assert.throws(
           thrower(calc.parser, '1.2.3'),
@@ -205,7 +211,6 @@ describe('Calc', function () {
           errorTester(errorMessage)
         );
       });
-
       it('when formula has "(" followed by "×÷)."', function () {
         assert.throws(
           thrower(calc.parser, '1+(×2)'),
@@ -231,5 +236,105 @@ describe('Calc', function () {
     it('should return 0.45964912 when formula is 1+2-3×4÷5+(6)-((7×8)÷9.12)', function () {
       assert.strictEqual(calc.calculate('1+2-3×4÷5+(6)-((7×8)÷9.12)'), 0.45964912);
     });
+
+    describe('multiplication and division', function () {
+      it('should return 4 when formula is +2×+2', function () {
+        assert.strictEqual(calc.calculate('+2×+2'), 4);
+      });
+      it('should return 4 when formula is -2×-2', function () {
+        assert.strictEqual(calc.calculate('-2×-2'), 4);
+      });
+      it('should return -4 when formula is +2×-2', function () {
+        assert.strictEqual(calc.calculate('+2×-2'), -4);
+      });
+      it('should return -4 when formula is -2×+2', function () {
+        assert.strictEqual(calc.calculate('-2×+2'), -4);
+      });
+      it('should return 4 when formula is +20÷+5', function () {
+        assert.strictEqual(calc.calculate('+20÷+5'), 4);
+      });
+      it('should return 4 when formula is -20÷-5', function () {
+        assert.strictEqual(calc.calculate('-20÷-5'), 4);
+      });
+      it('should return -4 when formula is +20÷-5', function () {
+        assert.strictEqual(calc.calculate('+20÷-5'), -4);
+      });
+      it('should return -4 when formula is -20÷+5', function () {
+        assert.strictEqual(calc.calculate('-20÷+5'), -4);
+      });
+      it('should return 10 when formula is 2+2×2×2', function () {
+        assert.strictEqual(calc.calculate('2+2×2×2'), 10);
+      });
+      it('should return 4 when formula is 2+8÷2÷2', function () {
+        assert.strictEqual(calc.calculate('2+8÷2÷2'), 4);
+      });
+      it('should return -6 when formula is 2-2×2×2', function () {
+        assert.strictEqual(calc.calculate('2-2×2×2'), -6);
+      });
+      it('should return 0 when formula is 2-8÷2÷2', function () {
+        assert.strictEqual(calc.calculate('2-8÷2÷2'), 0);
+      });
+    });
+
+    describe('addition and subtraction', function () {
+      it('should return 4 when formula is +2++2', function () {
+        assert.strictEqual(calc.calculate('+2++2'), 4);
+      });
+      it('should return -4 when formula is -2+-2', function () {
+        assert.strictEqual(calc.calculate('-2+-2'), -4);
+      });
+      it('should return 0 when formula is +2+-2', function () {
+        assert.strictEqual(calc.calculate('+2+-2'), 0);
+      });
+      it('should return 0 when formula is -2++2', function () {
+        assert.strictEqual(calc.calculate('-2++2'), 0);
+      });
+      it('should return 15 when formula is +20-+5', function () {
+        assert.strictEqual(calc.calculate('+20-+5'), 15);
+      });
+      it('should return -15 when formula is -20--5', function () {
+        assert.strictEqual(calc.calculate('-20--5'), -15);
+      });
+      it('should return 25 when formula is +20--5', function () {
+        assert.strictEqual(calc.calculate('+20--5'), 25);
+      });
+      it('should return -25 when formula is -20-+5', function () {
+        assert.strictEqual(calc.calculate('-20-+5'), -25);
+      });
+    });
+
+    describe('parenthesis', function () {
+      it('should return 1 when formula is (1)', function () {
+        assert.strictEqual(calc.calculate('(1)'), 1);
+      });
+      it('should return 1 when formula is (+1)', function () {
+        assert.strictEqual(calc.calculate('(+1)'), 1);
+      });
+      it('should return -2 when formula is (-2)', function () {
+        assert.strictEqual(calc.calculate('(-2)'), -2);
+      });
+      it('should return 3 when formula is (+1+2)', function () {
+        assert.strictEqual(calc.calculate('(+1+2)'), 3);
+      });
+      it('should return -3 when formula is (-1-2)', function () {
+        assert.strictEqual(calc.calculate('(-1-2)'), -3);
+      });
+      it('should return 2.76 when formula is (1.2×2.3)', function () {
+        assert.strictEqual(calc.calculate('(1.2×2.3)'), 2.76);
+      });
+      it('should return 0.52173913 when formula is (-1.2÷-2.3)', function () {
+        assert.strictEqual(calc.calculate('(-1.2÷-2.3)'), 0.52173913);
+      });
+      it('should return 7 when formula is (2)+(3)-(-2)', function () {
+        assert.strictEqual(calc.calculate('(2)+(3)-(-2)'), 7);
+      });
+      it('should return 5 when formula is ((-8)÷(-2))+1', function () {
+        assert.strictEqual(calc.calculate('((-8)÷(-2))+1'), 5);
+      });
+      it('should return 4.4 when formula is 9+8-7×6÷5+(4-3×(2÷1)+0.1-2.3)', function () {
+        assert.strictEqual(calc.calculate('9+8-7×6÷5+(4-3×(2÷1)+0.1-2.3)'), 4.4);
+      });
+    });
+
   });
 });

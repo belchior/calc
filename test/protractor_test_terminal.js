@@ -3,6 +3,7 @@ describe ('Calc', function () {
   browser.get('http://localhost/calc');
 
   describe('Terminal', function () {
+
     var terminal = {};
     terminal.input = $('.calc-terminal .input');
     terminal.output = $('.calc-terminal .output');
@@ -33,7 +34,6 @@ describe ('Calc', function () {
     });
 
     describe('Click on button', function () {
-
       it('Number 0', function () {
         terminal.number0.click()
         .then(function () { return terminal.input.getText(); })

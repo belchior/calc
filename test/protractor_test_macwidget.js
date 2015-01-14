@@ -33,7 +33,6 @@ describe ('Calc', function () {
     });
 
     describe('Click on button', function () {
-
       it('Number 0', function () {
         macwidget.number0.click()
         .then(function () { return macwidget.display.getText(); })

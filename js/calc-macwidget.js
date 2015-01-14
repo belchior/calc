@@ -7,7 +7,7 @@ Macwidget.prototype = Object.create(Calc.prototype);
 Macwidget.prototype.constructor = Macwidget;
 
 Macwidget.prototype.skin = function (selector) {
-  selector = typeof selector !== 'string' ? '.calc-terminal' : selector;
+  selector = typeof selector !== 'string' ? '.calc-macwidget' : selector;
 
   var _this = this;
   _this.equalityWasClicked = false;
@@ -126,12 +126,11 @@ Macwidget.prototype.skin = function (selector) {
   })();
 
   _this.showError = function () {
-    var classArray = _this.html.getAttribute('class').split(' ');
-    classArray.push('calcError');
-    _this.html.setAttribute('class', classArray.join(' '));
+    var attrClass = _this.html.getAttribute('class').replace(' calcError', '');
+    _this.html.setAttribute('class', attrClass + ' calcError');
     setTimeout(function () {
-      classArray.pop('calcError');
-      _this.html.setAttribute('class', classArray.join(' '));
+      attrClass = _this.html.getAttribute('class').replace(' calcError', '');
+      _this.html.setAttribute('class', attrClass);
     }, 300);
   };
 
@@ -140,23 +139,21 @@ Macwidget.prototype.skin = function (selector) {
   };
 
   _this.activeOperation = function (operation) {
-    var classArray = operation.getAttribute('class').split(' ');
-    classArray.push('active');
+    var attrClass = operation.getAttribute('class').replace(' active', '');
 
     _this.inactiveOperators();
-    operation.setAttribute('class', classArray.join(' '));
+    operation.setAttribute('class', attrClass + ' active');
     return _this;
   };
 
   _this.inactiveOperators = function () {
     var i;
-    var classArray;
+    var attrClass;
     var actives = _this.html.querySelectorAll('.btn.active');
     if (actives) {
       for (i = 0; i < actives.length; i += 1) {
-        classArray = actives[i].getAttribute('class').split(' ');
-        classArray.pop('active');
-        actives[i].setAttribute('class', classArray.join(' '));
+        attrClass = actives[i].getAttribute('class').replace(' active', '');
+        actives[i].setAttribute('class', attrClass);
       }
     }
     return _this;

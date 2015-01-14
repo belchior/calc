@@ -50,7 +50,7 @@ Calc.prototype.calculate = function (formula) {
   part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
   if (part) {
     result = this.calculate(part[0].replace(/[()]/g, ''));
-    if (part < 0 && formula[part.index - 1] === '-') {
+    if (result < 0 && formula[part.index - 1] === '-') {
       formula = formula.replace('-' + part[0], '+' + Math.abs(result));
     } else {
       formula = formula.replace(part[0], result);
@@ -59,66 +59,106 @@ Calc.prototype.calculate = function (formula) {
   }
 
   // get parts to multiply
-  part = formula.match(/[+\-]?\d+(?:\.\d+)?×[+\-]?\d+(?:\.\d+)?/);
+  part = formula.match(/(\d+(?:\.\d+)?)×([+\-]?\d+(?:\.\d+)?)/);
   if (part) {
-    result = part[0].split('×');
-    result = this.multiply(parseFloat(result[0]), parseFloat(result[1]));
-    formula = formula.replace(part[0], result);
+    result = this.multiply(parseFloat(part[1]), parseFloat(part[2]));
+
+    if (formula[part.index - 1]) {
+      if (result < 0 && formula[part.index - 1] === '-') {
+        result = formula[part.index - 2] ? '+' + Math.abs(result) : Math.abs(result);
+        formula = formula.replace('-' + part[0], result);
+
+      } else if (result < 0 && formula[part.index - 1] === '+') {
+        formula = formula.replace('+' + part[0], result);
+
+      } else { formula = formula.replace(part[0], result); }
+
+    } else { formula = formula.replace(part[0], result); }
   }
 
   // get parts to divide
-  part = formula.match(/[+\-]?\d+(?:\.\d+)?÷[+\-]?\d+(?:\.\d+)?/);
+  part = formula.match(/(\d+(?:\.\d+)?)÷([+\-]?\d+(?:\.\d+)?)/);
   if (part) {
-    result = part[0].split('÷');
-    result = this.divide(parseFloat(result[0]), parseFloat(result[1]));
-    formula = formula.replace(part[0], result);
+    result = this.divide(parseFloat(part[1]), parseFloat(part[2]));
+
+    if (formula[part.index - 1]) {
+      if (result < 0 && formula[part.index - 1] === '-') {
+        result = formula[part.index - 2] ? '+' + Math.abs(result) : Math.abs(result);
+        formula = formula.replace('-' + part[0], result);
+
+      } else if (result < 0 && formula[part.index - 1] === '+') {
+        formula = formula.replace('+' + part[0], result);
+
+      } else { formula = formula.replace(part[0], result); }
+
+      } else { formula = formula.replace(part[0], result); }
+  }
+
+  // testing if there is multiplications or divisions for calculate
+  if (formula.match(/\d+(?:\.\d+)?[×÷][+\-]?\d+(?:\.\d+)?/)) {
+    return this.calculate(formula);
   }
 
   // get parts to sum
-  part = formula.match(/[+\-]?\d+(?:\.\d+)?\+[+\-]?\d+(?:\.\d+)?/);
+  part = formula.match(/([+\-]?\d+(?:\.\d+)?)\+([+\-]?\d+(?:\.\d+)?)/);
   if (part) {
-    result = part[0].split('+');
-    result = this.sum(parseFloat(result[0]), parseFloat(result[1]));
+    result = this.sum(parseFloat(part[1]), parseFloat(part[2]));
     formula = formula.replace(part[0], result);
   }
 
   // get parts to subtract
-  part = formula.match(/[+\-]?\d+(?:\.\d+)?-[+\-]?\d+(?:\.\d+)?/);
+  part = formula.match(/([+\-]?\d+(?:\.\d+)?)-([+\-]?\d+(?:\.\d+)?)/);
   if (part) {
-    result = part[0].split('-');
-    result = this.subtract(parseFloat(result[0]), parseFloat(result[1]));
+    result = this.subtract(parseFloat(part[1]), parseFloat(part[2]));
     formula = formula.replace(part[0], result);
   }
 
-  if (formula.match(/[+\-]?\d+(?:\.\d+)?[+\-×÷][+\-]?\d+(?:\.\d+)?/)) {
+  // testing if there is additions or subtractions for calculate
+  if (formula.match(/[+\-]?\d+(?:\.\d+)?[+\-][+\-]?\d+(?:\.\d+)?/)) {
     return this.calculate(formula);
   }
   return Calc.prototype.format(formula);
 };
 
+Calc.prototype.isNumber = function (number) {
+  var answer = true;
+  if (isNaN(number) || (typeof number !== 'number')) { answer = NaN; }
+  if (!isFinite(number)) { answer = Infinity; }
+  return answer;
+};
+
 Calc.prototype.multiply = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? parseFloat((a * b).toFixed(8)) : NaN;
+  if (this.isNumber(a) === true && this.isNumber(b) === true) {
+    return parseFloat((a * b).toFixed(8));
+  }
+  throw new SyntaxError('It\'s impossible multiply ' + a + ' by ' + b);
 };
 
 Calc.prototype.divide = function (a, b) {
-  if (typeof b === 'number' && b === 0) {
-    return Infinity;
+  if (this.isNumber(a) === true && this.isNumber(b) === true && b !== 0) {
+    return parseFloat((a / b).toFixed(8));
   }
-  return typeof a === 'number' && typeof b === 'number' ? parseFloat((a / b).toFixed(8)) : NaN;
+  throw new SyntaxError('It\'s impossible divide ' + a + ' by ' + b);
 };
 
 Calc.prototype.sum = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? parseFloat((a + b).toFixed(8)) : NaN;
+  if (this.isNumber(a) === true && this.isNumber(b) === true) {
+    return parseFloat((a + b).toFixed(8));
+  }
+  throw new SyntaxError('It\'s impossible sum ' + a + ' by ' + b);
 };
 
 Calc.prototype.subtract = function (a, b) {
-  return typeof a === 'number' && typeof b === 'number' ? parseFloat((a - b).toFixed(8)) : NaN;
+  if (this.isNumber(a) === true && this.isNumber(b) === true) {
+    return parseFloat((a - b).toFixed(8));
+  }
+  throw new SyntaxError('It\'s impossible subtract ' + a + ' by ' + b);
 };
 
-Calc.prototype.format = function (formula) {
-  var decimal = Math.abs(formula.indexOf('.') - 11);
-  decimal = decimal < 8 ? decimal : 8;
-  return parseFloat(Number(formula).toFixed(decimal));
+Calc.prototype.format = function (number, decimal) {
+  number = number || 8;
+  decimal = decimal || 8;
+  return parseFloat(Number(number).toFixed(decimal));
 };
 
 if (typeof exports === 'object') {

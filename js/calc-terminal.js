@@ -62,12 +62,11 @@ Terminal.prototype.skin = function (selector) {
     }
   };
   _this.showError = function () {
-    var classArray = _this.skin.getAttribute('class').split(' ');
-    classArray.push('calcError');
-    _this.skin.setAttribute('class', classArray.join(' '));
+    var attrClass = _this.skin.getAttribute('class').replace(' calcError', '');
+    _this.skin.setAttribute('class', attrClass + ' calcError');
     setTimeout(function () {
-      classArray.pop('calcError');
-      _this.skin.setAttribute('class', classArray.join(' '));
+      attrClass = _this.skin.getAttribute('class').replace(' calcError', '');
+      _this.skin.setAttribute('class', attrClass);
     }, 300);
   };
 

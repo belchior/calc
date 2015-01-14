@@ -42,30 +42,30 @@ Helper for unit convertion
 }
 .calc-custom .display {
   box-sizing: border-box;
-  clear: both;
-  display: inline-block;
-  margin: 0.8em 0 0.8em 25%;
+  overflow: hidden;
+  display: block;
+  margin: 0.8em 0 0.8em 15%;
   border-radius: 0.2em;
   border: 0.05em solid #bbbbbb;
   padding: 0.4em;
-  width: 50%;
+  width: 70%;
   height: 2.5em;
   text-align: right;
-  line-height: 1.7em;
+  line-height: 1.6em;
   vertical-align: middle;
   font-size: 1.25em;
   color: #666666;
   background-color: #dddddd;
-}
-.calc-custom .display:focus {
-  border: #7E5AB8;
-  color: #ffffff;
-  background-color: #7E5AB8;
   outline: none;
 }
+.calc-custom .display:focus {
+  border: 0.05em solid #7E5AB8;
+  color: #ffffff;
+  background-color: #998FB8;
+}
 .calc-custom .keyboard {
-  display: inline-block;
-  padding-top: 0.25em;
+  display: table;
+  padding: 0.25em 0;
 }
 .calc-custom .btn {
   box-sizing: border-box;

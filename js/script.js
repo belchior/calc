@@ -95,10 +95,24 @@ window.onload = function () {
       }
     };
 
+    var position = 0;
+    var bar = document.querySelector('.sidebar');
+    var scrollEvent = function () {
+      if (sidebar.mode() === 'mobile') {
+        if (document.body.scrollTop > position && position > 0) {
+          bar.style.display = 'none';
+        } else {
+          bar.style.display = 'block';
+        }
+        position = document.body.scrollTop;
+      }
+    };
+
     for (i = 0; i < menuItems.length; i += 1) {
       menuItems[i].addEventListener('click', menuItemsEvent, false);
     }
     hamburgerMenu.addEventListener('click', hamburgerMenuEvent, false);
+    window.addEventListener('scroll', scrollEvent, false);
 
     return {
       mode: mode,
@@ -112,12 +126,16 @@ window.onload = function () {
   var macwidget = new Macwidget();
   macwidget.skin('.calc-macwidget');
 
+  var custom = new Custom();
+  custom.skin('.calc-custom');
+
   var i;
   var elem;
   var tabindex = [
     '.hamburger-menu',
     '.item-terminal',
     '.item-macwidget',
+    '.item-custom',
     '.github-profile',
     '.github-project',
     '.calc-terminal .input',
