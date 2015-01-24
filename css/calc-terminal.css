@@ -21,7 +21,10 @@
 */
 .calc-terminal {
   box-sizing: border-box;
-  margin: 2em auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin: -16.46875em 0 0 -9.375em;
   border-radius: 0.6em;
   width: 18.75em;
   font-size: 1em;

@@ -33,66 +33,60 @@ window.onload = function () {
     var menuItems = elem.querySelectorAll('.main-menu .item');
 
     var hamburgerMenuEvent = function () {
-      return ['mobile', 'compact'].indexOf(sidebar.mode()) >= 0 ?
-        sidebar.setMode('mobile-active') :
-        sidebar.setMode('normal');
+      if (sidebar.mode() === 'mobile') { return sidebar.setMode('mobile-active'); }
+      if (sidebar.mode() === 'compact') { return sidebar.setMode('compact-active'); }
+      return sidebar.setMode('normal');
     };
 
     var menuItemsEvent = function () {
-      var attrClass;
+      var i;
+      var section;
+
       for (i = 0; i < menuItems.length; i += 1) {
-        attrClass = menuItems[i].getAttribute('class').replace(' active', '');
-        menuItems[i].setAttribute('class', attrClass);
+        section = document.querySelector(menuItems[i].getAttribute('href'));
+        section.style.display = 'none';
       }
-      attrClass = this.getAttribute('class');
-      this.setAttribute('class', attrClass + ' active');
+      section = document.querySelector(this.getAttribute('href'));
+      section.style.display = 'block';
+
+      window.location.hash = this.getAttribute('href');
       sidebar.setMode('normal');
     };
 
     var mode = function () {
+      var base = parseInt(getComputedStyle(document.body)['font-size']) || 1;
       var width = parseInt(getComputedStyle(elem).width);
       var height = parseInt(getComputedStyle(elem).height);
 
-      if (width === 290 && height > 64) {
-        return 'normal';
-      }
-      if (width === 64 && height > 64) {
+      if (width > height) {return 'mobile';}
+      if (
+        window.innerWidth > 560 &&
+        window.innerWidth <= 780 &&
+        document.body.getAttribute('class').search('compact-active') < 0
+      ) {
         return 'compact';
       }
-      if (width > 64 && height === 64) {
-        return 'mobile';
-      }
+      if (window.innerWidth > 780) {return 'normal';}
+
       return '';
     };
 
     var setMode = function (mode) {
-      if (mode === 'compact') {
-        elem.style.width = '4em';
-        elem.style.height = '100%';
-        elem.querySelector('.hamburger-menu').style.display = 'none';
-        elem.querySelector('.main-menu').style.marginTop = '4em';
-        document.querySelector('.main').style.marginLeft = '4em';
+      var attr = document.body.getAttribute('class') || '';
+      attr = attr.split(' ');
 
-      } else if (mode === 'mobile') {
-        elem.style.width = '100%';
-        elem.style.height = '4em';
-        elem.querySelector('.hamburger-menu').style.display = 'block';
-        document.querySelector('.main').style.marginLeft = '0';
-
-      } else if (mode === 'mobile-active') {
-        elem.style.width = '18.125em';
-        elem.style.height = '100%';
-        elem.querySelector('.hamburger-menu').style.display = 'block';
-        elem.querySelector('.main-menu').style.marginTop = '0';
-        document.querySelector('.main').style.marginLeft = '0';
+      if (['compact', 'compact-active', 'mobile', 'mobile-active'].indexOf(mode)) {
+        attr.splice(attr.indexOf(mode), 1);
+        attr.push(mode);
 
       } else {
-        elem.style.width = '';
-        elem.style.height = '';
-        elem.querySelector('.hamburger-menu').style.display = '';
-        elem.querySelector('.main-menu').style.marginTop = '';
-        document.querySelector('.main').style.marginLeft = '';
+        attr.splice(attr.indexOf('compact'), 1);
+        attr.splice(attr.indexOf('compact-active'), 1);
+        attr.splice(attr.indexOf('mobile'), 1);
+        attr.splice(attr.indexOf('mobile-active'), 1);
       }
+
+      document.body.setAttribute('class', attr.join(' '));
     };
 
     var position = 0;
@@ -119,6 +113,11 @@ window.onload = function () {
       setMode: setMode
     };
   })();
+
+  if (window.location.hash) {
+    document.querySelector('.item[href="' + window.location.hash + '"]').click();
+  }
+
 
   var term = new Terminal();
   term.skin('.calc-terminal');
