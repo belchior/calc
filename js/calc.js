@@ -156,7 +156,7 @@ Calc.prototype.subtract = function (a, b) {
 };
 
 Calc.prototype.format = function (number, decimal) {
-  number = number || 8;
+  number = number || 0;
   decimal = decimal || 8;
   return parseFloat(Number(number).toFixed(decimal));
 };

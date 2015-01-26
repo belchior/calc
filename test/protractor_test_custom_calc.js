@@ -544,5 +544,67 @@ describe('Calc', function () {
       });
     });
 
+    describe('Memory buttons', function () {
+      it('button memoryRecall must print 0 on screen', function () {
+        custom.memoryRecall.click()
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('0'); });
+      });
+      it('button memoryAdd must sum 10+2 and return 12', function () {
+        custom.number1.click()
+        .then(function () { custom.number0.click(); })
+        .then(function () { custom.memoryAdd.click(); })
+        .then(function () { custom.number2.click(); })
+        .then(function () { custom.memoryAdd.click(); })
+        .then(function () { custom.memoryRecall.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('12'); });
+      });
+      it('button memorySubtract must subtract 12-3 and return 9', function () {
+        custom.number3.click()
+        .then(function () { custom.memorySubtract.click(); })
+        .then(function () { custom.memoryRecall.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('9'); });
+      });
+      it('button memoryClear must print 0 on screen', function () {
+        custom.memoryClear.click()
+        .then(function () { custom.memoryRecall.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('0'); });
+      });
+      it('button memoryAdd must return an error when is added a formula', function () {
+        custom.memoryClear.click()
+        .then(function () { custom.clear.click(); })
+        .then(function () { custom.number1.click(); })
+        .then(function () { custom.number0.click(); })
+        .then(function () { custom.memoryAdd.click(); })
+        .then(function () { custom.number2.click(); })
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.number2.click(); })
+        .then(function () { custom.memoryAdd.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('2+2'); })
+        .then(function () { custom.memoryRecall.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('10'); });
+      });
+      it('button memorySubtract must return an error when is subtracted a formula', function () {
+        custom.memoryClear.click()
+        .then(function () { custom.clear.click(); })
+        .then(function () { custom.number5.click(); })
+        .then(function () { custom.memorySubtract.click(); })
+        .then(function () { custom.number8.click(); })
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.number3.click(); })
+        .then(function () { custom.memorySubtract.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('8-3'); })
+        .then(function () { custom.memoryRecall.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('-5'); });
+      });
+    });
+
   });
 });

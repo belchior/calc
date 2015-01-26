@@ -41,6 +41,32 @@ Custom.prototype.skin = function (selector) {
   _this.cos = _this.html.querySelector('.btn[data-name="cos"]');
   _this.tan = _this.html.querySelector('.btn[data-name="tan"]');
 
+  _this.memory = (function () {
+    var slot = 0;
+    var get = function () {
+      return slot;
+    };
+    var set = function (value) {
+      slot = value;
+      return _this;
+    };
+    var sum = function (value) {
+      slot = Custom.prototype.sum(slot, value);
+      return _this;
+    };
+    var subtract = function (value) {
+      slot = Custom.prototype.subtract(slot, value);
+      return _this;
+    };
+
+    return {
+      get: get,
+      set: set,
+      sum: sum,
+      subtract: subtract,
+    };
+  })();
+
   _this.display = (function () {
     var content = _this.html.querySelector('.display');
     var get = function () {
@@ -201,23 +227,33 @@ Custom.prototype.skin = function (selector) {
     _this.display.set('');
   };
 
-  _this.percentEvent = function () {
-
-  };
-
   _this.memoryAddEvent = function () {
-
+    var number = _this.display.get();
+    if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
+      _this.isCalculated = true;
+      return _this.memory.sum(parseFloat(number));
+    }
+    _this.showError();
   };
 
   _this.memorySubtractEvent = function () {
-
+    var number = _this.display.get();
+    if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
+      _this.isCalculated = true;
+      return _this.memory.subtract(parseFloat(number));
+    }
+    _this.showError();
   };
 
   _this.memoryClearEvent = function () {
-
+    return _this.memory.set(0);
   };
 
   _this.memoryRecallEvent = function () {
+    return _this.display.set(_this.memory.get());
+  };
+
+  _this.percentEvent = function () {
 
   };
 
@@ -253,11 +289,11 @@ Custom.prototype.skin = function (selector) {
   _this.equality.addEventListener('click', _this.equalityEvent);
   _this.delete.addEventListener('click', _this.deleteEvent);
   _this.clear.addEventListener('click', _this.clearEvent);
-  _this.percent.addEventListener('click', _this.percentEvent);
   _this.memoryAdd.addEventListener('click', _this.memoryAddEvent);
   _this.memorySubtract.addEventListener('click', _this.memorySubtractEvent);
   _this.memoryClear.addEventListener('click', _this.memoryClearEvent);
   _this.memoryRecall.addEventListener('click', _this.memoryRecallEvent);
+  _this.percent.addEventListener('click', _this.percentEvent);
   _this.sin.addEventListener('click', _this.sinEvent);
   _this.cos.addEventListener('click', _this.cosEvent);
   _this.tan.addEventListener('click', _this.tanEvent);
