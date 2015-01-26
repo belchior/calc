@@ -2,6 +2,10 @@ describe('Calc', function () {
   browser.ignoreSynchronization = true;
   browser.get('http://localhost/calc');
 
+  it('click on menu item Custom', function () {
+    $('.item-custom').click();
+  });
+
   describe('Custom', function () {
 
     var custom = {};
