@@ -34,7 +34,7 @@ describe('Calc', function () {
     custom.memorySubtract = $('.calc-custom .btn[data-name="msubtract"]');
     custom.memoryClear = $('.calc-custom .btn[data-name="mclear"]');
     custom.memoryRecall = $('.calc-custom .btn[data-name="mrecall"]');
-    custom.percent = $('.calc-custom .btn[data-name="percent"]');
+    custom.percentage = $('.calc-custom .btn[data-name="percentage"]');
     custom.sin = $('.calc-custom .btn[data-name="sin"]');
     custom.cos = $('.calc-custom .btn[data-name="cos"]');
     custom.tan = $('.calc-custom .btn[data-name="tan"]');
@@ -106,6 +106,19 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2+'); });
       });
+      it('parenthesis open', function () {
+        custom.number2.click()
+        .then(function () { custom.parenthesisOpen.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('2×('); });
+      });
+      it('parenthesis close', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.number2.click(); })
+        .then(function () { custom.parenthesisClose.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(2)'); });
+      });
       it('clear', function () {
         custom.number3.click()
         .then(function () { custom.clear.click(); })
@@ -118,6 +131,12 @@ describe('Calc', function () {
         .then(function () { custom.delete.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('4'); });
+      });
+      it('percentage', function () {
+        custom.number5.click()
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5%'); });
       });
     });
 
@@ -180,6 +199,13 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(2)'); });
       });
+      it('is an error insert a dot after percentage', function () {
+        custom.number3.click()
+        .then(function () { custom.percentage.click(); })
+        .then(function () { custom.dot.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3%'); });
+      });
     });
 
     describe('Rules to insert addition', function () {
@@ -190,34 +216,34 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2.'); });
       });
-      it('must insert addition after parenthesis open', function () {
+      it('should insert addition after parenthesis open', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.addition.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(+'); });
       });
-      it('insert addition after another addition must replace the old one', function () {
+      it('insert addition after another addition should replace the old one', function () {
         custom.number2.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.addition.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2+'); });
       });
-      it('must replace character subtraction to addition', function () {
+      it('should replace character subtraction to addition', function () {
         custom.number2.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { custom.addition.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2+'); });
       });
-      it('must replace character multiplication to addition', function () {
+      it('should replace character multiplication to addition', function () {
         custom.number2.click()
         .then(function () { custom.multiplication.click(); })
         .then(function () { custom.addition.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2+'); });
       });
-      it('must replace character division to addition', function () {
+      it('should replace character division to addition', function () {
         custom.number2.click()
         .then(function () { custom.division.click(); })
         .then(function () { custom.addition.click(); })
@@ -234,34 +260,34 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3.'); });
       });
-      it('must insert subtraction after parenthesis open', function () {
+      it('should insert subtraction after parenthesis open', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(-'); });
       });
-      it('insert subtraction after another subtraction must replace the old one', function () {
+      it('insert subtraction after another subtraction should replace the old one', function () {
         custom.number3.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { custom.subtraction.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3-'); });
       });
-      it('must replace character addition to subtraction', function () {
+      it('should replace character addition to subtraction', function () {
         custom.number3.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.subtraction.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3-'); });
       });
-      it('must replace character multiplication to subtraction', function () {
+      it('should replace character multiplication to subtraction', function () {
         custom.number3.click()
         .then(function () { custom.multiplication.click(); })
         .then(function () { custom.subtraction.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3-'); });
       });
-      it('must replace character division to subtraction', function () {
+      it('should replace character division to subtraction', function () {
         custom.number3.click()
         .then(function () { custom.division.click(); })
         .then(function () { custom.subtraction.click(); })
@@ -284,14 +310,14 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('('); });
       });
-      it('insert multiplication after another multiplication must replace the old one', function () {
+      it('insert multiplication after another multiplication should replace the old one', function () {
         custom.number4.click()
         .then(function () { custom.multiplication.click(); })
         .then(function () { custom.multiplication.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('4×'); });
       });
-      it('must replace character addition to multiplication', function () {
+      it('should replace character addition to multiplication', function () {
         custom.number4.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.multiplication.click(); })
@@ -305,7 +331,7 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(+'); });
       });
-      it('must replace character subtraction to multiplication', function () {
+      it('should replace character subtraction to multiplication', function () {
         custom.number4.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { custom.multiplication.click(); })
@@ -319,7 +345,7 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(-'); });
       });
-      it('must replace character division to multiplication', function () {
+      it('should replace character division to multiplication', function () {
         custom.number4.click()
         .then(function () { custom.division.click(); })
         .then(function () { custom.multiplication.click(); })
@@ -342,14 +368,14 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('('); });
       });
-      it('insert division after another division must replace the old one', function () {
+      it('insert division after another division should replace the old one', function () {
         custom.number5.click()
         .then(function () { custom.division.click(); })
         .then(function () { custom.division.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('5÷'); });
       });
-      it('must replace character addition to division', function () {
+      it('should replace character addition to division', function () {
         custom.number5.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.division.click(); })
@@ -363,7 +389,7 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(+'); });
       });
-      it('must replace character subtraction to division', function () {
+      it('should replace character subtraction to division', function () {
         custom.number5.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { custom.division.click(); })
@@ -377,7 +403,7 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(-'); });
       });
-      it('must replace character division to division', function () {
+      it('should replace character division to division', function () {
         custom.number5.click()
         .then(function () { custom.division.click(); })
         .then(function () { custom.division.click(); })
@@ -394,19 +420,26 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('6.'); });
       });
-      it('must include ×( when inserted after a number', function () {
+      it('should include ×( when inserted after a number', function () {
         custom.number6.click()
         .then(function () { custom.parenthesisOpen.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('6×('); });
       });
-      it('must include ×( when inserted after a parenthesis close', function () {
+      it('should include ×( when inserted after a parenthesis close', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.number6.click(); })
         .then(function () { custom.parenthesisClose.click(); })
         .then(function () { custom.parenthesisOpen.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(6)×('); });
+      });
+      it('should include ×( when inserted after percentage', function () {
+        custom.number6.click()
+        .then(function () { custom.percentage.click(); })
+        .then(function () { custom.parenthesisOpen.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('6%×('); });
       });
     });
 
@@ -549,12 +582,12 @@ describe('Calc', function () {
     });
 
     describe('Memory buttons', function () {
-      it('button memoryRecall must print 0 on screen', function () {
+      it('button memoryRecall should print 0 on screen', function () {
         custom.memoryRecall.click()
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('0'); });
       });
-      it('button memoryAdd must sum 10+2 and return 12', function () {
+      it('button memoryAdd should sum 10+2 and return 12', function () {
         custom.number1.click()
         .then(function () { custom.number0.click(); })
         .then(function () { custom.memoryAdd.click(); })
@@ -564,20 +597,20 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('12'); });
       });
-      it('button memorySubtract must subtract 12-3 and return 9', function () {
+      it('button memorySubtract should subtract 12-3 and return 9', function () {
         custom.number3.click()
         .then(function () { custom.memorySubtract.click(); })
         .then(function () { custom.memoryRecall.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('9'); });
       });
-      it('button memoryClear must print 0 on screen', function () {
+      it('button memoryClear should print 0 on screen', function () {
         custom.memoryClear.click()
         .then(function () { custom.memoryRecall.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('0'); });
       });
-      it('button memoryAdd must return an error when is added a formula', function () {
+      it('button memoryAdd should return an error when is added a formula', function () {
         custom.memoryClear.click()
         .then(function () { custom.clear.click(); })
         .then(function () { custom.number1.click(); })
@@ -593,7 +626,7 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('10'); });
       });
-      it('button memorySubtract must return an error when is subtracted a formula', function () {
+      it('button memorySubtract should return an error when is subtracted a formula', function () {
         custom.memoryClear.click()
         .then(function () { custom.clear.click(); })
         .then(function () { custom.number5.click(); })
@@ -607,6 +640,57 @@ describe('Calc', function () {
         .then(function () { custom.memoryRecall.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('-5'); });
+      });
+    });
+
+    describe('Percentage buttons', function () {
+      it('is an error insert percentage after dot', function () {
+        custom.number3.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3.'); });
+      });
+      it('is an error insert percentage after another percentage', function () {
+        custom.number3.click()
+        .then(function () { custom.percentage.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3%'); });
+      });
+      it('is an error insert percentage after parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('('); });
+      });
+      it('is an error insert percentage after addition', function () {
+        custom.number3.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3+'); });
+      });
+      it('is an error insert percentage after subtract', function () {
+        custom.number3.click()
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3-'); });
+      });
+      it('is an error insert percentage after multiplication', function () {
+        custom.number3.click()
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3×'); });
+      });
+      it('is an error insert percentage after division', function () {
+        custom.number3.click()
+        .then(function () { custom.division.click(); })
+        .then(function () { custom.percentage.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3÷'); });
       });
     });
 

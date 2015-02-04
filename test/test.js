@@ -15,6 +15,24 @@ describe('Calc', function () {
 
   calc = new Calc();
 
+  describe('Function percentage', function () {
+    it('should return 0.05 for 5%', function () {
+      assert.strictEqual(calc.percentage(5), 0.05);
+    });
+    it('should return 21.6 for 27% of 80', function () {
+      assert.strictEqual(calc.percentage(27, 80), 21.6);
+    });
+    it('should return -45.22 for -119% of 38', function () {
+      assert.strictEqual(calc.percentage(-119, 38), -45.22);
+    });
+    it('should return -45.22 for 119% of -38', function () {
+      assert.strictEqual(calc.percentage(119, -38), -45.22);
+    });
+    it('should return 7.79 for -20.5% of -38', function () {
+      assert.strictEqual(calc.percentage(-20.5, -38), 7.79);
+    });
+  });
+
   describe('Function multiply', function () {
     it('should return 6 when are multiplied 2 by 3', function () {
       assert.strictEqual(calc.multiply(2, 3), 6);
@@ -237,6 +255,12 @@ describe('Calc', function () {
       assert.strictEqual(calc.calculate('1+2-3×4÷5+(6)-((7×8)÷9.12)'), 0.45964912);
     });
 
+    describe('percentage', function () {
+      it('should return 1.392 when formula is 1+2%-3×4%÷5+6%', function () {
+        assert.strictEqual(calc.calculate('1+2%-3×4%÷5+6%'), 1.392);
+      });
+    });
+
     describe('multiplication and division', function () {
       it('should return 4 when formula is +2×+2', function () {
         assert.strictEqual(calc.calculate('+2×+2'), 4);
@@ -264,6 +288,9 @@ describe('Calc', function () {
       });
       it('should return 10 when formula is 2+2×2×2', function () {
         assert.strictEqual(calc.calculate('2+2×2×2'), 10);
+      });
+      it('should return -6 when formula is 2+-2×2×2', function () {
+        assert.strictEqual(calc.calculate('2+-2×2×2'), -6);
       });
       it('should return 4 when formula is 2+8÷2÷2', function () {
         assert.strictEqual(calc.calculate('2+8÷2÷2'), 4);
@@ -333,6 +360,9 @@ describe('Calc', function () {
       });
       it('should return 4.4 when formula is 9+8-7×6÷5+(4-3×(2÷1)+0.1-2.3)', function () {
         assert.strictEqual(calc.calculate('9+8-7×6÷5+(4-3×(2÷1)+0.1-2.3)'), 4.4);
+      });
+      it('should return 1.392 when formula is 1+(2÷100×1)-3×(4÷100×-3)÷5+(6÷100×5)', function () {
+        assert.strictEqual(calc.calculate('1+(2÷100×1)-3×(4÷100×-3)÷5+(6÷100×5)'), 1.392);
       });
     });
 

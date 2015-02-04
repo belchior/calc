@@ -36,7 +36,7 @@ Custom.prototype.skin = function (selector) {
   _this.memorySubtract = _this.html.querySelector('.btn[data-name="msubtract"]');
   _this.memoryClear = _this.html.querySelector('.btn[data-name="mclear"]');
   _this.memoryRecall = _this.html.querySelector('.btn[data-name="mrecall"]');
-  _this.percent = _this.html.querySelector('.btn[data-name="percent"]');
+  _this.percentage = _this.html.querySelector('.btn[data-name="percentage"]');
   _this.sin = _this.html.querySelector('.btn[data-name="sin"]');
   _this.cos = _this.html.querySelector('.btn[data-name="cos"]');
   _this.tan = _this.html.querySelector('.btn[data-name="tan"]');
@@ -98,7 +98,7 @@ Custom.prototype.skin = function (selector) {
 
   _this.numberEvent = function () {
     var formula = _this.display.get();
-    if (formula[formula.length - 1] !== ')') {
+    if (!formula || formula[formula.length - 1].search(/[)%]/) < 0) {
       if (_this.isCalculated) {
         _this.isCalculated = false;
         return _this.display.set(this.getAttribute('data-value'));
@@ -112,7 +112,7 @@ Custom.prototype.skin = function (selector) {
     var formula = _this.display.get();
     if (formula) {
       formula = formula.split(/[+\-×÷]/).pop();
-      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()]/) < 0) {
+      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()%]/) < 0) {
         return _this.display.concat(this.getAttribute('data-value'));
       }
     }
@@ -179,7 +179,7 @@ Custom.prototype.skin = function (selector) {
     var formula = _this.display.get();
     if (formula === '') {
       return _this.display.concat(this.getAttribute('data-value'));
-    } else if (formula[formula.length - 1].search(/[)0-9]/) >= 0) {
+    } else if (formula[formula.length - 1].search(/[0-9)%]/) >= 0) {
       return _this.display.concat('×' + this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[.]/) < 0) {
       return _this.display.concat(this.getAttribute('data-value'));
@@ -253,8 +253,12 @@ Custom.prototype.skin = function (selector) {
     return _this.display.set(_this.memory.get());
   };
 
-  _this.percentEvent = function () {
-
+  _this.percentageEvent = function () {
+    var formula = _this.display.get();
+    if (formula && formula[formula.length - 1].search(/[0-9)]/) >= 0) {
+      return _this.display.concat(this.getAttribute('data-value'));
+    }
+    _this.showError();
   };
 
   _this.sinEvent = function () {
@@ -293,7 +297,7 @@ Custom.prototype.skin = function (selector) {
   _this.memorySubtract.addEventListener('click', _this.memorySubtractEvent);
   _this.memoryClear.addEventListener('click', _this.memoryClearEvent);
   _this.memoryRecall.addEventListener('click', _this.memoryRecallEvent);
-  _this.percent.addEventListener('click', _this.percentEvent);
+  _this.percentage.addEventListener('click', _this.percentageEvent);
   _this.sin.addEventListener('click', _this.sinEvent);
   _this.cos.addEventListener('click', _this.cosEvent);
   _this.tan.addEventListener('click', _this.tanEvent);

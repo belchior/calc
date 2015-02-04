@@ -4,127 +4,19 @@ function Calc() {
   }
 }
 
-Calc.prototype.parser = function (formula) {
-  formula = formula.replace(/[^0-9()+\-×÷.]/g, '');
-  var index;
-  var parenthesisOpens = formula.match(/[(]/g);
-  var parenthesisCloses = formula.match(/[)]/g);
-
-  if (
-      (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
-      (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
-    ) {
-    throw new SyntaxError('divergence between parenthesis');
-  }
-
-  parenthesisOpens = parenthesisCloses = 0;
-  for (index in formula) {
-    if (formula[index] === '(') {
-      parenthesisOpens += 1;
-    } else if (formula[index] === ')') {
-      parenthesisCloses += 1;
-      if (parenthesisOpens < parenthesisCloses) {
-        throw new SyntaxError('divergence between parenthesis');
-      }
-    }
-  }
-
-  // get errors of arithmetic combination of characters
-  if (formula.match(/^[×÷).]|\+[×÷).]|-[×÷).]|×[×÷).]|÷[×÷).]|\([×÷).]|\)[.]|\.[+\-×÷().]|\.\d+\.|[+\-×÷(.]$/g)) {
-    throw new SyntaxError('invalid arithmetic combination of characters');
-  }
-
-  return formula;
-};
-
-Calc.prototype.calculate = function (formula) {
-  formula = this.parser(formula);
-  if (!formula) {
-    return NaN;
-  }
-
-  var part;
-  var result;
-
-  // obteins the most internal parenthesis
-  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
-  if (part) {
-    result = this.calculate(part[0].replace(/[()]/g, ''));
-    if (result < 0 && formula[part.index - 1] === '-') {
-      formula = formula.replace('-' + part[0], '+' + Math.abs(result));
-    } else {
-      formula = formula.replace(part[0], result);
-    }
-    return this.calculate(formula);
-  }
-
-  // get parts to multiply
-  part = formula.match(/(\d+(?:\.\d+)?)×([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    result = this.multiply(parseFloat(part[1]), parseFloat(part[2]));
-
-    if (formula[part.index - 1]) {
-      if (result < 0 && formula[part.index - 1] === '-') {
-        result = formula[part.index - 2] ? '+' + Math.abs(result) : Math.abs(result);
-        formula = formula.replace('-' + part[0], result);
-
-      } else if (result < 0 && formula[part.index - 1] === '+') {
-        formula = formula.replace('+' + part[0], result);
-
-      } else { formula = formula.replace(part[0], result); }
-
-    } else { formula = formula.replace(part[0], result); }
-  }
-
-  // get parts to divide
-  part = formula.match(/(\d+(?:\.\d+)?)÷([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    result = this.divide(parseFloat(part[1]), parseFloat(part[2]));
-
-    if (formula[part.index - 1]) {
-      if (result < 0 && formula[part.index - 1] === '-') {
-        result = formula[part.index - 2] ? '+' + Math.abs(result) : Math.abs(result);
-        formula = formula.replace('-' + part[0], result);
-
-      } else if (result < 0 && formula[part.index - 1] === '+') {
-        formula = formula.replace('+' + part[0], result);
-
-      } else { formula = formula.replace(part[0], result); }
-
-      } else { formula = formula.replace(part[0], result); }
-  }
-
-  // testing if there is multiplications or divisions for calculate
-  if (formula.match(/\d+(?:\.\d+)?[×÷][+\-]?\d+(?:\.\d+)?/)) {
-    return this.calculate(formula);
-  }
-
-  // get parts to sum
-  part = formula.match(/([+\-]?\d+(?:\.\d+)?)\+([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    result = this.sum(parseFloat(part[1]), parseFloat(part[2]));
-    formula = formula.replace(part[0], result);
-  }
-
-  // get parts to subtract
-  part = formula.match(/([+\-]?\d+(?:\.\d+)?)-([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    result = this.subtract(parseFloat(part[1]), parseFloat(part[2]));
-    formula = formula.replace(part[0], result);
-  }
-
-  // testing if there is additions or subtractions for calculate
-  if (formula.match(/[+\-]?\d+(?:\.\d+)?[+\-][+\-]?\d+(?:\.\d+)?/)) {
-    return this.calculate(formula);
-  }
-  return Calc.prototype.format(formula);
-};
-
 Calc.prototype.isNumber = function (number) {
   var answer = true;
   if (isNaN(number) || (typeof number !== 'number')) { answer = NaN; }
   if (!isFinite(number)) { answer = Infinity; }
   return answer;
+};
+
+Calc.prototype.percentage = function (a, b) {
+  b = b || 1;
+  if (this.isNumber(a) === true && this.isNumber(b) === true) {
+    return parseFloat((a / 100 * b).toFixed(8));
+  }
+  throw new SyntaxError('It\'s impossible calculate percentage of ' + a);
 };
 
 Calc.prototype.multiply = function (a, b) {
@@ -159,6 +51,96 @@ Calc.prototype.format = function (number, decimal) {
   number = number || 0;
   decimal = decimal || 8;
   return parseFloat(Number(number).toFixed(decimal));
+};
+
+Calc.prototype.parser = function (formula) {
+  formula = formula.replace(/[^0-9()+\-×÷%.]/g, '');
+  var index;
+  var parenthesisOpens = formula.match(/[(]/g);
+  var parenthesisCloses = formula.match(/[)]/g);
+
+  if (
+      (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
+      (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
+    ) {
+    throw new SyntaxError('divergence between parenthesis');
+  }
+
+  parenthesisOpens = parenthesisCloses = 0;
+  for (index in formula) {
+    if (formula[index] === '(') {
+      parenthesisOpens += 1;
+    } else if (formula[index] === ')') {
+      parenthesisCloses += 1;
+      if (parenthesisOpens < parenthesisCloses) {
+        throw new SyntaxError('divergence between parenthesis');
+      }
+    }
+  }
+
+  // get errors of arithmetic combination of characters
+  if (formula.match(/^[×÷%).]|\+[×÷%).]|-[×÷%).]|×[×÷%).]|÷[×÷%).]|%[0-9%(.]|\([×÷%).]|\)[.]|\.[+\-×÷%().]|\.\d+\.|[+\-×÷(.]$/g)) {
+    throw new SyntaxError('invalid arithmetic combination of characters');
+  }
+
+  return formula;
+};
+
+Calc.prototype.calculate = function (formula) {
+  // formula = this.parser(formula);
+  if (!formula) {return NaN;}
+
+  var part;
+  var result;
+
+  // obteins the most internal parenthesis
+  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
+  if (part) {
+    result = this.calculate(part[0].replace(/[()]/g, ''));
+    if (result < 0 && formula[part.index - 1] === '-') {
+      formula = formula.replace('-' + part[0], '+' + Math.abs(result));
+    } else {
+      formula = formula.replace(part[0], result);
+    }
+    return this.calculate(formula);
+  }
+
+  // get parts to calculate percentage
+  part = formula.match(/(?:([+\-]?\d+(?:\.\d+)?)[+\-×÷])?([+\-]?\d+(?:\.\d+)?)%/);
+  if (part) {
+    part = [part[0], parseFloat(part[1]), parseFloat(part[2])];
+    result = Calc.prototype.percentage(part[2], part[1]);
+    result = part[0].replace(part[2] + '%', result);
+    formula = formula.replace(part[0], result);
+    return this.calculate(formula);
+  }
+
+  // get parts to multiply or divide
+  part = formula.match(/([+\-]?\d+(?:\.\d+)?)(×|÷)([+\-]?\d+(?:\.\d+)?)/);
+  if (part) {
+    part[1] = parseFloat(part[1]);
+    part[3] = parseFloat(part[3]);
+    result = part[2] === '×' ? this.multiply(part[1], part[3]) : this.divide(part[1], part[3]);
+    if (
+      formula[part.index - 1] &&
+      ((part[1] >= 0 && part[3] >= 0) || (part[1] < 0 && part[3] < 0))
+    ) {
+      formula = formula.replace(part[0], '+' + result);
+    }
+    formula = formula.replace(part[0], result);
+    return this.calculate(formula);
+  }
+
+  // get parts to sum or subtract
+  part = formula.match(/([+\-]?\d+(?:\.\d+)?)(\+|-)([+\-]?\d+(?:\.\d+)?)/);
+  if (part) {
+    part = [part[0], parseFloat(part[1]), part[2], parseFloat(part[3])];
+    result = part[2] === '+' ? this.sum(part[1], part[3]) : this.subtract(part[1], part[3]);
+    formula = formula.replace(part[0], result);
+    return this.calculate(formula);
+  }
+
+  return Calc.prototype.format(formula);
 };
 
 if (typeof exports === 'object') {
