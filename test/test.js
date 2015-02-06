@@ -31,6 +31,12 @@ describe('Calc', function () {
     it('should return 7.79 for -20.5% of -38', function () {
       assert.strictEqual(calc.percentage(-20.5, -38), 7.79);
     });
+    it('should throws an Error when are calculate 25% of "abc"', function () {
+      assert.throws(
+        function () {calc.percentage(25, 'abc');},
+        SyntaxError, 'It\'s impossible calculate percentage of 25'
+      );
+    });
   });
 
   describe('Function multiply', function () {

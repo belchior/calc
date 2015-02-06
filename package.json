@@ -25,6 +25,12 @@
   },
   "homepage": "https://github.com/belchior/calc",
   "devDependencies": {
+    "blanket": "^1.1.6",
     "mocha": "^1.21.4"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "/Users/belchior/www/calc/js/calc.js"
+    }
   }
 }

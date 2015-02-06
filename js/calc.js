@@ -87,60 +87,111 @@ Calc.prototype.parser = function (formula) {
 };
 
 Calc.prototype.calculate = function (formula) {
-  // formula = this.parser(formula);
+
+  this.calculate.parenthesis = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next = stack.pop();
+
+    // obteins the most internal parenthesis
+    part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
+    if (part) {
+      result = next(part[0].replace(/[()]/g, ''), stack);
+      if (result < 0 && formula[part.index - 1] === '-') {
+        formula = formula.replace('-' + part[0], '+' + Math.abs(result));
+      } else {
+        formula = formula.replace(part[0], result);
+      }
+      stack.push(next);
+      return Calc.prototype.calculate.parenthesis(formula, stack);
+    }
+
+    return next(formula, stack);
+  };
+
+  this.calculate.percentage = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next;
+
+    // get parts to calculate percentage
+    part = formula.match(/(?:([+\-]?\d+(?:\.\d+)?)[+\-×÷])?([+\-]?\d+(?:\.\d+)?)%/);
+    if (part) {
+      part = [part[0], parseFloat(part[1]), parseFloat(part[2])];
+      result = Calc.prototype.percentage(part[2], part[1]);
+      result = part[0].replace(part[2] + '%', result);
+      formula = formula.replace(part[0], result);
+      return Calc.prototype.calculate.percentage(formula, stack);
+    }
+
+    next = stack.pop();
+    return next(formula, stack);
+  };
+
+  this.calculate.multiplyOrDivide = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next;
+
+    // get parts to multiply or divide
+    part = formula.match(/([+\-]?\d+(?:\.\d+)?)(×|÷)([+\-]?\d+(?:\.\d+)?)/);
+    if (part) {
+      part[1] = parseFloat(part[1]);
+      part[3] = parseFloat(part[3]);
+      result = part[2] === '×' ? Calc.prototype.multiply(part[1], part[3]) : Calc.prototype.divide(part[1], part[3]);
+      if (
+        formula[part.index - 1] &&
+        ((part[1] >= 0 && part[3] >= 0) || (part[1] < 0 && part[3] < 0))
+      ) {
+        formula = formula.replace(part[0], '+' + result);
+      }
+      formula = formula.replace(part[0], result);
+      return Calc.prototype.calculate.multiplyOrDivide(formula, stack);
+    }
+
+    next = stack.pop();
+    return next(formula, stack);
+  };
+
+  this.calculate.sumOrSubtract = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next;
+
+    // get parts to sum or subtract
+    part = formula.match(/([+\-]?\d+(?:\.\d+)?)(\+|-)([+\-]?\d+(?:\.\d+)?)/);
+    if (part) {
+      part = [part[0], parseFloat(part[1]), part[2], parseFloat(part[3])];
+      result = part[2] === '+' ? Calc.prototype.sum(part[1], part[3]) : Calc.prototype.subtract(part[1], part[3]);
+      formula = formula.replace(part[0], result);
+      return Calc.prototype.calculate.sumOrSubtract(formula, stack);
+    }
+
+    next = stack.pop();
+    return next(formula, stack);
+  };
+
+  this.calculate.format = function (formula) {
+    return Calc.prototype.format(formula);
+  };
+
+  formula = this.parser(formula);
   if (!formula) {return NaN;}
 
-  var part;
-  var result;
+  var stack = [
+    this.calculate.parenthesis,
+    this.calculate.percentage,
+    this.calculate.multiplyOrDivide,
+    this.calculate.sumOrSubtract,
+    this.calculate.format
+  ].reverse();
+  var next = stack.pop();
 
-  // obteins the most internal parenthesis
-  part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
-  if (part) {
-    result = this.calculate(part[0].replace(/[()]/g, ''));
-    if (result < 0 && formula[part.index - 1] === '-') {
-      formula = formula.replace('-' + part[0], '+' + Math.abs(result));
-    } else {
-      formula = formula.replace(part[0], result);
-    }
-    return this.calculate(formula);
-  }
-
-  // get parts to calculate percentage
-  part = formula.match(/(?:([+\-]?\d+(?:\.\d+)?)[+\-×÷])?([+\-]?\d+(?:\.\d+)?)%/);
-  if (part) {
-    part = [part[0], parseFloat(part[1]), parseFloat(part[2])];
-    result = Calc.prototype.percentage(part[2], part[1]);
-    result = part[0].replace(part[2] + '%', result);
-    formula = formula.replace(part[0], result);
-    return this.calculate(formula);
-  }
-
-  // get parts to multiply or divide
-  part = formula.match(/([+\-]?\d+(?:\.\d+)?)(×|÷)([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    part[1] = parseFloat(part[1]);
-    part[3] = parseFloat(part[3]);
-    result = part[2] === '×' ? this.multiply(part[1], part[3]) : this.divide(part[1], part[3]);
-    if (
-      formula[part.index - 1] &&
-      ((part[1] >= 0 && part[3] >= 0) || (part[1] < 0 && part[3] < 0))
-    ) {
-      formula = formula.replace(part[0], '+' + result);
-    }
-    formula = formula.replace(part[0], result);
-    return this.calculate(formula);
-  }
-
-  // get parts to sum or subtract
-  part = formula.match(/([+\-]?\d+(?:\.\d+)?)(\+|-)([+\-]?\d+(?:\.\d+)?)/);
-  if (part) {
-    part = [part[0], parseFloat(part[1]), part[2], parseFloat(part[3])];
-    result = part[2] === '+' ? this.sum(part[1], part[3]) : this.subtract(part[1], part[3]);
-    formula = formula.replace(part[0], result);
-    return this.calculate(formula);
-  }
-
-  return Calc.prototype.format(formula);
+  return next(formula, stack);
 };
 
 if (typeof exports === 'object') {
