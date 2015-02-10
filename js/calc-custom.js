@@ -1,74 +1,13 @@
-var Custom = function () {
+var Custom = function (selector) {
   if (!(this instanceof Custom)) {
-    return new Custom();
+    return new Custom(selector);
   }
-};
-Custom.prototype = Object.create(Calc.prototype);
-Custom.prototype.constructor = Custom;
 
-Custom.prototype.skin = function (selector) {
-  selector = typeof selector !== 'string' ? '.calc-custom' : selector;
-
+  var html = typeof selector !== 'string' ? document.querySelector('.calc-custom') : document.querySelector(selector);
   var _this = this;
-  _this.isCalculated = false;
-  _this.html = document.querySelector(selector);
-  _this.number1 = _this.html.querySelector('.btn[data-name="number1"]');
-  _this.number2 = _this.html.querySelector('.btn[data-name="number2"]');
-  _this.number3 = _this.html.querySelector('.btn[data-name="number3"]');
-  _this.number4 = _this.html.querySelector('.btn[data-name="number4"]');
-  _this.number5 = _this.html.querySelector('.btn[data-name="number5"]');
-  _this.number6 = _this.html.querySelector('.btn[data-name="number6"]');
-  _this.number7 = _this.html.querySelector('.btn[data-name="number7"]');
-  _this.number8 = _this.html.querySelector('.btn[data-name="number8"]');
-  _this.number9 = _this.html.querySelector('.btn[data-name="number9"]');
-  _this.number0 = _this.html.querySelector('.btn[data-name="number0"]');
-  _this.dot = _this.html.querySelector('.btn[data-name="dot"]');
-  _this.addition = _this.html.querySelector('.btn[data-name="addition"]');
-  _this.subtraction = _this.html.querySelector('.btn[data-name="subtraction"]');
-  _this.multiplication = _this.html.querySelector('.btn[data-name="multiplication"]');
-  _this.division = _this.html.querySelector('.btn[data-name="division"]');
-  _this.parenthesisOpen = _this.html.querySelector('.btn[data-name="parenthesisOpen"]');
-  _this.parenthesisClose = _this.html.querySelector('.btn[data-name="parenthesisClose"]');
-  _this.equality = _this.html.querySelector('.btn[data-name="equality"]');
-  _this.delete = _this.html.querySelector('.btn[data-name="delete"]');
-  _this.clear = _this.html.querySelector('.btn[data-name="clear"]');
-  _this.memoryAdd = _this.html.querySelector('.btn[data-name="madd"]');
-  _this.memorySubtract = _this.html.querySelector('.btn[data-name="msubtract"]');
-  _this.memoryClear = _this.html.querySelector('.btn[data-name="mclear"]');
-  _this.memoryRecall = _this.html.querySelector('.btn[data-name="mrecall"]');
-  _this.percentage = _this.html.querySelector('.btn[data-name="percentage"]');
-  _this.sin = _this.html.querySelector('.btn[data-name="sin"]');
-  _this.cos = _this.html.querySelector('.btn[data-name="cos"]');
-  _this.tan = _this.html.querySelector('.btn[data-name="tan"]');
-
-  _this.memory = (function () {
-    var slot = 0;
-    var get = function () {
-      return slot;
-    };
-    var set = function (value) {
-      slot = value;
-      return _this;
-    };
-    var sum = function (value) {
-      slot = Custom.prototype.sum(slot, value);
-      return _this;
-    };
-    var subtract = function (value) {
-      slot = Custom.prototype.subtract(slot, value);
-      return _this;
-    };
-
-    return {
-      get: get,
-      set: set,
-      sum: sum,
-      subtract: subtract,
-    };
-  })();
-
-  _this.display = (function () {
-    var content = _this.html.querySelector('.display');
+  _this.skin = {};
+  _this.skin.display = (function () {
+    var content = html.querySelector('.display');
     var get = function () {
       return content.innerHTML;
     };
@@ -86,220 +25,277 @@ Custom.prototype.skin = function (selector) {
       concat: concat
     };
   })();
-
-  _this.showError = function () {
-    var attrClass = _this.html.getAttribute('class').replace(' calcError', '');
-    _this.html.setAttribute('class', attrClass + ' calcError');
+  _this.skin.showError = function () {
+    var attrClass = html.getAttribute('class').replace(' calcError', '');
+    html.setAttribute('class', attrClass + ' calcError');
     setTimeout(function () {
-      attrClass = _this.html.getAttribute('class').replace(' calcError', '');
-      _this.html.setAttribute('class', attrClass);
+      attrClass = html.getAttribute('class').replace(' calcError', '');
+      html.setAttribute('class', attrClass);
     }, 300);
   };
 
-  _this.numberEvent = function () {
-    var formula = _this.display.get();
+  var isCalculated = false;
+  var memory = (function () {
+    var slot = 0;
+    var get = function () {
+      return slot;
+    };
+    var set = function (value) {
+      slot = value;
+      return _this;
+    };
+    var sum = function (value) {
+      slot = _this.sum(slot, value);
+      return _this;
+    };
+    var subtract = function (value) {
+      slot = _this.subtract(slot, value);
+      return _this;
+    };
+
+    return {
+      get: get,
+      set: set,
+      sum: sum,
+      subtract: subtract,
+    };
+  })();
+
+  var numberEvent = function () {
+    var formula = _this.skin.display.get();
     if (!formula || formula[formula.length - 1].search(/[)%]/) < 0) {
-      if (_this.isCalculated) {
-        _this.isCalculated = false;
-        return _this.display.set(this.getAttribute('data-value'));
+      if (isCalculated) {
+        isCalculated = false;
+        return _this.skin.display.set(this.getAttribute('data-value'));
       }
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
-    _this.showError();
+    _this.skin.showError();
   };
 
-  _this.dotEvent = function () {
-    var formula = _this.display.get();
+  var dotEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula) {
       formula = formula.split(/[+\-×÷]/).pop();
       if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()%]/) < 0) {
-        return _this.display.concat(this.getAttribute('data-value'));
+        return _this.skin.display.concat(this.getAttribute('data-value'));
       }
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.additionEvent = function () {
-    var formula = _this.display.get();
+  var additionEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-        return _this.display.set(formula.slice(0, formula.length - 1) + '+');
+        return _this.skin.display.set(formula.slice(0, formula.length - 1) + '+');
       } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-        return _this.display.concat(this.getAttribute('data-value'));
+        return _this.skin.display.concat(this.getAttribute('data-value'));
       }
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.subtractionEvent = function () {
-    var formula = _this.display.get();
+  var subtractionEvent = function () {
+    var formula = _this.skin.display.get();
     if (!formula){
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
     if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-      return _this.display.set(formula.slice(0, formula.length - 1) + '-');
+      return _this.skin.display.set(formula.slice(0, formula.length - 1) + '-');
     }
     if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.multiplicationEvent = function () {
-    var formula = _this.display.get();
+  var multiplicationEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-×÷]/)) {
         if (formula[formula.length - 2] !== '(') {
-          return _this.display.set(formula.slice(0, formula.length - 1) + '×');
+          return _this.skin.display.set(formula.slice(0, formula.length - 1) + '×');
         }
 
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.display.concat(this.getAttribute('data-value'));
+        return _this.skin.display.concat(this.getAttribute('data-value'));
       }
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.divisionEvent = function () {
-    var formula = _this.display.get();
+  var divisionEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula){
       if (formula[formula.length - 1].match(/[+\-×÷]/)) {
         if (formula[formula.length - 2] !== '(') {
-          return _this.display.set(formula.slice(0, formula.length - 1) + '÷');
+          return _this.skin.display.set(formula.slice(0, formula.length - 1) + '÷');
         }
 
       } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.display.concat(this.getAttribute('data-value'));
+        return _this.skin.display.concat(this.getAttribute('data-value'));
       }
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.parenthesisOpenEvent = function () {
-    var formula = _this.display.get();
+  var parenthesisOpenEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula === '') {
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[0-9)%]/) >= 0) {
-      return _this.display.concat('×' + this.getAttribute('data-value'));
+      return _this.skin.display.concat('×' + this.getAttribute('data-value'));
     } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.parenthesisCloseEvent = function () {
-    var formula = _this.display.get();
+  var parenthesisCloseEvent = function () {
+    var formula = _this.skin.display.get();
     var opens = formula.match(/[(]/g);
     var closes = formula.match(/[)]/g);
     if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
       if (formula[formula.length - 1].search(/[.+\-×÷(]/) < 0) {
-        return _this.display.concat(this.getAttribute('data-value'));
+        return _this.skin.display.concat(this.getAttribute('data-value'));
       }
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.equalityEvent = function () {
+  var equalityEvent = function () {
     try {
-      var formula = Custom.prototype.calculate(_this.display.get());
+      var formula = _this.calculate(_this.skin.display.get());
       if (!formula || !isFinite(formula) || isNaN(formula)) {
-        return _this.showError();
+        return _this.skin.showError();
       }
-      _this.display.set(formula);
-      _this.isCalculated = true;
+      _this.skin.display.set(formula);
+      isCalculated = true;
 
     } catch (err) {
       if (err.name === 'SyntaxError') {
-        _this.display.set('Syntax Error');
-        _this.isCalculated = true;
+        _this.skin.display.set('Syntax Error');
+        isCalculated = true;
       }
       console.error('Calc ' + err.name + ': ' + err.message);
-      _this.showError();
+      _this.skin.showError();
     }
   };
 
-  _this.deleteEvent = function () {
-    var formula = _this.display.get();
-    if (formula) { _this.display.set(formula.slice(0, formula.length - 1)); }
+  var deleteEvent = function () {
+    var formula = _this.skin.display.get();
+    if (formula) { _this.skin.display.set(formula.slice(0, formula.length - 1)); }
   };
 
-  _this.clearEvent = function () {
-    _this.display.set('');
+  var clearEvent = function () {
+    _this.skin.display.set('');
   };
 
-  _this.memoryAddEvent = function () {
-    var number = _this.display.get();
+  var memoryAddEvent = function () {
+    var number = _this.skin.display.get();
     if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
-      _this.isCalculated = true;
-      return _this.memory.sum(parseFloat(number));
+      isCalculated = true;
+      return memory.sum(parseFloat(number));
     }
-    _this.showError();
+    _this.skin.showError();
   };
 
-  _this.memorySubtractEvent = function () {
-    var number = _this.display.get();
+  var memorySubtractEvent = function () {
+    var number = _this.skin.display.get();
     if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
-      _this.isCalculated = true;
-      return _this.memory.subtract(parseFloat(number));
+      isCalculated = true;
+      return memory.subtract(parseFloat(number));
     }
-    _this.showError();
+    _this.skin.showError();
   };
 
-  _this.memoryClearEvent = function () {
-    return _this.memory.set(0);
+  var memoryClearEvent = function () {
+    return memory.set(0);
   };
 
-  _this.memoryRecallEvent = function () {
-    return _this.display.set(_this.memory.get());
+  var memoryRecallEvent = function () {
+    return _this.skin.display.set(memory.get());
   };
 
-  _this.percentageEvent = function () {
-    var formula = _this.display.get();
+  var percentageEvent = function () {
+    var formula = _this.skin.display.get();
     if (formula && formula[formula.length - 1].search(/[0-9)]/) >= 0) {
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
-    _this.showError();
+    _this.skin.showError();
   };
 
-  _this.sinEvent = function () {
-
-  };
-
-  _this.cosEvent = function () {
+  var powerEvent = function () {
 
   };
 
-  _this.tanEvent = function () {
+  var squarerootEvent = function () {
 
   };
 
-  _this.number1.addEventListener('click', _this.numberEvent);
-  _this.number2.addEventListener('click', _this.numberEvent);
-  _this.number3.addEventListener('click', _this.numberEvent);
-  _this.number4.addEventListener('click', _this.numberEvent);
-  _this.number5.addEventListener('click', _this.numberEvent);
-  _this.number6.addEventListener('click', _this.numberEvent);
-  _this.number7.addEventListener('click', _this.numberEvent);
-  _this.number8.addEventListener('click', _this.numberEvent);
-  _this.number9.addEventListener('click', _this.numberEvent);
-  _this.number0.addEventListener('click', _this.numberEvent);
-  _this.dot.addEventListener('click', _this.dotEvent);
-  _this.addition.addEventListener('click', _this.additionEvent);
-  _this.subtraction.addEventListener('click', _this.subtractionEvent);
-  _this.multiplication.addEventListener('click', _this.multiplicationEvent);
-  _this.division.addEventListener('click', _this.divisionEvent);
-  _this.parenthesisOpen.addEventListener('click', _this.parenthesisOpenEvent);
-  _this.parenthesisClose.addEventListener('click', _this.parenthesisCloseEvent);
-  _this.equality.addEventListener('click', _this.equalityEvent);
-  _this.delete.addEventListener('click', _this.deleteEvent);
-  _this.clear.addEventListener('click', _this.clearEvent);
-  _this.memoryAdd.addEventListener('click', _this.memoryAddEvent);
-  _this.memorySubtract.addEventListener('click', _this.memorySubtractEvent);
-  _this.memoryClear.addEventListener('click', _this.memoryClearEvent);
-  _this.memoryRecall.addEventListener('click', _this.memoryRecallEvent);
-  _this.percentage.addEventListener('click', _this.percentageEvent);
-  _this.sin.addEventListener('click', _this.sinEvent);
-  _this.cos.addEventListener('click', _this.cosEvent);
-  _this.tan.addEventListener('click', _this.tanEvent);
+  var piEvent = function () {
 
+  };
+
+  _this.skin.number1 = html.querySelector('.btn[data-name="number1"]');
+  _this.skin.number2 = html.querySelector('.btn[data-name="number2"]');
+  _this.skin.number3 = html.querySelector('.btn[data-name="number3"]');
+  _this.skin.number4 = html.querySelector('.btn[data-name="number4"]');
+  _this.skin.number5 = html.querySelector('.btn[data-name="number5"]');
+  _this.skin.number6 = html.querySelector('.btn[data-name="number6"]');
+  _this.skin.number7 = html.querySelector('.btn[data-name="number7"]');
+  _this.skin.number8 = html.querySelector('.btn[data-name="number8"]');
+  _this.skin.number9 = html.querySelector('.btn[data-name="number9"]');
+  _this.skin.number0 = html.querySelector('.btn[data-name="number0"]');
+  _this.skin.dot = html.querySelector('.btn[data-name="dot"]');
+  _this.skin.addition = html.querySelector('.btn[data-name="addition"]');
+  _this.skin.subtraction = html.querySelector('.btn[data-name="subtraction"]');
+  _this.skin.multiplication = html.querySelector('.btn[data-name="multiplication"]');
+  _this.skin.division = html.querySelector('.btn[data-name="division"]');
+  _this.skin.parenthesisOpen = html.querySelector('.btn[data-name="parenthesisOpen"]');
+  _this.skin.parenthesisClose = html.querySelector('.btn[data-name="parenthesisClose"]');
+  _this.skin.equality = html.querySelector('.btn[data-name="equality"]');
+  _this.skin.delete = html.querySelector('.btn[data-name="delete"]');
+  _this.skin.clear = html.querySelector('.btn[data-name="clear"]');
+  _this.skin.memoryAdd = html.querySelector('.btn[data-name="madd"]');
+  _this.skin.memorySubtract = html.querySelector('.btn[data-name="msubtract"]');
+  _this.skin.memoryClear = html.querySelector('.btn[data-name="mclear"]');
+  _this.skin.memoryRecall = html.querySelector('.btn[data-name="mrecall"]');
+  _this.skin.percentage = html.querySelector('.btn[data-name="percentage"]');
+  _this.skin.power = html.querySelector('.btn[data-name="power"]');
+  _this.skin.squareroot = html.querySelector('.btn[data-name="squareroot"]');
+  _this.skin.pi = html.querySelector('.btn[data-name="pi"]');
+
+  _this.skin.number1.addEventListener('click', numberEvent);
+  _this.skin.number2.addEventListener('click', numberEvent);
+  _this.skin.number3.addEventListener('click', numberEvent);
+  _this.skin.number4.addEventListener('click', numberEvent);
+  _this.skin.number5.addEventListener('click', numberEvent);
+  _this.skin.number6.addEventListener('click', numberEvent);
+  _this.skin.number7.addEventListener('click', numberEvent);
+  _this.skin.number8.addEventListener('click', numberEvent);
+  _this.skin.number9.addEventListener('click', numberEvent);
+  _this.skin.number0.addEventListener('click', numberEvent);
+  _this.skin.dot.addEventListener('click', dotEvent);
+  _this.skin.addition.addEventListener('click', additionEvent);
+  _this.skin.subtraction.addEventListener('click', subtractionEvent);
+  _this.skin.multiplication.addEventListener('click', multiplicationEvent);
+  _this.skin.division.addEventListener('click', divisionEvent);
+  _this.skin.parenthesisOpen.addEventListener('click', parenthesisOpenEvent);
+  _this.skin.parenthesisClose.addEventListener('click', parenthesisCloseEvent);
+  _this.skin.equality.addEventListener('click', equalityEvent);
+  _this.skin.delete.addEventListener('click', deleteEvent);
+  _this.skin.clear.addEventListener('click', clearEvent);
+  _this.skin.memoryAdd.addEventListener('click', memoryAddEvent);
+  _this.skin.memorySubtract.addEventListener('click', memorySubtractEvent);
+  _this.skin.memoryClear.addEventListener('click', memoryClearEvent);
+  _this.skin.memoryRecall.addEventListener('click', memoryRecallEvent);
+  _this.skin.percentage.addEventListener('click', percentageEvent);
+  _this.skin.power.addEventListener('click', powerEvent);
+  _this.skin.squareroot.addEventListener('click', squarerootEvent);
+  _this.skin.pi.addEventListener('click', piEvent);
 };
+
+Custom.prototype = Object.create(Calc.prototype);
+Custom.prototype.constructor = Custom;

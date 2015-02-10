@@ -11,6 +11,29 @@ Calc.prototype.isNumber = function (number) {
   return answer;
 };
 
+Calc.prototype.power = function (a, b) {
+  var result = a;
+  var times = Math.abs(b);
+
+  if (this.isNumber(a) !== true || this.isNumber(b) !== true || (a === 0 && b < 0)) {
+    throw new SyntaxError('It\'s impossible calculate power of ' + a);
+  }
+
+  if (a === 0 && b > 0) { return 0; }
+  if (b === 0) { return 1; }
+  if (b === 1) { return a; }
+
+  while (times > 1) {
+    result = Calc.prototype.multiply(result, a);
+    times -= 1;
+  }
+
+  if (b < 0) {
+    result = Calc.prototype.divide(1, result);
+  }
+  return result;
+};
+
 Calc.prototype.percentage = function (a, b) {
   b = b || 1;
   if (this.isNumber(a) === true && this.isNumber(b) === true) {

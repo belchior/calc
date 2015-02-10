@@ -1,45 +1,17 @@
-var Macwidget = function () {
+var Macwidget = function (selector) {
   if (!(this instanceof Macwidget)) {
-    return new Macwidget();
+    return new Macwidget(selector);
   }
-};
-Macwidget.prototype = Object.create(Calc.prototype);
-Macwidget.prototype.constructor = Macwidget;
 
-Macwidget.prototype.skin = function (selector) {
-  selector = typeof selector !== 'string' ? '.calc-macwidget' : selector;
+  var html = typeof selector !== 'string' ? document.querySelector('.calc-macwidget') : document.querySelector(selector);
+  var equalityWasClicked = false;
+  _this = this;
+  _this.skin = {};
 
-  var _this = this;
-  _this.equalityWasClicked = false;
-  _this.html = document.querySelector(selector);
-  _this.number0 = _this.html.querySelector('.btn[data-name=number0]');
-  _this.number1 = _this.html.querySelector('.btn[data-name=number1]');
-  _this.number2 = _this.html.querySelector('.btn[data-name=number2]');
-  _this.number3 = _this.html.querySelector('.btn[data-name=number3]');
-  _this.number4 = _this.html.querySelector('.btn[data-name=number4]');
-  _this.number5 = _this.html.querySelector('.btn[data-name=number5]');
-  _this.number6 = _this.html.querySelector('.btn[data-name=number6]');
-  _this.number7 = _this.html.querySelector('.btn[data-name=number7]');
-  _this.number8 = _this.html.querySelector('.btn[data-name=number8]');
-  _this.number9 = _this.html.querySelector('.btn[data-name=number9]');
-  _this.division = _this.html.querySelector('.btn[data-name=division]');
-  _this.multiplication = _this.html.querySelector('.btn[data-name=multiplication]');
-  _this.subtraction = _this.html.querySelector('.btn[data-name=subtraction]');
-  _this.addition = _this.html.querySelector('.btn[data-name=addition]');
-  _this.equality = _this.html.querySelector('.btn[data-name=equality]');
-  _this.dot = _this.html.querySelector('.btn[data-name=dot]');
-  _this.clear = _this.html.querySelector('.btn[data-name=clear]');
-  _this.memoryAdd = _this.html.querySelector('.btn[data-name=madd]');
-  _this.memorySubtract = _this.html.querySelector('.btn[data-name=msubtract]');
-  _this.memoryClear = _this.html.querySelector('.btn[data-name=mclear]');
-  _this.memoryRecall = _this.html.querySelector('.btn[data-name=mrecall]');
-
-  _this.display = (function () {
-    var content = _this.html.querySelector('.display');
-    var html = function () {
-      return content.innerHTML;
-    };
-    var get = function () {
+  _this.skin.display = (function () {
+    var content = html.querySelector('.display');
+    var get = function (html) {
+      if (html) { return content.innerHTML; }
       return Macwidget.prototype.format(content.innerHTML);
     };
     var set = function (value) {
@@ -47,13 +19,13 @@ Macwidget.prototype.skin = function (selector) {
       return _this;
     };
     var concat = function (value) {
-      if (_this.operatorIsActive()) {
-        _this.display.set(value);
-        _this.inactiveOperators();
+      if (operatorIsActive()) {
+        _this.skin.display.set(value);
+        inactiveOperators();
 
-      } else if (_this.equalityWasClicked) {
-        _this.display.set(value);
-        _this.equalityWasClicked = false;
+      } else if (equalityWasClicked) {
+        _this.skin.display.set(value);
+        equalityWasClicked = false;
 
       } else {
         content.innerHTML = content.innerHTML + value;
@@ -67,7 +39,7 @@ Macwidget.prototype.skin = function (selector) {
     };
   })();
 
-  _this.recorder = (function () {
+  var recorder = (function () {
     var operation = '';
     var operand = 0;
     var get = function (op) {
@@ -92,19 +64,19 @@ Macwidget.prototype.skin = function (selector) {
     };
   })();
 
-  _this.memory = (function () {
+  var memory = (function () {
     var slot = 0;
 
     var add = function () {
-      slot = _this.sum(slot, _this.display.get());
-      _this.inactiveOperators();
-      _this.equalityWasClicked = true;
+      slot = _this.sum(slot, _this.skin.display.get());
+      inactiveOperators();
+      equalityWasClicked = true;
     };
 
     var subtract = function () {
-      slot = _this.subtract(slot, _this.display.get());
-      _this.inactiveOperators();
-      _this.equalityWasClicked = true;
+      slot = _this.subtract(slot, _this.skin.display.get());
+      inactiveOperators();
+      equalityWasClicked = true;
     };
 
     var clear = function () {
@@ -112,9 +84,9 @@ Macwidget.prototype.skin = function (selector) {
     };
 
     var recall = function () {
-      _this.display.set(slot);
-      _this.inactiveOperators();
-      _this.equalityWasClicked = true;
+      _this.skin.display.set(slot);
+      inactiveOperators();
+      equalityWasClicked = true;
     };
 
     return {
@@ -125,31 +97,31 @@ Macwidget.prototype.skin = function (selector) {
     };
   })();
 
-  _this.showError = function () {
-    var attrClass = _this.html.getAttribute('class').replace(' calcError', '');
-    _this.html.setAttribute('class', attrClass + ' calcError');
+  _this.skin.showError = function () {
+    var attrClass = html.getAttribute('class').replace(' calcError', '');
+    html.setAttribute('class', attrClass + ' calcError');
     setTimeout(function () {
-      attrClass = _this.html.getAttribute('class').replace(' calcError', '');
-      _this.html.setAttribute('class', attrClass);
+      attrClass = html.getAttribute('class').replace(' calcError', '');
+      html.setAttribute('class', attrClass);
     }, 300);
   };
 
-  _this.operatorIsActive = function () {
-    return _this.html.querySelector('.btn.active') ? true : false;
+  var operatorIsActive = function () {
+    return html.querySelector('.btn.active') ? true : false;
   };
 
-  _this.activeOperation = function (operation) {
+  var activeOperation = function (operation) {
     var attrClass = operation.getAttribute('class').replace(' active', '');
 
-    _this.inactiveOperators();
+    inactiveOperators();
     operation.setAttribute('class', attrClass + ' active');
     return _this;
   };
 
-  _this.inactiveOperators = function () {
+  var inactiveOperators = function () {
     var i;
     var attrClass;
-    var actives = _this.html.querySelectorAll('.btn.active');
+    var actives = html.querySelectorAll('.btn.active');
     if (actives) {
       for (i = 0; i < actives.length; i += 1) {
         attrClass = actives[i].getAttribute('class').replace(' active', '');
@@ -159,92 +131,115 @@ Macwidget.prototype.skin = function (selector) {
     return _this;
   };
 
-  _this.calculateEvent = function () {
+  var calculateEvent = function () {
     var result;
-    var operation = _this.recorder.get('operation');
-    var operand = _this.display.get();
+    var operation = recorder.get('operation');
+    var operand = _this.skin.display.get();
 
     if (!operation || !operand) {
-      return _this.showError();
+      return _this.skin.showError();
     }
 
-    if (_this.equalityWasClicked) {
-      result = _this[operation](operand, _this.recorder.get('operand'));
+    if (equalityWasClicked) {
+      result = _this[operation](operand, recorder.get('operand'));
 
     } else {
-      result = _this[operation](_this.recorder.get('operand'), operand);
-      _this.recorder.set('operand', operand);
+      result = _this[operation](recorder.get('operand'), operand);
+      recorder.set('operand', operand);
     }
 
-    _this.display.set(result);
-    _this.equalityWasClicked = true;
-    _this.html.querySelector('.display').focus();
+    _this.skin.display.set(result);
+    equalityWasClicked = true;
+    html.querySelector('.display').focus();
     return _this;
   };
 
-  _this.numbersEvent = function () {
-    if (_this.equalityWasClicked) {
-      _this.recorder.set('operand', 0);
-      _this.recorder.set('operation', '');
+  var numbersEvent = function () {
+    if (equalityWasClicked) {
+      recorder.set('operand', 0);
+      recorder.set('operation', '');
     }
-    _this.display.concat(this.getAttribute('data-value'));
+    _this.skin.display.concat(this.getAttribute('data-value'));
   };
 
-  _this.operatorEvent = function () {
-    var operand = _this.display.get();
+  var operatorEvent = function () {
+    var operand = _this.skin.display.get();
     if (!operand) {
-      return _this.showError();
+      return _this.skin.showError();
     }
 
-    if (_this.recorder.get('operation') && _this.recorder.get('operand') && _this.equalityWasClicked === false) {
-      _this.calculateEvent()
-      .recorder.set('operand', _this.display.get());
+    if (recorder.get('operation') && recorder.get('operand') && equalityWasClicked === false) {
+      calculateEvent()
+      .recorder.set('operand', _this.skin.display.get());
 
     } else {
-      _this.recorder.set('operand', operand);
+      recorder.set('operand', operand);
     }
 
-    _this.recorder.set('operation', this.getAttribute('data-action'));
-    _this.activeOperation(this);
-    _this.equalityWasClicked = false;
+    recorder.set('operation', this.getAttribute('data-action'));
+    activeOperation(this);
+    equalityWasClicked = false;
   };
 
-  _this.dotEvent = function () {
-    var operand = _this.display.html();
+  var dotEvent = function () {
+    var operand = _this.skin.display.get('html');
     if (operand && operand === parseInt(operand).toString()) {
-      return _this.display.concat(this.getAttribute('data-value'));
+      return _this.skin.display.concat(this.getAttribute('data-value'));
     }
-    return _this.showError();
+    return _this.skin.showError();
   };
 
-  _this.clearEvent = function () {
-    _this.display.set(0);
-    _this.recorder.set('operation', '');
-    _this.recorder.set('operand', 0);
-    _this.inactiveOperators();
-    _this.equalityWasClicked = true;
+  var clearEvent = function () {
+    _this.skin.display.set(0);
+    recorder.set('operation', '');
+    recorder.set('operand', 0);
+    inactiveOperators();
+    equalityWasClicked = true;
   };
 
-  _this.number0.addEventListener('click', _this.numbersEvent);
-  _this.number1.addEventListener('click', _this.numbersEvent);
-  _this.number2.addEventListener('click', _this.numbersEvent);
-  _this.number3.addEventListener('click', _this.numbersEvent);
-  _this.number4.addEventListener('click', _this.numbersEvent);
-  _this.number5.addEventListener('click', _this.numbersEvent);
-  _this.number6.addEventListener('click', _this.numbersEvent);
-  _this.number7.addEventListener('click', _this.numbersEvent);
-  _this.number8.addEventListener('click', _this.numbersEvent);
-  _this.number9.addEventListener('click', _this.numbersEvent);
-  _this.division.addEventListener('click', _this.operatorEvent);
-  _this.multiplication.addEventListener('click', _this.operatorEvent);
-  _this.subtraction.addEventListener('click', _this.operatorEvent);
-  _this.addition.addEventListener('click', _this.operatorEvent);
-  _this.equality.addEventListener('click', _this.calculateEvent);
-  _this.dot.addEventListener('click', _this.dotEvent);
-  _this.clear.addEventListener('click', _this.clearEvent);
-  _this.memoryAdd.addEventListener('click', _this.memory.add);
-  _this.memorySubtract.addEventListener('click', _this.memory.subtract);
-  _this.memoryClear.addEventListener('click', _this.memory.clear);
-  _this.memoryRecall.addEventListener('click', _this.memory.recall);
+  _this.skin.number0 = html.querySelector('.btn[data-name=number0]');
+  _this.skin.number1 = html.querySelector('.btn[data-name=number1]');
+  _this.skin.number2 = html.querySelector('.btn[data-name=number2]');
+  _this.skin.number3 = html.querySelector('.btn[data-name=number3]');
+  _this.skin.number4 = html.querySelector('.btn[data-name=number4]');
+  _this.skin.number5 = html.querySelector('.btn[data-name=number5]');
+  _this.skin.number6 = html.querySelector('.btn[data-name=number6]');
+  _this.skin.number7 = html.querySelector('.btn[data-name=number7]');
+  _this.skin.number8 = html.querySelector('.btn[data-name=number8]');
+  _this.skin.number9 = html.querySelector('.btn[data-name=number9]');
+  _this.skin.division = html.querySelector('.btn[data-name=division]');
+  _this.skin.multiplication = html.querySelector('.btn[data-name=multiplication]');
+  _this.skin.subtraction = html.querySelector('.btn[data-name=subtraction]');
+  _this.skin.addition = html.querySelector('.btn[data-name=addition]');
+  _this.skin.equality = html.querySelector('.btn[data-name=equality]');
+  _this.skin.dot = html.querySelector('.btn[data-name=dot]');
+  _this.skin.clear = html.querySelector('.btn[data-name=clear]');
+  _this.skin.memoryAdd = html.querySelector('.btn[data-name=madd]');
+  _this.skin.memorySubtract = html.querySelector('.btn[data-name=msubtract]');
+  _this.skin.memoryClear = html.querySelector('.btn[data-name=mclear]');
+  _this.skin.memoryRecall = html.querySelector('.btn[data-name=mrecall]');
 
+  _this.skin.number0.addEventListener('click', numbersEvent);
+  _this.skin.number1.addEventListener('click', numbersEvent);
+  _this.skin.number2.addEventListener('click', numbersEvent);
+  _this.skin.number3.addEventListener('click', numbersEvent);
+  _this.skin.number4.addEventListener('click', numbersEvent);
+  _this.skin.number5.addEventListener('click', numbersEvent);
+  _this.skin.number6.addEventListener('click', numbersEvent);
+  _this.skin.number7.addEventListener('click', numbersEvent);
+  _this.skin.number8.addEventListener('click', numbersEvent);
+  _this.skin.number9.addEventListener('click', numbersEvent);
+  _this.skin.division.addEventListener('click', operatorEvent);
+  _this.skin.multiplication.addEventListener('click', operatorEvent);
+  _this.skin.subtraction.addEventListener('click', operatorEvent);
+  _this.skin.addition.addEventListener('click', operatorEvent);
+  _this.skin.equality.addEventListener('click', calculateEvent);
+  _this.skin.dot.addEventListener('click', dotEvent);
+  _this.skin.clear.addEventListener('click', clearEvent);
+  _this.skin.memoryAdd.addEventListener('click', memory.add);
+  _this.skin.memorySubtract.addEventListener('click', memory.subtract);
+  _this.skin.memoryClear.addEventListener('click', memory.clear);
+  _this.skin.memoryRecall.addEventListener('click', memory.recall);
 };
+Macwidget.prototype = Object.create(Calc.prototype);
+Macwidget.prototype.constructor = Macwidget;

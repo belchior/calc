@@ -15,6 +15,55 @@ describe('Calc', function () {
 
   calc = new Calc();
 
+  describe('Function power', function () {
+    it('should return 1 always that exponent is 0', function () {
+      assert.strictEqual(calc.power(2, 0), 1);
+      assert.strictEqual(calc.power(1, 0), 1);
+      assert.strictEqual(calc.power(0, 0), 1);
+      assert.strictEqual(calc.power(-1, 0), 1);
+      assert.strictEqual(calc.power(-2, 0), 1);
+    });
+    it('should return 0 when base is 0 and exponent is great than 0', function () {
+      assert.strictEqual(calc.power(0, 1), 0);
+      assert.strictEqual(calc.power(0, 23), 0);
+    });
+    it('should return the base when exponent is 1', function () {
+      assert.strictEqual(calc.power(2, 1), 2);
+      assert.strictEqual(calc.power(1, 1), 1);
+      assert.strictEqual(calc.power(0, 1), 0);
+      assert.strictEqual(calc.power(-1, 1), -1);
+      assert.strictEqual(calc.power(-2, 1), -2);
+    });
+    it('should return 64 when 8 to the power 2', function () {
+      assert.strictEqual(calc.power(8, 2), 64);
+    });
+    it('should return 64 when -8 to the power 2', function () {
+      assert.strictEqual(calc.power(-8, 2), 64);
+    });
+    it('should return 0.015625 when -8 to the power -2', function () {
+      assert.strictEqual(calc.power(-8, -2), 0.015625);
+    });
+    it('should return 0.015625 when 8 to the power -2', function () {
+      assert.strictEqual(calc.power(8, -2), 0.015625);
+    });
+    it('should throws an Error when the base is 0 and the exponent is less than 0', function () {
+      assert.throws(
+        function () {calc.power(0, -12);},
+        SyntaxError, 'It\'s impossible calculate power of 0'
+      );
+    });
+    it('should throws an Error when the base or exponent is not a number', function () {
+      assert.throws(
+        function () {calc.power('abc', 123);},
+        SyntaxError, 'It\'s impossible calculate power of abc'
+      );
+      assert.throws(
+        function () {calc.power(123, 'abc');},
+        SyntaxError, 'It\'s impossible calculate power of 123'
+      );
+    });
+  });
+
   describe('Function percentage', function () {
     it('should return 0.05 for 5%', function () {
       assert.strictEqual(calc.percentage(5), 0.05);

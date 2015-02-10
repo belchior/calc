@@ -1,21 +1,24 @@
 /*
-Helper for unit convertion
-1px = 0.0625em
-2px = 0.125em
-3px = 0.1875em
-4px = 0.25em
-5px = 0.3125em
-6px = 0.375em
-7px = 0.4375em
-8px = 0.5em
-9px = 0.5625em
-10px = 0.625em
-10.0625em = 0.6875em
-10.125em = 0.75em
-13px = 0.8125em
-14px = 0.875em
-10.3125em = 0.9375em
-16px = 1em
+  Calc - Custom
+
+  Helper for unit convertion
+  1px = 0.0625em
+  2px = 0.125em
+  3px = 0.1875em
+  4px = 0.25em
+  5px = 0.3125em
+  6px = 0.375em
+  7px = 0.4375em
+  8px = 0.5em
+  9px = 0.5625em
+  10px = 0.625em
+  11px = 0.6875em
+  12px = 0.75em
+  13px = 0.8125em
+  14px = 0.875em
+  15px = 0.9375em
+  16px = 1em
+
 */
 
 .calc-custom {
@@ -90,6 +93,12 @@ Helper for unit convertion
 }
 .calc-custom .btn[data-name="equality"] {
   background-color: #000000;
+}
+.calc-custom .btn[data-name="power"] span {
+  position: relative;
+  top: -1em;
+  left: 0.3125em;
+  font-size: 0.5em;
 }
 .calc-custom .btn.double {
   width: 4.7em;

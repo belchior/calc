@@ -119,14 +119,6 @@ window.onload = function () {
   }
 
 
-  var term = new Terminal();
-  term.skin('.calc-terminal');
-
-  var macwidget = new Macwidget();
-  macwidget.skin('.calc-macwidget');
-
-  var custom = new Custom();
-  custom.skin('.calc-custom');
 
   var i;
   var elem;
@@ -215,3 +207,7 @@ window.onload = function () {
     if (elem) { elem.setAttribute('tabindex', i); }
   }
 };
+
+var custom = new Custom('.calc-custom');
+var term = new Terminal('.calc-terminal');
+var macwidget = new Macwidget('.calc-macwidget');
