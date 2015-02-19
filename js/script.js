@@ -118,8 +118,6 @@ window.onload = function () {
     document.querySelector('.item[href="' + window.location.hash + '"]').click();
   }
 
-
-
   var i;
   var elem;
   var tabindex = [
@@ -206,8 +204,8 @@ window.onload = function () {
     elem = document.querySelector(tabindex[i - 1]);
     if (elem) { elem.setAttribute('tabindex', i); }
   }
-};
 
-var custom = new Custom('.calc-custom');
-var term = new Terminal('.calc-terminal');
-var macwidget = new Macwidget('.calc-macwidget');
+  var custom = new Custom('.calc-custom');
+  var term = new Terminal('.calc-terminal');
+  var macwidget = new Macwidget('.calc-macwidget');
+};

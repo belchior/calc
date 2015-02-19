@@ -14,9 +14,16 @@ Calc.prototype.isNumber = function (number) {
 Calc.prototype.power = function (a, b) {
   var result = a;
   var times = Math.abs(b);
+  var integer;
+  var decimal;
 
   if (this.isNumber(a) !== true || this.isNumber(b) !== true || (a === 0 && b < 0)) {
     throw new SyntaxError('It\'s impossible calculate power of ' + a);
+  }
+
+  // b is float?
+  if (b % 1 !== 0) {
+    return Calc.prototype.format(Math.pow(a, b));
   }
 
   if (a === 0 && b > 0) { return 0; }
@@ -31,7 +38,7 @@ Calc.prototype.power = function (a, b) {
   if (b < 0) {
     result = Calc.prototype.divide(1, result);
   }
-  return result;
+  return Calc.prototype.format(result);
 };
 
 Calc.prototype.percentage = function (a, b) {
@@ -77,7 +84,7 @@ Calc.prototype.format = function (number, decimal) {
 };
 
 Calc.prototype.parser = function (formula) {
-  formula = formula.replace(/[^0-9()+\-×÷%.]/g, '');
+  formula = formula.replace(/[^0-9()+\-×÷%.^√π]/g, '');
   var index;
   var parenthesisOpens = formula.match(/[(]/g);
   var parenthesisCloses = formula.match(/[)]/g);
@@ -118,7 +125,7 @@ Calc.prototype.calculate = function (formula) {
     var next = stack.pop();
 
     // obteins the most internal parenthesis
-    part = formula.match(/\([+\-]?\d+(?:\.\d+)?(?:(?:[×÷][+\-]?|[+\-]|[+][\-]?|[\-][+]?)\d+(?:\.\d+)?)*\)/);
+    part = formula.match(/\([0-9+\-×÷%.^√π]+\)/);
     if (part) {
       result = next(part[0].replace(/[()]/g, ''), stack);
       if (result < 0 && formula[part.index - 1] === '-') {
@@ -130,6 +137,26 @@ Calc.prototype.calculate = function (formula) {
       return Calc.prototype.calculate.parenthesis(formula, stack);
     }
 
+    return next(formula, stack);
+  };
+
+  this.calculate.power = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next;
+
+    // get part to calculate power
+    part = formula.match(/(\d+(?:\.\d+)?)\^([+\-]?\d+(?:\.\d+)?)/);
+    if (part) {
+      part[1] = parseFloat(part[1]);
+      part[2] = parseFloat(part[2]);
+      result = Calc.prototype.power(part[1], part[2]);
+      formula = formula.replace(part[0], result);
+      return Calc.prototype.calculate.power(formula, stack);
+    }
+
+    next = stack.pop();
     return next(formula, stack);
   };
 
@@ -207,6 +234,7 @@ Calc.prototype.calculate = function (formula) {
 
   var stack = [
     this.calculate.parenthesis,
+    this.calculate.power,
     this.calculate.percentage,
     this.calculate.multiplyOrDivide,
     this.calculate.sumOrSubtract,

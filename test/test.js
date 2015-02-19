@@ -46,6 +46,12 @@ describe('Calc', function () {
     it('should return 0.015625 when 8 to the power -2', function () {
       assert.strictEqual(calc.power(8, -2), 0.015625);
     });
+    it('should return 15.58845727 when 3 to the power 2.5', function () {
+      assert.strictEqual(calc.power(3, 2.5), 15.58845727);
+    });
+    it('should return 0.01184154 when 4 to the power -3.2', function () {
+      assert.strictEqual(calc.power(4, -3.2), 0.01184154);
+    });
     it('should throws an Error when the base is 0 and the exponent is less than 0', function () {
       assert.throws(
         function () {calc.power(0, -12);},
@@ -310,6 +316,39 @@ describe('Calc', function () {
       assert.strictEqual(calc.calculate('1+2-3×4÷5+(6)-((7×8)÷9.12)'), 0.45964912);
     });
 
+    describe('power', function () {
+      it('should return 9 when formula is 1+2^3', function () {
+        assert.strictEqual(calc.calculate('1+2^3'), 9);
+      });
+      it('should return 15629 when formula is 4+5^+6', function () {
+        assert.strictEqual(calc.calculate('4+5^+6'), 15629);
+      });
+      it('should return 7.00195313 when formula is 7+8^-3', function () {
+        assert.strictEqual(calc.calculate('7+8^-3'), 7.00195313);
+      });
+      it('should return -1 when formula is 0-1^2', function () {
+        assert.strictEqual(calc.calculate('0-1^2'), -1);
+      });
+      it('should return -1021 when formula is 3-4^+5', function () {
+        assert.strictEqual(calc.calculate('3-4^+5'), -1021);
+      });
+      it('should return -5764795 when formula is 6-7^+8', function () {
+        assert.strictEqual(calc.calculate('6-7^+8'), -5764795);
+      });
+      it('should return 5.65685425 when formula is 2^2.5', function () {
+        assert.strictEqual(calc.calculate('2^2.5'), 5.65685425);
+      });
+      it('should return -5764607.09875 when formula is 1^2÷3^4×5^6-7^8+9^0', function () {
+        assert.strictEqual(calc.calculate('1^2÷3^4×5^6-7^8+9^0'), -5764607.09875);
+      });
+      it('should throws an Error when the result is infinity', function () {
+        assert.throws(
+          function () {calc.calculate('9-0^-1');},
+          SyntaxError, 'It\'s impossible calculate power of 0'
+        );
+      });
+    });
+
     describe('percentage', function () {
       it('should return 1.392 when formula is 1+2%-3×4%÷5+6%', function () {
         assert.strictEqual(calc.calculate('1+2%-3×4%÷5+6%'), 1.392);
@@ -400,6 +439,12 @@ describe('Calc', function () {
       });
       it('should return -3 when formula is (-1-2)', function () {
         assert.strictEqual(calc.calculate('(-1-2)'), -3);
+      });
+      it('should return 15 when formula is (10+50%)', function () {
+        assert.strictEqual(calc.calculate('(10+50%)'), 15);
+      });
+      it('should return 256 when formula is (2^8)', function () {
+        assert.strictEqual(calc.calculate('(2^8)'), 256);
       });
       it('should return 2.76 when formula is (1.2×2.3)', function () {
         assert.strictEqual(calc.calculate('(1.2×2.3)'), 2.76);
