@@ -11,6 +11,10 @@ Calc.prototype.isNumber = function (number) {
   return answer;
 };
 
+Calc.prototype.sqrt = function (number) {
+  return Calc.prototype.format(Math.sqrt(number));
+};
+
 Calc.prototype.power = function (a, b) {
   var result = a;
   var times = Math.abs(b);
@@ -78,7 +82,7 @@ Calc.prototype.subtract = function (a, b) {
 };
 
 Calc.prototype.format = function (number, decimal) {
-  number = number || 0;
+  number = number || number === 0 ? number : NaN;
   decimal = decimal || 8;
   return parseFloat(Number(number).toFixed(decimal));
 };
@@ -160,6 +164,25 @@ Calc.prototype.calculate = function (formula) {
     return next(formula, stack);
   };
 
+  this.calculate.sqrt = function (formula, stack) {
+    stack = stack.slice();
+    var part;
+    var result;
+    var next;
+
+    // get part to calculate sqrt
+    part = formula.match(/√([+]?\d+(?:\.\d+)?)/);
+    if (part) {
+      part[1] = parseFloat(part[1]);
+      result = Calc.prototype.sqrt(part[1]);
+      formula = formula.replace(part[0], result);
+      return Calc.prototype.calculate.sqrt(formula, stack);
+    }
+
+    next = stack.pop();
+    return next(formula, stack);
+  };
+
   this.calculate.percentage = function (formula, stack) {
     stack = stack.slice();
     var part;
@@ -235,6 +258,7 @@ Calc.prototype.calculate = function (formula) {
   var stack = [
     this.calculate.parenthesis,
     this.calculate.power,
+    this.calculate.sqrt,
     this.calculate.percentage,
     this.calculate.multiplyOrDivide,
     this.calculate.sumOrSubtract,

@@ -133,7 +133,9 @@ section {
   height: 3.125em;
   line-height: 3.125em;
 }
-
+.github-profile img {
+  border-radius: 50%;
+}
 
 #custom {
   display: block;

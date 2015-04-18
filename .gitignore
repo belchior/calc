@@ -1,5 +1,6 @@
 .DS_Store
 todo.txt
 node_modules
-*.log
 coverage.html
+*.log
+*.ai
