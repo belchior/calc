@@ -228,7 +228,10 @@ var Custom = function (selector) {
 
   var powerEvent = function () {
     var formula = _this.skin.display.get();
-
+    if (formula && formula[formula.length - 1].search(/[0-9]/) >= 0) {
+      return _this.skin.display.concat(this.getAttribute('data-value'));
+    }
+    _this.skin.showError();
   };
 
   var squarerootEvent = function () {
