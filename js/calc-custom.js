@@ -34,7 +34,6 @@ var Custom = function (selector) {
     }, 300);
   };
 
-  var isCalculated = false;
   var memory = (function () {
     var slot = 0;
     var get = function () {
@@ -61,153 +60,173 @@ var Custom = function (selector) {
     };
   })();
 
-  var numberEvent = function () {
-    var formula = _this.skin.display.get();
-    if (!formula || formula[formula.length - 1].search(/[)%]/) < 0) {
-      if (isCalculated) {
-        isCalculated = false;
-        return _this.skin.display.set(this.getAttribute('data-value'));
+  var startNewCalc = false;
+  var calcEvent = function (buttonEvent) {
+    return function (event) {
+      var cb = buttonEvent.call(this, event);
+      if (typeof cb !== 'string') {
+        return _this.skin.showError();
       }
-      return _this.skin.display.concat(this.getAttribute('data-value'));
-    }
-    _this.skin.showError();
+      if (startNewCalc) {
+        if (cb.search(/[)×÷%.\^]/) >= 0) {
+          return _this.skin.showError();
+        }
+        _this.skin.display.set(cb);
+        startNewCalc = false;
+
+      } else {
+        _this.skin.display.concat(cb);
+      }
+    };
   };
 
-  var dotEvent = function () {
+  var numberEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (formula) {
-      formula = formula.split(/[+\-×÷]/).pop();
-      if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()%]/) < 0) {
-        return _this.skin.display.concat(this.getAttribute('data-value'));
-      }
+    if (formula === '' || formula[formula.length - 1].search(/[)%π]/) < 0) {
+      return this.getAttribute('data-value');
     }
-    return _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var additionEvent = function () {
+  var dotEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-        return _this.skin.display.set(formula.slice(0, formula.length - 1) + '+');
-      } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-        return _this.skin.display.concat(this.getAttribute('data-value'));
-      }
+    formula = formula.split(/[+\-×÷]/).pop();
+    if (formula && formula.search(/[.]/) < 0 && formula[formula.length - 1].search(/[()%\^√π]/) < 0) {
+      return this.getAttribute('data-value');
     }
-    return _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var subtractionEvent = function () {
+  var additionEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (!formula){
-      return _this.skin.display.concat(this.getAttribute('data-value'));
-    }
-    if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-      return _this.skin.display.set(formula.slice(0, formula.length - 1) + '-');
+    if (formula && formula[formula.length - 1].match(/[+\-×÷]/)) {
+      _this.skin.display.set(formula.slice(0, formula.length - 1) + '+');
+      return '';
     }
     if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
-    return _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var multiplicationEvent = function () {
+  var subtractionEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-        if (formula[formula.length - 2] !== '(') {
-          return _this.skin.display.set(formula.slice(0, formula.length - 1) + '×');
-        }
-
-      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.skin.display.concat(this.getAttribute('data-value'));
-      }
+    if (!formula) {
+      return this.getAttribute('data-value');
     }
-    return _this.skin.showError();
-  };
+    if (formula[formula.length - 1].match(/[+\-×÷]/)) {
+      _this.skin.display.set(formula.slice(0, formula.length - 1) + '-');
+      return '';
+    }
+    if (formula[formula.length - 1].search(/[.]/) < 0) {
+      return this.getAttribute('data-value');
+    }
+    return undefined;
+  });
 
-  var divisionEvent = function () {
+  var multiplicationEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (formula){
-      if (formula[formula.length - 1].match(/[+\-×÷]/)) {
-        if (formula[formula.length - 2] !== '(') {
-          return _this.skin.display.set(formula.slice(0, formula.length - 1) + '÷');
-        }
-
-      } else if (formula[formula.length - 1].search(/[.(]/) < 0) {
-        return _this.skin.display.concat(this.getAttribute('data-value'));
+    if (formula && formula[formula.length - 1].match(/[+\-×÷]/)) {
+      if (formula[formula.length - 2].search(/[(\^√]/) < 0) {
+        _this.skin.display.set(formula.slice(0, formula.length - 1) + '×');
+        return '';
       }
-    }
-    return _this.skin.showError();
-  };
 
-  var parenthesisOpenEvent = function () {
+    } else if (formula && formula[formula.length - 1].search(/[(.\^√]/) < 0) {
+      return this.getAttribute('data-value');
+    }
+    return undefined;
+  });
+
+  var divisionEvent = calcEvent(function () {
+    var formula = _this.skin.display.get();
+    if (formula && formula[formula.length - 1].match(/[+\-×÷]/)) {
+      if (formula[formula.length - 2].search(/[(\^√]/) < 0) {
+        _this.skin.display.set(formula.slice(0, formula.length - 1) + '÷');
+        return '';
+      }
+
+    } else if (formula && formula[formula.length - 1].search(/[(.\^√]/) < 0) {
+      return this.getAttribute('data-value');
+    }
+    return undefined;
+  });
+
+  var parenthesisOpenEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
     if (formula === '') {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
-    } else if (formula[formula.length - 1].search(/[0-9)%]/) >= 0) {
-      return _this.skin.display.concat('×' + this.getAttribute('data-value'));
-    } else if (formula[formula.length - 1].search(/[.]/) < 0) {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
-    return _this.skin.showError();
-  };
+    if (formula[formula.length - 1].search(/[0-9)%π]/) >= 0) {
+      return '×' + this.getAttribute('data-value');
+    }
+    if (formula[formula.length - 1].search(/[.]/) < 0) {
+      return this.getAttribute('data-value');
+    }
+    return undefined;
+  });
 
-  var parenthesisCloseEvent = function () {
+  var parenthesisCloseEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
     var opens = formula.match(/[(]/g);
     var closes = formula.match(/[)]/g);
     if ((opens && closes && opens.length > closes.length) || (opens && !closes)) {
-      if (formula[formula.length - 1].search(/[.+\-×÷(]/) < 0) {
-        return _this.skin.display.concat(this.getAttribute('data-value'));
+      if (formula[formula.length - 1].search(/[(+\-×÷.\^√]/) < 0) {
+        return this.getAttribute('data-value');
       }
     }
-    return _this.skin.showError();
-  };
+    return undefined;
+  });
 
   var equalityEvent = function () {
     try {
       var formula = _this.calculate(_this.skin.display.get());
       if (!formula || !isFinite(formula) || isNaN(formula)) {
-        return _this.skin.showError();
+        return undefined;
       }
       _this.skin.display.set(formula);
-      isCalculated = true;
+      startNewCalc = true;
 
     } catch (err) {
       if (err.name === 'SyntaxError') {
         _this.skin.display.set('Syntax Error');
-        isCalculated = true;
+        startNewCalc = true;
       }
       console.error('Calc ' + err.name + ': ' + err.message);
-      _this.skin.showError();
+      return undefined;
     }
   };
 
-  var deleteEvent = function () {
+  var deleteEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
-    if (formula) { _this.skin.display.set(formula.slice(0, formula.length - 1)); }
-  };
+    if (formula) {
+      _this.skin.display.set(formula.slice(0, formula.length - 1));
+    }
+    return '';
+  });
 
-  var clearEvent = function () {
+  var clearEvent = calcEvent(function () {
+    startNewCalc = true;
     _this.skin.display.set('');
-  };
+    return '';
+  });
 
   var memoryAddEvent = function () {
     var number = _this.skin.display.get();
     if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
-      isCalculated = true;
+      startNewCalc = true;
       return memory.sum(parseFloat(number));
     }
-    _this.skin.showError();
+    return _this.skin.showError();
   };
 
   var memorySubtractEvent = function () {
     var number = _this.skin.display.get();
     if (number.match(/^[+\-]?\d+(?:\.\d+)?$/)) {
-      isCalculated = true;
+      startNewCalc = true;
       return memory.subtract(parseFloat(number));
     }
-    _this.skin.showError();
+    return _this.skin.showError();
   };
 
   var memoryClearEvent = function () {
@@ -218,39 +237,43 @@ var Custom = function (selector) {
     return _this.skin.display.set(memory.get());
   };
 
-  var percentageEvent = function () {
+  var percentageEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
     if (formula && formula[formula.length - 1].search(/[0-9)]/) >= 0) {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
-    _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var powerEvent = function () {
+  var powerEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
     if (formula && formula[formula.length - 1].search(/[0-9]/) >= 0) {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
-    _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var squarerootEvent = function () {
+  var sqrtEvent = calcEvent(function () {
     var formula = _this.skin.display.get();
     if (formula === '') {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
     if (formula && formula[formula.length - 1].search(/[+\-×÷(√]/) >= 0) {
-      return _this.skin.display.concat(this.getAttribute('data-value'));
+      return this.getAttribute('data-value');
     }
     if (formula && formula[formula.length - 1].search(/[0-9)%π]/) >= 0) {
-      return _this.skin.display.concat('×' + this.getAttribute('data-value'));
+      return '×' + this.getAttribute('data-value');
     }
-    _this.skin.showError();
-  };
+    return undefined;
+  });
 
-  var piEvent = function () {
-
-  };
+  var piEvent = calcEvent(function () {
+    var formula = _this.skin.display.get();
+    if (formula === '' || formula && formula[formula.length - 1].search(/[(+\-×÷\^√]/) >= 0) {
+      return this.getAttribute('data-value');
+    }
+    return undefined;
+  });
 
   _this.skin.number1 = html.querySelector('.btn[data-name="number1"]');
   _this.skin.number2 = html.querySelector('.btn[data-name="number2"]');
@@ -278,7 +301,7 @@ var Custom = function (selector) {
   _this.skin.memoryRecall = html.querySelector('.btn[data-name="mrecall"]');
   _this.skin.percentage = html.querySelector('.btn[data-name="percentage"]');
   _this.skin.power = html.querySelector('.btn[data-name="power"]');
-  _this.skin.squareroot = html.querySelector('.btn[data-name="squareroot"]');
+  _this.skin.sqrt = html.querySelector('.btn[data-name="sqrt"]');
   _this.skin.pi = html.querySelector('.btn[data-name="pi"]');
 
   _this.skin.number1.addEventListener('click', numberEvent);
@@ -307,7 +330,7 @@ var Custom = function (selector) {
   _this.skin.memoryRecall.addEventListener('click', memoryRecallEvent);
   _this.skin.percentage.addEventListener('click', percentageEvent);
   _this.skin.power.addEventListener('click', powerEvent);
-  _this.skin.squareroot.addEventListener('click', squarerootEvent);
+  _this.skin.sqrt.addEventListener('click', sqrtEvent);
   _this.skin.pi.addEventListener('click', piEvent);
 };
 

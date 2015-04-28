@@ -88,7 +88,7 @@ Calc.prototype.format = function (number, decimal) {
 };
 
 Calc.prototype.parser = function (formula) {
-  formula = formula.replace(/[^0-9()+\-×÷%.^√π]/g, '');
+  formula = formula.replace(/[^0-9()+\-×÷%.\^√π]/g, '');
   var index;
   var parenthesisOpens = formula.match(/[(]/g);
   var parenthesisCloses = formula.match(/[)]/g);
@@ -112,6 +112,9 @@ Calc.prototype.parser = function (formula) {
     }
   }
 
+  // Replacing symbol π to number
+  formula = formula.replace(/π/g, this.format(Math.PI));
+
   // get errors of arithmetic combination of characters
   if (formula.match(/^[×÷%).]|\+[×÷%).]|-[×÷%).]|×[×÷%).]|÷[×÷%).]|%[0-9%(.]|\([×÷%).]|\)[.]|\.[+\-×÷%().]|\.\d+\.|[+\-×÷(.]$/g)) {
     throw new SyntaxError('invalid arithmetic combination of characters');
@@ -129,7 +132,7 @@ Calc.prototype.calculate = function (formula) {
     var next = stack.pop();
 
     // obteins the most internal parenthesis
-    part = formula.match(/\([0-9+\-×÷%.^√π]+\)/);
+    part = formula.match(/\([0-9+\-×÷%.\^√π]+\)/);
     if (part) {
       result = next(part[0].replace(/[()]/g, ''), stack);
       if (result < 0 && formula[part.index - 1] === '-') {

@@ -35,9 +35,9 @@ describe('Calc', function () {
     custom.memoryClear = $('.calc-custom .btn[data-name="mclear"]');
     custom.memoryRecall = $('.calc-custom .btn[data-name="mrecall"]');
     custom.percentage = $('.calc-custom .btn[data-name="percentage"]');
-    custom.sin = $('.calc-custom .btn[data-name="sin"]');
-    custom.cos = $('.calc-custom .btn[data-name="cos"]');
-    custom.tan = $('.calc-custom .btn[data-name="tan"]');
+    custom.power = $('.calc-custom .btn[data-name="power"]');
+    custom.sqrt = $('.calc-custom .btn[data-name="sqrt"]');
+    custom.pi = $('.calc-custom .btn[data-name="pi"]');
 
     beforeEach(function () {
       custom.clear.click();
@@ -206,29 +206,29 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3%'); });
       });
+      it('is an error insert a dot after power symbol', function () {
+        custom.number4.click()
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.dot.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('4^'); });
+      });
+      it('is an error insert a dot after square root', function () {
+        custom.number5.click()
+        .then(function () { custom.sqrt.click(); })
+        .then(function () { custom.dot.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5×√'); });
+      });
+      it('is an error insert a dot after PI', function () {
+        custom.pi.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('π'); });
+      });
     });
 
     describe('Rules to insert addition', function () {
-      it('is an error insert addition after dot', function () {
-        custom.number2.click()
-        .then(function () { custom.dot.click(); })
-        .then(function () { custom.addition.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('2.'); });
-      });
-      it('should insert addition after parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.addition.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('(+'); });
-      });
-      it('insert addition after another addition should replace the old one', function () {
-        custom.number2.click()
-        .then(function () { custom.addition.click(); })
-        .then(function () { custom.addition.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('2+'); });
-      });
       it('should replace character subtraction to addition', function () {
         custom.number2.click()
         .then(function () { custom.subtraction.click(); })
@@ -250,28 +250,34 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('2+'); });
       });
+      it('insert addition after another addition should replace the old one', function () {
+        custom.number2.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.addition.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('2+'); });
+      });
+      it('should insert addition after parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(+'); });
+      });
+      it('is an error insert addition after dot', function () {
+        custom.number2.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { custom.addition.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('2.'); });
+      });
     });
 
     describe('Rules to insert subtraction', function () {
-      it('is an error insert subtraction after dot', function () {
-        custom.number3.click()
-        .then(function () { custom.dot.click(); })
-        .then(function () { custom.subtraction.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('3.'); });
-      });
       it('should insert subtraction after parenthesis open', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.subtraction.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(-'); });
-      });
-      it('insert subtraction after another subtraction should replace the old one', function () {
-        custom.number3.click()
-        .then(function () { custom.subtraction.click(); })
-        .then(function () { custom.subtraction.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('3-'); });
       });
       it('should replace character addition to subtraction', function () {
         custom.number3.click()
@@ -294,42 +300,29 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('3-'); });
       });
+      it('insert subtraction after another subtraction should replace the old one', function () {
+        custom.number3.click()
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3-'); });
+      });
+      it('is an error insert subtraction after dot', function () {
+        custom.number3.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('3.'); });
+      });
     });
 
     describe('Rules to insert multiplication', function () {
-      it('is an error insert multiplication after dot', function () {
-        custom.number4.click()
-        .then(function () { custom.dot.click(); })
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('4.'); });
-      });
-      it('is an error insert multiplication after parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('('); });
-      });
-      it('insert multiplication after another multiplication should replace the old one', function () {
-        custom.number4.click()
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('4×'); });
-      });
       it('should replace character addition to multiplication', function () {
         custom.number4.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.multiplication.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('4×'); });
-      });
-      it('is an error replace character addition to multiplication when before addition has a parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.addition.click(); })
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('(+'); });
       });
       it('should replace character subtraction to multiplication', function () {
         custom.number4.click()
@@ -338,13 +331,6 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('4×'); });
       });
-      it('is an error replace character subtraction to multiplication when before subtraction has a parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.subtraction.click(); })
-        .then(function () { custom.multiplication.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('(-'); });
-      });
       it('should replace character division to multiplication', function () {
         custom.number4.click()
         .then(function () { custom.division.click(); })
@@ -352,42 +338,92 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('4×'); });
       });
-    });
-
-    describe('Rules to insert division', function () {
-      it('is an error insert division after dot', function () {
-        custom.number5.click()
-        .then(function () { custom.dot.click(); })
-        .then(function () { custom.division.click(); })
+      it('insert multiplication after another multiplication should replace the old one', function () {
+        custom.number4.click()
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { custom.multiplication.click(); })
         .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('5.'); });
+        .then(function (text) { expect(text).toEqual('4×'); });
       });
-      it('is an error insert division after parenthesis open', function () {
+      it('is an error insert multiplication after parenthesis open', function () {
         custom.parenthesisOpen.click()
-        .then(function () { custom.division.click(); })
+        .then(function () { custom.multiplication.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('('); });
       });
-      it('insert division after another division should replace the old one', function () {
-        custom.number5.click()
-        .then(function () { custom.division.click(); })
-        .then(function () { custom.division.click(); })
+      it('is an error insert multiplication after dot', function () {
+        custom.number4.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { custom.multiplication.click(); })
         .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('5÷'); });
+        .then(function (text) { expect(text).toEqual('4.'); });
       });
+      it('is an error insert multiplication after power', function () {
+        custom.number4.click()
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('4^'); });
+      });
+      it('is an error insert multiplication after square root', function () {
+        custom.sqrt.click()
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('√'); });
+      });
+      it('is an error replace character addition to multiplication when before addition has a parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(+'); });
+      });
+      it('is an error replace character addition to multiplication when before addition has a power symbol', function () {
+        custom.number4.click()
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('4^+'); });
+      });
+      it('is an error replace character addition to multiplication when before addition has a square root symbol', function () {
+        custom.sqrt.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('√+'); });
+      });
+      it('is an error replace character subtraction to multiplication when before subtraction has a parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(-'); });
+      });
+      it('is an error replace character subtraction to multiplication when before subtraction has a power symbol', function () {
+        custom.number4.click()
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('4^-'); });
+      });
+      it('is an error replace character subtraction to multiplication when before subtraction has a square root symbol', function () {
+        custom.sqrt.click()
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.multiplication.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('√-'); });
+      });
+    });
+
+    describe('Rules to insert division', function () {
       it('should replace character addition to division', function () {
         custom.number5.click()
         .then(function () { custom.addition.click(); })
         .then(function () { custom.division.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('5÷'); });
-      });
-      it('is an error replace character addition to division when before addition has a parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.addition.click(); })
-        .then(function () { custom.division.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('(+'); });
       });
       it('should replace character subtraction to division', function () {
         custom.number5.click()
@@ -396,6 +432,53 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('5÷'); });
       });
+      it('should replace character division to division', function () {
+        custom.number5.click()
+        .then(function () { custom.division.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5÷'); });
+      });
+      it('insert division after another division should replace the old one', function () {
+        custom.number5.click()
+        .then(function () { custom.division.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5÷'); });
+      });
+      it('is an error insert division after parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('('); });
+      });
+      it('is an error insert division after dot', function () {
+        custom.number5.click()
+        .then(function () { custom.dot.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5.'); });
+      });
+      it('is an error insert division after power', function () {
+        custom.number5.click()
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('5^'); });
+      });
+      it('is an error insert division after square root', function () {
+        custom.sqrt.click()
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('√'); });
+      });
+      it('is an error replace character addition to division when before addition has a parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.addition.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(+'); });
+      });
       it('is an error replace character subtraction to division when before subtraction has a parenthesis open', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.subtraction.click(); })
@@ -403,12 +486,20 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(-'); });
       });
-      it('should replace character division to division', function () {
+      it('is an error replace character subtraction to division when before subtraction has a power symbol', function () {
         custom.number5.click()
-        .then(function () { custom.division.click(); })
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.subtraction.click(); })
         .then(function () { custom.division.click(); })
         .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('5÷'); });
+        .then(function (text) { expect(text).toEqual('5^-'); });
+      });
+      it('is an error replace character subtraction to division when before subtraction has a square root symbol', function () {
+        custom.sqrt.click()
+        .then(function () { custom.subtraction.click(); })
+        .then(function () { custom.division.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('√-'); });
       });
     });
 
@@ -440,6 +531,12 @@ describe('Calc', function () {
         .then(function () { custom.parenthesisOpen.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('6%×('); });
+      });
+      it('should include ×( when inserted after pi', function () {
+        custom.pi.click()
+        .then(function () { custom.parenthesisOpen.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('π×('); });
       });
     });
 
@@ -483,6 +580,27 @@ describe('Calc', function () {
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(7÷'); });
       });
+      it('is an error insert a parenthesis close after a parenthesis open', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.parenthesisClose.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('('); });
+      });
+      it('is an error insert a parenthesis close after power', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.number7.click(); })
+        .then(function () { custom.power.click(); })
+        .then(function () { custom.parenthesisClose.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(7^'); });
+      });
+      it('is an error insert a parenthesis close after square root', function () {
+        custom.parenthesisOpen.click()
+        .then(function () { custom.sqrt.click(); })
+        .then(function () { custom.parenthesisClose.click(); })
+        .then(function () { return custom.display.getText(); })
+        .then(function (text) { expect(text).toEqual('(√'); });
+      });
       it('is an error insert a parenthesis close that no have a parenthesis open corresponding', function () {
         custom.parenthesisOpen.click()
         .then(function () { custom.number7.click(); })
@@ -490,12 +608,6 @@ describe('Calc', function () {
         .then(function () { custom.parenthesisClose.click(); })
         .then(function () { return custom.display.getText(); })
         .then(function (text) { expect(text).toEqual('(7)'); });
-      });
-      it('is an error insert a parenthesis close after a parenthesis open', function () {
-        custom.parenthesisOpen.click()
-        .then(function () { custom.parenthesisClose.click(); })
-        .then(function () { return custom.display.getText(); })
-        .then(function (text) { expect(text).toEqual('('); });
       });
     });
 
