@@ -113,7 +113,7 @@ Calc.prototype.parser = function (formula) {
   }
 
   // Replacing symbol π to number
-  formula = formula.replace(/π/g, this.format(Math.PI));
+  formula = formula.replace(/π/g, Calc.prototype.format(Math.PI));
 
   // get errors of arithmetic combination of characters
   if (formula.match(/^[×÷%).]|\+[×÷%).]|-[×÷%).]|×[×÷%).]|÷[×÷%).]|%[0-9%(.]|\([×÷%).]|\)[.]|\.[+\-×÷%().]|\.\d+\.|[+\-×÷(.]$/g)) {

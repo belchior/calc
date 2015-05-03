@@ -197,9 +197,9 @@ describe('Calc', function () {
   describe('Function parser', function () {
 
     var errorMessage;
-    var thrower = function (func, param) {
+    var thrower = function (fn, param) {
       return function () {
-        func(param);
+        fn(param);
       };
     };
     var errorTester = function (errorMessage) {
