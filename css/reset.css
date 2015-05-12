@@ -22,7 +22,6 @@ body {
   line-height: 140%;
 }
 article,aside,details,footer,header,section {
-  display: table;
   width: 100%;
 }
 menu,nav,label {

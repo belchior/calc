@@ -24,89 +24,63 @@ if (isIE()) {
 window.onload = function () {
   'use strict';
 
-  var sidebar = (function () {
-    var i;
-    var hide = 0;
-    var scroll = 0;
+  window.sidebar = (function () {
     var elem = document.querySelector('.sidebar');
-    var hamburgerMenu = elem.querySelector('.hamburger-menu');
-    var menuItems = elem.querySelectorAll('.main-menu .item');
+    var modes = ['normal', 'compact', 'compact-active', 'mobile', 'mobile-active'];
 
+    var hamburgerMenu = elem.querySelector('.hamburger-menu');
     var hamburgerMenuEvent = function () {
       if (sidebar.mode() === 'mobile') { return sidebar.setMode('mobile-active'); }
       if (sidebar.mode() === 'compact') { return sidebar.setMode('compact-active'); }
       return sidebar.setMode('normal');
     };
+    hamburgerMenu.addEventListener('click', hamburgerMenuEvent);
 
+    var menuItems = elem.querySelectorAll('.main-menu .item');
     var menuItemsEvent = function () {
-      var i;
       var section;
-
-      for (i = 0; i < menuItems.length; i += 1) {
-        section = document.querySelector(menuItems[i].getAttribute('href'));
-        section.style.display = 'none';
-      }
+      [].forEach.call(menuItems, function (item) {
+        section = document.querySelector(item.getAttribute('href'));
+        section.className = section.className.replace(/\s*active/g, '');
+      });
       section = document.querySelector(this.getAttribute('href'));
-      section.style.display = 'block';
-
-      window.location.hash = this.getAttribute('href');
+      section.className = section.className.replace(/\s*active/g, '') + ' active';
       sidebar.setMode('normal');
     };
+    [].forEach.call(menuItems, function (item) {
+      item.addEventListener('click', menuItemsEvent);
+    });
 
     var mode = function () {
+      var className = document.body.className.split(/\s+/);
       var base = parseInt(getComputedStyle(document.body)['font-size']) || 1;
       var width = parseInt(getComputedStyle(elem).width);
       var height = parseInt(getComputedStyle(elem).height);
 
+      // filter classes that are not Menu Mode and then return the last
+      className = className.filter(function (cName) {
+        return modes.indexOf(cName) !== -1;
+      }).pop();
+      if (className && className !== 'normal') {return className;}
+
+      // will determine dynamically what is the Mode of Menu
       if (width > height) {return 'mobile';}
-      if (
-        window.innerWidth > 560 &&
-        window.innerWidth <= 780 &&
-        document.body.getAttribute('class').search('compact-active') < 0
-      ) {
-        return 'compact';
-      }
+      if (window.innerWidth > 550 && window.innerWidth <= 790) {return 'compact';}
       if (window.innerWidth > 780) {return 'normal';}
 
       return '';
     };
 
     var setMode = function (mode) {
-      var attr = document.body.getAttribute('class') || '';
-      attr = attr.split(' ');
-
-      if (['compact', 'compact-active', 'mobile', 'mobile-active'].indexOf(mode)) {
-        attr.splice(attr.indexOf(mode), 1);
-        attr.push(mode);
-
-      } else {
-        attr.splice(attr.indexOf('compact'), 1);
-        attr.splice(attr.indexOf('compact-active'), 1);
-        attr.splice(attr.indexOf('mobile'), 1);
-        attr.splice(attr.indexOf('mobile-active'), 1);
+      var className = document.body.className.split(/\s+/);
+      if (modes.indexOf(mode) < 0) {
+        return;
       }
-
-      document.body.setAttribute('class', attr.join(' '));
+      className = className.filter(function (cName) {
+        return modes.indexOf(cName) === -1;
+      });
+      document.body.className = className.join(' ') + ' ' + mode;
     };
-
-    var position = 0;
-    var bar = document.querySelector('.sidebar');
-    var scrollEvent = function () {
-      if (sidebar.mode() === 'mobile') {
-        if (document.body.scrollTop > position && position > 0) {
-          bar.style.display = 'none';
-        } else {
-          bar.style.display = 'block';
-        }
-        position = document.body.scrollTop;
-      }
-    };
-
-    for (i = 0; i < menuItems.length; i += 1) {
-      menuItems[i].addEventListener('click', menuItemsEvent, false);
-    }
-    hamburgerMenu.addEventListener('click', hamburgerMenuEvent, false);
-    window.addEventListener('scroll', scrollEvent, false);
 
     return {
       mode: mode,
