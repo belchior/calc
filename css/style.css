@@ -21,6 +21,7 @@
   display: flex | inline-flex;
 
   flex-direction: row | row-reverse | column | column-reverse;
+  flex-direction: row | row-reverse | column | column-reverse;
   flex-wrap: nowrap | wrap | wrap-reverse;
   flex-flow: [flex-direction] | [flex-wrap];
 
@@ -47,7 +48,9 @@
 }
 body {
   position: fixed;
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-direction: row;
   flex-direction: row;
   width: 100%;
   height: 100%;
@@ -60,17 +63,31 @@ body {
 .sidebar {
   z-index: 1;
   overflow: hidden;
+
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: column;
   flex-direction: column;
+
+  -webkit-flex-basis: 18.75em;
   flex-basis: 18.75em;
+
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
+
+  -webkit-align-items: stretch;
   align-items: stretch;
+
   background-color: #eeeeee;
   box-shadow: 0 0 0.1875em 0 rgba(0,0,0,0.4);
+  transition: -webkit-flex-basis 0.3s cubic-bezier(0, 0, 0.2, 1);
   transition: flex-basis 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 .hamburger-menu {
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
+
   visibility: hidden;
   margin: 1em;
   border-radius: 0.1875em;
@@ -113,9 +130,15 @@ body {
 }
 .sidebar .main-menu,
 .sidebar aside {
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: column;
   flex-direction: column;
+
+  -webkit-flex-shrink: 0;
   flex-shrink: 0;
+
   width: 18.75em;
 }
 .sidebar .icon {
@@ -140,21 +163,40 @@ body {
 }
 
 article {
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: column;
   flex-direction: column;
+
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 section {
   overflow: hidden;
+
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: column;
   flex-direction: column;
+
+  -webkit-align-items: center;
   align-items: center;
+
+  -webkit-justify-content: center;
   justify-content: center;
+
+  -webkit-flex-basis: 0;
   flex-basis: 0;
+
+  -webkit-flex-grow: 0;
   flex-grow: 0;
+
   transition: all 0.3s cubic-bezier(0, 0, 0.2, 1) 0.3s;
 }
 section.active {
+  -webkit-flex-grow: 1;
   flex-grow: 1;
 }
 #custom {
@@ -174,12 +216,23 @@ section.active {
 }
 
 .calcError {
-  -webkit-animation-name: shake-horizontal; animation-name: shake-horizontal;
-  -webkit-animation-duration: 100ms; animation-duration: 100ms;
-  -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-in-out; animation-timing-function: ease-in-out;
-  -webkit-animation-delay: 0s; animation-delay: 0s;
-  -webkit-animation-play-state: running; animation-play-state: running;
+  -webkit-animation-name: shake-horizontal;
+  animation-name: shake-horizontal;
+
+  -webkit-animation-duration: 100ms;
+  animation-duration: 100ms;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
 }
 
 
@@ -187,9 +240,11 @@ section.active {
   Modes
 */
 .compact {
+  -webkit-flex-direction: row;
   flex-direction: row;
 }
 .compact .sidebar {
+  -webkit-flex-basis: 4em;
   flex-basis: 4em;
 }
 .compact .hamburger-menu {
@@ -200,13 +255,17 @@ section.active {
 }
 
 .compact-active {
+  -webkit-flex-direction: row;
   flex-direction: row;
+
+  -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
 
   -webkit-animation-name: compact-active-sidebar;
   animation-name: compact-active-sidebar;
 }
 .compact-active .sidebar {
+  -webkit-flex-basis: 18.75em;
   flex-basis: 18.75em;
 }
 .compact-active .hamburger-menu {
@@ -217,9 +276,11 @@ section.active {
 }
 
 .mobile {
+  -webkit-flex-direction: column;
   flex-direction: column;
 }
 .mobile .sidebar {
+  -webkit-flex-basis: 4em;
   flex-basis: 4em;
 }
 .mobile .hamburger-menu {
@@ -229,14 +290,19 @@ section.active {
   visibility: visible;
 }
 .mobile article {
+  -webkit-flex-basis: 100%;
   flex-basis: 100%;
 }
 
 .mobile-active {
+  -webkit-flex-direction: row;
   flex-direction: row;
+
+  -webkit-flex-wrap: nowrap;
   flex-wrap: nowrap;
 }
 .mobile-active .sidebar {
+  -webkit-flex-basis: 18.75em;
   flex-basis: 18.75em;
 
   -webkit-animation-name: mobile-active-sidebar;
@@ -250,12 +316,23 @@ section.active {
 }
 .compact-active .sidebar,
 .mobile-active .sidebar {
-  -webkit-animation-duration: 300ms; animation-duration: 300ms;
-  -webkit-animation-iteration-count: 1; animation-iteration-count: 1;
-  -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards;
-  -webkit-animation-timing-function: ease-in-out; animation-timing-function: ease-in-out;
-  -webkit-animation-delay: 0s; animation-delay: 0s;
-  -webkit-animation-play-state: running; animation-play-state: running;
+  -webkit-animation-duration: 300ms;
+  animation-duration: 300ms;
+
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
 }
 
 
@@ -264,6 +341,7 @@ section.active {
 */
 @media screen and (max-width: 790px) {
   .sidebar {
+    -webkit-flex-basis: 4em;
     flex-basis: 4em;
   }
   .hamburger-menu {
@@ -272,12 +350,14 @@ section.active {
 }
 @media screen and (max-width: 550px) {
   body {
+    -webkit-flex-direction: column;
     flex-direction: column;
   }
   .hamburger-menu .text {
     visibility: visible;
   }
   article {
+    -webkit-flex-basis: 100%;
     flex-basis: 100%;
   }
 }
@@ -291,19 +371,31 @@ section.active {
   Animations
 */
 @-webkit-keyframes compact-active-sidebar {
+  0% { -webkit-flex-basis: 4em; }
   0% { flex-basis: 4em; }
+
+  100% { -webkit-flex-basis: 18.75em; }
   100% { flex-basis: 18.75em; }
 }
 @keyframes compact-active-sidebar {
+  0% { -webkit-flex-basis: 4em; }
   0% { flex-basis: 4em; }
+
+  100% { -webkit-flex-basis: 18.75em; }
   100% { flex-basis: 18.75em; }
 }
 @-webkit-keyframes mobile-active-sidebar {
+  0% { -webkit-flex-basis: 0; }
   0% { flex-basis: 0; }
+
+  100% { -webkit-flex-basis: 18.75em; }
   100% { flex-basis: 18.75em; }
 }
 @keyframes mobile-active-sidebar {
+  0% { -webkit-flex-basis: 0; }
   0% { flex-basis: 0; }
+
+  100% { -webkit-flex-basis: 18.75em; }
   100% { flex-basis: 18.75em; }
 }
 
