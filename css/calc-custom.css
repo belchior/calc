@@ -22,12 +22,18 @@
 */
 .calc-custom {
   box-sizing: border-box;
+
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: row;
   flex-direction: row;
+
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+
   border-radius: 0.375em;
   max-width: 29em;
-
   background:
     linear-gradient(
       to bottom,
@@ -58,35 +64,62 @@
   text-align: right;
   color: #666666;
   background-color: #dddddd;
-  outline: none;
 }
 .calc-custom .display:focus {
   border: 0.05em solid #7E5AB8;
   color: #ffffff;
   background-color: #998FB8;
+  outline: none;
 }
 .calc-custom .keyboard {
   box-sizing: border-box;
+
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: row;
   flex-direction: row;
+
   padding: 0.5em 4.5%;
-  text-align: center;
+  /* text-align: center; */
+}
+.calc-custom .functions {
+  max-width: 37.67%;
+}
+.calc-custom .arithmetic {
+  max-width: 62.33%;
 }
 .calc-custom .functions,
 .calc-custom .arithmetic {
   box-sizing: border-box;
+
+  display: -webkit-flex;
   display: flex;
+
+  -webkit-flex-direction: row;
   flex-direction: row;
+
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+
+  -webkit-justify-content: space-between;
   justify-content: space-between;
+
+
+  -webkit-align-content: space-between;
   align-content: space-between;
+
+  -webkit-align-items: center;
   align-items: center;
+
+  -webkit-flex-basis: auto;
+  flex-basis: auto;
 }
 .calc-custom .btn {
   order: 1;
   margin: 0.3125em;
   border-radius: 0.375em;
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 0.0625em solid rgba(255,255,255,0.10);
   width: 2.5em;
   height: 2.5em;
   text-align: center;
@@ -138,7 +171,14 @@
     width: 80%;
   }
   .calc-custom .keyboard {
+    -webkit-flex-direction: column;
     flex-direction: column;
+  }
+  .calc-custom .functions {
+    max-width: 100%;
+  }
+  .calc-custom .arithmetic {
+    max-width: 100%;
   }
   .functions .btn.double {
     margin: 0.4465em;
@@ -146,14 +186,14 @@
     height: 3.5715em;
     font-size: 0.7em;
   }
-  .calc-custom .btn[data-name="delete"]     {order: 1;}
-  .calc-custom .btn[data-name="pi"]         {order: 3;}
-  .calc-custom .btn[data-name="clear"]      {order: 2;}
-  .calc-custom .btn[data-name="madd"]       {order: 4;}
-  .calc-custom .btn[data-name="msubtract"]  {order: 5;}
-  .calc-custom .btn[data-name="power"]      {order: 6;}
-  .calc-custom .btn[data-name="sqrt"]       {order: 7;}
-  .calc-custom .btn[data-name="percentage"] {order: 8;}
-  .calc-custom .btn[data-name="mrecall"]    {order: 9;}
-  .calc-custom .btn[data-name="mclear"]     {order: 10;}
+  .calc-custom .btn[data-name="delete"]     {-webkit-order: 1; order: 1;}
+  .calc-custom .btn[data-name="pi"]         {-webkit-order: 3; order: 3;}
+  .calc-custom .btn[data-name="clear"]      {-webkit-order: 2; order: 2;}
+  .calc-custom .btn[data-name="madd"]       {-webkit-order: 4; order: 4;}
+  .calc-custom .btn[data-name="msubtract"]  {-webkit-order: 5; order: 5;}
+  .calc-custom .btn[data-name="power"]      {-webkit-order: 6; order: 6;}
+  .calc-custom .btn[data-name="sqrt"]       {-webkit-order: 7; order: 7;}
+  .calc-custom .btn[data-name="percentage"] {-webkit-order: 8; order: 8;}
+  .calc-custom .btn[data-name="mrecall"]    {-webkit-order: 9; order: 9;}
+  .calc-custom .btn[data-name="mclear"]     {-webkit-order: 10; order: 10;}
 }

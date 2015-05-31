@@ -32,10 +32,5 @@
     "blanket": {
       "pattern": "/Users/belchior/www/calc/js/calc.js"
     }
-  },
-  "jscsConfig": {
-    "preset": "yandex",
-    "validateIndentation": 2,
-    "maximumLineLength": 200
   }
 }

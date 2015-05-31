@@ -1,6 +1,8 @@
-.DS_Store
 todo.txt
 node_modules
 coverage.html
 *.log
 *.ai
+.DS_Store
+.jscsrc
+.csslintrc
