@@ -11,27 +11,33 @@ document.addEventListener('DOMContentLoaded', function () {
   var menuLinks = app.querySelectorAll('.menu .list-item:not(.external)');
   var layoutOptions = app.querySelectorAll('.layout .list-item');
 
-  var hamburgerMenuEvent = function (event) {
+  var sidebarEvent = function (fn) {
+    return function () {
+      sidebarWrapper.scrollTop = 0;
+      fn.apply(this, arguments);
+    };
+  };
+
+  var hamburgerMenuEvent = sidebarEvent(function (event) {
     app.classList.toggle('modal-sidebar');
-  };
+  });
 
-  var closeSidebar = function (event) {
-    app.classList.remove('modal-sidebar');
-  };
-
-  var layoutOptionAction = function (event) {
+  var layoutOptionEvent = sidebarEvent(function (event) {
     var layoutName = this.dataset.option;
-
     layouts.forEach(function (layout) {
       app.classList.remove(layout);
     });
     app.classList.add(layoutName);
-  };
+  });
 
-  var menuLinksClick = function (event) {
+  var menuLinksEvent = sidebarEvent(function (event) {
     var hash = this.hash;
     showArticle(hash);
     sidebar.classList.remove('active');
+  });
+
+  var closeSidebar = function (event) {
+    app.classList.remove('modal-sidebar');
   };
 
   var showArticle = function (query) {
@@ -76,10 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
   sidebarWrapper.addEventListener('click', stopPropagation);
   hamburgerMenu.addEventListener('click', hamburgerMenuEvent);
   forEachNode(menuLinks, function (item) {
-    item.addEventListener('click', menuLinksClick);
+    item.addEventListener('click', menuLinksEvent);
     item.addEventListener('click', closeSidebar);
   });
   forEachNode(layoutOptions, function (item) {
-    item.addEventListener('click', layoutOptionAction);
+    item.addEventListener('click', layoutOptionEvent);
   });
 });

@@ -48,22 +48,28 @@
     }
 
     .list {
+      overflow-x: hidden;
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: column nowrap;
+      flex: 0 0 auto;
 
       &-title {
-        margin: 0 0 0 1em;
+        box-sizing: border-box;
+        padding: 0 0 0 1em;
       }
 
       &-item {
         display: flex;
-        flex: 0 0 @base-opened;
+        flex: 0 0 auto;
         align-items: center;
+        width: @base-opened;
       }
 
       &-item-image {
         margin: 0 1em;
+        flex: 0 0 2em;
         width: 2em;
+        height: 2em;
       }
     }
 
@@ -108,16 +114,16 @@
       flex: 0 0 auto;
       padding: 0 0 1em 0;
 
-      .list-title {
-        margin: 0 0 0.5em 1em;
-      }
-
       .list-item {
         padding: 0.5em 0;
 
         &:last-child {
           margin: 0;
         }
+      }
+
+      .list-title {
+        padding: 0 0 0 1em;
       }
 
       .author {
@@ -149,8 +155,14 @@
         visibility: visible;
       }
 
-      .list-title {
-        visibility: hidden;
+      .list {
+        &-title {
+          visibility: hidden;
+        }
+
+        &-item {
+          width: @base-opened;
+        }
       }
     }
   }
@@ -173,10 +185,8 @@
       }
 
       .list {
-        flex-flow: column nowrap;
-
         &-item {
-          flex: 0 1 auto;
+          width: auto;
         }
 
         &-title {
@@ -201,6 +211,7 @@
         background-color 0.2s linear;
 
       .sidebar-wrapper {
+        overflow-y: auto;
         flex: 0 1 @base-opened;
         transition: flex 0.2s linear;
       }

@@ -65,7 +65,7 @@
     },
     "js": {
       "orig": [
-        "build/app.js"
+        "src/js/**/*.js"
       ],
       "dest": "build/",
       "mainFile": "app.js"
@@ -75,8 +75,7 @@
         "src/less/**/*.less"
       ],
       "dest": "build/",
-      "mainFile": "src/less/app.less",
-      "mainFileCompiled": "app.css"
+      "mainFile": "src/less/app.less"
     },
     "livereload": {
       "orig": "build/*.{html,css,js}"
