@@ -22,16 +22,8 @@
 */
 .calc-custom {
   box-sizing: border-box;
-
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-flex-direction: row;
-  flex-direction: row;
-
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-
+  flex-flow: row wrap;
   border-radius: 0.375em;
   max-width: 29em;
   background:
@@ -73,15 +65,8 @@
 }
 .calc-custom .keyboard {
   box-sizing: border-box;
-
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-flex-direction: row;
-  flex-direction: row;
-
   padding: 0.5em 4.5%;
-  /* text-align: center; */
 }
 .calc-custom .functions {
   max-width: 37.67%;
@@ -92,27 +77,11 @@
 .calc-custom .functions,
 .calc-custom .arithmetic {
   box-sizing: border-box;
-
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-flex-direction: row;
-  flex-direction: row;
-
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-
-  -webkit-justify-content: space-between;
+  flex-flow: row wrap;
   justify-content: space-between;
-
-
-  -webkit-align-content: space-between;
   align-content: space-between;
-
-  -webkit-align-items: center;
   align-items: center;
-
-  -webkit-flex-basis: auto;
   flex-basis: auto;
 }
 .calc-custom .btn {
@@ -171,8 +140,7 @@
     width: 80%;
   }
   .calc-custom .keyboard {
-    -webkit-flex-direction: column;
-    flex-direction: column;
+    flex-flow: column;
   }
   .calc-custom .functions {
     max-width: 100%;
