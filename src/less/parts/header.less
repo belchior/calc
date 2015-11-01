@@ -1,0 +1,233 @@
+
+// define the width or height of a sidebar component
+@base-opened: 18.75em;
+@base-compressed: 4em;
+
+.header {
+  display: flex;
+  flex: 0 0 @base-opened;
+  font-family:'Montserrat Alternates';
+  // box-shadow: 0 0 0.0625em rgba(0,0,0,0.5);
+
+  .sidebar {
+    overflow-x: hidden;
+    display: flex;
+    flex: 1 1 auto;
+    transition:
+      width 0s linear 0.2s,
+      background-color 0.2s linear;
+
+    .sidebar-wrapper {
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      flex-flow: column nowrap;
+      flex: 1 1 auto;
+      background-color: #eeeeee;
+      transition: flex 0s linear;
+    }
+
+    .hamburger-menu {
+      visibility: hidden;
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      margin: 1em;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color linear 1s;
+
+      &:focus {
+        box-shadow: 0 0 0 0.0625em;
+      }
+
+      .image {
+        margin: 0 1em 0 0;
+        flex: 0 0 2em;
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-flow: row wrap;
+
+      &-title {
+        margin: 0 0 0 1em;
+      }
+
+      &-item {
+        display: flex;
+        flex: 0 0 @base-opened;
+        align-items: center;
+      }
+
+      &-item-image {
+        margin: 0 1em;
+        width: 2em;
+      }
+    }
+
+    .menu {
+      padding: 0 0 1em 0;
+
+      .list-item {
+        margin: 0 0 0.5em 0;
+        padding: 0.5em 0;
+        color: #ffffff;
+
+        &:last-child {
+          margin: 0;
+        }
+
+        &.link-custom {
+          background-color: #b48fe6;
+        }
+
+        &.link-terminal {
+          background-color: #66cc66;
+        }
+
+        &.link-macwidget {
+          background-color: #85acd3;
+        }
+      }
+    }
+
+    .layout {
+      flex: 0 0 auto;
+      padding: 0 0 1em 0;
+
+      .list-item {
+        cursor: pointer;
+      }
+    }
+
+    .about {
+      display: flex;
+      flex-flow: column;
+      flex: 0 0 auto;
+      padding: 0 0 1em 0;
+
+      .list-title {
+        margin: 0 0 0.5em 1em;
+      }
+
+      .list-item {
+        padding: 0.5em 0;
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      .author {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  @media (max-width: @tablet) {
+    .compressed.header();
+  }
+
+  @media (max-width: @smartphone) {
+    .top.header();
+  }
+}
+
+.compressed {
+  .header {
+    overflow-x: hidden;
+    flex: 0 0 @base-compressed;
+
+    .sidebar {
+      .sidebar-wrapper {
+        flex: 0 0 @base-compressed;
+      }
+
+      .hamburger-menu {
+        visibility: visible;
+      }
+
+      .list-title {
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.top {
+  .header {
+    overflow-y: hidden;
+    flex: 0 0 @base-compressed;
+
+    .sidebar {
+      .sidebar-wrapper {
+        overflow-y: hidden;
+        flex: 1 1 auto;
+      }
+
+      .hamburger-menu {
+        flex: 0 0 auto;
+        visibility: visible;
+      }
+
+      .list {
+        flex-flow: column nowrap;
+
+        &-item {
+          flex: 0 1 auto;
+        }
+
+        &-title {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+
+.modal-sidebar {
+  .header {
+    .sidebar {
+      z-index: 10;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      box-shadow: 0 0 0.3125em rgba(0,0,0,0.5);
+      transition:
+        width 0s linear,
+        background-color 0.2s linear;
+
+      .sidebar-wrapper {
+        flex: 0 1 @base-opened;
+        transition: flex 0.2s linear;
+      }
+
+      .hamburger-menu {
+        visibility: visible;
+      }
+
+      .list-title {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.modal-sidebar.compressed {
+  .header {
+    flex: 0 0 @base-compressed;
+  }
+}
+
+.modal-sidebar.top {
+  .header {
+    flex: 0 0 @base-compressed;
+
+    .sidebar .sidebar-wrapper {
+      overflow-y: auto;
+    }
+  }
+}

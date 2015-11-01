@@ -1,0 +1,47 @@
+.main {
+  overflow-y: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 auto;
+
+  .article {
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column wrap;
+    flex: 0 0 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    transition: flex 0.3s linear;
+
+    &.active {
+      flex: 1 0 auto;
+    }
+
+    &#custom {
+      border-top: 0.3125em solid #7e5ab8;
+      font-family: Helvetica, Arial, Sans-serif;
+      background-color: #b48fe6;
+    }
+
+    &#terminal {
+      border-top: 0.3125em solid #1ea935;
+      font-family: Monaco, 'Lucida Console', Arial;
+      background-color: #66cc66;
+    }
+
+    &#macwidget {
+      border-top: 0.3125em solid #3276b5;
+      font-family: Helvetica, Arial, Sans-serif;
+      background-color: #85acd3;
+    }
+  }
+
+  @media (max-width: @smartphone) {
+    flex-flow: row wrap;
+  }
+  @media (max-height: 30em) {
+    flex-flow: row wrap;
+  }
+}

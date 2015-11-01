@@ -1,0 +1,47 @@
+/* Page */
+@import "parts/reset.less";
+@import "parts/global-vars.less";
+@import "parts/header.less";
+@import "parts/main.less";
+@import "parts/footer.less";
+
+/* Other */
+@import "parts/animations.less";
+
+/* Calc */
+@import "calc/calc-custom.less";
+@import "calc/calc-terminal.less";
+@import "calc/calc-macwidget.less";
+
+@font-face{
+  font-family:'Montserrat Alternates';
+  font-style:normal;
+  font-weight:400;
+  src:local('MontserratAlternates-Regular'),
+  url(MontserratAlternates-Regular.ttf) format('opentype')
+}
+
+.app {
+  position: fixed;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  height: 100%;
+  font-family: Helvetica, Arial;
+
+  &.compressed {
+    flex-flow: row nowrap;
+  }
+
+  &.top {
+    flex-flow: column nowrap;
+  }
+
+  &.modal-sidebar.top {
+    flex-flow: row nowrap;
+  }
+
+  @media (max-width: @smartphone) {
+    .app.top();
+  }
+}

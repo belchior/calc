@@ -1,6 +1,6 @@
 {
   "name": "calc",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "> Slightly inspired by Widget Calculator from Mac OS X.",
   "main": "index.js",
   "directories": {
@@ -19,18 +19,73 @@
     "widget"
   ],
   "author": "Belchior Oliveira",
-  "license": "Creative Commons",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/belchior/calc/issues"
   },
   "homepage": "https://github.com/belchior/calc",
   "devDependencies": {
     "blanket": "^1.1.6",
+    "browser-sync": "^2.9.11",
+    "del": "^1.2.1",
+    "glob": "^5.0.14",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-csslint": "^0.2.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "imagemin-optipng": "^4.3.0",
+    "imagemin-svgo": "^4.1.2",
     "mocha": "^1.21.4"
   },
   "config": {
     "blanket": {
       "pattern": "/Users/belchior/www/calc/js/calc.js"
+    }
+  },
+  "armeiro": {
+    "css": {
+      "orig": [
+        "build/app.css"
+      ],
+      "dest": "build/",
+      "mainFile": "app.css"
+    },
+    "images": {
+      "orig": [
+        "src/img/**/*.{gif,jpg,jpeg,png}",
+        "!src/img/sprite/*"
+      ],
+      "dest": "build/"
+    },
+    "js": {
+      "orig": [
+        "build/app.js"
+      ],
+      "dest": "build/",
+      "mainFile": "app.js"
+    },
+    "less": {
+      "orig": [
+        "src/less/**/*.less"
+      ],
+      "dest": "build/",
+      "mainFile": "src/less/app.less",
+      "mainFileCompiled": "app.css"
+    },
+    "livereload": {
+      "orig": "build/*.{html,css,js}"
+    },
+    "svg": {
+      "orig": [
+        "src/img/**/*.svg"
+      ],
+      "dest": "build/"
     }
   }
 }

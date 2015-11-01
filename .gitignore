@@ -1,8 +1,6 @@
-todo.txt
+armeiro
+build
 node_modules
-coverage.html
-*.log
-*.ai
-.DS_Store
-.jscsrc
-.csslintrc
+other
+
+*.DS_Store
