@@ -1,11 +1,6 @@
 # Calculadora Aritmética
 > Elegantes, modernas e divertidas.
 
-# Visão geral
-Eu acredito na Web, e acredito que ela existe para melhorar as nossas vidas, este projeto é uma amostra de que software básicos como uma calculadora não precisa ser nativo, você não precisa ter um software diferente em cada dispositivo que faz a mesma coisa, onde cada um tem uma interface e uma forma diferente de usar. Com a Web você pode ter apenas um software que vai funcionar em varios dispositivos.
-
-Calculadora Aritmética é um projeto de código livre e qualquer pessoa pode fazer dele algo melhor. Se você também acredita na Web venha fazer parte desse projeto, mande um pull request com suas idéias.
-
 [![vcard](https://raw.githubusercontent.com/belchior/calc/master/img/vcard.png)](http://belchior.github.io/calc)
 
 [Demo](http://belchior.github.io/calc)
@@ -16,7 +11,7 @@ Você pode usar as calculadoras como um app no seu smartphone. No Android usando
 Este projeto usa uma tecnologia chamada Appcache que permite usar as calculadoras mesmo estando offline.
 
 ## Suporte
-Chrome, Firefox, Safari e IE 9+
+Chrome, Firefox, Safari e IE 11+
 
 ## Licença
 MIT
