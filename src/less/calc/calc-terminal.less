@@ -19,98 +19,78 @@
   15px = 0.9375em
   16px = 1em
 */
+
+@max-base: 18.75em;
+
 .calc-terminal {
-  box-sizing: border-box;
-  border-radius: 0.6em;
-  width: 18.75em;
-  font-size: 1em;
+  display: flex;
+  flex-flow: column;
+  flex: 0 0 auto;
+  border-radius: 0.4375em;
+  font-weight: bold;
+  background: #000000;
   color: #ffffff;
-  outline: none;
-}
-.calc-terminal .display {
-  box-sizing: border-box;
-  overflow: hidden;
-  border-radius: 0.6em 0.6em 0 0;
-  height: 7.5em;
-  line-height: 1.5em;
-  background-color: #333333;
-}
-.calc-terminal .output {
-  overflow: hidden;
-  height: 5.625em;
-}
-.calc-terminal .output .result {
-  display: block;
-  padding-right: 0.3125em;
-  line-height: 1.4424em;
-  text-align: right;
-  font-size: 1.25em;
-}
-.calc-terminal .output .result:after {
-  content: " <";
-  color: #66cc66;
-}
-.calc-terminal .input {
-  box-sizing: border-box;
-  display: block;
-  margin: 0;
-  border: 0;
-  padding: 0;
-  padding-right: 1.5em;
-  width: 100%;
-  height: 1.429em;
-  line-height: 1.25em;
-  font-size: 1.25em;
-  text-align: right;
-  color: #ffffff;
-  background-color: #333333;
-}
-.calc-terminal .input:after {
-  content: " $";
-  margin: 0 -1.1875em 0 0;
-  color: #66cc66;
-}
 
-.calc-terminal .keyboard {
-  display: table;
-  border-radius: 0 0 0.6em 0.6em;
-  width: 18.8em;
-  background-color: #000000;
+  .display {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column;
+    border-radius: 0.4375em 0.4375em 0 0;
+    width: 100%;
+    height: 7em;
+    text-align: right;
+    background: #333333;
 
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.calc-terminal .btn {
-  box-sizing: border-box;
-  float: left;
-  display: inline-block;
-  border-radius: 0.1924em;
-  width: 3.5715em;
-  height: 3.334em;
-  font-size: 1.3125em;
-  line-height: 3.5715em;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  color: #ffffff;
-  background-color: transparent;
-  transition-property: background;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-out;
-}
-.calc-terminal .btn:active {
-  background: #333333;
-}
-.calc-terminal .result {
-  cursor: pointer;
-}
-.calc-terminal .btn:focus,
-.calc-terminal .output:focus,
-.calc-terminal .input:focus,
-.calc-terminal .result:focus {
-  outline: none;
-  box-shadow: inset 0 0 0 1px #999999;
+    .output {
+      overflow: hidden;
+      display: flex;
+      flex-flow: column;
+      flex: 3 0 0em;
+
+      .result {
+        box-sizing: border-box;
+        display: block;
+        flex: 1 0 33.3333%;
+        padding: 0.125em 0.625em;
+      }
+    }
+
+    .input {
+      box-sizing: border-box;
+      flex: 1 0 0em;
+      padding: 0 0.625em;
+    }
+  }
+
+  .keyboard {
+    display: flex;
+    flex-flow: column;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .row {
+      display: flex;
+      flex: 1 1 auto;
+
+      .btn {
+        width: 4em;
+        height: 4em;
+        cursor: pointer;
+        background-color: transparent;
+        color: inherit;
+        transition: background 0.5s ease-out;
+      }
+    }
+  }
+
+  .btn:focus,
+  .output:focus,
+  .input:focus,
+  .result:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 0.0625em #999999;
+  }
 }

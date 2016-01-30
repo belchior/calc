@@ -1,8 +1,11 @@
 'use strict';
 
-var armeiro = require('./armeiro');
+var Armeiro = require('./armeiro');
+var armeiro = require('./armeiro/armeiro_modules/armeirorc.js');
 var gulp = require('gulp');
 
-gulp.task('build', ['compile:less', 'compress:css', 'concat:js', 'compress:js', 'compress:svg', 'compress:images']);
-gulp.task('livereload', ['connect', 'watch:less', 'watch:js', 'watch:build']);
-gulp.task('default', ['doc:help']);
+gulp.task('watch:less:build', function () {
+  return gulp.watch(armeiro.less.watch, ['build:less']);
+});
+
+gulp.task('default', ['browsersync:server', 'watch:less:build', 'watch:js:build']);

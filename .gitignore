@@ -1,6 +1,10 @@
-armeiro
-build
-node_modules
-other
 
+# directories
+node_modules/
+other/
+build/map/
+
+# files
 *.DS_Store
+build/*
+!build/*.html
