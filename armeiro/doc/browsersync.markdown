@@ -6,7 +6,7 @@
   "armeiro": {
     "browsersync": {
       "dest": "build/",
-      "url": "http://www.mysite.com",
+      "url": "http://www.mysite.com"
     }
   }
 }
