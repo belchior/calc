@@ -1,9 +1,9 @@
 describe ('Calc', function () {
   browser.ignoreSynchronization = true;
-  browser.get('http://localhost/calc');
+  browser.get('http://localhost:3000/');
 
   it('click on menu item Terminal', function () {
-    $('.item-terminal').click();
+    $('.link-terminal').click();
   });
 
   describe('Terminal', function () {

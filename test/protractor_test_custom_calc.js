@@ -1,9 +1,9 @@
 describe('Calc', function () {
   browser.ignoreSynchronization = true;
-  browser.get('http://localhost/calc');
+  browser.get('http://localhost:3000/');
 
   it('click on menu item Custom', function () {
-    $('.item-custom').click();
+    $('.link-custom').click();
   });
 
   describe('Custom', function () {

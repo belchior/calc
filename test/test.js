@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Calc = require('../js/calc.js');
+var Calc = require('../src/js/calc.js');
 
 describe('Calc', function () {
   var calc;
