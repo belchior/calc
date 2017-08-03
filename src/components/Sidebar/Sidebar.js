@@ -16,15 +16,15 @@ class Sidebar extends Component {
           <span className="author-name">Belchior Oliveira</span>
         </a>
         <nav className="list internal-links">
-          <Link className="list-item link-custom" to="/">
+          <Link className="list-item link-custom" to="/calc/">
             <img className="list-item-image" src={iconCustom} alt="Calc Custom" />
             <span className="list-item-text">Calc Custom</span>
           </Link>
-          <Link className="list-item link-terminal" to="/terminal">
+          <Link className="list-item link-terminal" to="/calc/terminal">
             <img className="list-item-image" src={iconTerminal} alt="Calc Terminal" />
             <span className="list-item-text">Calc Terminal</span>
           </Link>
-          <Link className="list-item link-macwidget" to="/macwidget">
+          <Link className="list-item link-macwidget" to="/calc/macwidget">
             <img className="list-item-image" src={iconMacwidget} alt="Calc Macwidget" />
             <span className="list-item-text">Calc Macwidget</span>
           </Link>

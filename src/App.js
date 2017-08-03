@@ -11,8 +11,10 @@ class App extends Component {
   render() {
     const routes = [
       {name: 'custom', exact: true, path: '/', component: () => <Custom />},
-      {name: 'terminal', exact: true, path: '/terminal', component: () => <Terminal />},
-      {name: 'macwidget', exact: true, path: '/macwidget', component: () => <Macwidget />}
+      {name: 'custom', exact: true, path: '/calc/', component: () => <Custom />},
+      {name: 'custom', exact: true, path: '/calc/custom', component: () => <Custom />},
+      {name: 'terminal', exact: true, path: '/calc/terminal', component: () => <Terminal />},
+      {name: 'macwidget', exact: true, path: '/calc/macwidget', component: () => <Macwidget />}
     ];
 
     return (
