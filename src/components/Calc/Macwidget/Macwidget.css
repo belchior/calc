@@ -1,0 +1,168 @@
+/*
+  Helper for unit convertion
+  1px = 0.0625em
+  2px = 0.125em
+  3px = 0.1875em
+  4px = 0.25em
+  5px = 0.3125em
+  6px = 0.375em
+  7px = 0.4375em
+  8px = 0.5em
+  9px = 0.5625em
+  10px = 0.625em
+  11px = 0.6875em
+  12px = 0.75em
+  13px = 0.8125em
+  14px = 0.875em
+  15px = 0.9375em
+  16px = 1em
+*/
+.Macwidget {
+  box-sizing: border-box;
+  border-radius: 0.4375em;
+  padding: 0.4375em;
+  width: 9.375em;
+  font-size: 2em;
+  color: #929292;
+  background: #ff9c46;
+  background: linear-gradient(to right, #ff6f33 0%, #ff8139 3%, #ff9c46 4%, #ff9c46 96%, #ff8139 97%, #ff6f33 100%);
+}
+.Macwidget .btn {
+  float: left;
+  display: inline-block;
+  border: 0.125em solid #ffffff;
+  border-radius: 50%;
+  width: 2.4565em;
+  height: 2.4565em;
+  font-size: 0.7888em;
+  line-height: 2em;
+  text-align: center;
+  vertical-align: middle;
+  color: #666666;
+  background-color: #ffffff;
+  background: linear-gradient(to bottom, #ffffff 50%, #eaeaea 100%);
+  box-shadow: 0 0.0625em 0.125em 0.0625em #a2a2a2;
+  cursor: pointer;
+}
+.Macwidget .btn:active {
+  background: #eaeaea;
+  background: linear-gradient(to bottom, #eaeaea 50%, #ffffff 100%);
+}
+.Macwidget .btn.small {
+  width: 1.5847em;
+  height: 1.5847em;
+  line-height: 0em;
+}
+.Macwidget .btn.active,
+.Macwidget .brackets .btn[data-name=division].active {
+  color: #ffffff;
+  background: #ff8f38;
+  background: linear-gradient(to bottom, #ff9c46 0%, #ff8f38 100%);
+}
+.Macwidget .display {
+  overflow: hidden;
+  display: block;
+  margin-bottom: 0.4375em;
+  border-radius: 0.4375em 0.4375em 0 0;
+  padding: 0 0.625em;
+  height: 3em;
+  line-height: 4.5em;
+  color: #255b7f;
+  text-align: right;
+  background: #b3dcf2;
+  background: linear-gradient(to bottom, #b3dcf2 0%, #b3dcf2 50%, #a1d4f1 50%, #a1d4f1 100%);
+  box-shadow: inset 0 0.125em rgba(0, 0, 0, 0.3);
+}
+.Macwidget .display .input {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  border: 0;
+  border-radius: 0.4375em 0.4375em 0 0;
+  padding: 0.14284em 0 0 0;
+  width: 100%;
+  height: 1.5544em;
+  line-height: 1.5em;
+  font-size: 0.775em;
+  font-family: Verdana;
+  text-align: right;
+  vertical-align: baseline;
+  color: #255b7f;
+  background-color: transparent;
+}
+.Macwidget .display .output {
+  font-size: 0.7777em;
+  line-height: 1.3333em;
+  padding: 0.2009em 0;
+}
+.Macwidget .keyboard {
+  display: table;
+  border-radius: 0.4375em;
+  padding: 0.3125em;
+  background-color: #c8c8c8;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.Macwidget .brackets {
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+}
+.Macwidget .brackets .btn {
+  float: left;
+  margin-right: 0.81em;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 0em;
+  font-size: 0.5em;
+  color: #555555;
+}
+.Macwidget .brackets .btn:last-child {
+  float: right;
+  margin-right: 0;
+}
+.Macwidget .brackets .btn[data-name=division] {
+  width: 1.5847em;
+  height: 1.5847em;
+  line-height: 0em;
+  font-size: 0.789em;
+}
+.Macwidget .brackets .btn[data-name=parenthesisOpen] {
+  text-indent: -0.1585em;
+}
+.Macwidget .brackets .btn[data-name=parenthesisClose] {
+  text-indent: 0.1585em;
+}
+.Macwidget .numbers {
+  box-sizing: border-box;
+  float: left;
+  width: 80%;
+}
+.Macwidget .numbers .btn {
+  margin-top: 0.2774em;
+}
+.Macwidget .numbers .btn:nth-child(3n-1) {
+  margin-left: 0.2774em;
+  margin-right: 0.2774em;
+}
+.Macwidget .operators {
+  box-sizing: border-box;
+  float: right;
+  width: 20%;
+}
+.Macwidget .operators .btn {
+  float: right;
+  margin: 0.5151em 0 0 0.3125em;
+}
+.Macwidget .operators .btn[data-name=equality] {
+  border-radius: 0.75em;
+  height: 4.1202em;
+  line-height: 3.8525em;
+}
+.Macwidget *:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #ff6f33;
+}

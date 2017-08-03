@@ -1,0 +1,15 @@
+{
+  "short_name": "Calc",
+  "name": "Calc. Stylish, modern and fun",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#7e5ab8",
+  "background_color": "#f0f0f0"
+}

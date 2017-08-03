@@ -1,0 +1,109 @@
+.Sidebar {
+  z-index: 1;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 0 1 15em;
+  font-family: 'Montserrat Alternates';
+  background: linear-gradient(to bottom, #f0f0f0 6em, #e6e6e6 6em);
+  box-shadow: 0 0 3px rgba(0,0,0,0.4);
+  transition: width 0s linear 0.2s, background-color 0.2s linear;
+}
+
+.Sidebar .author {
+  position: relative;
+  box-sizing: border-box;
+  padding: 3em 0 2em 0;
+  text-align: center;
+}
+.Sidebar .author-avatar {
+  position: relative;
+  display: block;
+  margin: 0 auto 1em auto;
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+}
+.Sidebar .author-name {
+  display: block;
+  font-size: 1.8em;
+  line-height: 1.2em;
+}
+
+.Sidebar .list {
+  flex: 1 1 100%;
+}
+.Sidebar .list-item {
+  box-sizing: border-box;
+  display: block;
+  padding: 0.5em;
+}
+.Sidebar .list-item-image {
+  display: inline-block;
+  margin: 0 0.5em;
+  width: 2em;
+  height: 2em;
+}
+.Sidebar .link-custom {
+  margin: 0 0 0.5em 0;
+  background: #b48fe6;
+  color: #ffffff;
+}
+.Sidebar .link-terminal {
+  margin: 0 0 0.5em 0;
+  background: #66cc66;
+  color: #ffffff;
+}
+.Sidebar .link-macwidget {
+  background: #85acd3;
+  color: #ffffff;
+}
+.Sidebar .link-github {
+  text-align: center;
+}
+.Sidebar .link-github .list-item-image {
+  margin: 0 0.5em 0 0;
+}
+
+.Sidebar .external-links {
+  flex: 0 1;
+  margin: 0 0 0.5em 0;
+}
+
+@media (max-width: 46em) {
+  .Sidebar {
+    flex-flow: row;
+    flex: 0 1 auto;
+    height: 4em;
+  }
+  .Sidebar .author {
+    padding: 0;
+  }
+  .Sidebar .author-avatar {
+    display: inline-block;
+    margin: 1em;
+    width: 2em;
+    height: 2em;
+  }
+  .Sidebar .author-name {
+    display: none;
+  }
+  .Sidebar .list {
+    display: flex;
+    text-align: center;
+  }
+  .Sidebar .list-item {
+    flex: 1 1 auto;
+    margin: 0;
+    padding: 1em 0.5em;
+  }
+  .Sidebar .list-item-text {
+    display: none;
+  }
+  .Sidebar .external-links .list-item {
+    padding: 1em;
+  }
+  .Sidebar .external-links .list-item-image {
+    margin: 0;
+  }
+}

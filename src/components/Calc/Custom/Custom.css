@@ -1,0 +1,155 @@
+/* Calc */
+/*
+  Calc - Custom
+
+  Helper for unit convertion
+  1px = 0.0625em
+  2px = 0.125em
+  3px = 0.1875em
+  4px = 0.25em
+  5px = 0.3125em
+  6px = 0.375em
+  7px = 0.4375em
+  8px = 0.5em
+  9px = 0.5625em
+  10px = 0.625em
+  11px = 0.6875em
+  12px = 0.75em
+  13px = 0.8125em
+  14px = 0.875em
+  15px = 0.9375em
+  16px = 1em
+
+*/
+.Custom {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  border-radius: 0.375em;
+  max-width: 29em;
+  background: linear-gradient(to bottom, #ffffff 0%, #cccccc 5.06125em, #eeeeee 5.06125em, #dddddd 100%) no-repeat border-box, linear-gradient(to bottom, #888888 0%, #444444 5.06125em, #dddddd 5.06125em, #cccccc 100%) no-repeat border-box;
+  background-size: 94% 100%, 100% 100%;
+  background-position: 50% 0, 0 0;
+  background-origin: padding-box, padding-box;
+  box-shadow: 0 0 0.1875em rgba(0, 0, 0, 0.5);
+}
+.Custom .display {
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 1em 15%;
+  border-radius: 0.375em;
+  border: 0.0625em solid #bbbbbb;
+  padding: 0 1em;
+  width: 70%;
+  height: 3em;
+  line-height: 3em;
+  text-align: right;
+  color: #666666;
+  background-color: #dddddd;
+}
+.Custom .display:focus {
+  border: 0.05em solid #7E5AB8;
+  color: #ffffff;
+  background-color: #998FB8;
+  outline: none;
+}
+.Custom .keyboard {
+  box-sizing: border-box;
+  display: flex;
+  padding: 0.5em 4.5%;
+}
+.Custom .functions {
+  max-width: 37.67%;
+}
+.Custom .arithmetic {
+  max-width: 62.33%;
+}
+.Custom .functions,
+.Custom .arithmetic {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+  flex-basis: auto;
+}
+.Custom .btn {
+  order: 1;
+  margin: 0.3125em;
+  border-radius: 0.375em;
+  border: 0.0625em solid rgba(255, 255, 255, 0.1);
+  width: 2.5em;
+  height: 2.5em;
+  text-align: center;
+  line-height: 2.5em;
+  color: #ffffff;
+  background-image: linear-gradient(to bottom, #888888, #777777);
+  box-shadow: 0 -0.125em 0.125em rgba(255, 255, 255, 0.6), 0 0.0625em 0.125em rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+.Custom .btn:hover {
+  background-image: linear-gradient(to bottom, #999999, #777777);
+}
+.Custom .btn.double {
+  width: 6em;
+}
+.Custom .btn[data-name="delete"] {
+  background-image: linear-gradient(to bottom, #d85656, #d82c2c);
+}
+.Custom .btn[data-name="delete"]:hover {
+  background-image: linear-gradient(to bottom, #e16060, #df3333);
+}
+.Custom .btn[data-name="clear"] {
+  background-image: linear-gradient(to bottom, #78a3b0, #6995a5);
+}
+.Custom .btn[data-name="clear"]:hover {
+  background-image: linear-gradient(to bottom, #84afb8, #719daa);
+}
+.Custom .btn[data-name="power"] span {
+  position: relative;
+  top: -7px;
+  left: 2px;
+  font-size: 0.5em;
+}
+.Custom .btn:focus {
+  background-image: linear-gradient(to bottom, #8869c5, #7e5ab8);
+}
+.Custom .btn:focus:hover {
+  background-image: linear-gradient(to bottom, #9074cd, #8364c1);
+}
+@media screen and (max-width: 29em) {
+  .Custom {
+    max-width: 19em;
+  }
+  .Custom .display {
+    margin: 1em 10%;
+    width: 80%;
+  }
+  .Custom .keyboard {
+    flex-flow: column;
+  }
+  .Custom .functions {
+    max-width: 100%;
+  }
+  .Custom .arithmetic {
+    max-width: 100%;
+  }
+  .functions .btn.double {
+    margin: 0.4465em;
+    width: 3.5715em;
+    height: 3.5715em;
+    font-size: 0.7em;
+  }
+  .Custom .btn[data-name="delete"] {order: 1;}
+  .Custom .btn[data-name="pi"] {order: 3;}
+  .Custom .btn[data-name="clear"] {order: 2;}
+  .Custom .btn[data-name="madd"] {order: 4;}
+  .Custom .btn[data-name="msubtract"] {order: 5;}
+  .Custom .btn[data-name="power"] {order: 6;}
+  .Custom .btn[data-name="sqrt"] {order: 7;}
+  .Custom .btn[data-name="percentage"] {order: 8;}
+  .Custom .btn[data-name="mrecall"] {order: 9;}
+  .Custom .btn[data-name="mclear"] {order: 10;}
+}

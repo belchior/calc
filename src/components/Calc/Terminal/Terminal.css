@@ -1,0 +1,117 @@
+/*
+  Calc - Terminal
+
+  Helper for unit convertion
+  1px = 0.0625em
+  2px = 0.125em
+  3px = 0.1875em
+  4px = 0.25em
+  5px = 0.3125em
+  6px = 0.375em
+  7px = 0.4375em
+  8px = 0.5em
+  9px = 0.5625em
+  10px = 0.625em
+  11px = 0.6875em
+  12px = 0.75em
+  13px = 0.8125em
+  14px = 0.875em
+  15px = 0.9375em
+  16px = 1em
+*/
+.Terminal {
+  box-sizing: border-box;
+  border-radius: 0.6em;
+  width: 18.75em;
+  font-size: 1em;
+  color: #ffffff;
+  outline: none;
+}
+.Terminal .display {
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0.6em 0.6em 0 0;
+  height: 7.5em;
+  line-height: 1.5em;
+  background-color: #333333;
+}
+.Terminal .output {
+  overflow: hidden;
+  height: 5.625em;
+}
+.Terminal .output .result {
+  display: inline-block;
+  padding-right: 0.3125em;
+  width: 100%;
+  line-height: 1.4424em;
+  text-align: right;
+  font-size: 1.25em;
+}
+.Terminal .output .result:after {
+  content: " <";
+  margin: 0 0.3125em 0 0;
+  color: #66cc66;
+}
+.Terminal .input {
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  padding-right: 1.5em;
+  width: 100%;
+  height: 1.429em;
+  line-height: 1.25em;
+  font-size: 1.25em;
+  text-align: right;
+  color: #ffffff;
+  background-color: #333333;
+}
+.Terminal .input:after {
+  content: " $";
+  margin: 0 -1.1875em 0 0;
+  color: #66cc66;
+}
+.Terminal .keyboard {
+  display: table;
+  border-radius: 0 0 0.6em 0.6em;
+  width: 18.8em;
+  background-color: #000000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.Terminal .btn {
+  box-sizing: border-box;
+  float: left;
+  display: inline-block;
+  border-radius: 0.1924em;
+  border: 0;
+  width: 3.5715em;
+  height: 3.334em;
+  font-size: 1.3125em;
+  line-height: 3.5715em;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: transparent;
+  transition-property: background;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+.Terminal .btn:active {
+  background: #333333;
+}
+.Terminal .result {
+  cursor: pointer;
+}
+.Terminal .btn:focus,
+.Terminal .output:focus,
+.Terminal .input:focus,
+.Terminal .result:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px #999999;
+}

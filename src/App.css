@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 400;
+  src: local('./fonts/MontserratAlternates-Regular'), url('./fonts/MontserratAlternates-Regular.ttf') format('opentype');
+}
+
+.App {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-flow: row;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+}
+ .main {
+   display: flex;
+   flex: 1 0 auto;
+ }
+.calc-custom-container,
+.calc-terminal-container,
+.calc-macwidget-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-top: 0.3125em solid;
+}
+.calc-custom-container {
+  border-color: #7e5ab8;
+  background: linear-gradient(to bottom, #b48fe6, #a885e4);
+}
+.calc-terminal-container {
+  border-color: #1ea935;
+  background: linear-gradient(to bottom, #66cc66, #66cc66);
+}
+.calc-macwidget-container {
+  border-color: #3276b5;
+  background: linear-gradient(to bottom, #85acd3, #85acd3);
+}
+
+@media (max-width: 46em) {
+  .App {
+    flex-flow: column;
+  }
+}
