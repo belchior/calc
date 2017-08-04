@@ -39,7 +39,7 @@ class Terminal extends Component {
   }
 
   clearRule(formula) {
-    this.setState({startNewCalc: true});
+    this.setState({formula: '', startNewCalc: false});
     return '';
   }
 
@@ -143,18 +143,18 @@ class Terminal extends Component {
 
   buttonClick(buttonRule) {
     return (e) => {
-      const startNewCalc = this.state.startNewCalc;
       let formula = this.state.formula;
 
-      if (startNewCalc) {
+      if (this.state.startNewCalc) {
+        this.clearRule();
         formula = '';
-        this.setState({startNewCalc: false});
       }
-      formula = buttonRule(formula, e.target.dataset.value);
 
+      formula = buttonRule(formula, e.target.dataset.value);
       if (formula === false) {
         return;
       }
+
       if (typeof formula !== 'string') {
         return this.showError();
       }

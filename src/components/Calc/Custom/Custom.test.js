@@ -3,11 +3,7 @@ import {shallow} from 'enzyme';
 import Custom from './index';
 
 describe('Custom Calc', () => {
-  let custom;
-
-  beforeEach(() => {
-    custom = shallow(<Custom />).instance();
-  });
+  let custom = shallow(<Custom />).instance();
 
   test('Instance method additionRule', () => {
     expect(custom.additionRule('1+')).toBe('1+');
@@ -83,7 +79,7 @@ describe('Custom Calc', () => {
   });
 
   test('Instance method mclearRule must be executable', () => {
-    expect(custom.mclearRule()).toBe('0');
+    expect(custom.mclearRule()).toBeFalsy();
   });
 
   test('Instance method maddRule', () => {

@@ -56,15 +56,17 @@ class Custom extends Component {
 
   additionRule(formula, char = '+') {
     if (formula && formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+      this.setState({startNewCalc: false});
       return formula.slice(0, -1) + char;
     }
     if (formula.slice(-1).search(/[.]/) < 0) {
+      this.setState({startNewCalc: false});
       return formula + char;
     }
   }
 
   clearRule() {
-    this.setState({startNewCalc: true});
+    this.setState({formula: '', startNewCalc: false});
     return '';
   }
 
@@ -111,15 +113,16 @@ class Custom extends Component {
     if (formula && formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
       this.memory.sum(parseFloat(formula));
     }
-    return formula;
+    return false;
   }
 
   mclearRule() {
     this.memory.set(0);
-    return '0';
+    return false;
   }
 
   mrecallRule() {
+    this.setState({startNewCalc: false});
     return this.memory.get().toString();
   }
 
@@ -127,7 +130,7 @@ class Custom extends Component {
     if (formula && formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
       this.memory.subtract(parseFloat(formula));
     }
-    return formula;
+    return false;
   }
 
   multiplicationRule(formula, char = '×') {
@@ -219,20 +222,18 @@ class Custom extends Component {
 
   buttonClick(buttonRule) {
     return (e) => {
-      let startNewCalc;
       let formula = this.state.formula;
 
-      formula = buttonRule(formula, e.target.dataset.value);
-      startNewCalc = this.state.startNewCalc;
-
-      if (startNewCalc) {
+      if (this.state.startNewCalc) {
+        this.clearRule();
         formula = '';
-        this.setState({startNewCalc: false});
       }
 
+      formula = buttonRule(formula, e.target.dataset.value);
       if (formula === false) {
         return;
       }
+
       if (typeof formula !== 'string') {
         return this.showError();
       }
@@ -247,15 +248,15 @@ class Custom extends Component {
         <div className="keyboard">
           <div className="functions">
             <button onClick={this.buttonClick(this.percentageRule)} type="button" className="btn" title="percentage" data-name="percentage" data-value="%">%</button>
-            <button onClick={this.maddRule} type="button" className="btn" title="memory add" data-name="madd">m+</button>
-            <button onClick={this.msubtractRule} type="button" className="btn" title="memory subtract" data-name="msubtract">m−</button>
+            <button onClick={this.buttonClick(this.maddRule)} type="button" className="btn" title="memory add" data-name="madd">m+</button>
+            <button onClick={this.buttonClick(this.msubtractRule)} type="button" className="btn" title="memory subtract" data-name="msubtract">m−</button>
             <button onClick={this.buttonClick(this.powerRule)} type="button" className="btn" title="power" data-name="power" data-value="^">x<span>Y</span></button>
-            <button onClick={this.mclearRule} type="button" className="btn" title="memory clear" data-name="mclear">mc</button>
-            <button onClick={this.mrecallRule} type="button" className="btn" title="memory recall" data-name="mrecall">mr</button>
+            <button onClick={this.buttonClick(this.mrecallRule)} type="button" className="btn" title="memory recall" data-name="mrecall">mr</button>
+            <button onClick={this.buttonClick(this.mclearRule)} type="button" className="btn" title="memory clear" data-name="mclear">mc</button>
             <button onClick={this.buttonClick(this.sqrtRule)} type="button" className="btn" title="square root" data-name="sqrt" data-value="√">√</button>
             <button onClick={this.buttonClick(this.deleteRule)} type="button" className="btn double" title="delete" data-name="delete">delete</button>
             <button onClick={this.buttonClick(this.piRule)} type="button" className="btn" title="constant PI" data-name="pi" data-value="π">π</button>
-            <button onClick={this.buttonClick(this.clearRule)} type="button" className="btn double" title="clear" data-name="clear">clear</button>
+            <button onClick={this.clearRule} type="button" className="btn double" title="clear" data-name="clear">clear</button>
           </div>
           <div className="arithmetic">
             <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 7" data-name="number7" data-value="7">7</button>

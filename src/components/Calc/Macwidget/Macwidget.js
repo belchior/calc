@@ -57,7 +57,7 @@ class Macwidget extends Component {
   }
 
   clearRule(formula) {
-    this.setState({startNewCalc: true});
+    this.setState({formula: '', startNewCalc: false});
     return '';
   }
 
@@ -154,18 +154,18 @@ class Macwidget extends Component {
 
   buttonClick(buttonRule) {
     return (e) => {
-      const startNewCalc = this.state.startNewCalc;
       let formula = this.state.formula;
 
-      if (startNewCalc) {
+      if (this.state.startNewCalc) {
+        this.clearRule();
         formula = '';
-        this.setState({startNewCalc: false});
       }
-      formula = buttonRule(formula, e.target.dataset.value);
 
+      formula = buttonRule(formula, e.target.dataset.value);
       if (formula === false) {
         return;
       }
+
       if (typeof formula !== 'string') {
         return this.showError();
       }
@@ -179,10 +179,10 @@ class Macwidget extends Component {
         <output className="display">{this.state.formula}</output>
         <div className="keyboard">
           <div className="brackets">
-            <button onClick={this.maddRule} type="button" className="btn small" data-name="madd" data-value="" title="memory add">m+</button>
-            <button onClick={this.msubtractRule} type="button" className="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
-            <button onClick={this.mclearRule} type="button" className="btn small" data-name="mclear" title="memory clear">mc</button>
-            <button onClick={this.mrecallRule} type="button" className="btn small" data-name="mrecall" title="memory recall">mr</button>
+            <button onClick={this.buttonClick(this.maddRule)} type="button" className="btn small" data-name="madd" data-value="" title="memory add">m+</button>
+            <button onClick={this.buttonClick(this.msubtractRule)} type="button" className="btn small" data-name="msubtract" data-value="" title="memory subtract">m−</button>
+            <button onClick={this.buttonClick(this.mrecallRule)} type="button" className="btn small" data-name="mrecall" title="memory recall">mr</button>
+            <button onClick={this.buttonClick(this.mclearRule)} type="button" className="btn small" data-name="mclear" title="memory clear">mc</button>
             <button onClick={this.buttonClick(this.divisionRule)} type="button" className="btn small" data-name="division" data-value="÷" data-action="divide" title="divide">÷</button>
           </div>
           <div className="numbers">
