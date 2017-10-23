@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/belchior/calc.svg?branch=react-redux)](https://travis-ci.org/belchior/calc)
+[![Coverage Status](https://coveralls.io/repos/github/belchior/calc/badge.svg?branch=react-redux)](https://coveralls.io/github/belchior/calc?branch=react-redux)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
