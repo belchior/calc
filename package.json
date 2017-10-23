@@ -18,9 +18,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "gh-pages": "^1.0.0"
   }
 }
