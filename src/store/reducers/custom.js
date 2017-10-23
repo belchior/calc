@@ -264,6 +264,13 @@ const piRule = (state, char = 'π') => {
       startNewCalc: false
     };
   }
+  if (state.startNewCalc === true) {
+    return {
+      ...state,
+      formula: char,
+      startNewCalc: false
+    };
+  }
   return {
     ...state,
     error: true

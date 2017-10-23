@@ -259,6 +259,8 @@ describe('reducer custom', () => {
     expect(custom(state({formula: '^'}), action)).toEqual(state({formula: '^π'}));
     expect(custom(state({formula: '√'}), action)).toEqual(state({formula: '√π'}));
 
+    expect(custom(state({formula: '123', startNewCalc: true}), action)).toEqual(state({formula: 'π'}));
+
     expect(custom(state({formula: '1'}), action)).toEqual(state({formula: '1', error: true}));
   });
 
