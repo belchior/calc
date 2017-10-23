@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Output with 0 items without crashing 1`] = `
+<div
+  className="output"
+/>
+`;
+
+exports[`should render Output with 2 items without crashing 1`] = `
+<div
+  className="output"
+>
+  <output
+    className="result"
+  >
+    1.2
+  </output>
+  <output
+    className="result"
+  >
+    3.4
+  </output>
+</div>
+`;

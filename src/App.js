@@ -22,7 +22,7 @@ class App extends Component {
           <div className="main">
             {routes.map((route, index) => (
               <Route key={index} exact={route.exact} path={route.path} component={() => (
-                <section className={"calc-" + route.name + "-container"}>
+                <section className={'calc-' + route.name + '-container'}>
                   {route.component()}
                 </section>
               )}/>

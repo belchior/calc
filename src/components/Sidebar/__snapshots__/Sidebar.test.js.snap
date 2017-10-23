@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Sidebar without crashing 1`] = `
+<aside
+  className="Sidebar"
+>
+  <a
+    className="author"
+    href="https://github.com/belchior"
+  >
+    <img
+      alt="Fotografia de Belchior Oliveira"
+      className="author-avatar"
+      src="https://avatars0.githubusercontent.com/u/2656585?v=3"
+    />
+    <span
+      className="author-name"
+    >
+      Belchior Oliveira
+    </span>
+  </a>
+  <nav
+    className="list internal-links"
+  >
+    <a
+      className="list-item link-custom"
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Calc Custom"
+        className="list-item-image"
+        src="icon-custom.svg"
+      />
+      <span
+        className="list-item-text"
+      >
+        Calc Custom
+      </span>
+    </a>
+    <a
+      className="list-item link-terminal"
+      href="/terminal"
+      onClick={[Function]}
+    >
+      <img
+        alt="Calc Terminal"
+        className="list-item-image"
+        src="icon-terminal.svg"
+      />
+      <span
+        className="list-item-text"
+      >
+        Calc Terminal
+      </span>
+    </a>
+    <a
+      className="list-item link-macwidget"
+      href="/macwidget"
+      onClick={[Function]}
+    >
+      <img
+        alt="Calc Macwidget"
+        className="list-item-image"
+        src="icon-macwidget.svg"
+      />
+      <span
+        className="list-item-text"
+      >
+        Calc Macwidget
+      </span>
+    </a>
+  </nav>
+  <nav
+    className="list external-links"
+  >
+    <a
+      className="list-item link-github"
+      href="https://github.com/belchior/calc"
+    >
+      <img
+        alt="Logotipo do GitHub"
+        className="list-item-image"
+        src="icon-github.svg"
+      />
+      <span
+        className="list-item-text"
+      >
+        Calc no GitHub
+      </span>
+    </a>
+  </nav>
+</aside>
+`;

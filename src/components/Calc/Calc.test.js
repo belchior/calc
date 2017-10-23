@@ -162,13 +162,13 @@ describe('Calc', () => {
 
     describe('should return a synta× error: divergence between parenthesis', () => {
       test('when formula has different amount of parenthesis', () => {
-        const errorMessage = 'divergence between parenthesis';
+        const errorMessage = 'Calc.parse: Divergence between parenthesis';
 
         expect(() => Calc.parse('1+(2+3))')).toThrow(errorMessage);
         expect(() => Calc.parse('1+(((2+3)')).toThrow(errorMessage);
       });
       test('when formula has wrong sequence of parenthesis', () => {
-        const errorMessage = 'divergence between parenthesis';
+        const errorMessage = 'Calc.parse: Divergence between parenthesis';
 
         expect(() => Calc.parse(')+1(')).toThrow(errorMessage);
         expect(() => Calc.parse('1)+(1')).toThrow(errorMessage);
@@ -207,9 +207,12 @@ describe('Calc', () => {
   });
 
   describe('Function calculate', () => {
+    test('should return error: "Calc.parse: Invalid parameter"', () => {
+      expect(() => Calc.calculate('')).toThrow('Calc.parse: Invalid parameter');
+    });
 
-    test('should return NaN', () => {
-      expect(Calc.calculate('')).toBeFalsy();
+    test('should return error: "Calc.parse: Formula has invalid characters @"', () => {
+      expect(() => Calc.calculate('1+@')).toThrow('Calc.parse: Formula has invalid characters @');
     });
 
     test('should return 0.45964912 when formula is 1+2-3×4÷5+(6)-((7×8)÷9.12)', () => {

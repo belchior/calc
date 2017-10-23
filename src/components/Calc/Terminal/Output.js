@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Output extends Component {
   componentDidUpdate() {
@@ -6,9 +6,10 @@ class Output extends Component {
   }
 
   render() {
+    const results = this.props.results || [];
     return (
       <div className="output" ref={(output) => this.outputElem = output}>
-        {this.props.results.map((item, index) => <output className="result" key={index}>{item}</output>)}
+        {results.map((item, index) => <output className="result" key={index}>{item}</output>)}
       </div>
     );
   }

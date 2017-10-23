@@ -1,281 +1,49 @@
-import React, { Component } from 'react';
-import Calc from '../Calc';
+import React, {Component} from 'react';
 import './Custom.css';
+import {connect} from 'react-redux';
 
 class Custom extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formula: '',
-      error: false,
-      startNewCalc: false,
-      slot: 0
-    };
-
-    this.memory = {
-      get: () => {
-        return this.state.slot;
-      },
-      set: (value) => {
-        this.setState({slot: value});
-        return this;
-      },
-      sum: (value) => {
-        this.setState({slot: Calc.sum(this.state.slot, value)});
-        return this;
-      },
-      subtract: (value) => {
-        this.setState({slot: Calc.subtract(this.state.slot, value)});
-        return this;
-      }
-    };
-
-    this.additionRule = this.additionRule.bind(this);
-    this.clearRule = this.clearRule.bind(this);
-    this.deleteRule = this.deleteRule.bind(this);
-    this.divisionRule = this.divisionRule.bind(this);
-    this.dotRule = this.dotRule.bind(this);
-    this.equalityRule = this.equalityRule.bind(this);
-    this.percentageRule = this.percentageRule.bind(this);
-    this.maddRule = this.maddRule.bind(this);
-    this.mclearRule = this.mclearRule.bind(this);
-    this.mrecallRule = this.mrecallRule.bind(this);
-    this.msubtractRule = this.msubtractRule.bind(this);
-    this.multiplicationRule = this.multiplicationRule.bind(this);
-    this.numberRule = this.numberRule.bind(this);
-    this.parenthesisCloseRule = this.parenthesisCloseRule.bind(this);
-    this.parenthesisOpenRule = this.parenthesisOpenRule.bind(this);
-    this.piRule = this.piRule.bind(this);
-    this.powerRule = this.powerRule.bind(this);
-    this.sqrtRule = this.sqrtRule.bind(this);
-    this.subtractionRule = this.subtractionRule.bind(this);
-
-    this.showError = this.showError.bind(this);
-    this.buttonClick = this.buttonClick.bind(this);
-  }
-
-  additionRule(formula, char = '+') {
-    if (formula && formula.slice(-1).search(/[+\-×÷]/) >= 0) {
-      return formula.slice(0, -1) + char;
-    }
-    if (formula.slice(-1).search(/[.]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  clearRule() {
-    this.setState({startNewCalc: true});
-    return '';
-  }
-
-  deleteRule(formula) {
-    return formula.slice(0, -1);
-  }
-
-  divisionRule(formula, char = '÷') {
-    if (formula && formula.slice(-1).search(/[+\-×÷]/) >= 0) {
-      if (formula.length > 1 && formula.slice(-2).search(/[(^√]/) < 0) {
-        return formula.slice(0, -1) + char;
-      }
-
-    } else if (formula && formula.slice(-1).search(/[(.^√]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  dotRule(formula, char = '.') {
-    if (
-      formula && formula.slice(-1).search(/[%^√π.+\-×÷()]/) < 0 &&
-      formula.search(/\d+\.\d+$/) < 0
-    ) {
-      return formula + char;
-    }
-  }
-
-  equalityRule(formula) {
-    if (formula === '') {
-      return NaN;
-    }
-    try {
-      let result = String(Calc.calculate(formula));
-      this.setState({startNewCalc: true});
-      return result;
-
-    } catch (err) {
-      console.error(err);
-      return NaN;
-    }
-  }
-
-  maddRule(formula) {
-    if (formula && formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
-      this.memory.sum(parseFloat(formula));
-    }
-    return formula;
-  }
-
-  mclearRule() {
-    this.memory.set(0);
-    return '0';
-  }
-
-  mrecallRule() {
-    return this.memory.get().toString();
-  }
-
-  msubtractRule(formula) {
-    if (formula && formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
-      this.memory.subtract(parseFloat(formula));
-    }
-    return formula;
-  }
-
-  multiplicationRule(formula, char = '×') {
-    if (formula && formula.slice(-1).search(/[+\-×÷]/) >= 0) {
-      if (formula.length > 1 && formula.slice(-2).search(/[(^√]/) < 0) {
-        return formula.slice(0, -1) + char;
-      }
-
-    } else if (formula && formula.slice(-1).search(/[(.^√]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  numberRule(formula, char = '') {
-    if (formula === '' || formula.slice(-1).search(/[)%π]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  parenthesisCloseRule(formula, char = ')') {
-    const opens = formula.match(/[(]/g);
-    const closes = formula.match(/[)]/g);
-
-    if ((opens && !closes) || (opens && closes && opens.length > closes.length)) {
-      if (formula.slice(-1).search(/[(+\-×÷.^√]/) < 0) {
-        return formula + char;
-      }
-    }
-  }
-
-  parenthesisOpenRule(formula, char = '(') {
-    if (formula === '') {
-      return formula + char;
-    }
-    if (formula.slice(-1).search(/[0-9)%π]/) >= 0) {
-      return formula + '×' + char;
-    }
-    if (formula.slice(-1).search(/[.]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  percentageRule(formula, char = '%') {
-    if (formula && formula.slice(-1).search(/[0-9)]/) >= 0) {
-      return formula + char;
-    }
-  }
-
-  piRule(formula, char = 'π') {
-    if (formula === '' || (formula && formula.slice(-1).search(/[(+\-×÷^√]/) >= 0)) {
-      return formula + char;
-    }
-  }
-
-  powerRule(formula, char = '^') {
-    if (formula && formula.slice(-1).search(/[0-9π]/) >= 0) {
-      return formula + char;
-    }
-  }
-
-  sqrtRule(formula, char = '√') {
-    if (formula === '') {
-      return formula + char;
-    }
-    if (formula && formula.slice(-1).search(/[+\-×÷(√]/) >= 0) {
-      return formula + char;
-    }
-    if (formula && formula.slice(-1).search(/[0-9)%π]/) >= 0) {
-      return formula + '×' + char;
-    }
-  }
-
-  subtractionRule(formula, char = '-') {
-    if (formula === '') {
-      return formula + char;
-    }
-    if (formula.slice(-1).search(/[+\-×÷]/) >= 0) {
-      return formula.slice(0, -1) + char;
-    }
-    if (formula.slice(-1).search(/[.]/) < 0) {
-      return formula + char;
-    }
-  }
-
-  showError() {
-    this.setState({error: true});
-    setTimeout(() => this.setState({error: false}), 400);
-  }
-
-  buttonClick(buttonRule) {
-    return (e) => {
-      let startNewCalc;
-      let formula = this.state.formula;
-
-      formula = buttonRule(formula, e.target.dataset.value);
-      startNewCalc = this.state.startNewCalc;
-
-      if (startNewCalc) {
-        formula = '';
-        this.setState({startNewCalc: false});
-      }
-
-      if (formula === false) {
-        return;
-      }
-      if (typeof formula !== 'string') {
-        return this.showError();
-      }
-      this.setState({formula: formula});
-    }
-  }
-
   render() {
+    let className = 'Custom';
+    if (this.props.error) {
+      className += ' shake-horizontal';
+      this.props.disableError();
+    }
     return (
-      <form className={this.state.error ? 'Custom shake-horizontal' : 'Custom'}>
-        <p className="display">{this.state.formula}</p>
+      <form className={className}>
+        <p className="display">{this.props.formula}</p>
         <div className="keyboard">
           <div className="functions">
-            <button onClick={this.buttonClick(this.percentageRule)} type="button" className="btn" title="percentage" data-name="percentage" data-value="%">%</button>
-            <button onClick={this.maddRule} type="button" className="btn" title="memory add" data-name="madd">m+</button>
-            <button onClick={this.msubtractRule} type="button" className="btn" title="memory subtract" data-name="msubtract">m−</button>
-            <button onClick={this.buttonClick(this.powerRule)} type="button" className="btn" title="power" data-name="power" data-value="^">x<span>Y</span></button>
-            <button onClick={this.mclearRule} type="button" className="btn" title="memory clear" data-name="mclear">mc</button>
-            <button onClick={this.mrecallRule} type="button" className="btn" title="memory recall" data-name="mrecall">mr</button>
-            <button onClick={this.buttonClick(this.sqrtRule)} type="button" className="btn" title="square root" data-name="sqrt" data-value="√">√</button>
-            <button onClick={this.buttonClick(this.deleteRule)} type="button" className="btn double" title="delete" data-name="delete">delete</button>
-            <button onClick={this.buttonClick(this.piRule)} type="button" className="btn" title="constant PI" data-name="pi" data-value="π">π</button>
-            <button onClick={this.buttonClick(this.clearRule)} type="button" className="btn double" title="clear" data-name="clear">clear</button>
+            <button onClick={this.props.percentageClick} type="button" className="btn" title="percentage" data-name="percentage" data-value="%">%</button>
+            <button onClick={this.props.memoryPlusClick} type="button" className="btn" title="memory plus" data-name="madd">m+</button>
+            <button onClick={this.props.memoryMinusClick} type="button" className="btn" title="memory minus" data-name="msubtract">m−</button>
+            <button onClick={this.props.powerClick} type="button" className="btn" title="power" data-name="power" data-value="^">x<span>Y</span></button>
+            <button onClick={this.props.memoryClearClick} type="button" className="btn" title="memory clear" data-name="mclear">mc</button>
+            <button onClick={this.props.memoryRecallClick} type="button" className="btn" title="memory recall" data-name="mrecall">mr</button>
+            <button onClick={this.props.sqrtClick} type="button" className="btn" title="square root" data-name="sqrt" data-value="√">√</button>
+            <button onClick={this.props.deleteClick} type="button" className="btn double" title="delete" data-name="delete">delete</button>
+            <button onClick={this.props.piClick} type="button" className="btn" title="constant PI" data-name="pi" data-value="π">π</button>
+            <button onClick={this.props.clearClick} type="button" className="btn double" title="clear" data-name="clear">clear</button>
           </div>
           <div className="arithmetic">
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 7" data-name="number7" data-value="7">7</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 8" data-name="number8" data-value="8">8</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 9" data-name="number9" data-value="9">9</button>
-            <button onClick={this.buttonClick(this.additionRule)} type="button" className="btn" title="plus" data-name="addition" data-value="+">+</button>
-            <button onClick={this.buttonClick(this.multiplicationRule)} type="button" className="btn" title="times" data-name="multiplication" data-value="×">×</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 4" data-name="number4" data-value="4">4</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 5" data-name="number5" data-value="5">5</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 6" data-name="number6" data-value="6">6</button>
-            <button onClick={this.buttonClick(this.subtractionRule)} type="button" className="btn" title="minus" data-name="subtraction" data-value="-">−</button>
-            <button onClick={this.buttonClick(this.divisionRule)} type="button" className="btn" title="divided" data-name="division" data-value="÷">÷</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 1" data-name="number1" data-value="1">1</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 2" data-name="number2" data-value="2">2</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn" title="number 3" data-name="number3" data-value="3">3</button>
-            <button onClick={this.buttonClick(this.parenthesisOpenRule)} type="button" className="btn" title="parenthesis opening" data-name="parenthesisOpen" data-value="(">(</button>
-            <button onClick={this.buttonClick(this.parenthesisCloseRule)} type="button" className="btn" title="parenthesis closing" data-name="parenthesisClose" data-value=")">)</button>
-            <button onClick={this.buttonClick(this.numberRule)} type="button" className="btn double" title="number 0" data-name="number0" data-value="0">0</button>
-            <button onClick={this.buttonClick(this.dotRule)} type="button" className="btn" title="dot" data-name="dot" data-value=".">.</button>
-            <button onClick={this.buttonClick(this.equalityRule)} type="button" className="btn double" title="equals" data-name="equality">=</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 7" data-name="number7" data-value="7">7</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 8" data-name="number8" data-value="8">8</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 9" data-name="number9" data-value="9">9</button>
+            <button onClick={this.props.plusClick} type="button" className="btn" title="plus" data-name="addition" data-value="+">+</button>
+            <button onClick={this.props.multiplicationClick} type="button" className="btn" title="times" data-name="multiplication" data-value="×">×</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 4" data-name="number4" data-value="4">4</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 5" data-name="number5" data-value="5">5</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 6" data-name="number6" data-value="6">6</button>
+            <button onClick={this.props.minusClick} type="button" className="btn" title="minus" data-name="subtraction" data-value="-">−</button>
+            <button onClick={this.props.divisionClick} type="button" className="btn" title="divided" data-name="division" data-value="÷">÷</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 1" data-name="number1" data-value="1">1</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 2" data-name="number2" data-value="2">2</button>
+            <button onClick={this.props.numberClick} type="button" className="btn" title="number 3" data-name="number3" data-value="3">3</button>
+            <button onClick={this.props.parenthesisLeftClick} type="button" className="btn" title="parenthesis opening" data-name="parenthesisOpen" data-value="(">(</button>
+            <button onClick={this.props.parenthesisRightClick} type="button" className="btn" title="parenthesis closing" data-name="parenthesisClose" data-value=")">)</button>
+            <button onClick={this.props.numberClick} type="button" className="btn double" title="number 0" data-name="number0" data-value="0">0</button>
+            <button onClick={this.props.dotClick} type="button" className="btn" title="dot" data-name="dot" data-value=".">.</button>
+            <button onClick={this.props.equalsClick} type="button" className="btn double" title="equals" data-name="equality">=</button>
           </div>
         </div>
       </form>
@@ -283,4 +51,74 @@ class Custom extends Component {
   }
 }
 
-export default Custom;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearClick(e) {
+      dispatch({type: 'CLEAR', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    deleteClick(e) {
+      dispatch({type: 'DELETE', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    divisionClick(e) {
+      dispatch({type: 'DIVISION', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    dotClick(e) {
+      dispatch({type: 'DOT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    equalsClick(e) {
+      dispatch({type: 'EQUALS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    memoryClearClick(e) {
+      dispatch({type: 'MEMORY_CLEAR', calc: 'custom'});
+    },
+    memoryMinusClick(e) {
+      dispatch({type: 'MEMORY_MINUS', calc: 'custom'});
+    },
+    memoryPlusClick(e) {
+      dispatch({type: 'MEMORY_PLUS', calc: 'custom'});
+    },
+    memoryRecallClick(e) {
+      dispatch({type: 'MEMORY_RECALL', calc: 'custom'});
+    },
+    minusClick(e) {
+      dispatch({type: 'MINUS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    multiplicationClick(e) {
+      dispatch({type: 'MULTIPLY', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    numberClick(e) {
+      dispatch({type: 'NUMBER', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    parenthesisLeftClick(e) {
+      dispatch({type: 'PARENTHESIS_LEFT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    parenthesisRightClick(e) {
+      dispatch({type: 'PARENTHESIS_RIGHT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    percentageClick(e) {
+      dispatch({type: 'PERCENTAGE', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    piClick(e) {
+      dispatch({type: 'PI', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    plusClick(e) {
+      dispatch({type: 'PLUS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    powerClick(e) {
+      dispatch({type: 'POWER', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    sqrtClick(e) {
+      dispatch({type: 'SQRT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+    },
+    disableError() {
+      setTimeout(() => dispatch({type: 'ERROR', calc: 'custom', payload: false}), 400);
+    },
+  };
+};
+
+const mapStateToProps = (state) => {
+  return state.custom;
+};
+
+export {Custom};
+export default connect(mapStateToProps, mapDispatchToProps)(Custom);

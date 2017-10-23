@@ -190,9 +190,6 @@ class Calc {
     };
 
     formula = this.parse(formula);
-    if (!formula) {
-      return NaN;
-    }
 
     let stack = [
       resolve.parenthesis,
@@ -236,7 +233,14 @@ class Calc {
   }
 
   static parse(formula) {
-    formula = formula.replace(/[^0-9()+\-×÷%.^√π]/g, '');
+    if (typeof formula !== 'string' || formula === '') {
+      throw new SyntaxError('Calc.parse: Invalid parameter');
+    }
+
+    if (formula.search(/[^0-9()+\-×÷%.^√π]/g) >= 0) {
+      throw new SyntaxError('Calc.parse: Formula has invalid characters ' + formula.replace(/[0-9()+\-×÷%.^√π]/g, ''));
+    }
+
     let index;
     let parenthesisOpens = formula.match(/[(]/g);
     let parenthesisCloses = formula.match(/[)]/g);
@@ -245,7 +249,7 @@ class Calc {
         (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
         (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
       ) {
-      throw new SyntaxError('divergence between parenthesis');
+      throw new SyntaxError('Calc.parse: Divergence between parenthesis');
     }
 
     parenthesisOpens = parenthesisCloses = 0;
@@ -255,7 +259,7 @@ class Calc {
       } else if (formula[index] === ')') {
         parenthesisCloses += 1;
         if (parenthesisOpens < parenthesisCloses) {
-          throw new SyntaxError('divergence between parenthesis');
+          throw new SyntaxError('Calc.parse: Divergence between parenthesis');
         }
       }
     }
@@ -292,9 +296,15 @@ class Calc {
       return this.format(Math.pow(a, b));
     }
 
-    if (a === 0 && b > 0) { return 0; }
-    if (b === 0) { return 1; }
-    if (b === 1) { return a; }
+    if (a === 0 && b > 0) {
+      return 0;
+    }
+    if (b === 0) {
+      return 1;
+    }
+    if (b === 1) {
+      return a;
+    }
 
     while (times > 1) {
       result = this.multiply(result, a);
@@ -326,5 +336,4 @@ class Calc {
   }
 }
 
-window.Calc = Calc;
 export default Calc;
