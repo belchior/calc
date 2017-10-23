@@ -24,7 +24,7 @@ exports[`renders Sidebar without crashing 1`] = `
   >
     <a
       className="list-item link-custom"
-      href="/"
+      href="/calc/"
       onClick={[Function]}
     >
       <img
@@ -40,7 +40,7 @@ exports[`renders Sidebar without crashing 1`] = `
     </a>
     <a
       className="list-item link-terminal"
-      href="/terminal"
+      href="/calc/terminal"
       onClick={[Function]}
     >
       <img
@@ -56,7 +56,7 @@ exports[`renders Sidebar without crashing 1`] = `
     </a>
     <a
       className="list-item link-macwidget"
-      href="/macwidget"
+      href="/calc/macwidget"
       onClick={[Function]}
     >
       <img
