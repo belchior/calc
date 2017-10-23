@@ -1,9 +1,12 @@
 import React from 'react';
 import {Macwidget} from './Macwidget';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 it('should render Macwidget without crashing', () => {
-  let tree = renderer.create(<Macwidget />).toJSON();
+  const renderer = new ShallowRenderer();
 
-  expect(tree).toMatchSnapshot();
+  renderer.render(<Macwidget />);
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });

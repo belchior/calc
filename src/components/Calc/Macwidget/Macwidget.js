@@ -38,7 +38,7 @@ class Macwidget extends Component {
             <button onClick={this.props.multiplicationClick} type="button" className="btn small" data-name="multiplication" data-value="×" data-action="multiply" title="multiply">×</button>
             <button onClick={this.props.minusClick} type="button" className="btn small" data-name="subtraction" data-value="-" data-action="subtract" title="subtract">−</button>
             <button onClick={this.props.plusClick} type="button" className="btn small" data-name="addition" data-value="+" data-action="sum" title="sum">+</button>
-            <button onClick={this.props.equalityClick} type="button" className="btn small" data-name="equality" title="equals">=</button>
+            <button onClick={this.props.equalsClick} type="button" className="btn small" data-name="equality" title="equals">=</button>
           </div>
         </div>
       </form>
