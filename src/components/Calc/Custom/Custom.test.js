@@ -1,9 +1,12 @@
 import React from 'react';
 import {Custom} from './Custom';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 it('should render Custom without crashing', () => {
-  let tree = renderer.create(<Custom />).toJSON();
+  const renderer = new ShallowRenderer();
 
-  expect(tree).toMatchSnapshot();
+  renderer.render(<Custom />);
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });
