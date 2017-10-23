@@ -1,9 +1,12 @@
 import React from 'react';
 import {Terminal} from './Terminal';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 it('should render Terminal without crashing', () => {
-  let tree = renderer.create(<Terminal />).toJSON();
+  const renderer = new ShallowRenderer();
 
-  expect(tree).toMatchSnapshot();
+  renderer.render(<Terminal />);
+  const result = renderer.getRenderOutput();
+
+  expect(result).toMatchSnapshot();
 });

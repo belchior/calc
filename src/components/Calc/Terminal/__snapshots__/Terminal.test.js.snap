@@ -7,8 +7,8 @@ exports[`should render Terminal without crashing 1`] = `
   <div
     className="display"
   >
-    <div
-      className="output"
+    <Connect(Output)
+      results={undefined}
     />
     <p
       className="input"
@@ -22,22 +22,23 @@ exports[`should render Terminal without crashing 1`] = `
     >
       <button
         className="btn"
-        data-name="dot"
-        data-value="."
+        data-name="parenthesisOpen"
+        data-value="("
         onClick={undefined}
-        title="dot"
+        title="parenthesis opening"
         type="button"
       >
-        .
+        (
       </button>
       <button
         className="btn"
-        data-name="clear"
+        data-name="parenthesisClose"
+        data-value=")"
         onClick={undefined}
-        title="clear"
+        title="parenthesis closing"
         type="button"
       >
-        c
+        )
       </button>
       <button
         className="btn"
@@ -50,13 +51,12 @@ exports[`should render Terminal without crashing 1`] = `
       </button>
       <button
         className="btn"
-        data-name="addition"
-        data-value="+"
+        data-name="clear"
         onClick={undefined}
-        title="plus"
+        title="clear"
         type="button"
       >
-        +
+        c
       </button>
     </div>
     <div
@@ -94,13 +94,13 @@ exports[`should render Terminal without crashing 1`] = `
       </button>
       <button
         className="btn"
-        data-name="subtraction"
-        data-value="-"
+        data-name="addition"
+        data-value="+"
         onClick={undefined}
-        title="minus"
+        title="plus"
         type="button"
       >
-        −
+        +
       </button>
     </div>
     <div
@@ -138,13 +138,13 @@ exports[`should render Terminal without crashing 1`] = `
       </button>
       <button
         className="btn"
-        data-name="multiplication"
-        data-value="×"
+        data-name="subtraction"
+        data-value="-"
         onClick={undefined}
-        title="times"
+        title="minus"
         type="button"
       >
-        ×
+        −
       </button>
     </div>
     <div
@@ -182,13 +182,13 @@ exports[`should render Terminal without crashing 1`] = `
       </button>
       <button
         className="btn"
-        data-name="division"
-        data-value="÷"
+        data-name="multiplication"
+        data-value="×"
         onClick={undefined}
-        title="divided"
+        title="times"
         type="button"
       >
-        ÷
+        ×
       </button>
     </div>
     <div
@@ -196,23 +196,13 @@ exports[`should render Terminal without crashing 1`] = `
     >
       <button
         className="btn"
-        data-name="parenthesisOpen"
-        data-value="("
+        data-name="dot"
+        data-value="."
         onClick={undefined}
-        title="parenthesis opening"
+        title="dot"
         type="button"
       >
-        (
-      </button>
-      <button
-        className="btn"
-        data-name="parenthesisClose"
-        data-value=")"
-        onClick={undefined}
-        title="parenthesis closing"
-        type="button"
-      >
-        )
+        .
       </button>
       <button
         className="btn"
@@ -232,6 +222,16 @@ exports[`should render Terminal without crashing 1`] = `
         type="button"
       >
         =
+      </button>
+      <button
+        className="btn"
+        data-name="division"
+        data-value="÷"
+        onClick={undefined}
+        title="divided"
+        type="button"
+      >
+        ÷
       </button>
     </div>
   </div>
