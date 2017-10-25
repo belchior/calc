@@ -1,6 +1,480 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Macwidget without crashing 1`] = `
+exports[`Macwidget should add css class shake-horizontal when error props is equal true 1`] = `
+<form
+  className="Macwidget shake-horizontal"
+>
+  <output
+    className="display"
+  />
+  <div
+    className="keyboard"
+  >
+    <div
+      className="brackets"
+    >
+      <button
+        className="btn small"
+        data-name="madd"
+        data-value=""
+        onClick={undefined}
+        title="memory add"
+        type="button"
+      >
+        m+
+      </button>
+      <button
+        className="btn small"
+        data-name="msubtract"
+        data-value=""
+        onClick={undefined}
+        title="memory subtract"
+        type="button"
+      >
+        m−
+      </button>
+      <button
+        className="btn small"
+        data-name="mclear"
+        onClick={undefined}
+        title="memory clear"
+        type="button"
+      >
+        mc
+      </button>
+      <button
+        className="btn small"
+        data-name="mrecall"
+        onClick={undefined}
+        title="memory recall"
+        type="button"
+      >
+        mr
+      </button>
+      <button
+        className="btn small"
+        data-action="divide"
+        data-name="division"
+        data-value="÷"
+        onClick={undefined}
+        title="divide"
+        type="button"
+      >
+        ÷
+      </button>
+    </div>
+    <div
+      className="numbers"
+    >
+      <button
+        className="btn"
+        data-name="number7"
+        data-value="7"
+        onClick={undefined}
+        title="number 7"
+        type="button"
+      >
+        7
+      </button>
+      <button
+        className="btn"
+        data-name="number8"
+        data-value="8"
+        onClick={undefined}
+        title="number 8"
+        type="button"
+      >
+        8
+      </button>
+      <button
+        className="btn"
+        data-name="number9"
+        data-value="9"
+        onClick={undefined}
+        title="number 9"
+        type="button"
+      >
+        9
+      </button>
+      <button
+        className="btn"
+        data-name="number4"
+        data-value="4"
+        onClick={undefined}
+        title="number 4"
+        type="button"
+      >
+        4
+      </button>
+      <button
+        className="btn"
+        data-name="number5"
+        data-value="5"
+        onClick={undefined}
+        title="number 5"
+        type="button"
+      >
+        5
+      </button>
+      <button
+        className="btn"
+        data-name="number6"
+        data-value="6"
+        onClick={undefined}
+        title="number 6"
+        type="button"
+      >
+        6
+      </button>
+      <button
+        className="btn"
+        data-name="number1"
+        data-value="1"
+        onClick={undefined}
+        title="number 1"
+        type="button"
+      >
+        1
+      </button>
+      <button
+        className="btn"
+        data-name="number2"
+        data-value="2"
+        onClick={undefined}
+        title="number 2"
+        type="button"
+      >
+        2
+      </button>
+      <button
+        className="btn"
+        data-name="number3"
+        data-value="3"
+        onClick={undefined}
+        title="number 3"
+        type="button"
+      >
+        3
+      </button>
+      <button
+        className="btn"
+        data-name="number0"
+        data-value="0"
+        onClick={undefined}
+        title="number 0"
+        type="button"
+      >
+        0
+      </button>
+      <button
+        className="btn"
+        data-name="dot"
+        data-value="."
+        onClick={undefined}
+        title="dot"
+        type="button"
+      >
+        .
+      </button>
+      <button
+        className="btn"
+        data-name="clear"
+        onClick={undefined}
+        title="clear"
+        type="button"
+      >
+        c
+      </button>
+    </div>
+    <div
+      className="operators"
+    >
+      <button
+        className="btn small"
+        data-action="multiply"
+        data-name="multiplication"
+        data-value="×"
+        onClick={undefined}
+        title="multiply"
+        type="button"
+      >
+        ×
+      </button>
+      <button
+        className="btn small"
+        data-action="subtract"
+        data-name="subtraction"
+        data-value="-"
+        onClick={undefined}
+        title="subtract"
+        type="button"
+      >
+        −
+      </button>
+      <button
+        className="btn small"
+        data-action="sum"
+        data-name="addition"
+        data-value="+"
+        onClick={undefined}
+        title="sum"
+        type="button"
+      >
+        +
+      </button>
+      <button
+        className="btn small"
+        data-name="equality"
+        onClick={undefined}
+        title="equals"
+        type="button"
+      >
+        =
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Macwidget should render the value of formula into element with css class display 1`] = `
+<form
+  className="Macwidget"
+>
+  <output
+    className="display"
+  >
+    456
+  </output>
+  <div
+    className="keyboard"
+  >
+    <div
+      className="brackets"
+    >
+      <button
+        className="btn small"
+        data-name="madd"
+        data-value=""
+        onClick={undefined}
+        title="memory add"
+        type="button"
+      >
+        m+
+      </button>
+      <button
+        className="btn small"
+        data-name="msubtract"
+        data-value=""
+        onClick={undefined}
+        title="memory subtract"
+        type="button"
+      >
+        m−
+      </button>
+      <button
+        className="btn small"
+        data-name="mclear"
+        onClick={undefined}
+        title="memory clear"
+        type="button"
+      >
+        mc
+      </button>
+      <button
+        className="btn small"
+        data-name="mrecall"
+        onClick={undefined}
+        title="memory recall"
+        type="button"
+      >
+        mr
+      </button>
+      <button
+        className="btn small"
+        data-action="divide"
+        data-name="division"
+        data-value="÷"
+        onClick={undefined}
+        title="divide"
+        type="button"
+      >
+        ÷
+      </button>
+    </div>
+    <div
+      className="numbers"
+    >
+      <button
+        className="btn"
+        data-name="number7"
+        data-value="7"
+        onClick={undefined}
+        title="number 7"
+        type="button"
+      >
+        7
+      </button>
+      <button
+        className="btn"
+        data-name="number8"
+        data-value="8"
+        onClick={undefined}
+        title="number 8"
+        type="button"
+      >
+        8
+      </button>
+      <button
+        className="btn"
+        data-name="number9"
+        data-value="9"
+        onClick={undefined}
+        title="number 9"
+        type="button"
+      >
+        9
+      </button>
+      <button
+        className="btn"
+        data-name="number4"
+        data-value="4"
+        onClick={undefined}
+        title="number 4"
+        type="button"
+      >
+        4
+      </button>
+      <button
+        className="btn"
+        data-name="number5"
+        data-value="5"
+        onClick={undefined}
+        title="number 5"
+        type="button"
+      >
+        5
+      </button>
+      <button
+        className="btn"
+        data-name="number6"
+        data-value="6"
+        onClick={undefined}
+        title="number 6"
+        type="button"
+      >
+        6
+      </button>
+      <button
+        className="btn"
+        data-name="number1"
+        data-value="1"
+        onClick={undefined}
+        title="number 1"
+        type="button"
+      >
+        1
+      </button>
+      <button
+        className="btn"
+        data-name="number2"
+        data-value="2"
+        onClick={undefined}
+        title="number 2"
+        type="button"
+      >
+        2
+      </button>
+      <button
+        className="btn"
+        data-name="number3"
+        data-value="3"
+        onClick={undefined}
+        title="number 3"
+        type="button"
+      >
+        3
+      </button>
+      <button
+        className="btn"
+        data-name="number0"
+        data-value="0"
+        onClick={undefined}
+        title="number 0"
+        type="button"
+      >
+        0
+      </button>
+      <button
+        className="btn"
+        data-name="dot"
+        data-value="."
+        onClick={undefined}
+        title="dot"
+        type="button"
+      >
+        .
+      </button>
+      <button
+        className="btn"
+        data-name="clear"
+        onClick={undefined}
+        title="clear"
+        type="button"
+      >
+        c
+      </button>
+    </div>
+    <div
+      className="operators"
+    >
+      <button
+        className="btn small"
+        data-action="multiply"
+        data-name="multiplication"
+        data-value="×"
+        onClick={undefined}
+        title="multiply"
+        type="button"
+      >
+        ×
+      </button>
+      <button
+        className="btn small"
+        data-action="subtract"
+        data-name="subtraction"
+        data-value="-"
+        onClick={undefined}
+        title="subtract"
+        type="button"
+      >
+        −
+      </button>
+      <button
+        className="btn small"
+        data-action="sum"
+        data-name="addition"
+        data-value="+"
+        onClick={undefined}
+        title="sum"
+        type="button"
+      >
+        +
+      </button>
+      <button
+        className="btn small"
+        data-name="equality"
+        onClick={undefined}
+        title="equals"
+        type="button"
+      >
+        =
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Macwidget should render without crashing 1`] = `
 <form
   className="Macwidget"
 >

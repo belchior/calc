@@ -1,5 +1,5 @@
 import React from 'react';
-import {Output} from './Output';
+import Output from './Output';
 import renderer from 'react-test-renderer';
 
 it('should render Output with 0 items without crashing', () => {

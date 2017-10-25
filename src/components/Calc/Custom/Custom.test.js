@@ -1,12 +1,30 @@
 import React from 'react';
-import {Custom} from './Custom';
+import Custom from './Custom';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-it('should render Custom without crashing', () => {
+describe('Custom', () => {
   const renderer = new ShallowRenderer();
 
-  renderer.render(<Custom />);
-  const result = renderer.getRenderOutput();
+  it('should render without crashing', () => {
+    renderer.render(<Custom />);
+    const result = renderer.getRenderOutput();
 
-  expect(result).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should add css class shake-horizontal when error props is equal true', () => {
+    const disableError = jest.fn();
+
+    renderer.render(<Custom error={true} disableError={disableError}/>);
+    const result = renderer.getRenderOutput();
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should render the value of formula into element with css class display', () => {
+    renderer.render(<Custom formula="789" />);
+    const result = renderer.getRenderOutput();
+
+    expect(result).toMatchSnapshot();
+  });
 });

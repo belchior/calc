@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
-class Output extends Component {
+export class Output extends Component {
   componentDidUpdate() {
     this.outputElem.scrollTop = this.outputElem.scrollHeight;
   }
@@ -18,17 +17,4 @@ class Output extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return state.terminal;
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onClick: (e) => {
-      dispatch({type: 'NUMBER', calc: 'terminal', payload: e.target.textContent});
-    }
-  };
-};
-
-export {Output};
-export default connect(mapStateToProps, mapDispatchToProps)(Output);
+export default Output;
