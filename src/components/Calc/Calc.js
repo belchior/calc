@@ -1,5 +1,5 @@
 class Calc {
-  static calculate(formula) {
+  static calculate(userFormula) {
     let resolve = Object.create(null);
 
     resolve.parenthesis = (formula, stack) => {
@@ -189,7 +189,7 @@ class Calc {
       return this.format(formula);
     };
 
-    formula = this.parse(formula);
+    userFormula = this.parse(userFormula);
 
     let stack = [
       resolve.parenthesis,
@@ -202,7 +202,7 @@ class Calc {
     ].reverse();
     let next = stack.pop();
 
-    return next(formula, stack);
+    return next(userFormula, stack);
   }
 
   static divide(a, b) {
@@ -220,8 +220,12 @@ class Calc {
 
   static isNumber(number) {
     let answer = true;
-    if (isNaN(number) || (typeof number !== 'number')) { answer = NaN; }
-    if (!isFinite(number)) { answer = Infinity; }
+    if (isNaN(number) || (typeof number !== 'number')) {
+      answer = NaN;
+    }
+    if (!isFinite(number)) {
+      answer = Infinity;
+    }
     return answer;
   }
 
@@ -246,9 +250,9 @@ class Calc {
     let parenthesisCloses = formula.match(/[)]/g);
 
     if (
-        (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
-        (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
-      ) {
+      (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
+      (parenthesisOpens && !parenthesisCloses) || (!parenthesisOpens && parenthesisCloses)
+    ) {
       throw new SyntaxError('Calc.parse: Divergence between parenthesis');
     }
 

@@ -49,12 +49,12 @@ describe('Calc', () => {
   });
 
   describe('Function percentage', () => {
-    test('should return 0.01 for 1%', () => { expect(Calc.percentage(1)).toBe(0.01); });
-    test('should return 0.1 for 10', () => { expect(Calc.percentage(10)).toBe(0.1); });
-    test('should return 1 for 100', () => { expect(Calc.percentage(100)).toBe(1); });
-    test('should return -1.23 for -123', () => { expect(Calc.percentage(-123)).toBe(-1.23); });
-    test('should return 1.5025 for 150.25', () => { expect(Calc.percentage(150.25)).toBe(1.5025); });
-    test('should return 20 for 20% of 100', () => { expect(Calc.percentage(20, 100)).toBe(20); });
+    test('should return 0.01 for 1%', () => expect(Calc.percentage(1)).toBe(0.01));
+    test('should return 0.1 for 10', () => expect(Calc.percentage(10)).toBe(0.1));
+    test('should return 1 for 100', () => expect(Calc.percentage(100)).toBe(1));
+    test('should return -1.23 for -123', () => expect(Calc.percentage(-123)).toBe(-1.23));
+    test('should return 1.5025 for 150.25', () => expect(Calc.percentage(150.25)).toBe(1.5025));
+    test('should return 20 for 20% of 100', () => expect(Calc.percentage(20, 100)).toBe(20));
     test('should throws an Error when calculate percentage of "abc"', () => {
       expect(() => Calc.percentage('abc')).toThrow('It\'s impossible calculate percentage of abc');
     });
@@ -148,18 +148,6 @@ describe('Calc', () => {
   });
 
   describe('Function parser', () => {
-    let errorMessage;
-    let thrower = function (fn, param) {
-      return () => {
-        fn(param);
-      };
-    };
-    let errorTester = function (errorMessage) {
-      return function (error) {
-        return error instanceof SyntaxError && error.message === errorMessage ? true : false;
-      };
-    };
-
     describe('should return a synta× error: divergence between parenthesis', () => {
       test('when formula has different amount of parenthesis', () => {
         const errorMessage = 'Calc.parse: Divergence between parenthesis';
