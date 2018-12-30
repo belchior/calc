@@ -12,13 +12,11 @@ exports[`should render Output with 2 items without crashing 1`] = `
 >
   <output
     className="result"
-    onClick={undefined}
   >
     1.2
   </output>
   <output
     className="result"
-    onClick={undefined}
   >
     3.4
   </output>

@@ -17,7 +17,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="percentage"
         data-value="%"
-        onClick={undefined}
         title="percentage"
         type="button"
       >
@@ -26,7 +25,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn"
         data-name="madd"
-        onClick={undefined}
         title="memory plus"
         type="button"
       >
@@ -35,7 +33,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn"
         data-name="msubtract"
-        onClick={undefined}
         title="memory minus"
         type="button"
       >
@@ -45,7 +42,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="power"
         data-value="^"
-        onClick={undefined}
         title="power"
         type="button"
       >
@@ -57,7 +53,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn"
         data-name="mclear"
-        onClick={undefined}
         title="memory clear"
         type="button"
       >
@@ -66,7 +61,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn"
         data-name="mrecall"
-        onClick={undefined}
         title="memory recall"
         type="button"
       >
@@ -76,7 +70,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="sqrt"
         data-value="√"
-        onClick={undefined}
         title="square root"
         type="button"
       >
@@ -85,7 +78,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn double"
         data-name="delete"
-        onClick={undefined}
         title="delete"
         type="button"
       >
@@ -95,7 +87,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="pi"
         data-value="π"
-        onClick={undefined}
         title="constant PI"
         type="button"
       >
@@ -104,7 +95,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn double"
         data-name="clear"
-        onClick={undefined}
         title="clear"
         type="button"
       >
@@ -118,7 +108,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number7"
         data-value="7"
-        onClick={undefined}
         title="number 7"
         type="button"
       >
@@ -128,7 +117,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number8"
         data-value="8"
-        onClick={undefined}
         title="number 8"
         type="button"
       >
@@ -138,7 +126,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number9"
         data-value="9"
-        onClick={undefined}
         title="number 9"
         type="button"
       >
@@ -148,7 +135,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="addition"
         data-value="+"
-        onClick={undefined}
         title="plus"
         type="button"
       >
@@ -158,7 +144,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="multiplication"
         data-value="×"
-        onClick={undefined}
         title="times"
         type="button"
       >
@@ -168,7 +153,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number4"
         data-value="4"
-        onClick={undefined}
         title="number 4"
         type="button"
       >
@@ -178,7 +162,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number5"
         data-value="5"
-        onClick={undefined}
         title="number 5"
         type="button"
       >
@@ -188,7 +171,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number6"
         data-value="6"
-        onClick={undefined}
         title="number 6"
         type="button"
       >
@@ -198,7 +180,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="subtraction"
         data-value="-"
-        onClick={undefined}
         title="minus"
         type="button"
       >
@@ -208,7 +189,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="division"
         data-value="÷"
-        onClick={undefined}
         title="divided"
         type="button"
       >
@@ -218,7 +198,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number1"
         data-value="1"
-        onClick={undefined}
         title="number 1"
         type="button"
       >
@@ -228,7 +207,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number2"
         data-value="2"
-        onClick={undefined}
         title="number 2"
         type="button"
       >
@@ -238,7 +216,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="number3"
         data-value="3"
-        onClick={undefined}
         title="number 3"
         type="button"
       >
@@ -248,7 +225,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
-        onClick={undefined}
         title="parenthesis opening"
         type="button"
       >
@@ -258,7 +234,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
-        onClick={undefined}
         title="parenthesis closing"
         type="button"
       >
@@ -268,7 +243,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn double"
         data-name="number0"
         data-value="0"
-        onClick={undefined}
         title="number 0"
         type="button"
       >
@@ -278,7 +252,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
         className="btn"
         data-name="dot"
         data-value="."
-        onClick={undefined}
         title="dot"
         type="button"
       >
@@ -287,7 +260,6 @@ exports[`Custom should add css class shake-horizontal when error props is equal 
       <button
         className="btn double"
         data-name="equality"
-        onClick={undefined}
         title="equals"
         type="button"
       >
@@ -317,7 +289,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="percentage"
         data-value="%"
-        onClick={undefined}
         title="percentage"
         type="button"
       >
@@ -326,7 +297,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn"
         data-name="madd"
-        onClick={undefined}
         title="memory plus"
         type="button"
       >
@@ -335,7 +305,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn"
         data-name="msubtract"
-        onClick={undefined}
         title="memory minus"
         type="button"
       >
@@ -345,7 +314,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="power"
         data-value="^"
-        onClick={undefined}
         title="power"
         type="button"
       >
@@ -357,7 +325,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn"
         data-name="mclear"
-        onClick={undefined}
         title="memory clear"
         type="button"
       >
@@ -366,7 +333,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn"
         data-name="mrecall"
-        onClick={undefined}
         title="memory recall"
         type="button"
       >
@@ -376,7 +342,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="sqrt"
         data-value="√"
-        onClick={undefined}
         title="square root"
         type="button"
       >
@@ -385,7 +350,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn double"
         data-name="delete"
-        onClick={undefined}
         title="delete"
         type="button"
       >
@@ -395,7 +359,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="pi"
         data-value="π"
-        onClick={undefined}
         title="constant PI"
         type="button"
       >
@@ -404,7 +367,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn double"
         data-name="clear"
-        onClick={undefined}
         title="clear"
         type="button"
       >
@@ -418,7 +380,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number7"
         data-value="7"
-        onClick={undefined}
         title="number 7"
         type="button"
       >
@@ -428,7 +389,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number8"
         data-value="8"
-        onClick={undefined}
         title="number 8"
         type="button"
       >
@@ -438,7 +398,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number9"
         data-value="9"
-        onClick={undefined}
         title="number 9"
         type="button"
       >
@@ -448,7 +407,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="addition"
         data-value="+"
-        onClick={undefined}
         title="plus"
         type="button"
       >
@@ -458,7 +416,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="multiplication"
         data-value="×"
-        onClick={undefined}
         title="times"
         type="button"
       >
@@ -468,7 +425,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number4"
         data-value="4"
-        onClick={undefined}
         title="number 4"
         type="button"
       >
@@ -478,7 +434,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number5"
         data-value="5"
-        onClick={undefined}
         title="number 5"
         type="button"
       >
@@ -488,7 +443,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number6"
         data-value="6"
-        onClick={undefined}
         title="number 6"
         type="button"
       >
@@ -498,7 +452,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="subtraction"
         data-value="-"
-        onClick={undefined}
         title="minus"
         type="button"
       >
@@ -508,7 +461,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="division"
         data-value="÷"
-        onClick={undefined}
         title="divided"
         type="button"
       >
@@ -518,7 +470,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number1"
         data-value="1"
-        onClick={undefined}
         title="number 1"
         type="button"
       >
@@ -528,7 +479,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number2"
         data-value="2"
-        onClick={undefined}
         title="number 2"
         type="button"
       >
@@ -538,7 +488,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="number3"
         data-value="3"
-        onClick={undefined}
         title="number 3"
         type="button"
       >
@@ -548,7 +497,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
-        onClick={undefined}
         title="parenthesis opening"
         type="button"
       >
@@ -558,7 +506,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
-        onClick={undefined}
         title="parenthesis closing"
         type="button"
       >
@@ -568,7 +515,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn double"
         data-name="number0"
         data-value="0"
-        onClick={undefined}
         title="number 0"
         type="button"
       >
@@ -578,7 +524,6 @@ exports[`Custom should render the value of formula into element with css class d
         className="btn"
         data-name="dot"
         data-value="."
-        onClick={undefined}
         title="dot"
         type="button"
       >
@@ -587,7 +532,6 @@ exports[`Custom should render the value of formula into element with css class d
       <button
         className="btn double"
         data-name="equality"
-        onClick={undefined}
         title="equals"
         type="button"
       >
@@ -615,7 +559,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="percentage"
         data-value="%"
-        onClick={undefined}
         title="percentage"
         type="button"
       >
@@ -624,7 +567,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn"
         data-name="madd"
-        onClick={undefined}
         title="memory plus"
         type="button"
       >
@@ -633,7 +575,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn"
         data-name="msubtract"
-        onClick={undefined}
         title="memory minus"
         type="button"
       >
@@ -643,7 +584,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="power"
         data-value="^"
-        onClick={undefined}
         title="power"
         type="button"
       >
@@ -655,7 +595,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn"
         data-name="mclear"
-        onClick={undefined}
         title="memory clear"
         type="button"
       >
@@ -664,7 +603,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn"
         data-name="mrecall"
-        onClick={undefined}
         title="memory recall"
         type="button"
       >
@@ -674,7 +612,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="sqrt"
         data-value="√"
-        onClick={undefined}
         title="square root"
         type="button"
       >
@@ -683,7 +620,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn double"
         data-name="delete"
-        onClick={undefined}
         title="delete"
         type="button"
       >
@@ -693,7 +629,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="pi"
         data-value="π"
-        onClick={undefined}
         title="constant PI"
         type="button"
       >
@@ -702,7 +637,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn double"
         data-name="clear"
-        onClick={undefined}
         title="clear"
         type="button"
       >
@@ -716,7 +650,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number7"
         data-value="7"
-        onClick={undefined}
         title="number 7"
         type="button"
       >
@@ -726,7 +659,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number8"
         data-value="8"
-        onClick={undefined}
         title="number 8"
         type="button"
       >
@@ -736,7 +668,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number9"
         data-value="9"
-        onClick={undefined}
         title="number 9"
         type="button"
       >
@@ -746,7 +677,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="addition"
         data-value="+"
-        onClick={undefined}
         title="plus"
         type="button"
       >
@@ -756,7 +686,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="multiplication"
         data-value="×"
-        onClick={undefined}
         title="times"
         type="button"
       >
@@ -766,7 +695,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number4"
         data-value="4"
-        onClick={undefined}
         title="number 4"
         type="button"
       >
@@ -776,7 +704,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number5"
         data-value="5"
-        onClick={undefined}
         title="number 5"
         type="button"
       >
@@ -786,7 +713,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number6"
         data-value="6"
-        onClick={undefined}
         title="number 6"
         type="button"
       >
@@ -796,7 +722,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="subtraction"
         data-value="-"
-        onClick={undefined}
         title="minus"
         type="button"
       >
@@ -806,7 +731,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="division"
         data-value="÷"
-        onClick={undefined}
         title="divided"
         type="button"
       >
@@ -816,7 +740,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number1"
         data-value="1"
-        onClick={undefined}
         title="number 1"
         type="button"
       >
@@ -826,7 +749,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number2"
         data-value="2"
-        onClick={undefined}
         title="number 2"
         type="button"
       >
@@ -836,7 +758,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="number3"
         data-value="3"
-        onClick={undefined}
         title="number 3"
         type="button"
       >
@@ -846,7 +767,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
-        onClick={undefined}
         title="parenthesis opening"
         type="button"
       >
@@ -856,7 +776,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
-        onClick={undefined}
         title="parenthesis closing"
         type="button"
       >
@@ -866,7 +785,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn double"
         data-name="number0"
         data-value="0"
-        onClick={undefined}
         title="number 0"
         type="button"
       >
@@ -876,7 +794,6 @@ exports[`Custom should render without crashing 1`] = `
         className="btn"
         data-name="dot"
         data-value="."
-        onClick={undefined}
         title="dot"
         type="button"
       >
@@ -885,7 +802,6 @@ exports[`Custom should render without crashing 1`] = `
       <button
         className="btn double"
         data-name="equality"
-        onClick={undefined}
         title="equals"
         type="button"
       >
