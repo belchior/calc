@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Output extends Component {
   componentDidUpdate() {
@@ -8,7 +9,7 @@ export class Output extends Component {
   render() {
     const results = this.props.results || [];
     return (
-      <div className="output" ref={(output) => this.outputElem = output}>
+      <div className="output" ref={(elem) => this.outputElem = elem}>
         {results.map((item, index) => {
           return <output className="result" onClick={this.props.onClick} key={index}>{item}</output>;
         })}
@@ -18,3 +19,10 @@ export class Output extends Component {
 }
 
 export default Output;
+
+Output.propTypes = {
+  onClick: PropTypes.func,
+  results: PropTypes.array,
+  scrollHeight: PropTypes.number,
+  scrollTop: PropTypes.number,
+};

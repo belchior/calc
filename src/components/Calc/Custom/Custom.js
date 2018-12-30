@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './Custom.css';
 
 class Custom extends Component {
@@ -51,3 +53,28 @@ class Custom extends Component {
 }
 
 export default Custom;
+
+Custom.propTypes = {
+  clearClick: PropTypes.func,
+  deleteClick: PropTypes.func,
+  disableError: PropTypes.func,
+  divisionClick: PropTypes.func,
+  dotClick: PropTypes.func,
+  equalsClick: PropTypes.func,
+  error: PropTypes.bool,
+  formula: PropTypes.string,
+  memoryPlusClick: PropTypes.func,
+  memoryMinusClick: PropTypes.func,
+  memoryClearClick: PropTypes.func,
+  memoryRecallClick: PropTypes.func,
+  minusClick: PropTypes.func,
+  multiplicationClick: PropTypes.func,
+  numberClick: PropTypes.func,
+  parenthesisLeftClick: PropTypes.func,
+  parenthesisRightClick: PropTypes.func,
+  percentageClick: PropTypes.func,
+  piClick: PropTypes.func,
+  plusClick: PropTypes.func,
+  powerClick: PropTypes.func,
+  sqrtClick: PropTypes.func,
+};

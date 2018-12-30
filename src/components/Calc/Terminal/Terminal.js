@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Output from '../../Output';
 import './Terminal.css';
 
@@ -58,3 +60,22 @@ class Terminal extends Component {
 }
 
 export default Terminal;
+
+Terminal.propTypes = {
+  error: PropTypes.bool,
+  disableError: PropTypes.func,
+  formula: PropTypes.string,
+  startNewCalc: PropTypes.bool,
+  results: PropTypes.array,
+  parenthesisLeftClick: PropTypes.func,
+  parenthesisRightClick: PropTypes.func,
+  deleteClick: PropTypes.func,
+  clearClick: PropTypes.func,
+  numberClick: PropTypes.func,
+  plusClick: PropTypes.func,
+  minusClick: PropTypes.func,
+  multiplicationClick: PropTypes.func,
+  dotClick: PropTypes.func,
+  equalsClick: PropTypes.func,
+  divisionClick: PropTypes.func,
+};
