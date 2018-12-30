@@ -1,11 +1,19 @@
 sudo: false
 language: node_js
 node_js:
-  - "8"
+  - "10"
 install:
-  npm install
+  npm ci
 script:
   - npm test -- --coverage # Include coverage when running tests
   - npm run build
 after_script: # Upload coverage reports
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+deploy:
+  on:
+    branch: react-redux
+  target-branch: gh-pages
+  local-dir: build
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  skip-cleanup: true
