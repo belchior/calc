@@ -1,7 +1,7 @@
 {
   "name": "calc",
   "homepage": "http://belchior.github.io/calc",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
