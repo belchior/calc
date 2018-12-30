@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Custom from './Custom';
 
 export const mapStateToProps = (state) => {
@@ -22,16 +22,16 @@ export const mapDispatchToProps = (dispatch) => {
     equalsClick(e) {
       dispatch({type: 'EQUALS', calc: 'custom', payload: e.target.getAttribute('data-value')});
     },
-    memoryClearClick(e) {
+    memoryClearClick() {
       dispatch({type: 'MEMORY_CLEAR', calc: 'custom'});
     },
-    memoryMinusClick(e) {
+    memoryMinusClick() {
       dispatch({type: 'MEMORY_MINUS', calc: 'custom'});
     },
-    memoryPlusClick(e) {
+    memoryPlusClick() {
       dispatch({type: 'MEMORY_PLUS', calc: 'custom'});
     },
-    memoryRecallClick(e) {
+    memoryRecallClick() {
       dispatch({type: 'MEMORY_RECALL', calc: 'custom'});
     },
     minusClick(e) {

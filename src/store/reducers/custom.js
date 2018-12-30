@@ -82,6 +82,7 @@ const equalsRule = (state) => {
     };
 
   } catch (err) {
+    /* eslint no-console: 0 */
     console.error(err);
     return {
       ...state,

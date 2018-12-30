@@ -1,3 +1,4 @@
+/* eslint jest/valid-expect-in-promise: 0 */
 describe('Calc', function () {
   browser.ignoreSynchronization = true;
   browser.get('http://localhost:3000/');

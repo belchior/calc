@@ -19,16 +19,16 @@ export const mapDispatchToProps = (dispatch) => {
     equalsClick(e) {
       dispatch({type: 'EQUALS', calc: 'macwidget', payload: e.target.getAttribute('data-value')});
     },
-    memoryClearClick(e) {
+    memoryClearClick() {
       dispatch({type: 'MEMORY_CLEAR', calc: 'macwidget'});
     },
-    memoryMinusClick(e) {
+    memoryMinusClick() {
       dispatch({type: 'MEMORY_MINUS', calc: 'macwidget'});
     },
-    memoryPlusClick(e) {
+    memoryPlusClick() {
       dispatch({type: 'MEMORY_PLUS', calc: 'macwidget'});
     },
-    memoryRecallClick(e) {
+    memoryRecallClick() {
       dispatch({type: 'MEMORY_RECALL', calc: 'macwidget'});
     },
     minusClick(e) {
