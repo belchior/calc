@@ -101,7 +101,7 @@ describe('reducer macwidget', () => {
   it('should subtract memory slot with the value of formula with the action MEMORY_MINUS', () => {
     const action = {type: 'MEMORY_MINUS', calc: 'macwidget'};
 
-    expect(macwidget(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 29.5}));
+    expect(macwidget(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 29.5, startNewCalc: true}));
 
     expect(macwidget(state({formula: '', memory: 42}), action)).toEqual(state({memory: 42, error: true}));
     expect(macwidget(state({formula: '1+2', memory: 42}), action)).toEqual(state({formula: '1+2', memory: 42, error: true}));
@@ -110,7 +110,7 @@ describe('reducer macwidget', () => {
   it('should add to memory slot with the value of formula with the action MEMORY_PLUS', () => {
     const action = {type: 'MEMORY_PLUS', calc: 'macwidget'};
 
-    expect(macwidget(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 54.5}));
+    expect(macwidget(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 54.5, startNewCalc: true}));
 
     expect(macwidget(state({formula: '', memory: 42}), action)).toEqual(state({memory: 42, error: true}));
     expect(macwidget(state({formula: '1+2', memory: 42}), action)).toEqual(state({formula: '1+2', memory: 42, error: true}));

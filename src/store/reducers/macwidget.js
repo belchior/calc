@@ -20,6 +20,12 @@ const disableError = (state) => ({
 
 const divisionRule = (state, char = '÷') => {
   if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+    if (state.formula.length === 1) {
+      return {
+        ...state,
+        error: true
+      };
+    }
     if (state.formula.slice(-2).search(/[(^√]/) < 0) {
       return {
         ...state,
@@ -88,7 +94,8 @@ const equalsRule = (state) => {
 const memoryClearRule = (state) => {
   return {
     ...state,
-    memory: 0
+    memory: 0,
+    startNewCalc: false
   };
 };
 
@@ -96,7 +103,8 @@ const memoryMinusRule = (state) => {
   if (state.formula && state.formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
     return {
       ...state,
-      memory: state.memory - Number(state.formula)
+      memory: state.memory - Number(state.formula),
+      startNewCalc: true
     };
   }
   return {
@@ -109,7 +117,8 @@ const memoryPlusRule = (state) => {
   if (state.formula && state.formula.match(/^[+-]?\d+(?:\.\d+)?$/)) {
     return {
       ...state,
-      memory: state.memory + Number(state.formula)
+      memory: state.memory + Number(state.formula),
+      startNewCalc: true
     };
   }
   return {
@@ -121,7 +130,8 @@ const memoryPlusRule = (state) => {
 const memoryRecallRule = (state) => {
   return {
     ...state,
-    formula: String(state.memory)
+    formula: String(state.memory),
+    startNewCalc: false
   };
 };
 
@@ -155,6 +165,12 @@ const minusRule = (state, char = '-') => {
 
 const multiplicationRule = (state, char = '×') => {
   if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+    if (state.formula.length === 1) {
+      return {
+        ...state,
+        error: true
+      };
+    }
     if (state.formula.slice(-2).search(/[(^√]/) < 0) {
       return {
         ...state,

@@ -84,7 +84,7 @@ describe('reducer custom', () => {
     expect(custom(state({formula: '9+8-7×6÷5+((-4-3.2)+√25-2^2)'}), action)).toEqual(state({formula: '2.4', startNewCalc: true}));
     expect(custom(state({formula: 'π^2'}), action)).toEqual(state({formula: '9.86960438', startNewCalc: true}));
     expect(custom(state({formula: '100×5%+1'}), action)).toEqual(state({formula: '6', startNewCalc: true}));
-    expect(custom(state({formula: 'π^'}), action)).toEqual(state({formula: 'NaN', startNewCalc: true}));
+    expect(custom(state({formula: 'π^'}), action)).toEqual(state({formula: 'π^', error: true, startNewCalc: false}));
 
     expect(custom(state({formula: '10÷0'}), action)).toEqual(state({formula: '10÷0', error: true}));
 
@@ -107,17 +107,16 @@ describe('reducer custom', () => {
   it('should subtract memory slot with the value of formula with the action MEMORY_MINUS', () => {
     const action = {type: 'MEMORY_MINUS', calc: 'custom'};
 
-    expect(custom(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 29.5}));
+    expect(custom(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 29.5, startNewCalc: true}));
 
     expect(custom(state({formula: '', memory: 42}), action)).toEqual(state({memory: 42, error: true}));
     expect(custom(state({formula: '1+2', memory: 42}), action)).toEqual(state({formula: '1+2', memory: 42, error: true}));
   });
 
   it('should add to memory slot with the value of formula with the action MEMORY_PLUS', () => {
-    const action = {type: 'MEMORY_PLUS', calc: 'custom'};
+    const action = { type: 'MEMORY_PLUS', calc: 'custom' };
 
-    expect(custom(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 54.5}));
-
+    expect(custom(state({formula: '12.5', memory: 42}), action)).toEqual(state({formula: '12.5', memory: 54.5, startNewCalc: true}));
     expect(custom(state({formula: '', memory: 42}), action)).toEqual(state({memory: 42, error: true}));
     expect(custom(state({formula: '1+2', memory: 42}), action)).toEqual(state({formula: '1+2', memory: 42, error: true}));
   });

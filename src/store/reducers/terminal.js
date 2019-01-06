@@ -9,6 +9,7 @@ const initialState = {
 
 const clearRule = (state) => ({
   ...state,
+  results: [],
   formula: '',
   startNewCalc: false
 });
@@ -26,6 +27,12 @@ const disableError = (state) => ({
 
 const divisionRule = (state, char = '÷') => {
   if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+    if (state.formula.length === 1) {
+      return {
+        ...state,
+        error: true
+      };
+    }
     if (state.formula.slice(-2).search(/[(]/) < 0) {
       return {
         ...state,
@@ -122,6 +129,12 @@ const minusRule = (state, char = '-') => {
 
 const multiplicationRule = (state, char = '×') => {
   if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+    if (state.formula.length === 1) {
+      return {
+        ...state,
+        error: true
+      };
+    }
     if (state.formula.slice(-2).search(/[(]/) < 0) {
       return {
         ...state,
