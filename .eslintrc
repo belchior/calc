@@ -33,6 +33,7 @@
     "global": true,
     "navigator": true,
     "process": true,
+    "Promise": true,
     "URL": true,
     "setTimeout": true,
     "window": true
