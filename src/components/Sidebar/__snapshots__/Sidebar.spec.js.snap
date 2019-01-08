@@ -24,7 +24,7 @@ exports[`renders Sidebar without crashing 1`] = `
   >
     <a
       className="list-item link-custom"
-      href="/calc/"
+      href="/calc/custom"
       onClick={[Function]}
     >
       <img

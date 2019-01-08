@@ -4,11 +4,12 @@
   "version": "0.2.2",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npm run lint && react-scripts build",
+    "start": "cross-env BROWSER=none react-scripts start",
+    "serve": "npx serve -s build",
+    "build": "npm run lint && react-scripts build && bash ./config/postbuild.sh",
     "test": "react-scripts test --env=jsdom",
     "test:coverage": "react-scripts test --env=jsdom --coverage",
-    "test:e2e": "npx jest --testMatch '<rootDir>/src/components/Calc/Terminal/**/*.e2e.js'",
+    "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' npx jest -c ./config/jest.config.js",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
@@ -26,13 +27,17 @@
   },
   "devDependencies": {
     "coveralls": "3.0.2",
+    "cross-env": "^5.2.0",
     "eslint": "5.6.0",
     "eslint-plugin-jest": "^22.1.2",
     "eslint-plugin-react": "7.12.0",
+    "expect-puppeteer": "^3.5.1",
     "gh-pages": "2.0.1",
+    "jest-puppeteer": "^3.7.0",
     "prop-types": "^15.6.2",
     "puppeteer": "^1.11.0",
-    "puppeteer-to-istanbul": "^1.2.2"
+    "puppeteer-to-istanbul": "^1.2.2",
+    "serve": "^10.1.1"
   },
   "browserslist": [
     ">0.2%",

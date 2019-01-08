@@ -1,16 +1,11 @@
-const puppeteer = require('puppeteer');
-const config = require('../../../../e2e.config');
+const config = require('../../../../config/puppeteer.config');
 
 
-let browser;
-let page;
 let custom = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 
 beforeAll(async () => {
-  browser = await puppeteer.launch(config.launchOptions);
-  page = await browser.newPage();
   await page.goto(`${config.appUrl}/calc/macwidget`);
 
   custom.display = await page.$('.Macwidget .display');
@@ -38,7 +33,6 @@ beforeAll(async () => {
 });
 
 beforeEach(() => custom.clear.click());
-afterAll(() => browser.close());
 
 
 describe('Macwidget', () => {

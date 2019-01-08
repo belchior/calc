@@ -1,24 +1,11 @@
-const puppeteer = require('puppeteer');
-const pti = require('puppeteer-to-istanbul');
+const config = require('../../../../config/puppeteer.config');
 
-const config = require('../../../../e2e.config');
-
-
-let browser;
-let page;
 let terminal = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 const lastOutput = () => page.$('.Terminal output:last-child');
-const textFromLastOutput = async () => await getText(await lastOutput());
 
 beforeAll(async () => {
-  browser = await puppeteer.launch(config.launchOptions);
-  page = await browser.newPage();
-  await Promise.all([
-    page.coverage.startJSCoverage(),
-  ]);
-
   await page.goto(`${config.appUrl}/calc/terminal`);
 
   terminal.display = await page.$('.Terminal .display');
@@ -46,15 +33,6 @@ beforeAll(async () => {
 });
 
 beforeEach(() => terminal.clear.click());
-
-afterAll(async () => {
-  const [ jsCoverage ] = await Promise.all([
-    page.coverage.stopJSCoverage(),
-  ]);
-  pti.write(jsCoverage);
-  console.log(jsCoverage);
-  await browser.close();
-});
 
 
 describe('Terminal', () => {

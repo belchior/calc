@@ -16,7 +16,7 @@ class Sidebar extends Component {
           <span className="author-name">Belchior Oliveira</span>
         </a>
         <nav className="list internal-links">
-          <Link className="list-item link-custom" to="/calc/">
+          <Link className="list-item link-custom" to="/calc/custom">
             <img className="list-item-image" src={iconCustom} alt="Calc Custom" />
             <span className="list-item-text">Calc Custom</span>
           </Link>
