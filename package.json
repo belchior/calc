@@ -8,16 +8,16 @@
     "url" : "https://github.com/belchior/calc.git"
   },
   "scripts": {
-    "start": "cross-env BROWSER=none react-scripts start",
-    "serve": "npx serve -s build",
     "build": "npm run lint && react-scripts build && bash ./config/postbuild.sh",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage": "react-scripts test --env=jsdom --coverage",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "cypress:open": "cypress open",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "lint": "npx eslint ./src/"
+    "deploy": "gh-pages -d build",
+    "lint": "npx eslint ./src/",
+    "predeploy": "npm run build",
+    "serve": "npx serve -s build",
+    "start": "cross-env BROWSER=none react-scripts start",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage"
   },
   "dependencies": {
     "react": "16.7.0",

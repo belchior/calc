@@ -26,7 +26,9 @@
   },
   "globals": {
     "$": true,
+    "before": true,
     "browser": true,
+    "cy": true,
     "console": true,
     "context": true,
     "document": true,
