@@ -1,36 +1,36 @@
-before(() => {
-  cy.visit('http://localhost:3000/calc/terminal');
-});
-
-beforeEach(() => {
-  cy.get('.Terminal .display').as('display');
-  cy.get('.Terminal .display .input').as('input');
-  cy.get('.Terminal .btn[data-name="number1"]').as('number1');
-  cy.get('.Terminal .btn[data-name="number2"]').as('number2');
-  cy.get('.Terminal .btn[data-name="number3"]').as('number3');
-  cy.get('.Terminal .btn[data-name="number4"]').as('number4');
-  cy.get('.Terminal .btn[data-name="number5"]').as('number5');
-  cy.get('.Terminal .btn[data-name="number6"]').as('number6');
-  cy.get('.Terminal .btn[data-name="number7"]').as('number7');
-  cy.get('.Terminal .btn[data-name="number8"]').as('number8');
-  cy.get('.Terminal .btn[data-name="number9"]').as('number9');
-  cy.get('.Terminal .btn[data-name="number0"]').as('number0');
-  cy.get('.Terminal .btn[data-name="dot"]').as('dot');
-  cy.get('.Terminal .btn[data-name="addition"]').as('addition');
-  cy.get('.Terminal .btn[data-name="subtraction"]').as('subtraction');
-  cy.get('.Terminal .btn[data-name="multiplication"]').as('multiplication');
-  cy.get('.Terminal .btn[data-name="division"]').as('division');
-  cy.get('.Terminal .btn[data-name="parenthesisOpen"]').as('parenthesisOpen');
-  cy.get('.Terminal .btn[data-name="parenthesisClose"]').as('parenthesisClose');
-  cy.get('.Terminal .btn[data-name="equality"]').as('equality');
-  cy.get('.Terminal .btn[data-name="delete"]').as('delete');
-  cy.get('.Terminal .btn[data-name="clear"]').as('clear');
-
-  cy.get('@clear').click();
-});
-
 
 describe('Terminal', () => {
+  before(() => {
+    cy.visit('/calc/terminal');
+  });
+
+  beforeEach(() => {
+    cy.get('.Terminal .display').as('display');
+    cy.get('.Terminal .display .input').as('input');
+    cy.get('.Terminal .btn[data-name="number1"]').as('number1');
+    cy.get('.Terminal .btn[data-name="number2"]').as('number2');
+    cy.get('.Terminal .btn[data-name="number3"]').as('number3');
+    cy.get('.Terminal .btn[data-name="number4"]').as('number4');
+    cy.get('.Terminal .btn[data-name="number5"]').as('number5');
+    cy.get('.Terminal .btn[data-name="number6"]').as('number6');
+    cy.get('.Terminal .btn[data-name="number7"]').as('number7');
+    cy.get('.Terminal .btn[data-name="number8"]').as('number8');
+    cy.get('.Terminal .btn[data-name="number9"]').as('number9');
+    cy.get('.Terminal .btn[data-name="number0"]').as('number0');
+    cy.get('.Terminal .btn[data-name="dot"]').as('dot');
+    cy.get('.Terminal .btn[data-name="addition"]').as('addition');
+    cy.get('.Terminal .btn[data-name="subtraction"]').as('subtraction');
+    cy.get('.Terminal .btn[data-name="multiplication"]').as('multiplication');
+    cy.get('.Terminal .btn[data-name="division"]').as('division');
+    cy.get('.Terminal .btn[data-name="parenthesisOpen"]').as('parenthesisOpen');
+    cy.get('.Terminal .btn[data-name="parenthesisClose"]').as('parenthesisClose');
+    cy.get('.Terminal .btn[data-name="equality"]').as('equality');
+    cy.get('.Terminal .btn[data-name="delete"]').as('delete');
+    cy.get('.Terminal .btn[data-name="clear"]').as('clear');
+
+    cy.get('@clear').click();
+  });
+
   describe('number button', () => {
     it('button number0 should be clickable', () => {
       cy.get('@number0').click();

@@ -1,36 +1,36 @@
-before(() => {
-  cy.visit('http://localhost:3000/calc/macwidget');
-});
-
-beforeEach(() => {
-  cy.get('.Macwidget .display').as('display');
-  cy.get('.Macwidget .btn[data-name="number1"]').as('number1');
-  cy.get('.Macwidget .btn[data-name="number2"]').as('number2');
-  cy.get('.Macwidget .btn[data-name="number3"]').as('number3');
-  cy.get('.Macwidget .btn[data-name="number4"]').as('number4');
-  cy.get('.Macwidget .btn[data-name="number5"]').as('number5');
-  cy.get('.Macwidget .btn[data-name="number6"]').as('number6');
-  cy.get('.Macwidget .btn[data-name="number7"]').as('number7');
-  cy.get('.Macwidget .btn[data-name="number8"]').as('number8');
-  cy.get('.Macwidget .btn[data-name="number9"]').as('number9');
-  cy.get('.Macwidget .btn[data-name="number0"]').as('number0');
-  cy.get('.Macwidget .btn[data-name="dot"]').as('dot');
-  cy.get('.Macwidget .btn[data-name="addition"]').as('addition');
-  cy.get('.Macwidget .btn[data-name="subtraction"]').as('subtraction');
-  cy.get('.Macwidget .btn[data-name="multiplication"]').as('multiplication');
-  cy.get('.Macwidget .btn[data-name="division"]').as('division');
-  cy.get('.Macwidget .btn[data-name="equality"]').as('equality');
-  cy.get('.Macwidget .btn[data-name="clear"]').as('clear');
-  cy.get('.Macwidget .btn[data-name="madd"]').as('madd');
-  cy.get('.Macwidget .btn[data-name="msubtract"]').as('msubtract');
-  cy.get('.Macwidget .btn[data-name="mclear"]').as('mclear');
-  cy.get('.Macwidget .btn[data-name="mrecall"]').as('mrecall');
-
-  cy.get('@clear').click();
-});
-
 
 describe('Macwidget', () => {
+  before(() => {
+    cy.visit('/calc/macwidget');
+  });
+
+  beforeEach(() => {
+    cy.get('.Macwidget .display').as('display');
+    cy.get('.Macwidget .btn[data-name="number1"]').as('number1');
+    cy.get('.Macwidget .btn[data-name="number2"]').as('number2');
+    cy.get('.Macwidget .btn[data-name="number3"]').as('number3');
+    cy.get('.Macwidget .btn[data-name="number4"]').as('number4');
+    cy.get('.Macwidget .btn[data-name="number5"]').as('number5');
+    cy.get('.Macwidget .btn[data-name="number6"]').as('number6');
+    cy.get('.Macwidget .btn[data-name="number7"]').as('number7');
+    cy.get('.Macwidget .btn[data-name="number8"]').as('number8');
+    cy.get('.Macwidget .btn[data-name="number9"]').as('number9');
+    cy.get('.Macwidget .btn[data-name="number0"]').as('number0');
+    cy.get('.Macwidget .btn[data-name="dot"]').as('dot');
+    cy.get('.Macwidget .btn[data-name="addition"]').as('addition');
+    cy.get('.Macwidget .btn[data-name="subtraction"]').as('subtraction');
+    cy.get('.Macwidget .btn[data-name="multiplication"]').as('multiplication');
+    cy.get('.Macwidget .btn[data-name="division"]').as('division');
+    cy.get('.Macwidget .btn[data-name="equality"]').as('equality');
+    cy.get('.Macwidget .btn[data-name="clear"]').as('clear');
+    cy.get('.Macwidget .btn[data-name="madd"]').as('madd');
+    cy.get('.Macwidget .btn[data-name="msubtract"]').as('msubtract');
+    cy.get('.Macwidget .btn[data-name="mclear"]').as('mclear');
+    cy.get('.Macwidget .btn[data-name="mrecall"]').as('mrecall');
+
+    cy.get('@clear').click();
+  });
+
   describe('number button', () => {
     it('button number0 should be clickable', () => {
       cy.get('@number0').click();

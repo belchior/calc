@@ -1,42 +1,43 @@
-before(() => {
-  cy.visit('http://localhost:3000/calc/custom');
-});
-
-beforeEach(() => {
-  cy.get('.Custom .display').as('display');
-  cy.get('.Custom .btn[data-name="number1"]').as('number1');
-  cy.get('.Custom .btn[data-name="number2"]').as('number2');
-  cy.get('.Custom .btn[data-name="number3"]').as('number3');
-  cy.get('.Custom .btn[data-name="number4"]').as('number4');
-  cy.get('.Custom .btn[data-name="number5"]').as('number5');
-  cy.get('.Custom .btn[data-name="number6"]').as('number6');
-  cy.get('.Custom .btn[data-name="number7"]').as('number7');
-  cy.get('.Custom .btn[data-name="number8"]').as('number8');
-  cy.get('.Custom .btn[data-name="number9"]').as('number9');
-  cy.get('.Custom .btn[data-name="number0"]').as('number0');
-  cy.get('.Custom .btn[data-name="dot"]').as('dot');
-  cy.get('.Custom .btn[data-name="addition"]').as('addition');
-  cy.get('.Custom .btn[data-name="subtraction"]').as('subtraction');
-  cy.get('.Custom .btn[data-name="multiplication"]').as('multiplication');
-  cy.get('.Custom .btn[data-name="division"]').as('division');
-  cy.get('.Custom .btn[data-name="parenthesisOpen"]').as('parenthesisOpen');
-  cy.get('.Custom .btn[data-name="parenthesisClose"]').as('parenthesisClose');
-  cy.get('.Custom .btn[data-name="equality"]').as('equality');
-  cy.get('.Custom .btn[data-name="delete"]').as('delete');
-  cy.get('.Custom .btn[data-name="clear"]').as('clear');
-  cy.get('.Custom .btn[data-name="madd"]').as('madd');
-  cy.get('.Custom .btn[data-name="msubtract"]').as('msubtract');
-  cy.get('.Custom .btn[data-name="mclear"]').as('mclear');
-  cy.get('.Custom .btn[data-name="mrecall"]').as('mrecall');
-  cy.get('.Custom .btn[data-name="percentage"]').as('percentage');
-  cy.get('.Custom .btn[data-name="power"]').as('power');
-  cy.get('.Custom .btn[data-name="sqrt"]').as('sqrt');
-  cy.get('.Custom .btn[data-name="pi"]').as('pi');
-
-  cy.get('@clear').click();
-});
 
 describe('Custom', () => {
+  before(() => {
+    cy.visit('/calc/custom');
+  });
+
+  beforeEach(() => {
+    cy.get('.Custom .display').as('display');
+    cy.get('.Custom .btn[data-name="number1"]').as('number1');
+    cy.get('.Custom .btn[data-name="number2"]').as('number2');
+    cy.get('.Custom .btn[data-name="number3"]').as('number3');
+    cy.get('.Custom .btn[data-name="number4"]').as('number4');
+    cy.get('.Custom .btn[data-name="number5"]').as('number5');
+    cy.get('.Custom .btn[data-name="number6"]').as('number6');
+    cy.get('.Custom .btn[data-name="number7"]').as('number7');
+    cy.get('.Custom .btn[data-name="number8"]').as('number8');
+    cy.get('.Custom .btn[data-name="number9"]').as('number9');
+    cy.get('.Custom .btn[data-name="number0"]').as('number0');
+    cy.get('.Custom .btn[data-name="dot"]').as('dot');
+    cy.get('.Custom .btn[data-name="addition"]').as('addition');
+    cy.get('.Custom .btn[data-name="subtraction"]').as('subtraction');
+    cy.get('.Custom .btn[data-name="multiplication"]').as('multiplication');
+    cy.get('.Custom .btn[data-name="division"]').as('division');
+    cy.get('.Custom .btn[data-name="parenthesisOpen"]').as('parenthesisOpen');
+    cy.get('.Custom .btn[data-name="parenthesisClose"]').as('parenthesisClose');
+    cy.get('.Custom .btn[data-name="equality"]').as('equality');
+    cy.get('.Custom .btn[data-name="delete"]').as('delete');
+    cy.get('.Custom .btn[data-name="clear"]').as('clear');
+    cy.get('.Custom .btn[data-name="madd"]').as('madd');
+    cy.get('.Custom .btn[data-name="msubtract"]').as('msubtract');
+    cy.get('.Custom .btn[data-name="mclear"]').as('mclear');
+    cy.get('.Custom .btn[data-name="mrecall"]').as('mrecall');
+    cy.get('.Custom .btn[data-name="percentage"]').as('percentage');
+    cy.get('.Custom .btn[data-name="power"]').as('power');
+    cy.get('.Custom .btn[data-name="sqrt"]').as('sqrt');
+    cy.get('.Custom .btn[data-name="pi"]').as('pi');
+
+    cy.get('@clear').click();
+  });
+
   describe('number button', () => {
     it('button number0 should be clickable', () => {
       cy.get('@number0').click();
