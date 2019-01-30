@@ -17,7 +17,7 @@ after_script: # Upload coverage reports
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
 deploy:
   on:
-    branch: react-redux
+    branch: master
   target-branch: gh-pages
   local-dir: build
   provider: pages
