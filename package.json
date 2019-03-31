@@ -52,5 +52,10 @@
       "src/**/*.{js,jsx}",
       "!src/**/*.e2e.{js,jsx}"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run test:ci"
+    }
   }
 }
