@@ -1,37 +1,60 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+
 import Terminal from './Terminal';
-import ShallowRenderer from 'react-test-renderer/shallow';
+
+
+const setup = (props = {}) => {
+  const requiredProps = {
+    clearClick: () => {},
+    deleteClick: () => {},
+    divisionClick: () => {},
+    disableError: () => {},
+    dotClick: () => {},
+    equalsClick: () => {},
+    minusClick: () => {},
+    multiplicationClick: () => {},
+    numberClick: () => {},
+    parenthesisLeftClick: () => {},
+    parenthesisRightClick: () => {},
+    plusClick: () => {},
+    ...props,
+  };
+  return shallow(<Terminal {...requiredProps} />);
+};
 
 describe('Terminal', () => {
-  const renderer = new ShallowRenderer();
-
   it('should render without crashing', () => {
-    renderer.render(<Terminal />);
-    const result = renderer.getRenderOutput();
-
-    expect(result).toMatchSnapshot();
+    const component = () => setup();
+    expect(component).not.toThrow();
   });
 
   it('should add css class shake-horizontal when error props is equal true', () => {
-    const disableError = jest.fn();
+    const props = {
+      disableError: jest.fn(),
+      error: true,
+    };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
 
-    renderer.render(<Terminal error={true} disableError={disableError}/>);
-    const result = renderer.getRenderOutput();
-
-    expect(result).toMatchSnapshot();
+    expect(props.disableError).toHaveBeenCalled();
+    expect(custom).toMatchSnapshot();
   });
 
   it('should render the value of formula into input class', () => {
-    renderer.render(<Terminal formula="123" />);
-    const result = renderer.getRenderOutput();
+    const props = { formula: '123' };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
 
-    expect(result).toMatchSnapshot();
+    expect(custom).toMatchSnapshot();
   });
 
   it('should make element with css class input empty when startNewCalc props is true', () => {
-    renderer.render(<Terminal formula="123" startNewCalc={true} />);
-    const result = renderer.getRenderOutput();
+    const props = { formula: '123', startNewCalc: true };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
 
-    expect(result).toMatchSnapshot();
+    expect(custom).toMatchSnapshot();
   });
 });

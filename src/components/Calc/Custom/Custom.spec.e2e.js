@@ -1,11 +1,14 @@
 const config = require('../../../../config/puppeteer.config');
 
-let custom = {};
+const custom = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 
 beforeAll(async () => {
-  await page.goto(`${config.appUrl}/calc/custom`);
+  await page.goto(config.appUrl);
+
+  custom.calcLink = await page.$('.Sidebar .link-custom');
+  await custom.calcLink.click();
 
   custom.display = await page.$('.Custom .display');
   custom.number1 = await page.$('.Custom .btn[data-name="number1"]');

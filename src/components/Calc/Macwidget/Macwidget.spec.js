@@ -1,30 +1,54 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+
 import Macwidget from './Macwidget';
-import ShallowRenderer from 'react-test-renderer/shallow';
+
+
+const setup = (props = {}) => {
+  const requiredProps = {
+    clearClick: () => {},
+    disableError: () => {},
+    divisionClick: () => {},
+    dotClick: () => {},
+    equalsClick: () => {},
+    memoryPlusClick: () => {},
+    memoryMinusClick: () => {},
+    memoryClearClick: () => {},
+    memoryRecallClick: () => {},
+    minusClick: () => {},
+    multiplicationClick: () => {},
+    numberClick: () => {},
+    plusClick: () => {},
+    ...props,
+  };
+  return shallow(<Macwidget {...requiredProps} />);
+};
+
 
 describe('Macwidget', () => {
-  const renderer = new ShallowRenderer();
-
   it('should render without crashing', () => {
-    renderer.render(<Macwidget />);
-    const result = renderer.getRenderOutput();
-
-    expect(result).toMatchSnapshot();
+    const component = () => setup();
+    expect(component).not.toThrow();
   });
 
   it('should add css class shake-horizontal when error props is equal true', () => {
-    const disableError = jest.fn();
+    const props = {
+      disableError: jest.fn(),
+      error: true,
+    };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
 
-    renderer.render(<Macwidget error={true} disableError={disableError}/>);
-    const result = renderer.getRenderOutput();
-
-    expect(result).toMatchSnapshot();
+    expect(props.disableError).toHaveBeenCalled();
+    expect(custom).toMatchSnapshot();
   });
 
   it('should render the value of formula into element with css class display', () => {
-    renderer.render(<Macwidget formula="456" />);
-    const result = renderer.getRenderOutput();
+    const props = { formula: '456' };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
 
-    expect(result).toMatchSnapshot();
+    expect(custom).toMatchSnapshot();
   });
 });

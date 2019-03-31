@@ -1,12 +1,15 @@
 const config = require('../../../../config/puppeteer.config');
 
-let terminal = {};
+const terminal = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 const lastOutput = () => page.$('.Terminal output:last-child');
 
 beforeAll(async () => {
-  await page.goto(`${config.appUrl}/calc/terminal`);
+  await page.goto(config.appUrl);
+
+  terminal.calcLink = await page.$('.Sidebar .link-terminal');
+  await terminal.calcLink.click();
 
   terminal.display = await page.$('.Terminal .display');
   terminal.input = await page.$('.Terminal .display .input');

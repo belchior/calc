@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import './Sidebar.css';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import iconCustom from '../../images/icon-custom.svg';
 import iconTerminal from '../../images/icon-terminal.svg';
 import iconMacwidget from '../../images/icon-macwidget.svg';
 import iconGithub from '../../images/icon-github.svg';
+import './Sidebar.css';
 
 class Sidebar extends Component {
 

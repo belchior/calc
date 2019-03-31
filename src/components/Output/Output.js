@@ -21,8 +21,6 @@ export class Output extends Component {
 export default Output;
 
 Output.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   results: PropTypes.array,
-  scrollHeight: PropTypes.number,
-  scrollTop: PropTypes.number,
 };

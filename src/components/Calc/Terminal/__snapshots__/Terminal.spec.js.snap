@@ -22,6 +22,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
+        onClick={[Function]}
         title="parenthesis opening"
         type="button"
       >
@@ -31,6 +32,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
+        onClick={[Function]}
         title="parenthesis closing"
         type="button"
       >
@@ -39,6 +41,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
       <button
         className="btn"
         data-name="delete"
+        onClick={[Function]}
         title="delete"
         type="button"
       >
@@ -47,6 +50,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
       <button
         className="btn"
         data-name="clear"
+        onClick={[Function]}
         title="clear"
         type="button"
       >
@@ -60,6 +64,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number1"
         data-value="1"
+        onClick={[Function]}
         title="number 1"
         type="button"
       >
@@ -69,6 +74,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number2"
         data-value="2"
+        onClick={[Function]}
         title="number 2"
         type="button"
       >
@@ -78,6 +84,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number3"
         data-value="3"
+        onClick={[Function]}
         title="number 3"
         type="button"
       >
@@ -87,6 +94,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="addition"
         data-value="+"
+        onClick={[Function]}
         title="plus"
         type="button"
       >
@@ -100,6 +108,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number4"
         data-value="4"
+        onClick={[Function]}
         title="number 4"
         type="button"
       >
@@ -109,6 +118,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number5"
         data-value="5"
+        onClick={[Function]}
         title="number 5"
         type="button"
       >
@@ -118,6 +128,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number6"
         data-value="6"
+        onClick={[Function]}
         title="number 6"
         type="button"
       >
@@ -127,6 +138,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="subtraction"
         data-value="-"
+        onClick={[Function]}
         title="minus"
         type="button"
       >
@@ -140,6 +152,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number7"
         data-value="7"
+        onClick={[Function]}
         title="number 7"
         type="button"
       >
@@ -149,6 +162,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number8"
         data-value="8"
+        onClick={[Function]}
         title="number 8"
         type="button"
       >
@@ -158,6 +172,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number9"
         data-value="9"
+        onClick={[Function]}
         title="number 9"
         type="button"
       >
@@ -167,6 +182,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="multiplication"
         data-value="×"
+        onClick={[Function]}
         title="times"
         type="button"
       >
@@ -180,6 +196,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="dot"
         data-value="."
+        onClick={[Function]}
         title="dot"
         type="button"
       >
@@ -189,6 +206,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="number0"
         data-value="0"
+        onClick={[Function]}
         title="number 0"
         type="button"
       >
@@ -197,6 +215,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
       <button
         className="btn"
         data-name="equality"
+        onClick={[Function]}
         title="equals"
         type="button"
       >
@@ -206,6 +225,7 @@ exports[`Terminal should add css class shake-horizontal when error props is equa
         className="btn"
         data-name="division"
         data-value="÷"
+        onClick={[Function]}
         title="divided"
         type="button"
       >
@@ -226,9 +246,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
     <Connect(Output) />
     <p
       className="input"
-    >
-      
-    </p>
+    />
   </div>
   <div
     className="keyboard"
@@ -240,6 +258,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
+        onClick={[Function]}
         title="parenthesis opening"
         type="button"
       >
@@ -249,6 +268,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
+        onClick={[Function]}
         title="parenthesis closing"
         type="button"
       >
@@ -257,6 +277,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
       <button
         className="btn"
         data-name="delete"
+        onClick={[Function]}
         title="delete"
         type="button"
       >
@@ -265,6 +286,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
       <button
         className="btn"
         data-name="clear"
+        onClick={[Function]}
         title="clear"
         type="button"
       >
@@ -278,6 +300,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number1"
         data-value="1"
+        onClick={[Function]}
         title="number 1"
         type="button"
       >
@@ -287,6 +310,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number2"
         data-value="2"
+        onClick={[Function]}
         title="number 2"
         type="button"
       >
@@ -296,6 +320,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number3"
         data-value="3"
+        onClick={[Function]}
         title="number 3"
         type="button"
       >
@@ -305,6 +330,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="addition"
         data-value="+"
+        onClick={[Function]}
         title="plus"
         type="button"
       >
@@ -318,6 +344,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number4"
         data-value="4"
+        onClick={[Function]}
         title="number 4"
         type="button"
       >
@@ -327,6 +354,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number5"
         data-value="5"
+        onClick={[Function]}
         title="number 5"
         type="button"
       >
@@ -336,6 +364,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number6"
         data-value="6"
+        onClick={[Function]}
         title="number 6"
         type="button"
       >
@@ -345,6 +374,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="subtraction"
         data-value="-"
+        onClick={[Function]}
         title="minus"
         type="button"
       >
@@ -358,6 +388,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number7"
         data-value="7"
+        onClick={[Function]}
         title="number 7"
         type="button"
       >
@@ -367,6 +398,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number8"
         data-value="8"
+        onClick={[Function]}
         title="number 8"
         type="button"
       >
@@ -376,6 +408,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number9"
         data-value="9"
+        onClick={[Function]}
         title="number 9"
         type="button"
       >
@@ -385,6 +418,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="multiplication"
         data-value="×"
+        onClick={[Function]}
         title="times"
         type="button"
       >
@@ -398,6 +432,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="dot"
         data-value="."
+        onClick={[Function]}
         title="dot"
         type="button"
       >
@@ -407,6 +442,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="number0"
         data-value="0"
+        onClick={[Function]}
         title="number 0"
         type="button"
       >
@@ -415,6 +451,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
       <button
         className="btn"
         data-name="equality"
+        onClick={[Function]}
         title="equals"
         type="button"
       >
@@ -424,6 +461,7 @@ exports[`Terminal should make element with css class input empty when startNewCa
         className="btn"
         data-name="division"
         data-value="÷"
+        onClick={[Function]}
         title="divided"
         type="button"
       >
@@ -458,6 +496,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="parenthesisOpen"
         data-value="("
+        onClick={[Function]}
         title="parenthesis opening"
         type="button"
       >
@@ -467,6 +506,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="parenthesisClose"
         data-value=")"
+        onClick={[Function]}
         title="parenthesis closing"
         type="button"
       >
@@ -475,6 +515,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
       <button
         className="btn"
         data-name="delete"
+        onClick={[Function]}
         title="delete"
         type="button"
       >
@@ -483,6 +524,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
       <button
         className="btn"
         data-name="clear"
+        onClick={[Function]}
         title="clear"
         type="button"
       >
@@ -496,6 +538,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number1"
         data-value="1"
+        onClick={[Function]}
         title="number 1"
         type="button"
       >
@@ -505,6 +548,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number2"
         data-value="2"
+        onClick={[Function]}
         title="number 2"
         type="button"
       >
@@ -514,6 +558,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number3"
         data-value="3"
+        onClick={[Function]}
         title="number 3"
         type="button"
       >
@@ -523,6 +568,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="addition"
         data-value="+"
+        onClick={[Function]}
         title="plus"
         type="button"
       >
@@ -536,6 +582,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number4"
         data-value="4"
+        onClick={[Function]}
         title="number 4"
         type="button"
       >
@@ -545,6 +592,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number5"
         data-value="5"
+        onClick={[Function]}
         title="number 5"
         type="button"
       >
@@ -554,6 +602,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number6"
         data-value="6"
+        onClick={[Function]}
         title="number 6"
         type="button"
       >
@@ -563,6 +612,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="subtraction"
         data-value="-"
+        onClick={[Function]}
         title="minus"
         type="button"
       >
@@ -576,6 +626,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number7"
         data-value="7"
+        onClick={[Function]}
         title="number 7"
         type="button"
       >
@@ -585,6 +636,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number8"
         data-value="8"
+        onClick={[Function]}
         title="number 8"
         type="button"
       >
@@ -594,6 +646,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number9"
         data-value="9"
+        onClick={[Function]}
         title="number 9"
         type="button"
       >
@@ -603,6 +656,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="multiplication"
         data-value="×"
+        onClick={[Function]}
         title="times"
         type="button"
       >
@@ -616,6 +670,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="dot"
         data-value="."
+        onClick={[Function]}
         title="dot"
         type="button"
       >
@@ -625,6 +680,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="number0"
         data-value="0"
+        onClick={[Function]}
         title="number 0"
         type="button"
       >
@@ -633,6 +689,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
       <button
         className="btn"
         data-name="equality"
+        onClick={[Function]}
         title="equals"
         type="button"
       >
@@ -642,222 +699,7 @@ exports[`Terminal should render the value of formula into input class 1`] = `
         className="btn"
         data-name="division"
         data-value="÷"
-        title="divided"
-        type="button"
-      >
-        ÷
-      </button>
-    </div>
-  </div>
-</form>
-`;
-
-exports[`Terminal should render without crashing 1`] = `
-<form
-  className="Terminal"
->
-  <div
-    className="display"
-  >
-    <Connect(Output) />
-    <p
-      className="input"
-    />
-  </div>
-  <div
-    className="keyboard"
-  >
-    <div
-      className="row"
-    >
-      <button
-        className="btn"
-        data-name="parenthesisOpen"
-        data-value="("
-        title="parenthesis opening"
-        type="button"
-      >
-        (
-      </button>
-      <button
-        className="btn"
-        data-name="parenthesisClose"
-        data-value=")"
-        title="parenthesis closing"
-        type="button"
-      >
-        )
-      </button>
-      <button
-        className="btn"
-        data-name="delete"
-        title="delete"
-        type="button"
-      >
-        &lt;
-      </button>
-      <button
-        className="btn"
-        data-name="clear"
-        title="clear"
-        type="button"
-      >
-        c
-      </button>
-    </div>
-    <div
-      className="row"
-    >
-      <button
-        className="btn"
-        data-name="number1"
-        data-value="1"
-        title="number 1"
-        type="button"
-      >
-        1
-      </button>
-      <button
-        className="btn"
-        data-name="number2"
-        data-value="2"
-        title="number 2"
-        type="button"
-      >
-        2
-      </button>
-      <button
-        className="btn"
-        data-name="number3"
-        data-value="3"
-        title="number 3"
-        type="button"
-      >
-        3
-      </button>
-      <button
-        className="btn"
-        data-name="addition"
-        data-value="+"
-        title="plus"
-        type="button"
-      >
-        +
-      </button>
-    </div>
-    <div
-      className="row"
-    >
-      <button
-        className="btn"
-        data-name="number4"
-        data-value="4"
-        title="number 4"
-        type="button"
-      >
-        4
-      </button>
-      <button
-        className="btn"
-        data-name="number5"
-        data-value="5"
-        title="number 5"
-        type="button"
-      >
-        5
-      </button>
-      <button
-        className="btn"
-        data-name="number6"
-        data-value="6"
-        title="number 6"
-        type="button"
-      >
-        6
-      </button>
-      <button
-        className="btn"
-        data-name="subtraction"
-        data-value="-"
-        title="minus"
-        type="button"
-      >
-        −
-      </button>
-    </div>
-    <div
-      className="row"
-    >
-      <button
-        className="btn"
-        data-name="number7"
-        data-value="7"
-        title="number 7"
-        type="button"
-      >
-        7
-      </button>
-      <button
-        className="btn"
-        data-name="number8"
-        data-value="8"
-        title="number 8"
-        type="button"
-      >
-        8
-      </button>
-      <button
-        className="btn"
-        data-name="number9"
-        data-value="9"
-        title="number 9"
-        type="button"
-      >
-        9
-      </button>
-      <button
-        className="btn"
-        data-name="multiplication"
-        data-value="×"
-        title="times"
-        type="button"
-      >
-        ×
-      </button>
-    </div>
-    <div
-      className="row"
-    >
-      <button
-        className="btn"
-        data-name="dot"
-        data-value="."
-        title="dot"
-        type="button"
-      >
-        .
-      </button>
-      <button
-        className="btn"
-        data-name="number0"
-        data-value="0"
-        title="number 0"
-        type="button"
-      >
-        0
-      </button>
-      <button
-        className="btn"
-        data-name="equality"
-        title="equals"
-        type="button"
-      >
-        =
-      </button>
-      <button
-        className="btn"
-        data-name="division"
-        data-value="÷"
+        onClick={[Function]}
         title="divided"
         type="button"
       >

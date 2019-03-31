@@ -1,10 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import {MemoryRouter} from 'react-router';
-import Sidebar from './index';
+import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router';
 
-test('renders Sidebar without crashing', () => {
-  let tree = renderer.create(<MemoryRouter><Sidebar /></MemoryRouter>).toJSON();
+import Sidebar from './Sidebar';
 
-  expect(tree).toMatchSnapshot();
+
+it('renders Sidebar without crashing', () => {
+  const component = () => shallow(<MemoryRouter><Sidebar /></MemoryRouter>);
+  expect(component).not.toThrow();
 });

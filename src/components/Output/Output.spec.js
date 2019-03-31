@@ -1,15 +1,27 @@
 import React from 'react';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+
 import Output from './Output';
-import renderer from 'react-test-renderer';
+
+
+const setup = (props = {}) => {
+  const requiredProps = {
+    onClick: () => {},
+    ...props,
+  };
+  return shallow(<Output {...requiredProps} />);
+};
 
 it('should render Output with 0 items without crashing', () => {
-  let tree = renderer.create(<Output />).toJSON();
-
-  expect(tree).toMatchSnapshot();
+  const component = () => setup();
+  expect(component).not.toThrow();
 });
 
 it('should render Output with 2 items without crashing', () => {
-  let tree = renderer.create(<Output results={['1.2', '3.4']}/>).toJSON();
+  const props = { results: ['1.2', '3.4'] };
+  const wrapper = setup(props);
+  const custom = toJson(wrapper);
 
-  expect(tree).toMatchSnapshot();
+  expect(custom).toMatchSnapshot();
 });
