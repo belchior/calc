@@ -32,6 +32,7 @@
     "document": true,
     "fetch": true,
     "global": true,
+    "jestPuppeteer": true,
     "module": true,
     "navigator": true,
     "page": true,

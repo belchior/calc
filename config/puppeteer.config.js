@@ -1,12 +1,12 @@
 
 module.exports = {
   appUrl: 'http://localhost:5000',
+  // appUrl: 'https://belchior.github.io/calc',
   launchOptions: {
-    headless: true,
+    args: ['--start-maximized'],
+    dumpio: false,
     devtools: false,
-    defaultViewport: {
-      width: 0,
-      height: 0
-    }
-  }
+    headless: true,
+    slowMo: 0,
+  },
 };
