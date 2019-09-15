@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/calc/static/css/main.99a38b28.chunk.css",
+    "main.js": "/calc/static/js/main.9e672434.chunk.js",
+    "main.js.map": "/calc/static/js/main.9e672434.chunk.js.map",
+    "runtime~main.js": "/calc/static/js/runtime~main.8ebb2047.js",
+    "runtime~main.js.map": "/calc/static/js/runtime~main.8ebb2047.js.map",
+    "static/js/2.e9d5445e.chunk.js": "/calc/static/js/2.e9d5445e.chunk.js",
+    "static/js/2.e9d5445e.chunk.js.map": "/calc/static/js/2.e9d5445e.chunk.js.map",
+    "index.html": "/calc/index.html",
+    "precache-manifest.4dd38b25f440aa5cc493b28105831d57.js": "/calc/precache-manifest.4dd38b25f440aa5cc493b28105831d57.js",
+    "service-worker.js": "/calc/service-worker.js",
+    "static/css/main.99a38b28.chunk.css.map": "/calc/static/css/main.99a38b28.chunk.css.map",
+    "static/media/App.css": "/calc/static/media/MontserratAlternates-Regular.b8d1a091.ttf",
+    "static/media/icon-custom.svg": "/calc/static/media/icon-custom.df382598.svg",
+    "static/media/icon-github.svg": "/calc/static/media/icon-github.79531950.svg",
+    "static/media/icon-macwidget.svg": "/calc/static/media/icon-macwidget.5cbd6b21.svg",
+    "static/media/icon-terminal.svg": "/calc/static/media/icon-terminal.0da3305d.svg"
+  }
+}
