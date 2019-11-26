@@ -1,131 +1,134 @@
-import {mapStateToProps, mapDispatchToProps} from './index';
+import { mapStateToProps, mapDispatchToProps } from './index';
 
-test('mapStateToProps should return the object key named macwidget', () => {
-  const macwidget = {a: 1};
-  const state = {macwidget: macwidget};
-  const props = mapStateToProps(state);
 
-  expect(props).toEqual(macwidget);
+describe('mapStateToProps', () => {
+  it('should return the object key named macwidget', () => {
+    const macwidget = { a: 1 };
+    const state = { macwidget };
+    const props = mapStateToProps(state);
+
+    expect(props).toStrictEqual(macwidget);
+  });
 });
 
 describe('mapDispatchToProps', () => {
   const dispatch = jest.fn();
   const props = mapDispatchToProps(dispatch);
-  const event = {target: {getAttribute: () => ''}};
+  const event = { target: { getAttribute: () => '' } };
 
-  test('clearClick function should exist', () => {
+  it('clearClick function should exist', () => {
     expect(props).toHaveProperty('clearClick');
   });
 
-  test('clearClick should call dispatch function', () => {
+  it('clearClick should call dispatch function', () => {
     props.clearClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('divisionClick function should exist', () => {
+  it('divisionClick function should exist', () => {
     expect(props).toHaveProperty('divisionClick');
   });
 
-  test('divisionClick should call dispatch function', () => {
+  it('divisionClick should call dispatch function', () => {
     props.divisionClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('dotClick function should exist', () => {
+  it('dotClick function should exist', () => {
     expect(props).toHaveProperty('dotClick');
   });
 
-  test('dotClick should call dispatch function', () => {
+  it('dotClick should call dispatch function', () => {
     props.dotClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('equalsClick function should exist', () => {
+  it('equalsClick function should exist', () => {
     expect(props).toHaveProperty('equalsClick');
   });
 
-  test('equalsClick should call dispatch function', () => {
+  it('equalsClick should call dispatch function', () => {
     props.equalsClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('memoryClearClick function should exist', () => {
+  it('memoryClearClick function should exist', () => {
     expect(props).toHaveProperty('memoryClearClick');
   });
 
-  test('memoryClearClick should call dispatch function', () => {
+  it('memoryClearClick should call dispatch function', () => {
     props.memoryClearClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('memoryMinusClick function should exist', () => {
+  it('memoryMinusClick function should exist', () => {
     expect(props).toHaveProperty('memoryMinusClick');
   });
 
-  test('memoryMinusClick should call dispatch function', () => {
+  it('memoryMinusClick should call dispatch function', () => {
     props.memoryMinusClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('memoryPlusClick function should exist', () => {
+  it('memoryPlusClick function should exist', () => {
     expect(props).toHaveProperty('memoryPlusClick');
   });
 
-  test('memoryPlusClick should call dispatch function', () => {
+  it('memoryPlusClick should call dispatch function', () => {
     props.memoryPlusClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('memoryRecallClick function should exist', () => {
+  it('memoryRecallClick function should exist', () => {
     expect(props).toHaveProperty('memoryRecallClick');
   });
 
-  test('memoryRecallClick should call dispatch function', () => {
+  it('memoryRecallClick should call dispatch function', () => {
     props.memoryRecallClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('minusClick function should exist', () => {
+  it('minusClick function should exist', () => {
     expect(props).toHaveProperty('minusClick');
   });
 
-  test('minusClick should call dispatch function', () => {
+  it('minusClick should call dispatch function', () => {
     props.minusClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('multiplicationClick function should exist', () => {
+  it('multiplicationClick function should exist', () => {
     expect(props).toHaveProperty('multiplicationClick');
   });
 
-  test('multiplicationClick should call dispatch function', () => {
+  it('multiplicationClick should call dispatch function', () => {
     props.multiplicationClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('numberClick function should exist', () => {
+  it('numberClick function should exist', () => {
     expect(props).toHaveProperty('numberClick');
   });
 
-  test('numberClick should call dispatch function', () => {
+  it('numberClick should call dispatch function', () => {
     props.numberClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('plusClick function should exist', () => {
+  it('plusClick function should exist', () => {
     expect(props).toHaveProperty('plusClick');
   });
 
-  test('plusClick should call dispatch function', () => {
+  it('plusClick should call dispatch function', () => {
     props.plusClick(event);
     expect(dispatch).toHaveBeenCalled();
   });
 
-  test('disableError function should exist', () => {
+  it('disableError function should exist', () => {
     expect(props).toHaveProperty('disableError');
   });
 
-  test('disableError should call dispatch function', () => {
+  it('disableError should call dispatch function', () => {
     jest.useFakeTimers();
     props.disableError(event);
     jest.runAllTimers();

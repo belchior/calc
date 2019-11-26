@@ -2,7 +2,7 @@ import rootReducer from './index';
 
 describe('Root Reducer', () => {
   it('should be able be called', () => {
-    expect(rootReducer(undefined, undefined)).toBeTruthy();
+    expect(rootReducer(undefined, undefined)).toBeDefined();
   });
   it('should have a property named custom', () => {
     expect(rootReducer(undefined, undefined)).toHaveProperty('custom');

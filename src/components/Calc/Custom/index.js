@@ -1,4 +1,4 @@
-import Custom, {mapStateToProps, mapDispatchToProps} from './connected';
+import Custom, { mapStateToProps, mapDispatchToProps } from './connected';
 
-export {mapStateToProps, mapDispatchToProps};
+export { mapStateToProps, mapDispatchToProps, };
 export default Custom;

@@ -9,7 +9,9 @@ export class Output extends Component {
   render() {
     const results = this.props.results || [];
     return (
-      <div className="output" ref={(elem) => this.outputElem = elem}>
+      <div className="output" ref={(elem) => {
+        this.outputElem = elem;
+      }}>
         {results.map((item, index) => {
           return <output className="result" onClick={this.props.onClick} key={index}>{item}</output>;
         })}

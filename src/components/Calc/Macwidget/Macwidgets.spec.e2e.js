@@ -1,3 +1,8 @@
+/* eslint jest/no-hooks:off */
+/* eslint max-lines:off */
+/* eslint max-len:off */
+/* eslint require-atomic-updates:off */
+
 const config = require('../../../../config/puppeteer.config');
 
 
@@ -5,40 +10,40 @@ const macwidget = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 
-beforeAll(async () => {
-  await page.goto(config.appUrl);
-
-  macwidget.calcLink = await page.$('.Sidebar .link-macwidget');
-  await macwidget.calcLink.click();
-
-  macwidget.display = await page.$('.Macwidget .display');
-  macwidget.number1 = await page.$('.Macwidget .btn[data-name="number1"]');
-  macwidget.number2 = await page.$('.Macwidget .btn[data-name="number2"]');
-  macwidget.number3 = await page.$('.Macwidget .btn[data-name="number3"]');
-  macwidget.number4 = await page.$('.Macwidget .btn[data-name="number4"]');
-  macwidget.number5 = await page.$('.Macwidget .btn[data-name="number5"]');
-  macwidget.number6 = await page.$('.Macwidget .btn[data-name="number6"]');
-  macwidget.number7 = await page.$('.Macwidget .btn[data-name="number7"]');
-  macwidget.number8 = await page.$('.Macwidget .btn[data-name="number8"]');
-  macwidget.number9 = await page.$('.Macwidget .btn[data-name="number9"]');
-  macwidget.number0 = await page.$('.Macwidget .btn[data-name="number0"]');
-  macwidget.dot = await page.$('.Macwidget .btn[data-name="dot"]');
-  macwidget.addition = await page.$('.Macwidget .btn[data-name="addition"]');
-  macwidget.subtraction = await page.$('.Macwidget .btn[data-name="subtraction"]');
-  macwidget.multiplication = await page.$('.Macwidget .btn[data-name="multiplication"]');
-  macwidget.division = await page.$('.Macwidget .btn[data-name="division"]');
-  macwidget.equality = await page.$('.Macwidget .btn[data-name="equality"]');
-  macwidget.clear = await page.$('.Macwidget .btn[data-name="clear"]');
-  macwidget.memoryAdd = await page.$('.Macwidget .btn[data-name="madd"]');
-  macwidget.memorySubtract = await page.$('.Macwidget .btn[data-name="msubtract"]');
-  macwidget.memoryClear = await page.$('.Macwidget .btn[data-name="mclear"]');
-  macwidget.memoryRecall = await page.$('.Macwidget .btn[data-name="mrecall"]');
-});
-
-beforeEach(() => macwidget.clear.click());
-
 
 describe('Macwidget', () => {
+  beforeAll(async () => {
+    await page.goto(config.appUrl);
+
+    macwidget.calcLink = await page.$('.Sidebar .link-macwidget');
+    await macwidget.calcLink.click();
+
+    macwidget.display = await page.$('.Macwidget .display');
+    macwidget.number1 = await page.$('.Macwidget .btn[data-name="number1"]');
+    macwidget.number2 = await page.$('.Macwidget .btn[data-name="number2"]');
+    macwidget.number3 = await page.$('.Macwidget .btn[data-name="number3"]');
+    macwidget.number4 = await page.$('.Macwidget .btn[data-name="number4"]');
+    macwidget.number5 = await page.$('.Macwidget .btn[data-name="number5"]');
+    macwidget.number6 = await page.$('.Macwidget .btn[data-name="number6"]');
+    macwidget.number7 = await page.$('.Macwidget .btn[data-name="number7"]');
+    macwidget.number8 = await page.$('.Macwidget .btn[data-name="number8"]');
+    macwidget.number9 = await page.$('.Macwidget .btn[data-name="number9"]');
+    macwidget.number0 = await page.$('.Macwidget .btn[data-name="number0"]');
+    macwidget.dot = await page.$('.Macwidget .btn[data-name="dot"]');
+    macwidget.addition = await page.$('.Macwidget .btn[data-name="addition"]');
+    macwidget.subtraction = await page.$('.Macwidget .btn[data-name="subtraction"]');
+    macwidget.multiplication = await page.$('.Macwidget .btn[data-name="multiplication"]');
+    macwidget.division = await page.$('.Macwidget .btn[data-name="division"]');
+    macwidget.equality = await page.$('.Macwidget .btn[data-name="equality"]');
+    macwidget.clear = await page.$('.Macwidget .btn[data-name="clear"]');
+    macwidget.memoryAdd = await page.$('.Macwidget .btn[data-name="madd"]');
+    macwidget.memorySubtract = await page.$('.Macwidget .btn[data-name="msubtract"]');
+    macwidget.memoryClear = await page.$('.Macwidget .btn[data-name="mclear"]');
+    macwidget.memoryRecall = await page.$('.Macwidget .btn[data-name="mrecall"]');
+  });
+
+  beforeEach(() => macwidget.clear.click());
+
   describe('number button', () => {
     it('button number0 should be clickable', async () => {
       await macwidget.number0.click();

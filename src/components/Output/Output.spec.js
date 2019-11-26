@@ -13,15 +13,18 @@ const setup = (props = {}) => {
   return shallow(<Output {...requiredProps} />);
 };
 
-it('should render Output with 0 items without crashing', () => {
-  const component = () => setup();
-  expect(component).not.toThrow();
-});
 
-it('should render Output with 2 items without crashing', () => {
-  const props = { results: ['1.2', '3.4'] };
-  const wrapper = setup(props);
-  const custom = toJson(wrapper);
+describe('Output', () => {
+  it('should render Output with 0 items without crashing', () => {
+    const component = () => setup();
+    expect(component).not.toThrow();
+  });
 
-  expect(custom).toMatchSnapshot();
+  it('should render Output with 2 items without crashing', () => {
+    const props = { results: [ '1.2', '3.4' ] };
+    const wrapper = setup(props);
+    const custom = toJson(wrapper);
+
+    expect(custom).toMatchSnapshot();
+  });
 });

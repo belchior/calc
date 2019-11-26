@@ -1,19 +1,22 @@
+/* eslint max-lines:off */
+
 class Calc {
   static calculate(userFormula) {
-    let resolve = Object.create(null);
+    // eslint-disable-next-line
+    const resolve = Object.create(null);
 
-    resolve.parenthesis = (formula, stack) => {
-      stack = stack.slice();
-      let part;
-      let result;
-      let next = stack.pop();
+    resolve.parenthesis = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      const next = stack.pop();
+      let formula = prevFormula;
 
       // obteins the most internal parenthesis
-      part = formula.match(/\([^()]+\)/);
+      const part = prevFormula.match(/\([^()]+\)/u);
       if (part) {
-        result = next(part[0].replace(/[()]/g, ''), stack);
+        // eslint-disable-next-line
+        const result = next(part[0].replace(/[()]/ug, ''), stack);
         if (result < 0 && formula[part.index - 1] === '-') {
-          formula = formula.replace('-' + part[0], '+' + Math.abs(result));
+          formula = formula.replace(`-${part[0]}`, `+${Math.abs(result)}`);
         } else {
           formula = formula.replace(part[0], result);
         }
@@ -24,50 +27,46 @@ class Calc {
       return next(formula, stack);
     };
 
-    resolve.power = (formula, stack) => {
-      stack = stack.slice();
-      let part;
-      let result;
-      let next;
+    resolve.power = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      let formula = prevFormula;
 
       // get part to calculate power
-      part = formula.match(/(\d+(?:\.\d+)?)\^([+-]?\d+(?:\.\d+)?)/);
+      const part = formula.match(/(\d+(?:\.\d+)?)\^([+-]?\d+(?:\.\d+)?)/u);
       if (part) {
         part[1] = parseFloat(part[1]);
         part[2] = parseFloat(part[2]);
-        result = this.power(part[1], part[2]);
+        const result = this.power(part[1], part[2]);
         formula = formula.replace(part[0], result);
         return resolve.power(formula, stack);
       }
 
-      next = stack.pop();
+      const next = stack.pop();
       return next(formula, stack);
     };
 
-    resolve.sqrt = (formula, stack) => {
-      stack = stack.slice();
-      let part;
-      let result;
-      let next;
+    resolve.sqrt = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      let formula = prevFormula;
 
       // get part to calculate sqrt
-      part = formula.match(/√([+]?\d+(?:\.\d+)?)/);
+      const part = formula.match(/√([+]?\d+(?:\.\d+)?)/u);
       if (part) {
         part[1] = parseFloat(part[1]);
-        result = this.sqrt(part[1]);
+        const result = this.sqrt(part[1]);
         formula = formula.replace(part[0], result);
         return resolve.sqrt(formula, stack);
       }
 
-      next = stack.pop();
+      const next = stack.pop();
       return next(formula, stack);
     };
 
-    resolve.percentage = (formula, stack) => {
-      stack = stack.slice();
-      let part;
-      let result;
-      let next;
+    resolve.percentage = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      let formula = prevFormula;
+      // eslint-disable-next-line
+      let part, result;
 
       /*
         Case 1
@@ -93,14 +92,14 @@ class Calc {
         1+100÷50%  1-100÷50%
       */
 
-      part = formula.match(/^([+-]?\d+(?:\.\d+)?)%/);
+      part = formula.match(/^([+-]?\d+(?:\.\d+)?)%/u);
       if (part) {
         result = part[1] / 100;
         formula = formula.replace(part[0], result);
         return resolve.percentage(formula, stack);
       }
 
-      part = formula.match(/([+-]?)(\d+(?:\.\d+)?)([+-])(\d+(?:\.\d+)?)%/);
+      part = formula.match(/([+-]?)(\d+(?:\.\d+)?)([+-])(\d+(?:\.\d+)?)%/u);
       if (part) {
         part = [
           part[0],
@@ -119,7 +118,7 @@ class Calc {
         return resolve.percentage(formula, stack);
       }
 
-      part = formula.match(/([+-]?)(\d+(?:\.\d+)?)([×÷])([+-]?)(\d+(?:\.\d+)?)%/);
+      part = formula.match(/([+-]?)(\d+(?:\.\d+)?)([×÷])([+-]?)(\d+(?:\.\d+)?)%/u);
       if (part) {
         part = [
           part[0],
@@ -136,52 +135,50 @@ class Calc {
         return resolve.percentage(formula, stack);
       }
 
-      next = stack.pop();
+      const next = stack.pop();
       return next(formula, stack);
     };
 
-    resolve.multiplyOrDivide = (formula, stack) => {
-      stack = stack.slice();
-      let part;
-      let result;
-      let next;
+    resolve.multiplyOrDivide = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      let formula = prevFormula;
 
       // get parts to multiply or divide
-      part = formula.match(/([+-]?\d+(?:\.\d+)?)(×|÷)([+-]?\d+(?:\.\d+)?)/);
+      const part = formula.match(/([+-]?\d+(?:\.\d+)?)(×|÷)([+-]?\d+(?:\.\d+)?)/u);
       if (part) {
         part[1] = parseFloat(part[1]);
         part[3] = parseFloat(part[3]);
-        result = part[2] === '×' ? this.multiply(part[1], part[3]) : this.divide(part[1], part[3]);
+        const result = part[2] === '×' ? this.multiply(part[1], part[3]) : this.divide(part[1], part[3]);
         if (
           formula[part.index - 1] &&
           ((part[1] >= 0 && part[3] >= 0) || (part[1] < 0 && part[3] < 0))
         ) {
-          formula = formula.replace(part[0], '+' + result);
+          formula = formula.replace(part[0], `+${result}`);
         }
         formula = formula.replace(part[0], result);
         return resolve.multiplyOrDivide(formula, stack);
       }
 
-      next = stack.pop();
+      const next = stack.pop();
       return next(formula, stack);
     };
 
-    resolve.sumOrSubtract = (formula, stack) => {
-      stack = stack.slice();
+    resolve.sumOrSubtract = (prevFormula, prevStack) => {
+      const stack = prevStack.slice();
+      let formula = prevFormula;
+      // eslint-disable-next-line
       let part;
-      let result;
-      let next;
 
       // get parts to sum or subtract
-      part = formula.match(/([+-]?\d+(?:\.\d+)?)(\+|-)([+-]?\d+(?:\.\d+)?)/);
+      part = formula.match(/([+-]?\d+(?:\.\d+)?)(\+|-)([+-]?\d+(?:\.\d+)?)/u);
       if (part) {
-        part = [part[0], parseFloat(part[1]), part[2], parseFloat(part[3])];
-        result = part[2] === '+' ? this.sum(part[1], part[3]) : this.subtract(part[1], part[3]);
+        part = [ part[0], parseFloat(part[1]), part[2], parseFloat(part[3]) ];
+        const result = part[2] === '+' ? this.sum(part[1], part[3]) : this.subtract(part[1], part[3]);
         formula = formula.replace(part[0], result);
         return resolve.sumOrSubtract(formula, stack);
       }
 
-      next = stack.pop();
+      const next = stack.pop();
       return next(formula, stack);
     };
 
@@ -189,32 +186,30 @@ class Calc {
       return this.format(formula);
     };
 
-    userFormula = this.parse(userFormula);
-
-    let stack = [
+    const stack = [
       resolve.parenthesis,
       resolve.power,
       resolve.sqrt,
       resolve.percentage,
       resolve.multiplyOrDivide,
       resolve.sumOrSubtract,
-      resolve.format
+      resolve.format,
     ].reverse();
-    let next = stack.pop();
+    const next = stack.pop();
 
-    return next(userFormula, stack);
+    return next(this.parse(userFormula), stack);
   }
 
   static divide(a, b) {
     if (this.isNumber(a) === true && this.isNumber(b) === true && b !== 0) {
       return parseFloat((a / b).toFixed(8));
     }
-    throw new SyntaxError('It\'s impossible divide ' + a + ' by ' + b);
+    throw new SyntaxError(`It's impossible divide ${a} by ${b}`);
   }
 
-  static format(number, decimal) {
-    number = number || number === 0 ? number : NaN;
-    decimal = decimal || 8;
+  static format(prevNumber, prevDecimal) {
+    const number = prevNumber || prevNumber === 0 ? prevNumber : NaN;
+    const decimal = prevDecimal || 8;
     return parseFloat(Number(number).toFixed(decimal));
   }
 
@@ -233,21 +228,21 @@ class Calc {
     if (this.isNumber(a) === true && this.isNumber(b) === true) {
       return parseFloat((a * b).toFixed(8));
     }
-    throw new SyntaxError('It\'s impossible multiply ' + a + ' by ' + b);
+    throw new SyntaxError(`It's impossible multiply ${a} by ${b}`);
   }
 
-  static parse(formula) {
+  static parse(prevFormula) {
+    let formula = prevFormula;
     if (typeof formula !== 'string' || formula === '') {
       throw new SyntaxError('Calc.parse: Invalid parameter');
     }
 
-    if (formula.search(/[^0-9()+\-×÷%.^√π]/g) >= 0) {
-      throw new SyntaxError('Calc.parse: Formula has invalid characters ' + formula.replace(/[0-9()+\-×÷%.^√π]/g, ''));
+    if (formula.search(/[^0-9()+\-×÷%.^√π]/ug) >= 0) {
+      throw new SyntaxError(`Calc.parse: Formula has invalid characters ${formula.replace(/[0-9()+\-×÷%.^√π]/ug, '')}`);
     }
 
-    let index;
-    let parenthesisOpens = formula.match(/[(]/g);
-    let parenthesisCloses = formula.match(/[)]/g);
+    let parenthesisOpens = formula.match(/[(]/ug);
+    let parenthesisCloses = formula.match(/[)]/ug);
 
     if (
       (parenthesisOpens && parenthesisCloses && parenthesisOpens.length !== parenthesisCloses.length) ||
@@ -256,8 +251,9 @@ class Calc {
       throw new SyntaxError('Calc.parse: Divergence between parenthesis');
     }
 
-    parenthesisOpens = parenthesisCloses = 0;
-    for (index in formula) {
+    parenthesisOpens = 0;
+    parenthesisCloses = 0;
+    for (const index in formula) {
       if (formula[index] === '(') {
         parenthesisOpens += 1;
       } else if (formula[index] === ')') {
@@ -269,10 +265,11 @@ class Calc {
     }
 
     // Replacing symbol π to number
-    formula = formula.replace(/π/g, this.format(Math.PI));
+    formula = formula.replace(/π/ug, this.format(Math.PI));
 
     // get errors of arithmetic combination of characters
-    if (formula.match(/^[×÷%).]|\+[×÷%).]|-[×÷%).]|×[×÷%).]|÷[×÷%).]|%[0-9%(.]|\([×÷%).]|\)[.]|\.[+\-×÷%().]|\.\d+\.|[+\-×÷(.]$/g)) {
+    // eslint-disable-next-line
+    if (formula.match(/^[×÷%).]|\+[×÷%).]|-[×÷%).]|×[×÷%).]|÷[×÷%).]|%[0-9%(.]|\([×÷%).]|\)[.]|\.[+\-×÷%().]|\.\d+\.|[+\-×÷(.]$/ug)) {
       throw new SyntaxError('invalid arithmetic combination of characters');
     }
 
@@ -284,7 +281,7 @@ class Calc {
     if (this.isNumber(a) === true && this.isNumber(b) === true) {
       return parseFloat((a / 100 * b).toFixed(8));
     }
-    throw new SyntaxError('It\'s impossible calculate percentage of ' + a);
+    throw new SyntaxError(`It's impossible calculate percentage of ${a}`);
   }
 
   static power(a, b) {
@@ -292,23 +289,14 @@ class Calc {
     let times = Math.abs(b);
 
     if (this.isNumber(a) !== true || this.isNumber(b) !== true || (a === 0 && b < 0)) {
-      throw new SyntaxError('It\'s impossible calculate power of ' + a);
+      throw new SyntaxError(`It's impossible calculate power of ${a}`);
     }
 
     // b is float?
-    if (b % 1 !== 0) {
-      return this.format(Math.pow(a, b));
-    }
-
-    if (a === 0 && b > 0) {
-      return 0;
-    }
-    if (b === 0) {
-      return 1;
-    }
-    if (b === 1) {
-      return a;
-    }
+    if (b % 1 !== 0) return this.format(a ** b);
+    if (a === 0 && b > 0) return 0;
+    if (b === 0) return 1;
+    if (b === 1) return a;
 
     while (times > 1) {
       result = this.multiply(result, a);
@@ -329,14 +317,14 @@ class Calc {
     if (this.isNumber(a) === true && this.isNumber(b) === true) {
       return parseFloat((a - b).toFixed(8));
     }
-    throw new SyntaxError('It\'s impossible subtract ' + a + ' by ' + b);
+    throw new SyntaxError(`It's impossible subtract ${a} by ${b}`);
   }
 
   static sum(a, b) {
     if (this.isNumber(a) === true && this.isNumber(b) === true) {
       return parseFloat((a + b).toFixed(8));
     }
-    throw new SyntaxError('It\'s impossible sum ' + a + ' by ' + b);
+    throw new SyntaxError(`It's impossible sum ${a} by ${b}`);
   }
 }
 

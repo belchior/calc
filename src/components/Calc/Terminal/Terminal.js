@@ -1,3 +1,5 @@
+/* eslint max-len:off */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,7 +14,7 @@ class Terminal extends Component {
       this.props.disableError();
     }
 
-    let formula = this.props.formula;
+    let { formula } = this.props;
     if (this.props.startNewCalc) {
       formula = '';
     }

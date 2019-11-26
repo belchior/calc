@@ -38,7 +38,7 @@ describe('Terminal', () => {
     const wrapper = setup(props);
     const custom = toJson(wrapper);
 
-    expect(props.disableError).toHaveBeenCalled();
+    expect(props.disableError).toHaveBeenCalledTimes(1);
     expect(custom).toMatchSnapshot();
   });
 

@@ -1,50 +1,55 @@
+/* eslint jest/no-hooks:off */
+/* eslint max-lines:off */
+/* eslint max-len:off */
+/* eslint require-atomic-updates:off */
+
 const config = require('../../../../config/puppeteer.config');
 
 const custom = {};
 
 const getText = element => page.evaluate(el => el.textContent, element);
 
-beforeAll(async () => {
-  await page.goto(config.appUrl);
-
-  custom.calcLink = await page.$('.Sidebar .link-custom');
-  await custom.calcLink.click();
-
-  custom.display = await page.$('.Custom .display');
-  custom.number1 = await page.$('.Custom .btn[data-name="number1"]');
-  custom.number2 = await page.$('.Custom .btn[data-name="number2"]');
-  custom.number3 = await page.$('.Custom .btn[data-name="number3"]');
-  custom.number4 = await page.$('.Custom .btn[data-name="number4"]');
-  custom.number5 = await page.$('.Custom .btn[data-name="number5"]');
-  custom.number6 = await page.$('.Custom .btn[data-name="number6"]');
-  custom.number7 = await page.$('.Custom .btn[data-name="number7"]');
-  custom.number8 = await page.$('.Custom .btn[data-name="number8"]');
-  custom.number9 = await page.$('.Custom .btn[data-name="number9"]');
-  custom.number0 = await page.$('.Custom .btn[data-name="number0"]');
-  custom.dot = await page.$('.Custom .btn[data-name="dot"]');
-  custom.addition = await page.$('.Custom .btn[data-name="addition"]');
-  custom.subtraction = await page.$('.Custom .btn[data-name="subtraction"]');
-  custom.multiplication = await page.$('.Custom .btn[data-name="multiplication"]');
-  custom.division = await page.$('.Custom .btn[data-name="division"]');
-  custom.parenthesisOpen = await page.$('.Custom .btn[data-name="parenthesisOpen"]');
-  custom.parenthesisClose = await page.$('.Custom .btn[data-name="parenthesisClose"]');
-  custom.equality = await page.$('.Custom .btn[data-name="equality"]');
-  custom.delete = await page.$('.Custom .btn[data-name="delete"]');
-  custom.clear = await page.$('.Custom .btn[data-name="clear"]');
-  custom.memoryAdd = await page.$('.Custom .btn[data-name="madd"]');
-  custom.memorySubtract = await page.$('.Custom .btn[data-name="msubtract"]');
-  custom.memoryClear = await page.$('.Custom .btn[data-name="mclear"]');
-  custom.memoryRecall = await page.$('.Custom .btn[data-name="mrecall"]');
-  custom.percentage = await page.$('.Custom .btn[data-name="percentage"]');
-  custom.power = await page.$('.Custom .btn[data-name="power"]');
-  custom.sqrt = await page.$('.Custom .btn[data-name="sqrt"]');
-  custom.pi = await page.$('.Custom .btn[data-name="pi"]');
-});
-
-beforeEach(() => custom.clear.click());
-
 
 describe('Custom', () => {
+  beforeAll(async () => {
+    await page.goto(config.appUrl);
+
+    custom.calcLink = await page.$('.Sidebar .link-custom');
+    await custom.calcLink.click();
+
+    custom.display = await page.$('.Custom .display');
+    custom.number1 = await page.$('.Custom .btn[data-name="number1"]');
+    custom.number2 = await page.$('.Custom .btn[data-name="number2"]');
+    custom.number3 = await page.$('.Custom .btn[data-name="number3"]');
+    custom.number4 = await page.$('.Custom .btn[data-name="number4"]');
+    custom.number5 = await page.$('.Custom .btn[data-name="number5"]');
+    custom.number6 = await page.$('.Custom .btn[data-name="number6"]');
+    custom.number7 = await page.$('.Custom .btn[data-name="number7"]');
+    custom.number8 = await page.$('.Custom .btn[data-name="number8"]');
+    custom.number9 = await page.$('.Custom .btn[data-name="number9"]');
+    custom.number0 = await page.$('.Custom .btn[data-name="number0"]');
+    custom.dot = await page.$('.Custom .btn[data-name="dot"]');
+    custom.addition = await page.$('.Custom .btn[data-name="addition"]');
+    custom.subtraction = await page.$('.Custom .btn[data-name="subtraction"]');
+    custom.multiplication = await page.$('.Custom .btn[data-name="multiplication"]');
+    custom.division = await page.$('.Custom .btn[data-name="division"]');
+    custom.parenthesisOpen = await page.$('.Custom .btn[data-name="parenthesisOpen"]');
+    custom.parenthesisClose = await page.$('.Custom .btn[data-name="parenthesisClose"]');
+    custom.equality = await page.$('.Custom .btn[data-name="equality"]');
+    custom.delete = await page.$('.Custom .btn[data-name="delete"]');
+    custom.clear = await page.$('.Custom .btn[data-name="clear"]');
+    custom.memoryAdd = await page.$('.Custom .btn[data-name="madd"]');
+    custom.memorySubtract = await page.$('.Custom .btn[data-name="msubtract"]');
+    custom.memoryClear = await page.$('.Custom .btn[data-name="mclear"]');
+    custom.memoryRecall = await page.$('.Custom .btn[data-name="mrecall"]');
+    custom.percentage = await page.$('.Custom .btn[data-name="percentage"]');
+    custom.power = await page.$('.Custom .btn[data-name="power"]');
+    custom.sqrt = await page.$('.Custom .btn[data-name="sqrt"]');
+    custom.pi = await page.$('.Custom .btn[data-name="pi"]');
+  });
+
+  beforeEach(() => custom.clear.click());
+
   describe('number button', () => {
     it('button number0 should be clickable', async () => {
       await custom.number0.click();

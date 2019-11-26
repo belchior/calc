@@ -1,3 +1,8 @@
+/* eslint jest/no-hooks:off */
+/* eslint max-lines:off */
+/* eslint max-len:off */
+/* eslint require-atomic-updates:off */
+
 const config = require('../../../../config/puppeteer.config');
 
 const terminal = {};
@@ -5,40 +10,40 @@ const terminal = {};
 const getText = element => page.evaluate(el => el.textContent, element);
 const lastOutput = () => page.$('.Terminal output:last-child');
 
-beforeAll(async () => {
-  await page.goto(config.appUrl);
-
-  terminal.calcLink = await page.$('.Sidebar .link-terminal');
-  await terminal.calcLink.click();
-
-  terminal.display = await page.$('.Terminal .display');
-  terminal.input = await page.$('.Terminal .display .input');
-  terminal.number1 = await page.$('.Terminal .btn[data-name="number1"]');
-  terminal.number2 = await page.$('.Terminal .btn[data-name="number2"]');
-  terminal.number3 = await page.$('.Terminal .btn[data-name="number3"]');
-  terminal.number4 = await page.$('.Terminal .btn[data-name="number4"]');
-  terminal.number5 = await page.$('.Terminal .btn[data-name="number5"]');
-  terminal.number6 = await page.$('.Terminal .btn[data-name="number6"]');
-  terminal.number7 = await page.$('.Terminal .btn[data-name="number7"]');
-  terminal.number8 = await page.$('.Terminal .btn[data-name="number8"]');
-  terminal.number9 = await page.$('.Terminal .btn[data-name="number9"]');
-  terminal.number0 = await page.$('.Terminal .btn[data-name="number0"]');
-  terminal.dot = await page.$('.Terminal .btn[data-name="dot"]');
-  terminal.addition = await page.$('.Terminal .btn[data-name="addition"]');
-  terminal.subtraction = await page.$('.Terminal .btn[data-name="subtraction"]');
-  terminal.multiplication = await page.$('.Terminal .btn[data-name="multiplication"]');
-  terminal.division = await page.$('.Terminal .btn[data-name="division"]');
-  terminal.parenthesisOpen = await page.$('.Terminal .btn[data-name="parenthesisOpen"]');
-  terminal.parenthesisClose = await page.$('.Terminal .btn[data-name="parenthesisClose"]');
-  terminal.equality = await page.$('.Terminal .btn[data-name="equality"]');
-  terminal.delete = await page.$('.Terminal .btn[data-name="delete"]');
-  terminal.clear = await page.$('.Terminal .btn[data-name="clear"]');
-});
-
-beforeEach(() => terminal.clear.click());
-
 
 describe('Terminal', () => {
+  beforeAll(async () => {
+    await page.goto(config.appUrl);
+
+    terminal.calcLink = await page.$('.Sidebar .link-terminal');
+    await terminal.calcLink.click();
+
+    terminal.display = await page.$('.Terminal .display');
+    terminal.input = await page.$('.Terminal .display .input');
+    terminal.number1 = await page.$('.Terminal .btn[data-name="number1"]');
+    terminal.number2 = await page.$('.Terminal .btn[data-name="number2"]');
+    terminal.number3 = await page.$('.Terminal .btn[data-name="number3"]');
+    terminal.number4 = await page.$('.Terminal .btn[data-name="number4"]');
+    terminal.number5 = await page.$('.Terminal .btn[data-name="number5"]');
+    terminal.number6 = await page.$('.Terminal .btn[data-name="number6"]');
+    terminal.number7 = await page.$('.Terminal .btn[data-name="number7"]');
+    terminal.number8 = await page.$('.Terminal .btn[data-name="number8"]');
+    terminal.number9 = await page.$('.Terminal .btn[data-name="number9"]');
+    terminal.number0 = await page.$('.Terminal .btn[data-name="number0"]');
+    terminal.dot = await page.$('.Terminal .btn[data-name="dot"]');
+    terminal.addition = await page.$('.Terminal .btn[data-name="addition"]');
+    terminal.subtraction = await page.$('.Terminal .btn[data-name="subtraction"]');
+    terminal.multiplication = await page.$('.Terminal .btn[data-name="multiplication"]');
+    terminal.division = await page.$('.Terminal .btn[data-name="division"]');
+    terminal.parenthesisOpen = await page.$('.Terminal .btn[data-name="parenthesisOpen"]');
+    terminal.parenthesisClose = await page.$('.Terminal .btn[data-name="parenthesisClose"]');
+    terminal.equality = await page.$('.Terminal .btn[data-name="equality"]');
+    terminal.delete = await page.$('.Terminal .btn[data-name="delete"]');
+    terminal.clear = await page.$('.Terminal .btn[data-name="clear"]');
+  });
+
+  beforeEach(() => terminal.clear.click());
+
   describe('number button', () => {
     it('button number0 should be clickable', async () => {
       await terminal.number0.click();

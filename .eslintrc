@@ -1,28 +1,11 @@
 {
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jest/recommended"
+    "react-app",
+    "eslint:all",
+    "plugin:jest/all",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
-  "plugins": [
-    "react",
-    "jest"
-  ],
-  "settings": {
-    "react": {
-      "version": "16.7"
-    },
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2018,
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "jest/globals": true
-  },
   "globals": {
     "$": true,
     "browser": true,
@@ -40,5 +23,82 @@
     "URL": true,
     "setTimeout": true,
     "window": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "jest",
+    "import",
+    "no-null"
+  ],
+  "settings": {
+    "react": {
+      "version": "16.7"
+    },
+  },
+  "rules": {
+    "array-bracket-spacing": ["error", "always"],
+    "array-element-newline": "off",
+    "arrow-body-style": "off",
+    "arrow-parens": ["error", "as-needed", { "requireForBlockBody": true }],
+    "capitalized-comments": "off",
+    "comma-dangle": [ "error", { "arrays": "always-multiline", "objects": "always-multiline", "imports": "always-multiline", "exports": "always", "functions": "ignore" } ],
+    "consistent-return": "off",
+    "curly": ["error", "multi-line"],
+    "dot-location": "off",
+    "func-style": "off",
+    "function-call-argument-newline": "off",
+    "function-paren-newline": "off",
+    "generator-star-spacing": ["error", {"before": false, "after": true}],
+    "id-length": "off",
+    "import/no-named-as-default": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "jest/lowercase-name": [ "error", { "ignore": ["describe"] } ],
+    "jest/prefer-expect-assertions": "off",
+    "jest/prefer-inline-snapshots": "off",
+    "jest/require-tothrow-message": "off",
+    "jest/prefer-called-with": "off",
+    "line-comment-position": "off",
+    "max-len": ["error", { "code": 120 }],
+    "max-lines-per-function": "off",
+    "max-statements": "off",
+    "multiline-comment-style": "off",
+    "multiline-ternary": "off",
+    "no-empty-function": "off",
+    "no-eq-null": "off",
+    "no-extra-parens": "off",
+    "no-inline-comments": "off",
+    "no-magic-numbers": "off",
+    "no-negated-condition": "off",
+    "no-null/no-null": 2,
+    "no-process-env": "off",
+    "no-ternary": "off",
+    "no-undefined": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "object-curly-spacing": ["error", "always"],
+    "object-property-newline": "off",
+    "one-var": "off",
+    "padded-blocks": "off",
+    "prefer-named-capture-group": "off",
+    "quote-props": ["error", "as-needed"],
+    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": "off",
+    "react/jsx-indent": [2, 2],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-max-depth": "off",
+    "react/jsx-max-props-per-line": "off",
+    "react/jsx-no-literals": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-set-state": "off",
+    "react/require-optimization": "off",
+    "sort-imports": "off",
+    "sort-keys": "off",
+    "space-before-function-paren": [ "error", { "anonymous": "always", "named": "never", "asyncArrow": "always" } ],
   }
 }

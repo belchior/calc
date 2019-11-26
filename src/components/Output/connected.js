@@ -1,4 +1,4 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Output from './Output';
 
 export const mapStateToProps = (state) => {
@@ -8,8 +8,8 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (e) => {
-      dispatch({type: 'NUMBER', calc: 'termsinal', payload: e.target.textContent});
-    }
+      dispatch({ type: 'NUMBER', calc: 'termsinal', payload: e.target.textContent });
+    },
   };
 };
 

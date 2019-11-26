@@ -1,4 +1,4 @@
-import Macwidget, {mapStateToProps, mapDispatchToProps} from './connected';
+import Macwidget, { mapStateToProps, mapDispatchToProps } from './connected';
 
-export {mapStateToProps, mapDispatchToProps};
+export { mapStateToProps, mapDispatchToProps, };
 export default Macwidget;

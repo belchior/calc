@@ -4,70 +4,70 @@ const initialState = {
   formula: '',
   results: [],
   error: false,
-  startNewCalc: false
+  startNewCalc: false,
 };
 
-const clearRule = (state) => ({
+const clearRule = state => ({
   ...state,
   results: [],
   formula: '',
-  startNewCalc: false
+  startNewCalc: false,
 });
 
-const deleteRule = (state) => ({
+const deleteRule = state => ({
   ...state,
   formula: state.formula.slice(0, -1),
-  startNewCalc: false
+  startNewCalc: false,
 });
 
-const disableError = (state) => ({
+const disableError = state => ({
   ...state,
-  error: false
+  error: false,
 });
 
 const divisionRule = (state, char = '÷') => {
-  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/u) >= 0) {
     if (state.formula.length === 1) {
       return {
         ...state,
-        error: true
+        error: true,
       };
     }
-    if (state.formula.slice(-2).search(/[(]/) < 0) {
+    if (state.formula.slice(-2).search(/[(]/u) < 0) {
       return {
         ...state,
         formula: state.formula.slice(0, -1) + char,
-        startNewCalc: false
+        startNewCalc: false,
       };
     }
 
-  } else if (state.formula && state.formula.slice(-1).search(/[(.]/) < 0) {
+  } else if (state.formula && state.formula.slice(-1).search(/[(.]/u) < 0) {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
 const dotRule = (state, char = '.') => {
   if (
-    state.formula && state.formula.slice(-1).search(/[.+\-×÷()]/) < 0 &&
-    state.formula.search(/\d+\.\d+$/) < 0 &&
+    state.formula && state.formula.slice(-1).search(/[.+\-×÷()]/u) < 0 &&
+    state.formula.search(/\d+\.\d+$/u) < 0 &&
     state.startNewCalc === false
   ) {
     return {
       ...state,
-      formula: state.formula + char
+      formula: state.formula + char,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
@@ -76,17 +76,17 @@ const equalsRule = (state) => {
     return {
       ...state,
       error: true,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   try {
-    let result = String(Calc.calculate(state.formula));
+    const result = String(Calc.calculate(state.formula));
 
     return {
       ...state,
-      results: state.results.concat([result]),
+      results: state.results.concat([ result ]),
       formula: result,
-      startNewCalc: true
+      startNewCalc: true,
     };
 
   } catch (err) {
@@ -94,7 +94,7 @@ const equalsRule = (state) => {
     console.error(err);
     return {
       ...state,
-      error: true
+      error: true,
     };
   }
 };
@@ -104,69 +104,69 @@ const minusRule = (state, char = '-') => {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
-  if (state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+  if (state.formula.slice(-1).search(/[+\-×÷]/u) >= 0) {
     return {
       ...state,
       formula: state.formula.slice(0, -1) + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
-  if (state.formula.slice(-1).search(/[.]/) < 0) {
+  if (state.formula.slice(-1).search(/[.]/u) < 0) {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
 const multiplicationRule = (state, char = '×') => {
-  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/u) >= 0) {
     if (state.formula.length === 1) {
       return {
         ...state,
-        error: true
+        error: true,
       };
     }
-    if (state.formula.slice(-2).search(/[(]/) < 0) {
+    if (state.formula.slice(-2).search(/[(]/u) < 0) {
       return {
         ...state,
         formula: state.formula.slice(0, -1) + char,
-        startNewCalc: false
+        startNewCalc: false,
       };
     }
 
-  } else if (state.formula && state.formula.slice(-1).search(/[(.]/) < 0) {
+  } else if (state.formula && state.formula.slice(-1).search(/[(.]/u) < 0) {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
 const numberRule = (state, char = '') => {
-  if (state.formula === '' || state.formula.slice(-1).search(/[)]/) < 0) {
+  if (state.formula === '' || state.formula.slice(-1).search(/[)]/u) < 0) {
     return {
       ...state,
       formula: state.startNewCalc ? char : state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
@@ -175,66 +175,66 @@ const parenthesisLeftRule = (state, char = '(') => {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
-  if (state.formula.slice(-1).search(/[0-9)]/) >= 0) {
+  if (state.formula.slice(-1).search(/[0-9)]/u) >= 0) {
     return {
       ...state,
-      formula: state.startNewCalc ? char : state.formula + '×' + char,
-      startNewCalc: false
+      formula: state.startNewCalc ? char : `${state.formula}×${char}`,
+      startNewCalc: false,
     };
   }
-  if (state.formula.slice(-1).search(/[.]/) < 0) {
+  if (state.formula.slice(-1).search(/[.]/u) < 0) {
     return {
       ...state,
       formula: state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
 const parenthesisRightRule = (state, char = ')') => {
-  const opens = state.formula.match(/[(]/g);
-  const closes = state.formula.match(/[)]/g);
+  const opens = state.formula.match(/[(]/ug);
+  const closes = state.formula.match(/[)]/ug);
 
   if ((opens && !closes) || (opens && closes && opens.length > closes.length)) {
-    if (state.formula.slice(-1).search(/[(+\-×÷.]/) < 0) {
+    if (state.formula.slice(-1).search(/[(+\-×÷.]/u) < 0) {
       return {
         ...state,
         formula: state.formula + char,
-        startNewCalc: false
+        startNewCalc: false,
       };
     }
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 
 const plusRule = (state, char = '+') => {
-  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/) >= 0) {
+  if (state.formula && state.formula.slice(-1).search(/[+\-×÷]/u) >= 0) {
     return {
       ...state,
       formula: state.formula.slice(0, -1) + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
-  if (state.formula.slice(-1).search(/[.]/) < 0) {
+  if (state.formula.slice(-1).search(/[.]/u) < 0) {
     return {
       ...state,
       formula: state.startNewCalc ? char : state.formula + char,
-      startNewCalc: false
+      startNewCalc: false,
     };
   }
   return {
     ...state,
-    error: true
+    error: true,
   };
 };
 

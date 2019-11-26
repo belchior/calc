@@ -8,64 +8,64 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     clearClick(e) {
-      dispatch({type: 'CLEAR', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'CLEAR', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     deleteClick(e) {
-      dispatch({type: 'DELETE', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'DELETE', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     divisionClick(e) {
-      dispatch({type: 'DIVISION', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'DIVISION', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     dotClick(e) {
-      dispatch({type: 'DOT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'DOT', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     equalsClick(e) {
-      dispatch({type: 'EQUALS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'EQUALS', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     memoryClearClick() {
-      dispatch({type: 'MEMORY_CLEAR', calc: 'custom'});
+      dispatch({ type: 'MEMORY_CLEAR', calc: 'custom' });
     },
     memoryMinusClick() {
-      dispatch({type: 'MEMORY_MINUS', calc: 'custom'});
+      dispatch({ type: 'MEMORY_MINUS', calc: 'custom' });
     },
     memoryPlusClick() {
-      dispatch({type: 'MEMORY_PLUS', calc: 'custom'});
+      dispatch({ type: 'MEMORY_PLUS', calc: 'custom' });
     },
     memoryRecallClick() {
-      dispatch({type: 'MEMORY_RECALL', calc: 'custom'});
+      dispatch({ type: 'MEMORY_RECALL', calc: 'custom' });
     },
     minusClick(e) {
-      dispatch({type: 'MINUS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'MINUS', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     multiplicationClick(e) {
-      dispatch({type: 'MULTIPLY', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'MULTIPLY', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     numberClick(e) {
-      dispatch({type: 'NUMBER', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'NUMBER', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     parenthesisLeftClick(e) {
-      dispatch({type: 'PARENTHESIS_LEFT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'PARENTHESIS_LEFT', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     parenthesisRightClick(e) {
-      dispatch({type: 'PARENTHESIS_RIGHT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'PARENTHESIS_RIGHT', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     percentageClick(e) {
-      dispatch({type: 'PERCENTAGE', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'PERCENTAGE', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     piClick(e) {
-      dispatch({type: 'PI', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'PI', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     plusClick(e) {
-      dispatch({type: 'PLUS', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'PLUS', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     powerClick(e) {
-      dispatch({type: 'POWER', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'POWER', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     sqrtClick(e) {
-      dispatch({type: 'SQRT', calc: 'custom', payload: e.target.getAttribute('data-value')});
+      dispatch({ type: 'SQRT', calc: 'custom', payload: e.target.getAttribute('data-value') });
     },
     disableError() {
-      setTimeout(() => dispatch({type: 'ERROR', calc: 'custom', payload: false}), 400);
+      setTimeout(() => dispatch({ type: 'ERROR', calc: 'custom', payload: false }), 400);
     },
   };
 };
