@@ -12,7 +12,6 @@
     "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' jest -i -c ./config/jest.config.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "lint": "eslint ./src"
   },
   "dependencies": {
@@ -34,6 +33,7 @@
     "eslint-plugin-jest": "^23.0.4",
     "eslint-plugin-react": "^7.16.0",
     "gh-pages": "^2.1.1",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "jest-prop-type-error": "^1.1.0",
     "jest-puppeteer": "^4.3.0",
