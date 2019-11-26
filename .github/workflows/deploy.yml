@@ -29,6 +29,7 @@ jobs:
           npm ci --no-optional
           npm test
           npm run build
+          git remote set-url origin https://${{ secrets.CALC_TOKEN }}@github.com/belchior>/calc.git
           npm run deploy
         env:
           CI: true

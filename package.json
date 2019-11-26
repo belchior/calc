@@ -11,7 +11,7 @@
     "test:ci": "cross-env CI=true react-scripts test --env=jsdom --coverage --colors",
     "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' jest -i -c ./config/jest.config.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build -u \"Belchior Oliveira <belchior@outlook.com>\"",
     "lint": "eslint ./src"
   },
   "dependencies": {
