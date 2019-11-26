@@ -24,12 +24,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: npm install, build, and test
+      - name: npm install, test, build, and deploy
         run: |
           npm ci --no-optional
           npm test
           npm run build
-          git remote set-url origin https://${{ secrets.CALC_TOKEN }}@github.com/belchior>/calc.git
+          git remote set-url origin https://${{ secrets.CALC_TOKEN }}@github.com/belchior/calc.git
           npm run deploy
         env:
           CI: true
