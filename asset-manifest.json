@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/calc/static/css/main.b7c14391.chunk.css",
-    "main.js": "/calc/static/js/main.2e0b27a7.chunk.js",
-    "main.js.map": "/calc/static/js/main.2e0b27a7.chunk.js.map",
+    "main.js": "/calc/static/js/main.69a5eaeb.chunk.js",
+    "main.js.map": "/calc/static/js/main.69a5eaeb.chunk.js.map",
     "runtime-main.js": "/calc/static/js/runtime-main.c5270598.js",
     "runtime-main.js.map": "/calc/static/js/runtime-main.c5270598.js.map",
-    "static/js/2.f7be5c20.chunk.js": "/calc/static/js/2.f7be5c20.chunk.js",
-    "static/js/2.f7be5c20.chunk.js.map": "/calc/static/js/2.f7be5c20.chunk.js.map",
+    "static/js/2.53f77716.chunk.js": "/calc/static/js/2.53f77716.chunk.js",
+    "static/js/2.53f77716.chunk.js.map": "/calc/static/js/2.53f77716.chunk.js.map",
     "index.html": "/calc/index.html",
-    "precache-manifest.6ebdc7f4c5a3eebf07c6bb24204b9a5c.js": "/calc/precache-manifest.6ebdc7f4c5a3eebf07c6bb24204b9a5c.js",
+    "precache-manifest.fcb638be43475a64b0f11b2f418d2fbb.js": "/calc/precache-manifest.fcb638be43475a64b0f11b2f418d2fbb.js",
     "service-worker.js": "/calc/service-worker.js",
     "static/css/main.b7c14391.chunk.css.map": "/calc/static/css/main.b7c14391.chunk.css.map",
     "static/media/App.css": "/calc/static/media/MontserratAlternates-Regular.b8d1a091.ttf",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.c5270598.js",
-    "static/js/2.f7be5c20.chunk.js",
+    "static/js/2.53f77716.chunk.js",
     "static/css/main.b7c14391.chunk.css",
-    "static/js/main.2e0b27a7.chunk.js"
+    "static/js/main.69a5eaeb.chunk.js"
   ]
 }
