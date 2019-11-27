@@ -33,5 +33,5 @@ jobs:
       - name: npm install, test, build and deploy
         run: |
           npm ci --no-optional
-          npm test:ci
+          npm run test:ci
           npm run deploy
