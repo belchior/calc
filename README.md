@@ -4,7 +4,7 @@
 # Arithmetic calculator
 > Elegant, modern and entertaining.
 
-[![vcard](https://raw.githubusercontent.com/belchior/calc/master/public/vcard.png)](https://belchior.github.io/calc)
+[![vcard](https://belchior.github.io/calc/vcard.png)](https://belchior.github.io/calc)
 
 [Demo](https://belchior.github.io/calc)
 
