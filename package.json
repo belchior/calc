@@ -4,10 +4,11 @@
   "version": "0.2.2",
   "license": "MIT",
   "scripts": {
-    "build": "react-scripts build && bash ./config/postbuild.sh",
+    "build": "react-scripts build",
     "deploy": "gh-pages -d build",
-    "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' jest -i -c ./config/jest.config.js",
+    "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' jest -c ./config/jest.config.js",
     "lint": "eslint ./src",
+    "postbuild": "bash ./config/postbuild.sh",
     "predeploy": "npm run build",
     "serve": "serve -s build",
     "start": "react-scripts start",

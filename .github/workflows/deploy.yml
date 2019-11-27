@@ -30,11 +30,8 @@ jobs:
           git config --global user.name "${{ secrets.GIT_USER_NAME }}"
           git remote set-url origin https://${{ secrets.DEPLOY_TOKEN }}@github.com/belchior/calc.git
 
-      - name: npm install, test, build, and deploy
+      - name: npm install, test, build and deploy
         run: |
           npm ci --no-optional
-          npm test
-          npm run build
+          npm test:ci
           npm run deploy
-        env:
-          CI: true
