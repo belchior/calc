@@ -1,65 +1,68 @@
 /* eslint max-len:off */
 
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
+import { setColorTheme } from '../../../util/theme';
 import Output from '../../Output';
+
 import './Terminal.css';
 
-class Terminal extends Component {
-  render() {
-    let className = 'Terminal';
-    if (this.props.error) {
-      className += ' shake-horizontal';
-      this.props.disableError();
-    }
+const Terminal = (props) => {
+  setColorTheme('terminal');
 
-    let { formula } = this.props;
-    if (this.props.startNewCalc) {
-      formula = '';
-    }
-    return (
-      <form className={className}>
-        <div className="display">
-          <Output results={this.props.results} />
-          <p className="input">{formula}</p>
-        </div>
-        <div className="keyboard">
-          <div className="row">
-            <button onClick={this.props.parenthesisLeftClick} type="button" className="btn" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
-            <button onClick={this.props.parenthesisRightClick} type="button" className="btn" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
-            <button onClick={this.props.deleteClick} type="button" className="btn" data-name="delete" title="delete">&lt;</button>
-            <button onClick={this.props.clearClick} type="button" className="btn" data-name="clear" title="clear">c</button>
-          </div>
-          <div className="row">
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number1" data-value="1" title="number 1">1</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number2" data-value="2" title="number 2">2</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number3" data-value="3" title="number 3">3</button>
-            <button onClick={this.props.plusClick} type="button" className="btn" data-name="addition" data-value="+" title="plus">+</button>
-          </div>
-          <div className="row">
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number4" data-value="4" title="number 4">4</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number5" data-value="5" title="number 5">5</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number6" data-value="6" title="number 6">6</button>
-            <button onClick={this.props.minusClick} type="button" className="btn" data-name="subtraction" data-value="-" title="minus">−</button>
-          </div>
-          <div className="row">
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number7" data-value="7" title="number 7">7</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number8" data-value="8" title="number 8">8</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number9" data-value="9" title="number 9">9</button>
-            <button onClick={this.props.multiplicationClick} type="button" className="btn" data-name="multiplication" data-value="×" title="times">×</button>
-          </div>
-          <div className="row">
-            <button onClick={this.props.dotClick} type="button" className="btn" data-name="dot" data-value="." title="dot">.</button>
-            <button onClick={this.props.numberClick} type="button" className="btn" data-name="number0" data-value="0" title="number 0">0</button>
-            <button onClick={this.props.equalsClick} type="button" className="btn" data-name="equality" title="equals">=</button>
-            <button onClick={this.props.divisionClick} type="button" className="btn" data-name="division" data-value="÷" title="divided">÷</button>
-          </div>
-        </div>
-      </form>
-    );
+  let className = 'Terminal';
+  if (props.error) {
+    className += ' shake-horizontal';
+    props.disableError();
   }
-}
+
+  let { formula } = props;
+  if (props.startNewCalc) {
+    formula = '';
+  }
+
+  return (
+    <form className={className}>
+      <div className="display">
+        <Output results={props.results} />
+        <p className="input">{formula}</p>
+      </div>
+      <div className="keyboard">
+        <div className="row">
+          <button onClick={props.parenthesisLeftClick} type="button" className="btn" data-name="parenthesisOpen" data-value="(" title="parenthesis opening">(</button>
+          <button onClick={props.parenthesisRightClick} type="button" className="btn" data-name="parenthesisClose" data-value=")" title="parenthesis closing">)</button>
+          <button onClick={props.deleteClick} type="button" className="btn" data-name="delete" title="delete">&lt;</button>
+          <button onClick={props.clearClick} type="button" className="btn" data-name="clear" title="clear">c</button>
+        </div>
+        <div className="row">
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number1" data-value="1" title="number 1">1</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number2" data-value="2" title="number 2">2</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number3" data-value="3" title="number 3">3</button>
+          <button onClick={props.plusClick} type="button" className="btn" data-name="addition" data-value="+" title="plus">+</button>
+        </div>
+        <div className="row">
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number4" data-value="4" title="number 4">4</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number5" data-value="5" title="number 5">5</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number6" data-value="6" title="number 6">6</button>
+          <button onClick={props.minusClick} type="button" className="btn" data-name="subtraction" data-value="-" title="minus">−</button>
+        </div>
+        <div className="row">
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number7" data-value="7" title="number 7">7</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number8" data-value="8" title="number 8">8</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number9" data-value="9" title="number 9">9</button>
+          <button onClick={props.multiplicationClick} type="button" className="btn" data-name="multiplication" data-value="×" title="times">×</button>
+        </div>
+        <div className="row">
+          <button onClick={props.dotClick} type="button" className="btn" data-name="dot" data-value="." title="dot">.</button>
+          <button onClick={props.numberClick} type="button" className="btn" data-name="number0" data-value="0" title="number 0">0</button>
+          <button onClick={props.equalsClick} type="button" className="btn" data-name="equality" title="equals">=</button>
+          <button onClick={props.divisionClick} type="button" className="btn" data-name="division" data-value="÷" title="divided">÷</button>
+        </div>
+      </div>
+    </form>
+  );
+};
 
 export default Terminal;
 

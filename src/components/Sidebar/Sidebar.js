@@ -7,6 +7,7 @@ import iconMacwidget from '../../images/icon-macwidget.svg';
 import iconGithub from '../../images/icon-github.svg';
 import './Sidebar.css';
 
+
 const Sidebar = () => (
   <aside className="Sidebar">
     <a className="author" href="https://github.com/belchior">

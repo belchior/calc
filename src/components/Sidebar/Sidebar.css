@@ -75,6 +75,7 @@
     flex-flow: row;
     flex: 0 1 auto;
     height: 4em;
+    order: 1;
   }
   .Sidebar .author {
     padding: 0;
