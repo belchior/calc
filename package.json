@@ -11,6 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "react-scripts build",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "deploy": "gh-pages -d build",
     "e2e": "cross-env JEST_PUPPETEER_CONFIG='./config/jest-puppeteer.config.js' jest -c ./config/jest.config.js",
     "lint": "eslint ./src",
