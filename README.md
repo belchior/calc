@@ -1,3 +1,5 @@
+![](https://github.com/belchior/calc/workflows/deploy/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/belchior/calc/badge.svg?branch=master)](https://coveralls.io/github/belchior/calc?branch=master)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 

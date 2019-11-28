@@ -35,3 +35,7 @@ jobs:
           npm ci --no-optional
           npm run test:ci
           npm run deploy
+
+      - name: collecting code coverage
+        run: |
+          COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN npm run coveralls
