@@ -38,4 +38,4 @@ jobs:
 
       - name: collecting code coverage
         run: |
-          COVERALLS_REPO_TOKEN=$COVERALLS_TOKEN npm run coveralls
+          COVERALLS_REPO_TOKEN=${{ secrets.COVERALLS_TOKEN }} npm run coveralls
