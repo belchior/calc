@@ -6,7 +6,7 @@
 
 [![vcard](https://belchior.github.io/calc/vcard.png)](https://belchior.github.io/calc)
 
-[Demo](https://belchior.github.io/calc)
+demo: [https://belchior.github.io/calc](https://belchior.github.io/calc)
 
 ## Development
 Install dependencies
@@ -28,3 +28,5 @@ You can run the command below to get more available scripts
 ```shell
 npm run
 ```
+
+<p align="center">Made with 💜 and ⚛️</p>
